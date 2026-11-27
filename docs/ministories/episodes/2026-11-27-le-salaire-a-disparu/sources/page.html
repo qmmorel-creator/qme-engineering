@@ -37,6 +37,8 @@ const rebond = (x) => { const c = 1.70158 * 1.4; return 1 + (c + 1) * Math.pow(x
 const hash = (n) => { const s = Math.sin(n * 127.1) * 43758.5453; return s - Math.floor(s); };
 const euros = (v) => v.toLocaleString('fr-FR').replace(/\u202f|\s/g, '\u2009') + '\u00a0€';
 const T = window.TL;
+// Temps vidéo -> temps du montage de référence (scènes recalées sur la voix réelle), interpolation linéaire par morceaux.
+const recaler = (t) => { const M = T.montage; if (!M) return t; for (let i = 1; i < M.length; i++) if (t <= M[i][0]) return M[i - 1][1] + (t - M[i - 1][0]) * (M[i][1] - M[i - 1][1]) / (M[i][0] - M[i - 1][0]); return M[M.length - 1][1] + t - M[M.length - 1][0]; };
 
 // ---------- Mascotte : post-it jaune « A1 » (référence qme-mascot-original-reference.jpeg) ----------
 // Une seule fonction pour tout l'épisode : mêmes proportions, couleurs et traits d'un plan à l'autre.
@@ -143,7 +145,7 @@ S.S4 = (t, l) => {                       // Trois jours plus tard
   return g;
 };
 S.S5 = (t, l) => {                       // 3 € : panique
-  const alarme = t >= 11.15 && t < 12.5;
+  const alarme = t >= 11.15 && t < 12.5; // repère du montage de référence
   const flash = alarme && Math.floor((t - 11.15) / .33) % 2 === 0;
   const tremble = (hash(pose(l)) - .5) * (alarme ? 28 : 10);
   let g = `<rect width="1080" height="1920" fill="${flash ? '#F6D7D0' : C.creme}"/>` + `<circle cx="540" cy="700" r="${430 + (flash ? 25 : 0)}" fill="${C.rouge}"/>`;
@@ -200,13 +202,13 @@ const scene = document.getElementById('scene'), st = document.getElementById('st
 // Sous-titres : une réplique = un sous-titre, calé sur la voix réelle (début, fin + 0,12 s), deux lignes au plus.
 const COUPES = { v07: 'Et les abonnements,<br>en rafale !', v10: 'Avec Mon Budget, de QME,<br>chaque euro a son enveloppe.', v11: 'Vous voyez le prévu, le réel,<br>et où part l’argent.', v13: 'Il avait juste besoin<br>d’un plan.' };
 window.placer = (ms) => {
-  window.__t = ms; const t = ms / 1000;
-  const fin = t >= T.carton.debut;
+  const tv = ms / 1000; const t = recaler(tv); ms = t * 1000; window.__t = ms;
+  const fin = tv >= T.carton.debut;
   carton.style.display = fin ? 'block' : 'none';
   if (fin) { scene.innerHTML = ''; st.innerHTML = ''; return; }
   const sc = T.scenes.find((s) => t >= s.debut && t < s.fin) || T.scenes[0];
   scene.innerHTML = `<svg width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">${S[sc.id](t, ms - sc.debut * 1000)}</svg>`;
-  const v = T.voix.find((r) => t >= r.t - .05 && t < Math.min(r.fin + .12, T.carton.debut));
+  const v = T.voix.find((r) => tv >= r.t - .05 && tv < Math.min(r.fin + .12, T.carton.debut));
   st.innerHTML = v ? `<span>${COUPES[v.id] || v.texte.replace(/'/g, '’')}</span>` : '';
 };
 window.placer(0);

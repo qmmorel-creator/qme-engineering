@@ -32,7 +32,7 @@ mascotte officielle (`docs/templates/communication/formats-test/mascotte/carreau
 | v12 | 19,25 | Le salaire n'a pas disparu. | complice |
 | v13 | 20,75 | Il avait juste besoin d'un plan. | chute, sourire |
 
-Texte continu (à coller tel quel dans ElevenLabs pour remplacer la voix provisoire) :
+Texte continu (envoyé à ElevenLabs ; voix « Caroline », intégrée le 27/11/2026, temps réels dans `sources/timeline.json`) :
 
 > Jour de paie ! Champagne ! Enfin… eau pétillante. Mais le loyer a faim. Les factures aussi. Les courses. Et les
 > abonnements, en rafale ! Trois jours plus tard… Trois euros ?! Avec Mon Budget, de QME, chaque euro a son enveloppe.

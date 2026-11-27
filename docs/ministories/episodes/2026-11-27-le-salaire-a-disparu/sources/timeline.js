@@ -1,9 +1,9 @@
 window.TL = {
   "episode": "le-salaire-a-disparu",
-  "duree": 26.7,
+  "duree": 30.0,
   "carton": {
-    "debut": 22.7,
-    "fin": 26.7
+    "debut": 26.0,
+    "fin": 30.0
   },
   "scenes": [
     {
@@ -58,81 +58,81 @@ window.TL = {
   "voix": [
     {
       "id": "v01",
-      "t": 0.3,
-      "texte": "Jour de paie !",
-      "fin": 0.828
+      "t": 0.2,
+      "fin": 1.35,
+      "texte": "Jour de paie !"
     },
     {
       "id": "v02",
       "t": 1.45,
-      "texte": "Champagne !",
-      "fin": 1.982
+      "fin": 2.6,
+      "texte": "Champagne !"
     },
     {
       "id": "v03",
-      "t": 2.45,
-      "texte": "Enfin… eau pétillante.",
-      "fin": 3.831
+      "t": 2.92,
+      "fin": 5.56,
+      "texte": "Enfin… eau pétillante."
     },
     {
       "id": "v04",
-      "t": 4.2,
-      "texte": "Mais le loyer a faim.",
-      "fin": 5.026
+      "t": 6.06,
+      "fin": 7.48,
+      "texte": "Mais le loyer a faim."
     },
     {
       "id": "v05",
-      "t": 5.4,
-      "texte": "Les factures aussi.",
-      "fin": 6.16
+      "t": 7.96,
+      "fin": 8.85,
+      "texte": "Les factures aussi."
     },
     {
       "id": "v06",
-      "t": 6.5,
-      "texte": "Les courses.",
-      "fin": 7.052
+      "t": 9.22,
+      "fin": 9.83,
+      "texte": "Les courses."
     },
     {
       "id": "v07",
-      "t": 7.3,
-      "texte": "Et les abonnements, en rafale !",
-      "fin": 8.538
+      "t": 10.12,
+      "fin": 11.87,
+      "texte": "Et les abonnements, en rafale !"
     },
     {
       "id": "v08",
-      "t": 9.2,
-      "texte": "Trois jours plus tard…",
-      "fin": 10.181
+      "t": 12.41,
+      "fin": 13.36,
+      "texte": "Trois jours plus tard…"
     },
     {
       "id": "v09",
-      "t": 10.6,
-      "texte": "Trois euros ?!",
-      "fin": 11.056
+      "t": 13.84,
+      "fin": 14.7,
+      "texte": "Trois euros ?!"
     },
     {
       "id": "v10",
-      "t": 12.9,
-      "texte": "Avec Mon Budget, de QME, chaque euro a son enveloppe.",
-      "fin": 15.951
+      "t": 15.13,
+      "fin": 18.74,
+      "texte": "Avec Mon Budget, de QME, chaque euro a son enveloppe."
     },
     {
       "id": "v11",
-      "t": 16.25,
-      "texte": "Vous voyez le prévu, le réel, et où part l'argent.",
-      "fin": 18.77
+      "t": 19.16,
+      "fin": 22.04,
+      "texte": "Vous voyez le prévu, le réel, et où part l'argent."
     },
     {
       "id": "v12",
-      "t": 19.25,
-      "texte": "Le salaire n'a pas disparu.",
-      "fin": 20.495
+      "t": 22.45,
+      "fin": 23.65,
+      "texte": "Le salaire n'a pas disparu."
     },
     {
       "id": "v13",
-      "t": 20.75,
-      "texte": "Il avait juste besoin d'un plan.",
-      "fin": 22.141
+      "t": 24.0,
+      "fin": 25.52,
+      "texte": "Il avait juste besoin d'un plan."
     }
   ],
   "bruitages": [
@@ -142,67 +142,63 @@ window.TL = {
     },
     {
       "son": "pop",
-      "t": 1.32
+      "t": 1.42
     },
     {
       "son": "fizz",
-      "t": 2.3
+      "t": 5.5
     },
     {
       "son": "whoosh",
-      "t": 4.1
+      "t": 5.58
     },
     {
       "son": "chomp",
-      "t": 4.95
+      "t": 7.25
     },
     {
       "son": "zap",
-      "t": 6.0
+      "t": 8.7
     },
     {
       "son": "chomp",
-      "t": 6.95
+      "t": 9.6
     },
     {
       "son": "blips",
-      "t": 7.55
+      "t": 10.4
     },
     {
       "son": "tick",
-      "t": 9.15
+      "t": 12.0
     },
     {
       "son": "chute",
-      "t": 10.45
-    },
-    {
-      "son": "alarme",
-      "t": 11.15
-    },
-    {
-      "son": "whoosh",
-      "t": 12.7
-    },
-    {
-      "son": "pose",
       "t": 13.7
     },
     {
-      "son": "pose",
-      "t": 14.2
+      "son": "whoosh",
+      "t": 15.0
     },
     {
       "son": "pose",
-      "t": 14.7
+      "t": 16.9
     },
     {
       "son": "pose",
-      "t": 15.2
+      "t": 17.4
+    },
+    {
+      "son": "pose",
+      "t": 17.9
+    },
+    {
+      "son": "pose",
+      "t": 18.4
     },
     {
       "son": "ding",
-      "t": 22.25
+      "t": 25.75
     }
   ],
   "soldes": [
@@ -230,5 +226,105 @@ window.TL = {
       "t": 8.9,
       "v": 212
     }
-  ]
+  ],
+  "voix_source": {
+    "fichier": "audio/elevenlabs/voix-elevenlabs.wav",
+    "decalage": 0.2,
+    "origine": "ElevenLabs, voix « Caroline - Warm, Sweet and Soft », MP3 fourni par Quentin le 27/11/2026"
+  },
+  "montage": [
+    [
+      0,
+      0
+    ],
+    [
+      1.4,
+      1.3
+    ],
+    [
+      4.6,
+      2.3
+    ],
+    [
+      5.9,
+      4.1
+    ],
+    [
+      7.25,
+      4.95
+    ],
+    [
+      7.8,
+      5.3
+    ],
+    [
+      8.7,
+      6.0
+    ],
+    [
+      9.1,
+      6.4
+    ],
+    [
+      9.6,
+      6.95
+    ],
+    [
+      10.1,
+      7.3
+    ],
+    [
+      12.0,
+      9.1
+    ],
+    [
+      13.7,
+      10.45
+    ],
+    [
+      15.0,
+      12.7
+    ],
+    [
+      16.9,
+      13.7
+    ],
+    [
+      18.4,
+      15.2
+    ],
+    [
+      19.2,
+      16.3
+    ],
+    [
+      19.7,
+      16.6
+    ],
+    [
+      20.5,
+      17.0
+    ],
+    [
+      21.3,
+      17.55
+    ],
+    [
+      22.2,
+      19.1
+    ],
+    [
+      25.6,
+      22.2
+    ],
+    [
+      26.0,
+      22.7
+    ],
+    [
+      30.0,
+      26.7
+    ]
+  ],
+  "note": "scenes et soldes sont exprimés dans le repère du montage de référence ; 'montage' convertit le temps vidéo vers ce repère."
 };

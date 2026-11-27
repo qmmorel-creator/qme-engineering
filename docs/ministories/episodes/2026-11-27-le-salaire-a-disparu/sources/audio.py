@@ -111,7 +111,10 @@ def lufs(chemin):
     return float(re.findall(r'I:\s+(-?[\d.]+) LUFS', out)[-1])
 
 voix = np.zeros(N)
-for v in TL['voix']:
+if TL.get('voix_source'):  # prise continue (ElevenLabs) : placée telle quelle, fins des répliques mesurées à part
+    vs = TL['voix_source']; x = lire(vs['fichier']); j = int(vs['decalage'] * SR)
+    voix[j:j + len(x)] += x[:N - j]
+for v in ([] if TL.get('voix_source') else TL['voix']):
     p = f"audio/voix/{v['id']}.wav"
     g = 10 ** ((-16 - lufs(p)) / 20)
     x = lire(p) * g

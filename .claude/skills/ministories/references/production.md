@@ -35,6 +35,13 @@ while IFS=$'\t' read id rate pitch txt; do
 done < sources/repliques.tsv
 ```
 
+**Voix ElevenLabs (cas nominal)** : garder la prise d'un seul tenant (meilleure interprétation). Convertir en WAV
+48 kHz mono, relever début et fin de chaque réplique (`silencedetect=noise=-40dB:d=0.18` + transcription Vosk), écrire
+`voix` et `voix_source` ({fichier, decalage}) dans `timeline.json`. Si la durée diffère du premier montage, ajouter
+`montage` : liste de paires [temps vidéo, temps du montage de référence] (interpolation linéaire) qui recale les
+scènes sur les mots sans toucher au code des scènes ; les sous-titres suivent le temps vidéo. Retirer tout bruitage
+qui tombe sur un mot (vérifier par le rapport voix/fond et la transcription).
+
 `-nostdin` est indispensable dans la boucle (sinon ffmpeg mange l'entrée). Voix françaises : Henri, Remy (hommes),
 Denise, Eloise, Vivienne (femmes). **Provisoire** : usage commercial non établi. Définitif : ElevenLabs, fichiers déposés
 par Quentin, un par réplique ou un seul fichier à découper aux silences.

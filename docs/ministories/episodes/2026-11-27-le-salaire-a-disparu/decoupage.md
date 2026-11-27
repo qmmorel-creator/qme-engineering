@@ -1,5 +1,7 @@
 # « Le salaire a disparu ! » · découpage, continuité, plans audio et sous-titres
 
+Temps ci-dessous : premier montage (voix provisoire). Temps de la version ElevenLabs : `sources/timeline.json` (`voix`, `bruitages`, `montage`).
+
 Storyboard : `storyboard.png` (14 vignettes tirées de la page d'animation). Source unique des temps : `sources/timeline.json`.
 Style : motion design vectoriel, poses tenues à 12 poses/s (stop-motion de la charte MiniStories), coupes franches.
 
