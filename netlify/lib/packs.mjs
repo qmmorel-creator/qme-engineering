@@ -50,7 +50,7 @@ export const PACKS = {
   PFA: { slug: 'famille', nom: 'Pack Maison et famille', produits: ['BDG', 'ENT', 'RPS', 'GRD', 'BBE', 'ANM', 'PTG'], gumroad: '99eGWGaue9QqJFk_Rh_4SA==', permalien: 'pack-famille' },
   // Retirés le 22/11/2026 (rationalisation, décision de Quentin) : entièrement contenus dans un plus grand pack.
   PVY: { slug: 'voyage', nom: 'Pack Voyage', produits: ['BCM', 'VYG'], gumroad: 'Kwfo3TDSuJWfngx4ZTJ4xQ==', permalien: 'pack-voyage', retire: '2026-11-22' },
-  PNS: { slug: 'enseignant', nom: 'Pack Écoles et formateurs', produits: ['PRG', 'QZZ', 'CSE', 'EDT', 'AEC'], gumroad: 'ShSmzOm_zm-_El2YWLbgYg==', permalien: 'pack-enseignant' },
+  PNS: { slug: 'enseignant', nom: 'Pack Écoles et formateurs', produits: ['PRG', 'QZZ', 'CSE', 'EDT'], gumroad: 'ShSmzOm_zm-_El2YWLbgYg==', permalien: 'pack-enseignant' },
   PXP: { slug: 'exploitation', nom: 'Pack Exploitation et maintenance', produits: ['GMA', 'VRF', 'NCF', 'STK'], gumroad: '6pupGzmPEgp_aHGFUAWNxA==', permalien: 'pack-exploitation' },
   PCA: { slug: 'commercant-artisan', nom: 'Pack Commerçant et artisan', produits: ['STK', 'DVS', 'MCE', 'TRS', 'TVA'], gumroad: 'YqkUp-9uupBcFHTAAjlkQg==', permalien: 'pack-commercant-artisan' },
   PVT: { slug: 'voiture', nom: 'Pack Ma voiture', produits: ['VTR', 'CAR', 'SVT'], gumroad: 'nVivzNvD6qcdSi5wf1UqXQ==', permalien: 'pack-voiture' },

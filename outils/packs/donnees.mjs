@@ -373,14 +373,13 @@ export const PAGES = {
   PNS: {
     couleur: 'rouge', cibles: ['enseignants'],
     accroche: 'Préparer, évaluer, organiser : la classe sous contrôle.',
-    resume: 'Gestion de classe, banque de questions, progression pédagogique, emploi du temps et auto-école : les outils des écoles, des centres de formation et des formateurs.',
+    resume: 'Gestion de classe, banque de questions, progression pédagogique et emploi du temps : les outils des écoles, des centres de formation et des formateurs.',
     pourQui: 'Enseignant de collège ou de lycée, formateur ou responsable pédagogique : vos progressions sont dans un classeur, vos évaluations dans un tableur et l’emploi du temps change chaque semaine.',
     parcours: [
       ['PRG', 'Planifiez séquences et séances, et voyez où vous en êtes.'],
       ['QZZ', 'Constituez votre banque de questions et générez vos quiz.'],
       ['CSE', 'Suivez évaluations, compétences et appréciations jusqu’au bulletin.'],
       ['EDT', 'Organisez classes, formateurs et salles sans conflit.'],
-      ['AEC', 'Pour une auto-école : planifiez élèves, leçons, moniteurs et véhicules.'],
     ],
     arguments: ['Pensé pour l’enseignement et la formation en France', 'Sans abonnement d’établissement', 'Questions, quiz et corrections dans le même pack'],
     prevus: [],
