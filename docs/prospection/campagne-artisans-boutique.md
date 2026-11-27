@@ -72,6 +72,15 @@ Fichiers de lot hors dépôt (adresses ; un lot versé dans `docs/` serait ensui
 
 **Total du lot 1 : 117 adresses prêtes** (40 + 41 + 36), aucune mise en file avant le feu vert.
 
+### Contrôles complémentaires du 27/11/2026 (consigne de la session « Audit campagnes ciblées »)
+
+- `doublons … --campagne artisans-boutique` (outil à jour de la PR #330) sur les 117 : 0 écarté.
+- Nexora, seconde recherche par **radical de domaine** (une par prospect, celui du site pour une messagerie grand
+  public) : 0 correspondance sur 117. Témoins : `cipec` et `mariage-a-soie` sortent (un tiret vaut une espace) ;
+  un radical collé (`mariageasoie`) ne trouve pas un nom écrit en plusieurs mots : la recherche par nom reste
+  indispensable. La recherche porte aussi sur la ville.
+- Gmail, témoins : `"mariage-a-soie.fr"` et `cipec.com` sortent, `"brasserie-inventee-zq7.fr"` ne renvoie rien.
+
 ### Méthode Gmail (constat du 27/11/2026)
 
 - Une recherche groupée (`in:anywhere (a OR b OR …)`, 9 à 11 termes) a renvoyé 0 fil pour `pois-de-senteur.fr` alors
