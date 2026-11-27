@@ -40,8 +40,24 @@ structure du mail : `docs/prospection/mail-type-packs-niches.md`.
 - **Aucun doublon** (règle de Quentin du 27/11/2026) : chaque lot passe `campagne.mjs doublons`, Nexora `list_qme`
   (nom de l'entreprise) et Gmail `in:anywhere <domaine>` ; `doublons` est relancé juste avant `file`.
 
+## Lot 1 (27/11/2026)
+
+- 80 campings sourcés (adresse lue sur la page exacte du site officiel, fait lu sur le site ; 37 départements, 5 au plus
+  par département) ; environ 390 sites examinés, écartés au sourcing : une cinquantaine de chaînes et groupes, 6
+  municipaux ou douteux, 1 adresse nominative, 4 trop petits ou hors sujet, environ 120 sans adresse visible.
+- Contrôles anti-doublon : `doublons` 0 écarté (référence 1 330 adresses, 817 domaines) ; **Nexora 2 écartés**
+  (Camping Europa à Saint-Jorioz et Domaine de la Gautière, vague 10 « Hébergement et loisirs ») ; Gmail
+  `in:anywhere` 0 écarté (requêtes groupées refaites par petits groupes, domaines entre guillemets, témoin vérifié) ;
+  liste d'opposition 0 ; `desinscrits.md` 0.
+- **78 adresses prêtes**. Sondage : 4 adresses sur 4 retrouvées sur leur page source. Prénoms d'exploitants retirés de
+  3 faits (aucune donnée personnelle dans un mail de masse). Fichier de lot hors dépôt (adresses : pas dans un dépôt
+  publié).
+- Réserves : 15 adresses en messagerie grand public (au nom de l'établissement) ; un code postal repris de la commune
+  (Le Palace, Soulac). Il manque environ 70 adresses pour trois jours d'avance (150) ; 15 campings valides déjà
+  repérés pour le lot 2.
+
 ## Journal
 
 | Date | Partis | Réponses | Oppositions | Notes |
 |---|---|---|---|---|
-| 2026-11-27 | 0 | 0 | 0 | Page, captures, modèle de mail, journal ; concept Nexora (brouillon) ; lot 1 en cours de sourcing ; en attente du feu vert de Quentin |
+| 2026-11-27 | 0 | 0 | 0 | Page, captures, modèle de mail, journal ; concept Nexora (brouillon) ; brouillon Gmail de validation ; lot 1 : 78 adresses contrôlées ; en attente du feu vert de Quentin |

@@ -29,7 +29,8 @@ const fait = (p) => String(p.fait || '').trim().replace(/[.;\s]+$/, '');
 const du = (nom) => {
   const n = String(nom).trim();
   if (/^camping\s/i.test(n)) return `du ${n}`;
-  if (/^le\s+camping\s/i.test(n)) return `du ${n.slice(3)}`;
+  if (/^le\s+(camping|domaine|château)\s/i.test(n)) return `du ${n.slice(3)}`;
+  if (/^(domaine|château)\s/i.test(n)) return `du ${n}`;
   return `du camping ${n}`;
 };
 const a = (ville) => {
