@@ -26,6 +26,14 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   (images en pièces jointes intégrées, l'outil Gmail supprimant les images distantes). Procédure :
   `docs/templates/communication/signature/README.md`. Elle remplace la signature texte, qui reste dans la version texte brut.
 
+## Floriane Jolliot en copie de tous les mails de Quentin (décision du 27/11/2026)
+
+- **Tout e-mail personnalisé rédigé ou envoyé pour Quentin** (brouillon Gmail, réponse à un prospect, client,
+  influenceur ou partenaire, relance individuelle) met `floriane.jolliot@qm-engineering.fr` en **copie (Cc), jamais
+  en copie cachée**. **Jamais dans les mails de masse** (campagnes de prospection, file OVH `/api/prospection`,
+  premiers mails et relances de campagne, vagues d'affiliation, mails automatiques du site). Son adresse personnelle
+  (Gmail) n'est plus utilisée nulle part.
+
 ## Copie cachée des e-mails automatiques (décision du 24/11/2026)
 
 - **Toute séquence d'e-mails envoyée automatiquement par le site via OVH** (essai, achat, accompagnement après achat,
@@ -207,6 +215,16 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 - **Publications classiques** (post, carrousel, grand chiffre…) : skill `.claude/skills/publication-classique/`,
   lancé par l'agent de contenu unique ; il ne produit que si la réserve passe sous 7 jours. Journal :
   `docs/templates/communication/journal-publications.md`.
+
+## Mini-stories QME (décision du 27/11/2026)
+
+- **Skill `.claude/skills/ministories/`** : micro-histoires publicitaires de 20 à 30 s avec la mascotte **Carreau**
+  (« Caro », fiche validée par Quentin le 27/11/2026), du script au MP4 contrôlé. Pilote : `docs/ministories/episodes/
+  2026-11-27-le-salaire-a-disparu/`. Voix définitive : ElevenLabs, MP3 fourni par Quentin (la voix edge-tts est provisoire).
+- **Tâche planifiée « Mini-story QME du jour »** (8:40, Paris) : une vidéo par jour sur un template ou un pack de la vie
+  personnelle, sujets variés (journal `docs/ministories/journal.md`). Elle **produit seulement** (MP4, script ElevenLabs,
+  dépôt Drive « QME - Vidéos Ministories ») : elle ne programme aucune publication ; la programmation reste à l'agent de
+  contenu unique, dans la règle d'une publication par plateforme et par jour.
 
 ## Test des nouveaux formats (décision du 24/11/2026)
 
