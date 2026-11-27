@@ -97,7 +97,7 @@ déjà).
 | T21 | Planificateur de voyage : étapes, nuits, activités, budget | Voyage | Voyageurs, familles, groupes d'amis | en vente | 13 € | M | P3 | Liste initiale 12/11/2026 + demande Quentin 13/11/2026 |
 | T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | en vente | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
 | T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | en vente | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
-| T17 | Suivi de lecture | Loisirs | Lecteurs | en vente | 12 € | S | P3 | Liste initiale 12/11/2026 |
+| T17 | Suivi culturel (ex-Suivi de lecture) : livres, livres audio, films, séries, podcasts | Loisirs | Lecteurs, cinéphiles, sériephiles | en cours | 12 € | M | P3 | Liste initiale 12/11/2026 ; en vente sous « Suivi de lecture » (code PGS) ; extension médias et recherche en ligne en cours depuis le 27/11/2026 (décision de Quentin, Master Production, branche `claude/prod-suivi-culturel`, nom à valider) : `docs/production/suivi-culturel.md`. |
 | T18 | Calendrier du potager | Jardin | Jardiniers amateurs | en vente | 13 € | M | P3 | Liste initiale 12/11/2026 |
 | T19 | Suivi du bébé | Famille | Jeunes parents | en vente | 13 € | M | P3 | Liste initiale 12/11/2026 |
 | T20 | Suivi d'un animal de compagnie | Animaux | Propriétaires de chien ou de chat | en vente | 12 € | S | P3 | Liste initiale 12/11/2026 |
@@ -543,7 +543,7 @@ ouvert : certification HDS non vérifiée. Bases intégrées vérifiées : Ciqua
 | T60 | `parcs-multi-sites` (fusionné dans T61 le 22/11/2026, redirigé vers `maintenance`) | PRK (retiré) | pilotage-parcs-multi-sites (dépubliée) |
 | T77 | `doe` | RDE | registre-doe (prévu) |
 | T09 | `garde-manger` | GRD | garde-manger-dates-peremption (prévu) |
-| T17 | `lecture` | PGS | suivi-lecture (prévu) |
+| T17 | `lecture` | PGS | suivi-lecture (prévu ; nom « Suivi culturel » à transmettre à l'agent Gumroad à la mise en ligne) |
 | T20 | `animal` | ANM | suivi-animal-compagnie (prévu) |
 | T44 | `tva` | TVA | suivi-tva (prévu) |
 | T49 | `competences` | FRM | matrice-competences-formations (prévu) |
