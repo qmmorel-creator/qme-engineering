@@ -333,6 +333,20 @@ Custom pays off when several people share the data, the rules get complex, or mi
 qm-engineering.fr/x
 ```
 
+### X-17 · 04/12 · Post · mini-histoire d'un projet · références par métier
+
+```
+Custom work, one example: a game shop and bar.
+
+Till and loyalty. Stock and pre-orders. Game nights with waiting lists. Tournaments.
+
+The whole shop in one tool, designed for that trade.
+
+Hydropower, nurseries, gyms, building trades: one tool per trade.
+
+qm-engineering.fr/en/custom/#references
+```
+
 ### X-15 · 20/11 · Image · coulisses · associations et clubs
 
 ```
