@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>La chaudière qui toussait · Mini-story QME</title>
+<!-- Projet d'animation de l'épisode. Rendu : node docs/videos/rendu.mjs <ce fichier> 20.5 --muet --taille-max 14
+     Toute l'image est fonction du temps : window.placer(ms) dessine l'image exacte de l'instant ms (rendu déterministe).
+     Données : timeline.js (généré depuis timeline.json, voix réelles mesurées). -->
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../assets/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../assets/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1EFF,U+20A0-20AB,U+20AD-20C4;}
+:root{--creme:#F1EEE6;--noir:#141414;--jaune:#FFBE00;--jaune-pale:#FBEBC2;--bleu:#23528B;--rouge:#DE2D27;--moutarde:#EDB43A;--vert:#2E7D50}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:var(--creme);font-family:'Outfit',sans-serif;color:var(--noir)}
+#scene{position:absolute;inset:0}
+#st{position:absolute;left:60px;right:130px;top:1350px;display:flex;justify-content:center;text-align:center}
+#st span{display:inline;background:var(--jaune-pale);box-decoration-break:clone;-webkit-box-decoration-break:clone;padding:6px 22px;border-radius:18px;font-weight:800;font-size:56px;line-height:1.45;letter-spacing:-.5px}
+#carton{position:absolute;inset:0;background:#141414;display:none}
+#carton img{position:absolute;left:0;width:1080px;top:50%;transform:translateY(-50%)}
+.pre{position:absolute;opacity:0;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="scene"></div>
+<div id="st"></div>
+<div id="carton"><img src="../assets/qme-carton-final-9x16-official.png" alt=""></div>
+<img class="pre" src="../assets/templates-entretien-tel.webp" alt=""><img class="pre" src="../assets/templates-entretien-annee.webp" alt="">
+<script src="timeline.js"></script>
+<script src="carreau.js"></script>
+<script>
+const C = {creme:'#F1EEE6', noir:'#141414', jaune:'#FFBE00', pale:'#FBEBC2', bleu:'#23528B', rouge:'#DE2D27', moutarde:'#EDB43A', vert:'#2E7D50', blanc:'#FFFFFF'};
+const PAS_POSE = 1000 / 12;              // poses tenues 2 images à 24 i/s : rendu « stop-motion » de la charte MiniStories
+const pose = (ms) => Math.floor(ms / PAS_POSE) * PAS_POSE;
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const sortie = (x) => 1 - Math.pow(1 - x, 3);
+const rebond = (x) => { const c = 1.70158 * 1.4; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const hash = (n) => { const s = Math.sin(n * 127.1) * 43758.5453; return s - Math.floor(s); };
+const euros = (v) => v.toLocaleString('fr-FR').replace(/\u202f|\s/g, '\u2009') + '\u00a0€';
+const T = window.TL;
+// Temps vidéo -> temps du montage de référence (scènes recalées sur la voix réelle), interpolation linéaire par morceaux.
+const recaler = (t) => { const M = T.montage; if (!M) return t; for (let i = 1; i < M.length; i++) if (t <= M[i][0]) return M[i - 1][1] + (t - M[i - 1][0]) * (M[i][1] - M[i - 1][1]) / (M[i][0] - M[i - 1][0]); return M[M.length - 1][1] + t - M[M.length - 1][0]; };
+
+// ---------- Mascotte : post-it jaune « A1 » (référence qme-mascot-original-reference.jpeg) ----------
+// Une seule fonction pour tout l'épisode : mêmes proportions, couleurs et traits d'un plan à l'autre.
+function mascotte({x, y, s = 1, expr = 'neutre', bras = 'bas', rot = 0, ecrase = 1}) {
+  // Module officiel docs/templates/communication/formats-test/mascotte/carreau.js (copié sans « export » dans carreau.js)
+  const expression = {joie: 'soulage', blase: 'neutre', inquiet: 'inquiet', choc: 'inquiet', panique: 'panique', fier: 'fier', neutre: 'neutre'}[expr];
+  const p = {montrer: 'montre', pouce: 'montre', haut: 'court', tete: 'court'}[bras] || 'debout';
+  return `<g transform="translate(${x} ${y}) rotate(${rot}) scale(${s} ${s * ecrase}) translate(-160 -350)">${carreau({expression, pose: p, taille: 320})}</g>`;
+}
+
+// ---------- Décor Bauhaus (formes de la charte) ----------
+function decor(t, variante = 0) {
+  const d = Math.sin(pose(t) / 900) * 6;
+  const v = [
+    `<circle cx="${-40 + d}" cy="220" r="260" fill="${C.rouge}"/><circle cx="930" cy="420" r="90" fill="${C.noir}"/><rect x="820" y="1100" width="200" height="200" fill="${C.noir}"/><rect x="800" y="1080" width="200" height="200" fill="${C.bleu}" stroke="${C.noir}" stroke-width="10"/>`,
+    `<path d="M1080 0 v380 a380 380 0 0 1 -380 -380z" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/><circle cx="120" cy="${1180 + d}" r="70" fill="${C.rouge}"/><path d="M0 1330 h260 l-130 -190z" fill="${C.noir}" opacity=".9"/>`,
+    `<circle cx="1000" cy="250" r="200" fill="${C.bleu}"/><rect x="40" y="200" width="120" height="120" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/>`,
+  ][variante];
+  return `<rect width="1080" height="1920" fill="${C.creme}"/>${v}`;
+}
+const sol = (y = 1300) => `<rect x="0" y="${y}" width="1080" height="12" fill="${C.noir}"/>`;
+
+// ---------- Accessoires (forme et couleur fixes dans tout l'épisode) ----------
+const etiquette = (x, y, txt, fond = C.noir, coul = '#fff', taille = 40) => { const w = txt.length * taille * .64 + 40; return `<g transform="translate(${x} ${y})"><rect x="${-w / 2}" y="${-taille * .8}" width="${w}" height="${taille * 1.3}" fill="${fond}"/><text y="${taille * .3}" font-size="${taille}" font-weight="800" letter-spacing="2" text-anchor="middle" fill="${coul}">${txt}</text></g>`; };
+// Chaudière murale : caisson blanc, contour noir, hublot de flamme ; etat 1 = allumée, 0 = éteinte
+function chaudiere(x, y, s = 1, etat = 1, l = 0, secousse = 0) {
+  const fl = etat ? `<path d="M0 ${30 - Math.sin(l / 90) * 6} q-28 -30 -6 -70 q4 22 18 26 q8 -18 4 -36 q30 34 10 80z" fill="${C.jaune}" stroke="${C.rouge}" stroke-width="6"/>` : '';
+  return `<g transform="translate(${x + secousse} ${y}) scale(${s}) rotate(${secousse * .4})"><rect x="-140" y="-200" width="280" height="400" fill="${C.noir}" transform="translate(14 14)"/><rect x="-140" y="-200" width="280" height="400" fill="#fff" stroke="${C.noir}" stroke-width="10"/><rect x="-140" y="-200" width="280" height="60" fill="${C.bleu}" stroke="${C.noir}" stroke-width="10"/><circle cx="0" cy="20" r="70" fill="${etat ? '#FFE9B0' : '#555'}" stroke="${C.noir}" stroke-width="10"/>${fl}<circle cx="-80" cy="150" r="16" fill="${C.rouge}" stroke="${C.noir}" stroke-width="6"/><circle cx="-30" cy="150" r="16" fill="${C.jaune}" stroke="${C.noir}" stroke-width="6"/><path d="M-60 200 v80 M60 200 v80" stroke="${C.noir}" stroke-width="16"/></g>`;
+}
+const fumee = (x, y, p, c = '#888', r = 50) => p <= 0 || p >= 1 ? '' : `<g opacity="${1 - p}"><circle cx="${x}" cy="${y - p * 200}" r="${r * (.6 + p)}" fill="${c}" stroke="${C.noir}" stroke-width="6"/><circle cx="${x + 50 + p * 40}" cy="${y - 40 - p * 240}" r="${r * .7 * (.6 + p)}" fill="${c}" stroke="${C.noir}" stroke-width="6"/></g>`;
+function thermo(x, y, val, s = 1) {
+  const h = clamp((val + 10) / 35) * 300;
+  return `<g transform="translate(${x} ${y}) scale(${s})"><rect x="-40" y="-340" width="80" height="380" rx="40" fill="#fff" stroke="${C.noir}" stroke-width="10"/><circle cy="40" r="60" fill="${C.rouge}" stroke="${C.noir}" stroke-width="10"/><rect x="-16" y="${20 - h}" width="32" height="${h + 20}" fill="${C.rouge}"/><text x="80" y="-120" font-size="80" font-weight="800">${val > 0 ? '+' : val < 0 ? '−' : ''}${Math.abs(val)}°</text></g>`;
+}
+const fenetre = (neige = 0) => { let f = `<rect x="620" y="300" width="380" height="380" fill="${C.bleu}" stroke="${C.noir}" stroke-width="10"/>`; for (let i = 0; i < 14; i++) f += `<circle cx="${640 + hash(i) * 340}" cy="${320 + ((hash(i + 9) * 340 + neige * .08) % 340)}" r="8" fill="#fff"/>`; return f + `<path d="M620 490 h380 M810 300 v380" stroke="${C.noir}" stroke-width="10"/>`; };
+const couverture = (y, c, r) => `<path d="M-200 ${y} q200 -60 400 0 l20 110 q-220 50 -440 0z" fill="${c}" stroke="${C.noir}" stroke-width="9" stroke-linejoin="round" transform="rotate(${r})"/>`;
+const echarpe = (x, y) => `<path d="M${x - 120} ${y} h240 v40 h-240z M${x + 60} ${y + 30} v120 h50 v-120z" fill="${C.rouge}" stroke="${C.noir}" stroke-width="8"/>`;
+function telephone(x, y, s, contenu) {
+  const W = 700, H = 1300;
+  return `<g transform="translate(${x} ${y}) scale(${s}) translate(${-W / 2} ${-H / 2})"><rect x="16" y="16" width="${W}" height="${H}" rx="60" fill="${C.noir}"/><rect width="${W}" height="${H}" rx="60" fill="${C.noir}"/><rect x="24" y="24" width="${W - 48}" height="${H - 48}" rx="40" fill="#FAF7F0"/>${contenu}</g>`;
+}
+const coche = (x, y, txt, p) => p <= 0 ? '' : `<g transform="translate(${x} ${y}) scale(${rebond(p)})"><rect x="-10" y="-50" width="${txt.length * 30 + 120}" height="100" fill="${C.noir}" transform="translate(10 10)"/><rect x="-10" y="-50" width="${txt.length * 30 + 120}" height="100" fill="#fff" stroke="${C.noir}" stroke-width="8"/><rect x="10" y="-28" width="56" height="56" fill="${C.vert}" stroke="${C.noir}" stroke-width="6"/><path d="M22 0 l14 14 l22 -26" fill="none" stroke="#fff" stroke-width="9"/><text x="86" y="16" font-size="46" font-weight="800">${txt}</text></g>`;
+
+// ---------- Scènes ----------
+const S = {};
+S.S1 = (t, l) => {                       // Accroche : janvier, moins deux, la chaudière ronronne
+  let g = `<rect width="1080" height="1920" fill="${C.creme}"/>` + fenetre(l) + sol();
+  g += etiquette(330, 360, 'JANVIER', C.noir, '#fff', 70);
+  g += thermo(240, 900, -2, .9);
+  g += chaudiere(780, 960, .8, 1, l);
+  g += mascotte({x: 500, y: 1300, s: .8, expr: 'neutre'});
+  return g;
+};
+S.S2 = (t, l) => {                       // Escalade : tousse, crache, s'éteint
+  const k = t < 4.1 ? 0 : t < 5.3 ? 1 : 2;
+  const deb = [2.5, 4.1, 5.3][k], ll = (t - deb) * 1000;
+  const sec = k < 2 ? (hash(pose(l)) - .5) * (k ? 40 : 24) : 0;
+  let g = `<rect width="1080" height="1920" fill="${k === 2 ? '#3a3a3a' : [C.creme, C.jaune][k]}"/>` + sol();
+  if (k === 1) g += `<circle cx="540" cy="820" r="430" fill="${C.creme}" stroke="${C.noir}" stroke-width="10"/>`;
+  g += etiquette(540, 330, ['KOF ! KOF !', 'PTOU !', '…'][k], k === 2 ? '#fff' : C.noir, k === 2 ? C.noir : '#fff', 64);
+  g += chaudiere(540, 820, 1.2, k < 2 ? 1 : 0, l, sec);
+  if (k === 0) { g += fumee(540, 560, prog(pose(ll), 200, 900)); g += fumee(480, 560, prog(pose(ll), 700, 1400)); }
+  if (k === 1) g += fumee(560, 560, prog(pose(ll), 100, 900), C.noir, 70);
+  g += mascotte({x: 810, y: 1300, s: .62, expr: ['inquiet', 'choc', 'panique'][k], bras: k ? 'tete' : 'bas'});
+  return g;
+};
+S.S3 = (t, l) => {                       // Carreau grelotte sous trois couvertures
+  const tr = (hash(pose(l)) - .5) * 18;
+  const n = 1 + Math.min(2, Math.floor(l / 450));
+  let g = `<rect width="1080" height="1920" fill="#D8E4F0"/>` + fenetre(l + 3000) + sol();
+  g += chaudiere(200, 760, .55, 0, l);
+  g += thermo(140, 1180, l < 1200 ? 10 : 4, .55);
+  g += `<g transform="translate(${560 + tr} 0)">${mascotte({x: 0, y: 1300, s: .9, expr: 'panique'})}`;
+  const cs = [[1250, C.rouge, -4], [1215, C.bleu, 3], [1180, C.vert, -2]];
+  for (let i = 0; i < n; i++) g += `<g transform="translate(0 ${cs[i][0] - (1 - rebond(prog(pose(l), i * 450, i * 450 + 300))) * 400})">${couverture(0, cs[i][1], cs[i][2])}</g>`;
+  g += `</g>`;
+  if (l > 2800) g += etiquette(540, 420, 'BRRRR…', C.bleu, '#fff', 80);
+  return g;
+};
+S.S4 = (t, l) => {                       // Entretien de la maison : équipements cochés, calendrier calculé (vraies captures)
+  let g = `<rect width="1080" height="1920" fill="${C.creme}"/><circle cx="1000" cy="260" r="220" fill="${C.jaune}"/><rect x="0" y="1180" width="200" height="200" fill="${C.bleu}"/>`;
+  if (t < 16.0) {
+    const ap = rebond(prog(pose(l), 0, 420));
+    const k = 652 / 780;
+    const capt = `<clipPath id="ecr"><rect x="24" y="24" width="652" height="1252" rx="40"/></clipPath><g clip-path="url(#ecr)"><g transform="translate(24 24) scale(${k})"><image href="../assets/templates-entretien-tel.webp" width="780" height="1328"/></g></g>`;
+    g += telephone(600, 800, .78 * ap, capt);
+    g += coche(90, 460, 'Chaudière', prog(t, 13.0, 13.3));
+    g += coche(90, 600, 'Ramonage', prog(t, 13.45, 13.75));
+    g += coche(90, 740, 'VMC', prog(t, 13.9, 14.2));
+  } else {
+    const ap = rebond(prog(pose(l), (16.0 - 11.6) * 1000, (16.0 - 11.6) * 1000 + 380));
+    g += `<g transform="translate(540 760) scale(${ap}) translate(-500 -330)"><rect x="14" y="14" width="1000" height="660" fill="${C.noir}"/><rect width="1000" height="660" fill="#fff" stroke="${C.noir}" stroke-width="10"/><clipPath id="ann"><rect x="10" y="10" width="980" height="640"/></clipPath><g clip-path="url(#ann)"><image href="../assets/templates-entretien-annee.webp" x="-20" y="10" width="1040" height="650"/></g></g>`;
+    g += etiquette(540, 300, 'CALCULÉ SEUL', C.noir, '#fff', 58);
+  }
+  g += mascotte({x: 150, y: 1300, s: .56, expr: t < 13 ? 'inquiet' : 'soulage', bras: t >= 13 && t < 16 ? 'montrer' : 'bas'});
+  return g;
+};
+S.S5 = (t, l) => {                       // La révision tombait en octobre (carte de l'histoire au style de l'app)
+  let g = `<rect width="1080" height="1920" fill="${C.creme}"/><circle cx="80" cy="300" r="200" fill="${C.rouge}"/>`;
+  const p = rebond(prog(pose(l), 0, 350));
+  g += `<g transform="translate(540 780) scale(${p})"><rect x="-400" y="-330" width="800" height="660" rx="30" fill="${C.noir}" transform="translate(14 14)"/><rect x="-400" y="-330" width="800" height="660" rx="30" fill="#FAF7F0" stroke="${C.noir}" stroke-width="8"/><text x="-350" y="-230" font-size="64" font-weight="800">Octobre</text><text x="350" y="-232" font-size="30" font-weight="600" fill="#6b6b6b" text-anchor="end">1 à faire</text><rect x="-350" y="-170" width="10" height="170" fill="${C.rouge}"/><rect x="-310" y="-160" width="40" height="40" rx="8" fill="#fff" stroke="#555" stroke-width="4"/><text x="-250" y="-126" font-size="44" font-weight="700">Entretien de la chaudière</text><text x="-250" y="-60" font-size="34" fill="#6b6b6b">Chauffage et climatisation</text></g>`;
+  if (t >= 20.1) { const q = prog(pose(l), (20.1 - 18.4) * 1000, (20.1 - 18.4) * 1000 + 250); g += `<ellipse cx="560" cy="700" rx="${430 * q}" ry="${120 * q}" fill="none" stroke="${C.rouge}" stroke-width="12"/>`; }
+  g += mascotte({x: 220, y: 1300, s: .6, expr: t < 20.1 ? 'neutre' : 'choc', bras: t < 20.1 ? 'bas' : 'tete'});
+  return g;
+};
+S.S6 = (t, l) => {                       // Payoff : octobre noté, chaudière qui ronronne… et Carreau qui tousse
+  const tousse = t >= 25.1;
+  const sec = tousse ? (hash(pose(l)) - .5) * 24 : 0;
+  let g = `<rect width="1080" height="1920" fill="${C.creme}"/>` + fenetre(l) + sol();
+  g += chaudiere(260, 940, .7, 1, l);
+  g += thermo(840, 880, 20, .55);
+  g += etiquette(330, 360, 'OCTOBRE ✓', C.vert, '#fff', 64);
+  g += mascotte({x: 600 + sec, y: 1300, s: .8, expr: tousse ? 'inquiet' : 'fier', bras: tousse ? 'tete' : 'bas'});
+  if (tousse) { g += fumee(720, 900, prog(pose(l), (25.15 - 21.35) * 1000, (25.15 - 21.35) * 1000 + 700), '#ddd', 35); g += etiquette(760, 560, 'KOF !', C.noir, '#fff', 60); }
+  return g;
+};
+
+const scene = document.getElementById('scene'), st = document.getElementById('st'), carton = document.getElementById('carton');
+// Sous-titres : une réplique = un sous-titre, calé sur la voix réelle (début, fin + 0,12 s), deux lignes au plus.
+const COUPES = { v04: 'Carreau grelotte<br>sous trois couvertures.', v05: 'Une case cochée : la révision,<br>c’était octobre.', v09: 'Maintenant, c’est Carreau<br>qui tousse.' };
+// Accroche v2 : texte à l'écran dès la première image, lisible sans le son
+const ACCROCHE = (tv) => tv < 1.85 ? `<g><rect x="72" y="132" width="936" height="300" fill="${C.noir}" transform="translate(14 14)"/><rect x="72" y="132" width="936" height="300" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/><text x="540" y="262" font-size="92" font-weight="800" text-anchor="middle" fill="${C.noir}">Moins deux dehors.</text><text x="540" y="372" font-size="72" font-weight="800" text-anchor="middle" fill="${C.rouge}">Et la chaudière lâche.</text></g>` : '';
+window.placer = (ms) => {
+  const tv = ms / 1000; const t = recaler(tv); ms = t * 1000; window.__t = ms;
+  const fin = tv >= T.carton.debut;
+  carton.style.display = fin ? 'block' : 'none';
+  if (fin) { scene.innerHTML = ''; st.innerHTML = ''; return; }
+  const sc = T.scenes.find((s) => t >= s.debut && t < s.fin) || T.scenes[0];
+  scene.innerHTML = `<svg width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">${S[sc.id](t, ms - sc.debut * 1000)}${ACCROCHE(tv)}</svg>`;
+  const v = T.voix.find((r) => tv >= r.t - .05 && tv < Math.min(r.fin + .12, T.carton.debut));
+  const cp = v && COUPES[v.id]; st.innerHTML = v ? `<span>${typeof cp === 'function' ? cp(tv) : cp || v.texte.replace(/'/g, '’')}</span>` : '';
+};
+window.placer(0);
+</script>
+</body>
+</html>
