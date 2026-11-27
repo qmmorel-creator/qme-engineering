@@ -1,6 +1,6 @@
 ---
 name: ministories
-description: Produire une mini-story publicitaire QME (micro-histoire drôle de 20 à 30 s, verticale 1080 × 1920, avec la mascotte Carreau dite « Caro ») de l'idée au MP4 final contrôlé - script, découpage, storyboard, animation vectorielle par le moteur docs/videos/rendu.mjs, voix française, musique, bruitages, sous-titres, carton final officiel. À utiliser quand Quentin écrit « fais une mini-story QME sur <sujet> », « une mini-story avec Caro / Carreau sur <sujet> », « QME MiniStories », ou demande de corriger, décliner ou refaire un épisode de docs/ministories/episodes/.
+description: Produire une mini-story publicitaire QME (micro-histoire drôle de 15 à 22 s au format v2, verticale 1080 × 1920, avec la mascotte Carreau dite « Caro ») de l'idée au MP4 final contrôlé - script, découpage, storyboard, animation vectorielle par le moteur docs/videos/rendu.mjs, voix française, musique, bruitages, sous-titres, carton final officiel. À utiliser quand Quentin écrit « fais une mini-story QME sur <sujet> », « une mini-story avec Caro / Carreau sur <sujet> », « QME MiniStories », ou demande de corriger, décliner ou refaire un épisode de docs/ministories/episodes/.
 ---
 
 # Mini-stories QME (avec Carreau, « Caro »)
@@ -29,6 +29,12 @@ les pitchs ; un sujet `retenu` se produit directement, dans l'ordre du rang, **s
 scénario est écrit dans `script.md` de l'épisode). **Réserve : 7 vidéos d'avance** dans le dossier Drive « QME - Vidéos
 Ministories » (fichiers `qme_ministory_*.mp4`) ; produire chaque jour ce qui manque pour revenir à 7. Moins de 5 sujets
 `retenu` : proposer 10 pitchs (`proposé`) pour classement. Branche de production : `claude/mini-stories-qme-caro-b07mx2`.
+
+## Format v2 obligatoire (27/11/2026)
+
+Toute mini-story suit `references/ecriture.md` § Format v2 : 15-22 s, accroche écrite dès la 1re image, aucune pub au
+milieu, produit en chute en une réplique de 8 mots au plus, fin qui boucle, 30-45 mots. Référence :
+`docs/ministories/episodes/2026-11-27-03-carton-47-v2/`. Avance : 7 jours programmés + 7 vidéos prêtes.
 
 ## 1. Brief (5 minutes)
 
