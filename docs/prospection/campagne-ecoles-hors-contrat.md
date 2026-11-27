@@ -10,7 +10,8 @@ le 27/11/2026) présenté aux écoles privées hors contrat et aux centres de so
 | Démos | `/templates/gestion-classe/?demo`, `/templates/progression/?demo`, `/templates/quiz/?demo`, `/templates/emploi-du-temps/?demo` |
 | Modèle de mail | `outils/prospection/campagnes/ecoles-hors-contrat.mjs` (objet, texte, relance J+7) ; lien traçable `?utm_campaign=ehc-<id>` |
 | Angle | notes et bulletins, progression par classe, quiz, emploi du temps des classes et des salles |
-| Prix (lus le 27/11/2026 sur `/packs/enseignant/` et dans `outils/packs/donnees.mjs`) | pack 111 € au lieu de 149 € ; seuls : PRG 15 €, QZZ 19 €, CSE 25 €, EDT 45 € (104 € les quatre) ; AEC 45 € non mis en avant |
+| Prix | décision de Quentin du 27/11/2026 : pack sans l'auto-école, PRG, QZZ, CSE, EDT pour 83 € au lieu de 104 € (PR #347, vérifiée sur sa branche : `/packs/enseignant/` « 4 templates pour 83 € ») ; seuls : PRG 15 €, QZZ 19 €, CSE 25 €, EDT 45 € |
+| Ordre de fusion | **PR #347 (prix du pack) avant PR #332 (cette campagne)** ; sinon la page et le mail annonceraient 83 € alors que le site affiche 111 € |
 | Envoi | OVH via le site, file `/api/prospection` (campagne `ecoles-hors-contrat`, créée sans `parJour`, en pause jusqu'au feu vert), un mail toutes les 2 minutes au total, campagnes en parallèle à tour de rôle, lundi–samedi, 8 h–18 h |
 | Copie | copie cachée `quentin.morel@qm-engineering.fr` ; pas de Floriane (mail de masse) |
 | Nexora | concept `cpt-ecoles-hors-contrat` ; prospects `vague: "cible-ecoles-hors-contrat"`, segment « Écoles hors contrat et soutien scolaire » |
@@ -29,8 +30,7 @@ le 27/11/2026) présenté aux écoles privées hors contrat et aux centres de so
 
 ## Points ouverts
 
-- **Prix** : les quatre outils utiles à cette cible coûtent 104 € séparément, moins que le pack (111 €), qui contient
-  aussi l'auto-école. Le mail le dit tel quel ; à confirmer par Quentin.
+- **Prix** : réglé par Quentin le 27/11/2026 (pack à 83 € sans l'auto-école, PR #347).
 - La démo de l'emploi du temps montre un centre de formation fictif (pas une école) : la page le présente comme
   « établissement fictif ».
 - La gestion de classe signale elle-même qu'elle ne remplace pas un logiciel de vie scolaire : la page le dit.
@@ -70,4 +70,5 @@ officiel (Avicenne, Yunus Emre, Saint-Dominique, Saint-Bernard, Collège Louis e
 
 | Date | Partis | Réponses | Oppositions | Notes |
 |---|---|---|---|---|
+| 2026-11-27 | 0 | 0 | 0 | Mail et page passés à 83 € (décision de Quentin, PR #347 à fusionner avant) ; brouillon Gmail de validation refait |
 | 2026-11-27 | 0 | 0 | 0 | Page (PR #332), captures, modèle de mail, brouillon Gmail de validation ; lot 1 : 160 adresses contrôlées ; rien en file, campagne non créée |

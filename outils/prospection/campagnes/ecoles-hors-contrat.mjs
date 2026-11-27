@@ -1,8 +1,8 @@
 // Campagne ciblée « ecoles-hors-contrat » (27/11/2026, lancée depuis la session « Audit campagnes ciblées ») : pack
-// « Écoles et formateurs » (PNS, 111 € au lieu de 149 € au 27/11/2026, lu sur /packs/enseignant/) présenté aux écoles
-// privées hors contrat et aux centres de soutien scolaire indépendants. L'outil d'auto-école du pack (AEC) n'est pas mis
-// en avant ; les quatre outils utiles sont aussi proposés un par un (prix de outils/packs/donnees.mjs et de la page du
-// pack : PRG 15 €, QZZ 19 €, CSE 25 €, EDT 45 €). Structure : docs/prospection/mail-type-packs-niches.md.
+// « Écoles et formateurs » (PNS) présenté aux écoles privées hors contrat et aux centres de soutien scolaire indépendants.
+// Décision de Quentin du 27/11/2026 : le pack perd l'auto-école et réunit PRG, QZZ, CSE et EDT pour 83 € au lieu de 104 €
+// (PR #347, à fusionner avant la PR de cette campagne). Prix à l'unité (outils/packs/donnees.mjs) : PRG 15 €, QZZ 19 €,
+// CSE 25 €, EDT 45 €. Structure : docs/prospection/mail-type-packs-niches.md.
 // Page : /concepts/ecoles-hors-contrat/. Texte validé par Quentin avant tout envoi
 // (docs/prospection/campagne-ecoles-hors-contrat.md). Le serveur ajoute la signature « Bandeau » et la mention
 // d'opposition : ne jamais les écrire ici.
@@ -52,7 +52,7 @@ Je suis Quentin Morel, ingénieur : je conçois des outils de gestion pour les p
 
 J'ai consulté le site ${de(p.nom)}, ${a(p.ville)}${fait(p) ? ` : ${fait(p)}` : ''}. Dans une école indépendante, les notes vivent souvent dans le tableur de chaque enseignant, les appréciations se recopient à la main dans les bulletins, la progression de chaque classe tient dans un classeur et l'emploi du temps se refait à chaque changement de salle. C'est le soir du conseil de classe qu'on recalcule les moyennes.
 
-J'ai réuni des outils prêts à l'emploi dans un pack « Écoles et formateurs », en ligne, sur ordinateur comme sur téléphone :
+J'ai réuni quatre outils prêts à l'emploi dans un pack « Écoles et formateurs », en ligne, sur ordinateur comme sur téléphone :
 - Gestion de classe : notes et moyennes pondérées, compétences sur quatre échelons, appréciations et bulletins imprimés pour toute la classe ;
 - Progression pédagogique : séquences et séances de chaque classe sur l'année, le prévu face au réalisé, le retard visible avant la fin du trimestre ;
 - Banque de questions et quiz : questions étiquetées par thème et difficulté, quiz générés avec leur corrigé, réussite par question ;
@@ -61,7 +61,7 @@ J'ai réuni des outils prêts à l'emploi dans un pack « Écoles et formateurs 
 Vous pouvez les essayer tout de suite, sans inscription, sur des données fictives :
 ${lien(p)}
 
-Le pack coûte 111 € au lieu de 149 €. C'est un achat unique, sans abonnement ni renouvellement. Il contient aussi un outil de gestion d'auto-école qui ne vous servira pas : chaque outil s'achète donc aussi seul, de 15 à 45 € (progression 15 €, quiz 19 €, gestion de classe 25 €, emploi du temps 45 €), soit 104 € pour les quatre. Chacun a 14 jours d'essai gratuit avec vos propres données, sans carte bancaire :
+Le pack coûte 83 € au lieu de 104 €. C'est un achat unique, sans abonnement ni renouvellement, et chaque outil s'achète aussi seul si un seul vous sert (de 15 à 45 €). Chacun a 14 jours d'essai gratuit avec vos propres données, sans carte bancaire :
 ${pack(p)}
 
 C'est un ensemble tout prêt. Si votre école demande autre chose (votre propre modèle de bulletin, plusieurs enseignants sur les mêmes classes, le suivi des élèves par stage pour du soutien scolaire), je peux aussi le faire sur mesure, en fonction de votre besoin.
