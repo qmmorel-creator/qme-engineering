@@ -79,6 +79,9 @@ Fichiers de lot hors dépôt (adresses ; un lot versé dans `docs/` serait ensui
   public) : 0 correspondance sur 117. Témoins : `cipec` et `mariage-a-soie` sortent (un tiret vaut une espace) ;
   un radical collé (`mariageasoie`) ne trouve pas un nom écrit en plusieurs mots : la recherche par nom reste
   indispensable. La recherche porte aussi sur la ville.
+- Codes postaux complétés de mémoire (C'ma Nature, Gallia, Paname, Cap d'Ona, Blossom, Argasol, Songes d'ébène) :
+  vidés dans le lot, à laisser vides dans Nexora faute de source lisible. Les trois pris d'une autre source lisible
+  (Guerlédan, L'Accroche-Cuir, Miyadori-do) sont gardés.
 - Gmail, témoins : `"mariage-a-soie.fr"` et `cipec.com` sortent, `"brasserie-inventee-zq7.fr"` ne renvoie rien.
 
 ### Méthode Gmail (constat du 27/11/2026)
