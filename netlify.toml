@@ -1233,6 +1233,14 @@
   status = 302
   force = true
 
+# Démo « road trip en Espagne » d'Angélique (27/11/2026, feu vert de Quentin) : départ dans 10 jours, deux chiens,
+# albums photos en liens d'exemple. Placée avant toute règle plus large sur /demo/*.
+[[redirects]]
+  from = "/demo/angelique-espagne"
+  to = "/templates/voyage/?demo=espagne&prenom=Ang%C3%A9lique"
+  status = 302
+  force = true
+
 # Lien court de démo personnalisée (partenariat Optimind, 16/11/2026) : sans « & », que certaines
 # messageries coupent. Redirection temporaire vers la démo PASS au prénom de la destinataire.
 [[redirects]]

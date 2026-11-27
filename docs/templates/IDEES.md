@@ -1462,6 +1462,13 @@ Fiche rédigée et appliquée sans validation intermédiaire (décisions de cadr
     la carte « Premiers pas » amène à aujourd'hui) ;
   - formulaire « Nouvelle dépense » allégé (libellé et montant visibles d'abord, répartition repliée) ;
   - listes ajoutées (« Mes ajouts ») plus haut dans « Préparer » (aujourd'hui sous quatre listes types).
+- **Photos du voyage (27/11/2026, demande de Quentin)** : lien vers un album (dossier Google Drive ou autre, `https`
+  seulement) sur le voyage (« Modifier le voyage ») et sur chaque étape ; bloc « Photos du voyage » dans l'Aperçu et
+  bouton « Photos » sur les étapes de l'itinéraire, ouverts dans un nouvel onglet. Pour tous les acheteurs.
+- **Démo « Espagne » (27/11/2026, feu vert de Quentin)** : `?demo=espagne&prenom=` (lien court
+  `/demo/angelique-espagne`), road trip de deux semaines en van avec deux chiens, départ dans 10 jours (phase de
+  préparation : à réserver, budget prévu, bagages et papiers), albums photos en liens d'exemple qui expliquent quoi
+  coller au lieu d'ouvrir un faux dossier.
 
 ## Fiche T63 (cadrage délégué par Quentin, 14/11/2026)
 
