@@ -433,12 +433,12 @@
 
   // ---------- Rendu : application ----------
   const ICONES = {
-    aujourdhui: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="currentColor"/><path d="m7.5 12.2 3 3 6-6.4" fill="none" stroke="var(--papier)" stroke-width="2.4"/></svg>',
-    mois: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="5" height="5" fill="currentColor"/><rect x="10" y="3" width="5" height="5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="17" y="3" width="4" height="5" fill="currentColor"/><rect x="3" y="10" width="5" height="5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="10" y="10" width="5" height="5" fill="currentColor"/><rect x="17" y="10" width="4" height="5" fill="currentColor"/><rect x="3" y="17" width="5" height="4" fill="currentColor"/><rect x="10" y="17" width="5" height="4" fill="currentColor"/><rect x="17" y="17" width="4" height="4" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
-    bilan: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="12" width="4" height="9" fill="currentColor"/><rect x="10" y="7" width="4" height="14" fill="none" stroke="currentColor" stroke-width="2"/><rect x="17" y="3" width="4" height="18" fill="currentColor"/></svg>',
-    habitudes: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 20H2Z" fill="currentColor"/></svg>',
-    reglages: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="2.5" fill="currentColor"/><rect x="3" y="11" width="18" height="2.5" fill="currentColor"/><rect x="3" y="17" width="18" height="2.5" fill="currentColor"/><rect x="6" y="3" width="4" height="6.5" fill="#F5B400" stroke="currentColor" stroke-width="2"/><rect x="14" y="9" width="4" height="6.5" fill="#D9302A" stroke="currentColor" stroke-width="2"/><rect x="8" y="15" width="4" height="6.5" fill="#1D4E89" stroke="currentColor" stroke-width="2"/></svg>',
-    aide: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.4a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2.9-1.2 1.7v.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.4" fill="currentColor"/></svg>',
+    aujourdhui: '<svg class="marqueur" viewBox="0 0 10 10" width="9" height="9" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="var(--rouge)"/></svg>',
+    mois: '<svg class="marqueur" viewBox="0 0 10 10" width="9" height="9" aria-hidden="true"><rect width="10" height="10" fill="var(--bleu)"/></svg>',
+    bilan: '<svg class="marqueur" viewBox="0 0 10 10" width="9" height="9" aria-hidden="true"><path d="M0 10V5h5V0h5v10Z" fill="var(--vert)"/></svg>',
+    habitudes: '<svg class="marqueur" viewBox="0 0 10 10" width="9" height="9" aria-hidden="true"><path d="M5 0 10 10H0Z" fill="var(--jaune)"/></svg>',
+    reglages: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/><circle cx="9" cy="7" r="1.8" fill="var(--surface)"/><circle cx="15" cy="12" r="1.8" fill="var(--surface)"/><circle cx="10" cy="17" r="1.8" fill="var(--surface)"/></svg>',
+    aide: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.4"/><circle cx="12" cy="17" r=".6" fill="currentColor"/></svg>',
     plus: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11 4h2v16h-2zM4 11h16v2H4z" fill="currentColor"/></svg>',
     moins: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 11h16v2H4z" fill="currentColor"/></svg>',
     gauche: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 4 7 12l8 8" fill="none" stroke="currentColor" stroke-width="3"/></svg>',
@@ -487,7 +487,7 @@
     $('#vue').focus({ preventScroll: true });
   }
 
-  const FORME_VIDE = '<svg width="96" height="96" viewBox="0 0 96 96" aria-hidden="true"><rect x="0" y="40" width="56" height="56" fill="#1D4E89"/><circle cx="62" cy="34" r="34" fill="#F5B400"/><path d="M56 96 96 96 96 56Z" fill="#D9302A"/></svg>';
+  const FORME_VIDE = '<svg width="96" height="96" viewBox="0 0 96 96" aria-hidden="true" class="forme-vide"><rect x="0" y="40" width="56" height="56" fill="var(--bleu)" opacity=".18"/><circle cx="62" cy="34" r="34" fill="var(--jaune)" opacity=".28"/><path d="M56 96 96 96 96 56Z" fill="var(--rouge)" opacity=".22"/></svg>';
   const habitudesTriees = (liste) => E.themes.flatMap((t) => liste.filter((h) => h.theme === t.id)).concat(liste.filter((h) => !theme(h.theme)));
   const aDesSoins = () => E.habitudes.some((h) => !h.archive && R.estSante(h));
 

@@ -539,3 +539,26 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .carte-theme-tete h2{overflow-wrap:anywhere}
 .choix-theme .case{min-height:44px}
 .pastilles span{width:44px;height:44px}
+
+/* ============ Bauhaus doux · variante « Papier » (27/11/2026) ============
+   Couleurs un peu désaturées, coins de 4 px, icônes de navigation remplacées par de petits marqueurs
+   géométriques, icônes restantes au trait fin, grandes formes Bauhaus en filigrane à faible opacité.
+   Maquette de référence : docs/templates/bauhaus-doux/bauhaus-doux-habitudes.html (variante D). */
+:root{--rouge:#B85E48;--jaune:#DCA94A;--bleu:#3F6A94;--vert:#4E8A5E;--r-doux:4px}
+.btn,.btn-icone,.champ input,.champ select,.champ textarea,.vide-etat,.puce,.toast,.modale,.carte,.tuile,.aide,
+.grille-mois,.choix-theme,.ligne,.cocher,.valeur,.jauge,.jauge i,.barre-taux,.barre-taux span{border-radius:var(--r-doux)}
+.compteur .btn-icone{border-radius:var(--r-doux)}
+.pastille-etat{border-radius:3px;width:32px;height:32px}
+.journal td.c button,.journal td.c span,.legende-grille i{border-radius:3px}
+.onglet{border-bottom-width:2px}
+.onglet:hover{border-color:color-mix(in srgb,var(--encre) 25%,transparent)}
+.onglet .marqueur{width:9px;height:9px;flex:none}
+.btn-icone:hover,.btn:hover{background:color-mix(in srgb,var(--jaune) 22%,var(--surface))}
+.btn.primaire:hover{background:color-mix(in srgb,var(--encre) 85%,var(--rouge));border-color:transparent}
+.vide-etat svg{flex:none}
+/* Filigrane : cercle ocre, quart de cercle bleu, triangle terracotta, derrière l'application */
+#racine{position:relative;isolation:isolate}
+#racine::before,#racine::after{content:"";position:fixed;z-index:-1;pointer-events:none;opacity:.08}
+#racine::before{width:420px;height:420px;border-radius:50%;background:var(--jaune);right:-140px;top:-120px}
+#racine::after{width:260px;height:260px;background:var(--bleu);left:-90px;bottom:-90px;border-top-right-radius:100%}
+@media print{#racine::before,#racine::after{display:none}}
