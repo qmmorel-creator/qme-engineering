@@ -90,10 +90,16 @@ d'eux ne reçoit rien :
    d'entreprise (hors messageries grand public, comparées à l'adresse entière), déjà vu dans **n'importe quelle
    campagne** de la file (en attente ou traité) ou cité dans le dépôt (anciennes vagues, archives, concepts), et les
    doublons internes au lot ;
-2. Nexora : `list_qme` `domain: "prospects"` `query: <nom de l'entreprise>` (la recherche ne porte pas sur les
-   adresses ni les sites) ; même entreprise ou même établissement, quelle que soit la vague ou l'étape : écarté ;
-3. Gmail : `in:anywhere <domaine>` (ou l'adresse entière pour une messagerie grand public) : un seul fil trouvé suffit
-   à écarter.
+2. Nexora, **indispensable** : les adresses des anciennes vagues (avant les campagnes de la file) ne sont que dans
+   Nexora, pas dans le dépôt, et `doublons` ne les voit pas (constaté le 27/11 : une adresse de la vague 14 passée au
+   travers). `list_qme` `domain: "prospects"` ne cherche que dans les noms (ni adresse, ni site) : faire **deux
+   recherches** par prospect, le nom de l'entreprise puis le radical du domaine (`cipec` pour `info@cipec.com`), et
+   ouvrir la fiche (`get_qme`) en cas de doute pour comparer `emailSource` et `site`. Même entreprise ou même
+   établissement, quelle que soit la vague ou l'étape : écarté ;
+3. Gmail : `in:anywhere "<domaine>"` (ou l'adresse entière pour une messagerie grand public) : un seul fil trouvé
+   suffit à écarter. **Six domaines au plus par requête** (au-delà, la recherche renvoie toute la boîte, constaté le
+   27/11), et un témoin à chaque série : un domaine déjà prospecté doit sortir, un domaine inventé ne doit rien
+   renvoyer.
 Le journal de la campagne note, par lot, le nombre d'écartés par contrôle.
 
 ## 5. Validation par Quentin

@@ -81,7 +81,8 @@ if (commande === 'messages') {
   // Aucun doublon entre campagnes (décision de Quentin du 27/11/2026) : la file du site ne bloque une adresse que dans
   // sa propre campagne. Ce contrôle écarte toute adresse, et tout domaine d'entreprise, déjà vu dans une campagne de la
   // file (en attente ou traité) ou cité dans le dépôt (anciennes vagues, archives, journaux, concepts), et les
-  // doublons internes au lot. Restent à faire par la session : Nexora (list_qme query = nom) et Gmail (in:anywhere <domaine>).
+  // doublons internes au lot. Limite : les adresses des anciennes vagues ne sont que dans Nexora, pas dans le dépôt ;
+  // restent donc obligatoires Nexora (list_qme query = nom, puis radical du domaine) et Gmail (in:anywhere "<domaine>").
   const [f, sortie] = args;
   const lot = await lireJson(f);
   const vus = { email: new Map(), domaine: new Map() };
@@ -114,11 +115,11 @@ if (commande === 'messages') {
           : dansLot.get(e) || (d && dansLot.get(d)) || (ds && dansLot.get(ds)) ? `doublon dans le lot (${dansLot.get(e) || dansLot.get(d) || dansLot.get(ds)})` : null;
     if (raison) { ecartes.push({ id: p.id, nom: p.nom, email: e, raison }); continue; }
     dansLot.set(e, p.id); if (d) dansLot.set(d, p.id); if (ds) dansLot.set(ds, p.id);
-    retenus.push({ ...p, aVerifier: { nexora: `list_qme domain=prospects query="${p.nom}"`, gmail: `in:anywhere ${d || ds || e}` } });
+    retenus.push({ ...p, aVerifier: { nexora: [`list_qme domain=prospects query="${p.nom}"`, `list_qme domain=prospects query="${(d || ds || '').split('.').slice(0, -1).join('.') || e}"`], gmail: `in:anywhere ${d || ds || e}` } });
   }
   if (sortie) await writeFile(sortie, JSON.stringify(retenus, null, 2));
   console.log(JSON.stringify({ retenus: retenus.length, ecartes }, null, 2));
-  console.error(`${retenus.length} retenus, ${ecartes.length} écartés (référence : ${vus.email.size} adresses, ${vus.domaine.size} domaines). Reste à vérifier pour chaque retenu : Nexora (nom) et Gmail (domaine).`);
+  console.error(`${retenus.length} retenus, ${ecartes.length} écartés (référence : ${vus.email.size} adresses, ${vus.domaine.size} domaines). Les anciennes vagues ne sont que dans Nexora : reste à vérifier pour chaque retenu Nexora (nom et radical du domaine) et Gmail (domaine).`);
 } else if (commande === 'etat') {
   const [c, details] = args;
   console.log(JSON.stringify(await appeler(c ? `/prospection/campagne?c=${c}${details ? '&details=1' : ''}` : '/prospection'), null, 2));
