@@ -1,6 +1,6 @@
 {
-  "name": "Suivi culturel · QME",
-  "short_name": "Culture",
+  "name": "Suivi de lecture · QME",
+  "short_name": "Lecture",
   "description": "Livres, livres audio, films, séries et podcasts : progression, rythme et date de fin estimée, objectifs annuels au jour près, notes, citations et statistiques.",
   "lang": "fr",
   "start_url": "./",

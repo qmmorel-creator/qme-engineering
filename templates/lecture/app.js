@@ -1,4 +1,4 @@
-// Suivi culturel QME (code PGS, anciennement « Suivi de lecture ») : livres, livres audio, films, séries (saisons et
+// Suivi de lecture QME (code PGS ; nouveau nom proposé « Suivi culturel ») : livres, livres audio, films, séries (saisons et
 // épisodes) et podcasts ; statuts, sessions qui donnent la progression, le rythme et la date de fin estimée, note,
 // avis et citations, objectifs annuels par média avec l'avance ou le retard au jour près, statistiques (mois, médias,
 // genres, créateurs, séries de jours) et liste « à découvrir » par priorité.
@@ -383,7 +383,7 @@
           <p class="surtitre">Accès acheteur</p>
           <h2>Ouvre ton ${NOM.toLowerCase()}</h2>
         </div>
-        <p>Saisis la clé de licence reçue par e-mail après ton achat (une clé du Suivi de lecture fonctionne aussi). Ta bibliothèque est enregistrée en ligne et te suit sur tous tes appareils.</p>
+        <p>Saisis la clé de licence reçue par e-mail après ton achat ${NOM === 'Suivi de lecture' ? '' : ' (une clé du Suivi de lecture fonctionne aussi)'}. Ta bibliothèque est enregistrée en ligne et te suit sur tous tes appareils.</p>
         <form id="form-code" class="formulaire-acces-form" novalidate>
           <label class="champ code-saisie">Clé de licence ou code d'accès
             <input id="code" name="code" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX" inputmode="text" required>
@@ -1031,6 +1031,8 @@
   // fautes, règles locales). Hors ligne, sans clé TMDB ou à la limite de la démo : un message, et la saisie à la main.
   const SOURCES_NOMS = { ol: 'Open Library', tmdb: 'TMDB', itunes: 'Apple Podcasts et Livres' };
   const MENTION_TMDB = 'Films et séries : données de TMDB. This product uses the TMDB API but is not endorsed or certified by TMDB.';
+  // Logo officiel de TMDB (themoviedb.org, « Logos & Attribution »), sans déformation, plus discret que la marque QME.
+  const LOGO_TMDB = '<img class="logo-tmdb" src="tmdb-logo.svg" width="70" height="9" alt="TMDB">';
   async function appelOeuvres(chemin, options = {}) {
     const r = await fetch(`/api/oeuvres/${chemin}`, { ...options, headers: { 'content-type': 'application/json', ...(session.jeton ? { 'x-code': session.jeton } : {}) } });
     let corps = null;
@@ -1065,8 +1067,9 @@
         if (locaux.length) msg.push(`Déjà chez toi : ${locaux.map((l) => `« ${l.titre} »`).join(', ')}.`);
         if (corps.indisponible) msg.push(m === 'film' || m === 'serie' ? 'Recherche de films et séries indisponible pour l\'instant : remplis la fiche à la main.' : 'Source injoignable : remplis la fiche à la main.');
         else if (!resultats.length) msg.push('Rien trouvé : vérifie l\'orthographe, ou remplis la fiche à la main.');
-        if (resultats.some((f) => f.source.s === 'tmdb')) msg.push(MENTION_TMDB);
-        etat.textContent = msg.join(' ');
+        const tmdb = resultats.some((f) => f.source.s === 'tmdb');
+        if (tmdb) msg.push(MENTION_TMDB);
+        etat.innerHTML = `${esc(msg.join(' '))}${tmdb ? ` ${LOGO_TMDB}` : ''}`;
       } catch (x) {
         if (x.name === 'AbortError') return;
         liste.innerHTML = '';
@@ -1092,7 +1095,7 @@
       val('total', f.saisons ? saisonsTexte(f.saisons) : !f.total ? '' : MED[f.media].unite === 'minutes' ? dureeSaisie(f.total) : f.total);
       val('source', `${f.source.s}:${f.source.id}`);
       liste.innerHTML = '';
-      etat.textContent = `Fiche préremplie depuis ${SOURCES_NOMS[f.source.s]} : vérifie et complète.${f.source.s === 'tmdb' ? ` ${MENTION_TMDB}` : ''}`;
+      etat.innerHTML = `${esc(`Fiche préremplie depuis ${SOURCES_NOMS[f.source.s]} : vérifie et complète.${f.source.s === 'tmdb' ? ` ${MENTION_TMDB}` : ''}`)}${f.source.s === 'tmdb' ? ` ${LOGO_TMDB}` : ''}`;
       d.querySelector('[name=titre]').focus();
     });
     // Un titre modifié à la main ne garde pas la référence de la source.
@@ -1108,7 +1111,7 @@
     if (!z) return;
     let tmdb = null;
     try { tmdb = (await appelOeuvres('sources')).corps?.tmdb ?? null; } catch { /* hors ligne */ }
-    z.innerHTML = `<p class="mention">Livres : Open Library (Internet Archive). Livres audio et podcasts : recherche iTunes d'Apple. Films et séries : TMDB${tmdb === false ? ' (pas encore activé : saisie à la main)' : ''}. Seuls les mots tapés sont envoyés ; tu peux toujours remplir une fiche à la main.</p><p class="mention">${MENTION_TMDB}</p>`;
+    z.innerHTML = `<p class="mention">Livres : Open Library (Internet Archive). Livres audio et podcasts : recherche iTunes d'Apple. Films et séries : TMDB${tmdb === false ? ' (pas encore activé : saisie à la main)' : ''}. Seuls les mots tapés sont envoyés ; tu peux toujours remplir une fiche à la main.</p><p class="mention mention-tmdb">${LOGO_TMDB} ${MENTION_TMDB}</p>`;
   }
 
   // Fiche d'une œuvre : progression, rythme, dates, note, avis, citations, sessions.
@@ -1301,7 +1304,7 @@
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>Données personnelles</h3><p class="mention">Ta bibliothèque est enregistrée en ligne, liée à ta clé, et n'est ni lue ni partagée par QME. Tes avis et citations restent privés : il n'y a ni profil public ni partage.</p></div>
       <div class="groupe"><h3>Sources de la recherche</h3><div data-zone="sources"></div></div>
-      <div class="groupe"><h3>À propos</h3><p class="mention">${esc(NOM)} (anciennement Suivi de lecture), version ${B.version}. Genres proposés modifiables. La recherche n'envoie que les mots tapés, jamais ta bibliothèque ; pas de couverture téléchargée, aucun lien avec une liseuse, une plateforme ou une librairie. Calculs faits sur cet appareil : rythme sur les 14 derniers jours, objectifs répartis uniformément sur les jours de l'année.</p></div>`;
+      <div class="groupe"><h3>À propos</h3><p class="mention">${esc(NOM)}${NOM === 'Suivi de lecture' ? '' : ' (anciennement Suivi de lecture)'}, version ${B.version}. Genres proposés modifiables. La recherche n'envoie que les mots tapés, jamais ta bibliothèque ; pas de couverture téléchargée, aucun lien avec une liseuse, une plateforme ou une librairie. Calculs faits sur cet appareil : rythme sur les 14 derniers jours, objectifs répartis uniformément sur les jours de l'année.</p></div>`;
     ouvrirModale('Réglages', corps, '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button>', (fd) => {
       const champs = [...modale().querySelectorAll('.liste-genres input')];
       const vus = new Set();
@@ -1351,7 +1354,7 @@
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   }
   const CSV = 'text/csv;charset=utf-8';
-  const exporter = () => telecharger(JSON.stringify(E, null, 2), 'application/json', `suivi-culturel-${auj()}.json`);
+  const exporter = () => telecharger(JSON.stringify(E, null, 2), 'application/json', `suivi-lecture-${auj()}.json`);
 
   // ---------- Comment ça marche ----------
   // Guide des grands principes : s'ouvre seul une fois par compte (E.tutorielVu, synchronisé avec les
