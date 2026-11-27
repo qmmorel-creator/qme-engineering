@@ -25,7 +25,7 @@ Heures en heure de Paris. Organigramme visuel : artefact « Organigramme des ses
 |---|---|---|---|
 | Prospection | [MASTER] Prospection | `session_0183EW52kigizhxwrCTwperr` | Agent prospection QME, tous les jours 18:41 |
 | Vente | [MASTER] Tunnel de vente | `session_0183EW52aSoTaYaYHgqbh564` | Master Tunnel de vente, tous les jours 19:17 |
-| Prospection | [R] Campagnes par concept | `session_0183EW54tGg2Bhkayay2aBFc` | Campagne concept du jour, lun–ven 13:47 |
+| Prospection | [MASTER] Concept métier (ex-[R] Campagnes par concept) | `session_0183EW54tGg2Bhkayay2aBFc` | lun–ven 13:47 : lundi nouveau métier, mardi–vendredi suivi |
 | Prospection | [MASTER] Audit campagnes ciblées | `session_0183EW52Pidz4waNkPnGH4aa` | aucune (pilote les campagnes ciblées) |
 | Affiliation | [MASTER] Suivi influenceurs | `session_0183EW53pHmtjN8ttBAEgiRL` | Envoi lun–ven 9:07→17:07 (horaire) ; surveillance lun–ven 18:13 |
 | Contenu | [MASTER] Création contenu automatisé | `session_0183EW52wgFVmzKT8htV2NJ4` | Agent contenu, tous les jours 10:07 ; relances des actions de Quentin 8:43 |
@@ -93,6 +93,12 @@ Registre détaillé : `docs/prospection/CONVERSATIONS-TUNNEL.md`.
 | Délivrabilité DMARC · étape 3 (rappel unique) | `session_0183EW52huXu1qXosVjgaYTz` | 07/12/2026 10:00 |
 | Vérifier la mini-story test (rappel unique) | master Mini-stories | 27/11/2026 20:35 |
 
+### Session hors master, rattachée au GOD
+
+| Sujet | Identifiant |
+|---|---|
+| Nexora #1813 (recherche QME par e-mail et site) | traité dans la session GOD, PR qmmorel-creator/nexora#1814 |
+
 ## Hors QME (même compte)
 
 Tri Gmail horaire, Contrôle post-synchro bancaire, Import Bankin → Budget, Synchro dépenses Polo, Synchro Whoop vers
@@ -104,3 +110,6 @@ d'usage du compte.
 - 27/11/2026 : création. BTP, auto-écoles et gîtes rattachées au master Audit campagnes ciblées. Bilan hebdomadaire
   rattaché au GOD (nouvelle tâche ; l'ancienne, dans la session `cse_0183EW534wKDLESuAkAQHqve`, est désactivée).
   Cinq tâches planifiées dont la session n'existait plus supprimées. Heure des mini-stories alignée sur 20:15.
+- 27/11/2026 (soir) : « [R] Campagnes par concept » devient [MASTER] Concept métier (sur-mesure à partir de 1 500 € HT,
+  un métier par semaine, plaquette PDF + page simple). Tri Gmail (personnel) toutes les 2 h de 10 h à 18 h. Envoi
+  affiliation en 6 passages de 5 mails (9:07, 10:07, 12:07, 13:07, 15:07, 16:07).

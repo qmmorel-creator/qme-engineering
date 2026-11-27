@@ -98,18 +98,27 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   (`04 - Prospects & clients`), ligne ajoutée à la Note Bible, lien reporté dans la fiche QME (`conceptUrl`,
   `conceptPdf`, `pdf` du devis). Modèle et rangement : `docs/prospection/NEXORA-PROSPECTS.md` § 3.
 
-## Campagne quotidienne de prospection par concept (décision du 24/11/2026)
+## Master Concept métier : sur-mesure pour des métiers non couverts (décision du 27/11/2026)
 
-- **Lundi–vendredi à 13 h 47 (Paris)**, tâche planifiée « Campagne concept du jour » dans la session maître des campagnes
-  ciblées : skill `.claude/skills/campagne-concept/` (suivi et relances d'abord, puis un concept nouveau, une page
-  `/concepts/<thème>/` générique, une dizaine de PME vérifiées, envoi, Nexora). Journal :
+- **Remplace la « Campagne quotidienne de prospection par concept »** du 24/11/2026. Session
+  `session_0183EW54tGg2Bhkayay2aBFc` (**[MASTER] Concept métier**), tâche planifiée de 13:47 (lundi–vendredi).
+- **Mission** : chaque semaine, trouver **un métier** au besoin très particulier, **non couvert par les templates QME**
+  (modèle : `concepts/horlogerie/`), et le prospecter pour vendre du **sur-mesure à partir de 1 500 € HT** (cible
+  1 500–2 000 €), jamais un template. Critères : besoin spécifique, outil métier absent ou cher, entreprises de 3 à
+  50 salariés, adresses e-mail publiques.
+- **Format** : plaquette PDF de 4 pages propre au métier + une page simple `concepts/<métier>/` qui l'affiche. **Pas de
+  démo interactive au départ** : elle n'est faite qu'à la réponse intéressée d'un prospect (skill `concept-prospect`).
+  Exception voulue par Quentin à la section « Concepts : personnalisés au secteur » ci-dessous, pour ces seuls concepts
+  métier.
+- **Rythme** : lundi, recherche du métier, plaquette, page et mail type ; puis **40 à 60 entreprises vérifiées** envoyées
+  sur la semaine par la file OVH du site (une campagne par métier, mécanique du skill `campagne-ciblee-pack`), relance
+  unique à J+7. Mardi–vendredi : suivi des envois, des réponses et des relances.
+- **Validation** : le métier choisi, la plaquette et le mail type sont validés par Quentin (via le GOD) avant le premier
+  envoi de chaque métier. Réponses des intéressés toujours en brouillon ; un prospect intéressé passe au Master Tunnel de
+  vente. Opposition, signature « Bandeau », Nexora et registre des concepts : règles habituelles.
+- **Fusion** : feu vert permanent pour **une PR de campagne par jour au plus** (page concept, données, `docs/`), si les
+  vérifications Netlify sont vertes. Toute autre fusion reste soumise à l'accord de Quentin. Journal :
   `docs/prospection/campagnes-concept.md`.
-- **Feu vert permanent de Quentin** pour fusionner dans `main` **une PR de campagne par jour au plus** (page concept
-  générique, données du générateur `outils/concepts/`, fichiers `docs/`), si les vérifications Netlify sont vertes. Toute
-  autre fusion reste soumise à son accord.
-- Opposition vérifiée par l'API avec le jeton de lecture injecté par le proxy (`X-Opposition-Token`) : si elle ne répond
-  pas, rien ne part. Réponses aux prospects intéressés : **toujours en brouillon**, Quentin valide. Seuls partent seuls les
-  premiers mails de campagne et la relance unique à J+7.
 
 ## Campagnes ciblées par pack (décision du 25/11/2026)
 
@@ -125,7 +134,8 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 
 ## Concepts : personnalisés au secteur, jamais un SaaS générique (décision du 27/11/2026)
 
-- **Tout concept** (skill `concept-prospect`, page `concepts/<slug>/`, démo, PDF, pages des campagnes par concept) est
+- **Tout concept** (skill `concept-prospect`, page `concepts/<slug>/`, démo, PDF ; hors concepts métier du master Concept
+  métier, voir plus haut, qui commencent par une plaquette PDF sans démo) est
   conçu pour le métier du prospect, sur le modèle de Kelly (`concepts/conciergerie-en-provence/`) et d'ARVA
   (`concepts/arva/`) : démonstration interactive publiée dans `concepts/<slug>/demo/`, identité propre (nom de l'outil,
   palette, typographies), grand chiffre métier, entonnoir de leur processus, visuels du terrain, vocabulaire et objets du
