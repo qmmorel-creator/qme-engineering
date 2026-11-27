@@ -14,3 +14,4 @@ administrateur), qui est la référence vérifiée avant tout envoi : `docs/temp
 | 2026-11-10 | Hélène Wedding Planner | `helene.mariages@gmail.com`, domaine `helene-weddingplanner.fr` | « Je ne veux pas de vos mails » |
 | 2026-11-10 | Renfort Solutions (Arnas) | domaines `renfort-solutions.fr` et `renfortek.fr` ; `maxime.thevenet@rhea-solutions.fr` (en copie de la réponse) | « stop », réponse injurieuse |
 | 2026-11-24 | Agence des Mots (affiliation booktubeurs) | `contact@agencedesmots.com` | « stop » (réponse du 24/11 à 18:33, reçue dans la boîte Workspace) ; inscrite sur la liste d'opposition le jour même |
+| 2026-11-26 | Lot Ô École (Cahors), campagne auto-écoles | `contact@lotoecole.fr`, `accueil@lotoecole.fr`, domaine `lotoecole.fr` | « STOP STOP STOP » (réponse du 26/11 à 13:23) ; inscrite sur la liste d'opposition le 27/11 |
