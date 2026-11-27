@@ -7,6 +7,17 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 - Netlify publie tout le dépôt : rien de privé hors de `docs/`, `.claude/` et `CLAUDE.md` (bloqués en 404
   dans `netlify.toml`).
 
+## Pilotage des sessions : GOD, masters, sous-sessions (décision du 27/11/2026)
+
+- **Hiérarchie à trois niveaux** : la session **GOD** (`session_0183EW54bFyxAQcskkhnKJvb`) pilote les sessions
+  **MASTER**, qui pilotent leurs sous-sessions (`[Tunnel]`, `[Affiliation]`, campagnes ciblées…). Le GOD arbitre les
+  périmètres, transmet les consignes de Quentin et tient le registre ; il ne fait pas le travail d'un master.
+- **Registre unique** : `docs/pilotage/REGISTRE-SESSIONS.md` (masters, identifiants, tâches planifiées, sous-sessions).
+  Toute session qui crée un master, rattache une sous-session ou crée une tâche planifiée récurrente le signale au GOD
+  (`send_message`), qui met le registre à jour. Aucune session sans master ni tâche planifiée orpheline.
+- **Supprimer une tâche planifiée supprime les sessions qu'elle a lancées** : on désactive (`enabled: false`), on ne
+  supprime que si sa session n'existe plus.
+
 ## Réseaux sociaux : une seule publication par plateforme et par jour (décision du 24/11/2026)
 
 - **Règle très importante** : Instagram, TikTok, YouTube, LinkedIn et X ont chacun **au plus une publication par jour**,
@@ -111,6 +122,18 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   d'opposition ajoutées par le serveur, opposition relue avant chaque envoi.
 - **Page et brouillon validés par Quentin avant tout envoi** ; projets Nexora seulement pour les retours intéressés,
   après son accord. Prospects tenus à jour dans Nexora Optim › QME (`vague: "cible-<sujet>"`).
+
+## Concepts : personnalisés au secteur, jamais un SaaS générique (décision du 27/11/2026)
+
+- **Tout concept** (skill `concept-prospect`, page `concepts/<slug>/`, démo, PDF, pages des campagnes par concept) est
+  conçu pour le métier du prospect, sur le modèle de Kelly (`concepts/conciergerie-en-provence/`) et d'ARVA
+  (`concepts/arva/`) : démonstration interactive publiée dans `concepts/<slug>/demo/`, identité propre (nom de l'outil,
+  palette, typographies), grand chiffre métier, entonnoir de leur processus, visuels du terrain, vocabulaire et objets du
+  secteur, vue téléphone, page de concept écrite sur mesure. Interdits : la coquille SaaS neutre des gabarits du skill et
+  la page brute de `concept_page.py`. Cette règle prime sur les gabarits du skill. Détail et contrôle avant PR :
+  `docs/prospection/CONCEPTS-SUR-MESURE.md`.
+- **Skill de référence : `.claude/skills/concept-prospect/` du dépôt** (règle intégrée, versionnée ici). Il prime sur le
+  skill claude.ai `anthropic-skills:concept-prospect`, resté générique : toujours appeler `concept-prospect` (version du dépôt).
 
 ## Concepts : registre dans Nexora Optim › QME › Concepts (décision du 24/11/2026)
 
