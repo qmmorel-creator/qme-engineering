@@ -58,6 +58,20 @@ Fichiers de lot hors dépôt (adresses ; un lot versé dans `docs/` serait ensui
 - Réserves : codes postaux de Gallia, Paname, Cap d'Ona et Guerlédan complétés hors de la page ; Maison Alaryk lancée
   par un distributeur familial indépendant ; nom « Smeele - Fabrique de bière » ramené à « Smeele » pour le mail.
 
+### Lot 1 · ateliers-boutiques (27/11/2026)
+
+- 84 candidats examinés, 46 écartés au sourcing (19 adresses ou domaines nominatifs ou douteux, 9 sans adresse lisible,
+  12 hors cible, 4 trop grands, 2 autres), puis 2 retirés par la session : Plum'paillettes (garage aménagé, vente en
+  ligne seulement) et Savonnerie du Cèdre (aucune boutique attestée).
+- **36 retenus** : 10 céramistes, 12 savonniers, 8 maroquiniers, 6 ébénistes ; 26 départements. Contrôles :
+  `doublons` 0 ; Nexora 0 (36 noms, plus « Savonnerie », « Maroquinerie », « Poterie », « Céramique ») ; Gmail 0
+  (46 requêtes, domaines à tirets entre guillemets) ; opposition 0 ; `desinscrits.md` 0.
+- Réserves : codes postaux de L'Accroche-Cuir, Miyadori-do, Songes d'ébène, Argasol et Blossom pris hors de la page ;
+  ERRO a deux boutiques (Bayonne, Bordeaux) ; les faits de Barbotine (L'Occitane) et d'Auboi (Louvre, Lanvin) citent
+  des tiers, tels que le site les présente.
+
+**Total du lot 1 : 117 adresses prêtes** (40 + 41 + 36), aucune mise en file avant le feu vert.
+
 ### Méthode Gmail (constat du 27/11/2026)
 
 - Une recherche groupée (`in:anywhere (a OR b OR …)`, 9 à 11 termes) a renvoyé 0 fil pour `pois-de-senteur.fr` alors
@@ -70,4 +84,4 @@ Fichiers de lot hors dépôt (adresses ; un lot versé dans `docs/` serait ensui
 
 | Date | Partis | Réponses | Oppositions | Notes |
 |---|---|---|---|---|
-| 2026-11-27 | 0 | 0 | 0 | Page, captures, modèle de mail (PR #336), concept Nexora `brouillon`, campagne créée en pause ; lot 1 : 40 fleuristes et 41 brasseries contrôlés (0 écarté par les contrôles), ateliers en sourcing ; brouillon de validation dans Gmail ; en attente du feu vert de Quentin |
+| 2026-11-27 | 0 | 0 | 0 | Page, captures, modèle de mail (PR #336), concept Nexora `brouillon`, campagne créée en pause ; lot 1 : 117 adresses contrôlées (40 fleuristes, 41 brasseries, 36 ateliers ; 0 écarté par les contrôles) ; brouillon de validation dans Gmail ; en attente du feu vert de Quentin |

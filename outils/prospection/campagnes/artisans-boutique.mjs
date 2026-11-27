@@ -35,6 +35,8 @@ const de = (nom, profil) => {
   const n = String(nom).trim();
   if (/^(Brasserie|Maison|Fabrique|Boutique|Ferme|Savonnerie|Maroquinerie|Poterie|Faïencerie|Manufacture)\s/i.test(n)) return `de la ${n}`;
   if (/^(Au|Aux|À la|A la)\s/.test(n)) return `de ${LIEU[profil] || 'la maison'} ${n}`;
+  if (/^Atelier\s/.test(n)) return `de l'${n}`;
+  if (/^L['’]/.test(n)) return `de l'${n.slice(2)}`;
   if (/^Le\s/.test(n)) return `du ${n.slice(3)}`;
   if (/^Les\s/.test(n)) return `des ${n.slice(4)}`;
   return /^[aeiouyhàâäéèêëîïôöùûü]/i.test(n) ? `d'${n}` : `de ${n}`;
