@@ -1025,9 +1025,91 @@
     maj();
     if (!l0) brancherRecherche(d);
   }
-  // Recherche en ligne dans la fiche d'une nouvelle œuvre : ajoutée à l'étape « recherche » (voir plus bas).
-  function brancherRecherche() {}
-  function ajouterAuCache() {}
+  // ---------- Recherche en ligne (préremplissage d'une fiche) ----------
+  // Au fil de la frappe (300 ms après la dernière touche, requête précédente annulée), dans le média choisi, par le
+  // proxy du site /api/oeuvres. Les œuvres déjà dans la bibliothèque qui ressemblent sont signalées (tolérance aux
+  // fautes, règles locales). Hors ligne, sans clé TMDB ou à la limite de la démo : un message, et la saisie à la main.
+  const SOURCES_NOMS = { ol: 'Open Library', tmdb: 'TMDB', itunes: 'Apple Podcasts et Livres' };
+  const MENTION_TMDB = 'Films et séries : données de TMDB. This product uses the TMDB API but is not endorsed or certified by TMDB.';
+  async function appelOeuvres(chemin, options = {}) {
+    const r = await fetch(`/api/oeuvres/${chemin}`, { ...options, headers: { 'content-type': 'application/json', ...(session.jeton ? { 'x-code': session.jeton } : {}) } });
+    let corps = null;
+    try { corps = await r.json(); } catch { /* corps vide */ }
+    return { statut: r.status, corps };
+  }
+  function brancherRecherche(d) {
+    const zone = d.querySelector('[data-zone=recherche]');
+    if (!zone) return;
+    zone.innerHTML = `<label class="champ">Chercher l'œuvre <small class="aide-recherche">titre, auteur ou créateur</small><input type="search" name="q-oeuvre" autocomplete="off" placeholder="Par exemple : les miserables"></label>
+      <ul class="resultats-oeuvres" role="listbox" aria-label="Résultats"></ul><p class="mention etat-recherche" aria-live="polite"></p>`;
+    const champ = zone.querySelector('[name=q-oeuvre]'), liste = zone.querySelector('.resultats-oeuvres'), etat = zone.querySelector('.etat-recherche');
+    let minuterie = null, ctrl = null, resultats = [];
+    const media = () => d.querySelector('[name=media]:checked').value;
+    const ligne = (f, i, deja) => `<li><button type="button" class="resultat-oeuvre" data-i="${i}" ${deja ? 'disabled' : ''}><b>${esc(f.titre)}</b><span>${esc([f.auteur, f.annee, f.saisons ? pluriel(f.saisons.length, 'saison') : f.total ? qte(f.total, MED[f.media].unite) : '', deja ? 'déjà dans ta bibliothèque' : ''].filter(Boolean).join(' · '))}</span></button></li>`;
+    const lancer = async () => {
+      const q = champ.value.trim(), m = media();
+      ctrl?.abort();
+      if (q.length < 2) { liste.innerHTML = ''; etat.textContent = ''; return; }
+      // Déjà dans la bibliothèque : correspondance tolérante, même média.
+      const locaux = E.livres.filter((l) => l.media === m && R.scoreRecherche(q, `${l.titre} ${l.auteur}`) > 0).slice(0, 3);
+      ctrl = new AbortController();
+      etat.textContent = 'Recherche…';
+      try {
+        const r = await fetch(`/api/oeuvres/recherche?media=${m}&q=${encodeURIComponent(q)}`, { signal: ctrl.signal, headers: session.jeton ? { 'x-code': session.jeton } : {} });
+        const corps = await r.json().catch(() => ({}));
+        if (r.status === 429 || r.status >= 400) throw new Error(corps.erreur || 'indisponible');
+        resultats = corps.resultats || [];
+        const cles = new Set(E.livres.filter((l) => l.source).map((l) => `${l.media}:${l.source.s}:${l.source.id}`));
+        liste.innerHTML = resultats.map((f, i) => ligne(f, i, cles.has(`${f.media}:${f.source.s}:${f.source.id}`))).join('');
+        const msg = [];
+        if (locaux.length) msg.push(`Déjà chez toi : ${locaux.map((l) => `« ${l.titre} »`).join(', ')}.`);
+        if (corps.indisponible) msg.push(m === 'film' || m === 'serie' ? 'Recherche de films et séries indisponible pour l\'instant : remplis la fiche à la main.' : 'Source injoignable : remplis la fiche à la main.');
+        else if (!resultats.length) msg.push('Rien trouvé : vérifie l\'orthographe, ou remplis la fiche à la main.');
+        if (resultats.some((f) => f.source.s === 'tmdb')) msg.push(MENTION_TMDB);
+        etat.textContent = msg.join(' ');
+      } catch (x) {
+        if (x.name === 'AbortError') return;
+        liste.innerHTML = '';
+        etat.textContent = `${navigator.onLine === false ? 'Hors ligne' : x.message !== 'indisponible' && x.message !== 'Failed to fetch' ? x.message : 'Recherche indisponible'} : remplis la fiche à la main.`;
+      }
+    };
+    champ.addEventListener('input', () => { clearTimeout(minuterie); minuterie = setTimeout(lancer, 300); });
+    champ.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); clearTimeout(minuterie); lancer(); } });
+    d.addEventListener('media', () => { if (champ.value.trim().length >= 2) lancer(); });
+    liste.addEventListener('click', async (e) => {
+      const b = e.target.closest('.resultat-oeuvre');
+      if (!b) return;
+      let f = resultats[Number(b.dataset.i)];
+      // Films et séries : durée, réalisation et saisons viennent du détail.
+      if (f.source.s === 'tmdb') {
+        etat.textContent = 'Chargement de la fiche…';
+        try { const { corps } = await appelOeuvres(`detail?media=${f.media}&s=${f.source.s}&id=${encodeURIComponent(f.source.id)}`); if (corps?.fiche) f = corps.fiche; } catch { /* fiche de recherche gardée */ }
+      }
+      const val = (n, v) => { const c = d.querySelector(`[name=${n}]`); if (c) c.value = v ?? ''; };
+      val('titre', f.titre);
+      val('auteur', f.auteur);
+      val('annee', f.annee || '');
+      val('total', f.saisons ? saisonsTexte(f.saisons) : !f.total ? '' : MED[f.media].unite === 'minutes' ? dureeSaisie(f.total) : f.total);
+      val('source', `${f.source.s}:${f.source.id}`);
+      liste.innerHTML = '';
+      etat.textContent = `Fiche préremplie depuis ${SOURCES_NOMS[f.source.s]} : vérifie et complète.${f.source.s === 'tmdb' ? ` ${MENTION_TMDB}` : ''}`;
+      d.querySelector('[name=titre]').focus();
+    });
+    // Un titre modifié à la main ne garde pas la référence de la source.
+    d.querySelector('[name=titre]').addEventListener('input', () => { d.querySelector('[name=source]').value = ''; });
+  }
+  // Une œuvre ajoutée depuis la recherche enrichit l'index partagé (le serveur relit la fiche chez la source).
+  function ajouterAuCache(n) {
+    if (!n.source || session.demo) return;
+    appelOeuvres('ajout', { method: 'POST', body: JSON.stringify({ media: n.media, s: n.source.s, id: n.source.id }) }).catch(() => {});
+  }
+  async function afficherSources() {
+    const z = modale().querySelector('[data-zone=sources]');
+    if (!z) return;
+    let tmdb = null;
+    try { tmdb = (await appelOeuvres('sources')).corps?.tmdb ?? null; } catch { /* hors ligne */ }
+    z.innerHTML = `<p class="mention">Livres : Open Library (Internet Archive). Livres audio et podcasts : recherche iTunes d'Apple. Films et séries : TMDB${tmdb === false ? ' (pas encore activé : saisie à la main)' : ''}. Seuls les mots tapés sont envoyés ; tu peux toujours remplir une fiche à la main.</p><p class="mention">${MENTION_TMDB}</p>`;
+  }
 
   // Fiche d'une œuvre : progression, rythme, dates, note, avis, citations, sessions.
   function modaleFiche(id) {
@@ -1234,6 +1316,7 @@
       }, 'Réglages enregistrés.');
       return undefined;
     });
+    afficherSources();
     $('#import').addEventListener('change', async (e) => {
       const fichier = e.target.files[0];
       if (!fichier) return;
