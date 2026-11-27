@@ -40,3 +40,7 @@ Non réalisé : écoute humaine.
 
 - Fonctions citées : répétition espacée J+1/J+3/J+7 (page du pack, Planning de révision), « note à viser au prochain partiel » (Notes et moyennes). Captures réelles du dépôt : `templates-revision-tel`, `templates-revision-planning`, `templates-notes-objectifs`. Aucun prix, aucune promesse, aucun contenu médical ; matières génériques.
 - Payoff court (« on dort » ≈ 0,6 s avant le carton). Personnages d'arrière-plan : aucun. Bruitages synthétisés ; police Outfit (OFL) ; carton officiel.
+
+## Validation
+
+Blouse et stéthoscope (accessoire temporaire, fonction `blouse()` de `sources/page.html`) validés par Quentin le 27/11/2026.

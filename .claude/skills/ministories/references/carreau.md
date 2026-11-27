@@ -23,3 +23,15 @@ Source de vérité : `docs/templates/communication/formats-test/mascotte/carreau
 
 Correspondance utilisée par `mascotte()` dans les épisodes : joie → `soulage`, blasé → `neutre`, choc → `inquiet`,
 panique → `panique`, fier → `fier` ; bras levés ou sur la tête → pose `court`, montrer → pose `montre`.
+
+## Accessoires temporaires validés par Quentin
+
+Posés PAR-DESSUS `carreau()` sans jamais modifier le module (accessoire dans le repère 320 × 380, `style="overflow:visible"`
+sur le `<svg>` si un élément dépasse), propres à un épisode, sans masquer yeux, bouche ni étiquette « A1 » :
+- **Course de nuit** (27/11/2026) : dossard blanc à bandeau bleu (texte choisi par Quentin, ex. « SAINTÉLYON » n° 36) et
+  frontale (bandeau bleu, boîtier, faisceau large). Source : `docs/ministories/carreau-chasuble-source.html` et la fonction
+  `course()` de l'épisode `2026-11-27-06b-saintelyon` (frontale agrandie). Fond de nuit bleu `#1B2A4A`, jamais noir.
+- **Blouse et stéthoscope** (27/11/2026) : fonction `blouse()` de l'épisode `2026-11-27-21-partiels-medecine`.
+
+Tout nouvel accessoire : montrer à Quentin une image de Carreau équipé (plusieurs expressions) avant la vidéo, ou le signaler
+comme non validé dans le compte rendu.
