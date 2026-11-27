@@ -39,7 +39,7 @@ Seul l'agent Gumroad crée ou modifie quelque chose sur Gumroad. Les autres sess
 - **Nom** : `Révisions QME X Laurine (bêta privée)`.
 - **Permalink proposé** : `revisions-qme-laurine-beta`.
 - **Visibilité** : non listé dans la boutique, pas de « Discover », lien partagé à la main uniquement.
-- **Prix** : à décider par Quentin. Options : gratuit (0 €, « pay what you want » à 0) ou un prix symbolique de bêta.
+- **Prix** : 14,90 € (même prix que « Planning de révision », décision de Quentin du 27/11/2026).
 - **Clés de licence** : activer « Generate a unique license key per sale ».
 - **Ping** : déjà déclaré pour le compte (Settings › Advanced › Ping endpoint = `https://qm-engineering.fr/api/achat`).
   Rien à ajouter.
