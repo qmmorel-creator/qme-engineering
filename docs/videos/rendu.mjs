@@ -7,7 +7,7 @@
 // Drive ; musique QME aux réglages communs.
 //
 // Usage en ligne de commande (page HTML animée, Reel du soir, motion design) :
-//   node docs/videos/rendu.mjs <page.html> <durée en s> [couverture en ms] [--sortie <fichier.mp4>] [--muet]
+//   node docs/videos/rendu.mjs <page.html> <durée en s> [couverture en ms] [--sortie <fichier.mp4>] [--muet] [--taille-max <Mo>]
 // La page peut exposer window.placer(ms) (elle place elle-même chaque image) ; sinon ses animations CSS et JS
 // sont simplement jouées sur l'horloge virtuelle.
 import { createRequire } from 'node:module';
@@ -94,7 +94,7 @@ export function ajouterMusique(entree, sortie = entree, musique = null) {
 }
 
 // Rend une page HTML animée en MP4 1080 × 1920 (Reel, Short, motion design), image par image en temps virtuel.
-export async function rendrePage({ page: chemin, duree, couverture = null, sortie, muet = false, musique = null, rapide = false }) {
+export async function rendrePage({ page: chemin, duree, couverture = null, sortie, muet = false, musique = null, rapide = false, tailleMax = TAILLE_MAX_MO }) {
   const nom = basename(sortie, '.mp4');
   const tmp = join(tmpdir(), `qme-rendu-${nom}-${process.pid}`);
   const images = join(tmp, 'images');
@@ -126,12 +126,12 @@ export async function rendrePage({ page: chemin, duree, couverture = null, sorti
     await navigateur.close();
     // Si l'encodage dépasse la limite Drive (le débit visé est parfois dépassé de quelques %), on réencode au
     // prorata du dépassement, deux fois au plus.
-    for (let essai = 0, max = TAILLE_MAX_MO; essai < 3; essai++) {
+    for (let essai = 0, max = tailleMax; essai < 3; essai++) {
       encoder({ dossier: images, duree, sortie, audio: !muet, rapide, tmp, tailleMaxMo: max });
       if (!muet) ajouterMusique(sortie, sortie, musique); // après l'encodage : jamais de Reel muet par erreur
       const mo = statSync(sortie).size / 1e6;
-      if (mo <= TAILLE_MAX_MO) break;
-      max *= (TAILLE_MAX_MO / mo) * 0.97;
+      if (mo <= tailleMax) break;
+      max *= (tailleMax / mo) * 0.97;
     }
     return { sortie, images: total, duree, taille: statSync(sortie).size, placer };
   } finally {
@@ -145,11 +145,13 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   const args = process.argv.slice(2);
   const opt = (n) => { const i = args.indexOf(n); return i >= 0 ? args.splice(i, 2)[1] : null; };
   const sortie = opt('--sortie');
+  // --taille-max <Mo> : master de qualité (mini-stories), au-delà de la limite d'envoi Drive de 2,9 Mo.
+  const tailleMax = Number(opt('--taille-max')) || TAILLE_MAX_MO;
   const muet = args.includes('--muet'); const rapide = args.includes('--brouillon');
   const [page, duree, couverture] = args.filter((a) => !a.startsWith('--'));
-  if (!page || !duree) { console.error('Usage : node docs/videos/rendu.mjs <page.html> <durée s> [couverture ms] [--sortie f.mp4] [--muet] [--brouillon]'); process.exit(1); }
+  if (!page || !duree) { console.error('Usage : node docs/videos/rendu.mjs <page.html> <durée s> [couverture ms] [--sortie f.mp4] [--muet] [--brouillon] [--taille-max Mo]'); process.exit(1); }
   const cible = sortie || join(ICI, 'sortie', `${basename(page, '.html')}.mp4`);
   mkdirSync(dirname(cible), { recursive: true });
-  const r = await rendrePage({ page, duree: Number(duree), couverture: couverture != null ? Number(couverture) : null, sortie: cible, muet, rapide });
+  const r = await rendrePage({ page, duree: Number(duree), couverture: couverture != null ? Number(couverture) : null, sortie: cible, muet, rapide, tailleMax });
   console.log(`${r.sortie} : ${r.images} images (${r.duree} s, ${r.placer ? 'window.placer' : 'horloge virtuelle'}), ${(r.taille / 1e6).toFixed(2)} Mo${muet ? ', muet' : ', musique QME'}`);
 }
