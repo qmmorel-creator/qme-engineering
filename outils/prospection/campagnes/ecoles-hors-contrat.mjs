@@ -27,10 +27,12 @@ const fait = (p) => String(p.fait || '').trim().replace(/[.;\s]+$/, '');
 // « le site de l'École… », « du Cours Hamon », « du Collège… », « des Ateliers… », « d'Alpha », « de La Clé ».
 const de = (nom) => {
   const n = String(nom).trim();
-  if (/^(école|ecole|association|atelier|académie|institut|espace)\b/i.test(n)) return `de l'${n}`;
+  if (/^(école|ecole|association|atelier|académie|institut|institution|ensemble|espace)\b/i.test(n)) return `de l'${n}`;
+  if (/^maison\b/i.test(n)) return `de la ${n}`;
   if (/^(centre|cours|collège|college|lycée|lycee|campus|groupe)\b/i.test(n)) return `du ${n}`;
   if (/^le\s/i.test(n)) return `du ${n.slice(3)}`;
   if (/^les\s/i.test(n)) return `des ${n.slice(4)}`;
+  if (/^l['’]/i.test(n)) return `de l'${n.slice(2)}`;
   return /^[aeiouyhàâäéèêëîïôöùûü]/i.test(n) ? `d'${n}` : `de ${n}`;
 };
 

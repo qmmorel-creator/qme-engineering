@@ -35,12 +35,37 @@ le 27/11/2026) présenté aux écoles privées hors contrat et aux centres de so
   « établissement fictif ».
 - La gestion de classe signale elle-même qu'elle ne remplace pas un logiciel de vie scolaire : la page le dit.
 
+- **Contrôle `doublons` insuffisant** : sur le lot 1, l'outil (PR #330) n'a écarté aucune adresse, alors que 8 établissements
+  déjà prospectés en vague 12 ou 14 (dont `info@cipec.com`, adresse identique) ont été trouvés par Nexora et par Gmail.
+  Les contrôles Nexora et Gmail restent indispensables.
+- **Gmail** : une recherche `in:anywhere {d1 … d16}` renvoie toute la boîte (résultat faux) ; paquets de 6 domaines au
+  plus, méthode vérifiée sur 6 domaines déjà contactés (6 trouvés sur 6).
+- Aucun centre de soutien scolaire indépendant trouvé : les recherches ne ramènent que des réseaux nationaux ou des
+  plateformes, ou des adresses nominatives. Lot dédié à faire, ville par ville, si Quentin le souhaite.
+
 ## Lots
 
-(à compléter : adresses retenues et écartées par contrôle)
+### Lot 1 (27/11/2026) : 160 adresses retenues sur 182 trouvées
+
+Repérage dans l'annuaire de l'Éducation nationale (data.education.gouv.fr, filtre « hors contrat ») et dans l'annuaire
+de la Fondation pour l'école ; chaque adresse a été relevée sur une page précise du site de l'établissement (champ
+`source`), avec un fait tiré de ce site. Fichier hors dépôt (adresses) ; versé dans Nexora au lancement.
+
+| Contrôle | Écartés |
+|---|---|
+| Relecture (statut à confirmer, réseau, établissement en double, grande école internationale, adresse d'un tiers) | 14 : Al-Kindi, IBS of Provence, Le Lieu Utile, Cours Aliénor d'Aquitaine (Excellence Ruralités), Cours Charles Péguy, Cours Charlemagne, Cours La Boussole (Espérance banlieues), École de Tarcisius (même lieu que le Collège de la Trinité), American School of Paris, British School of Paris, International School of Paris, IDSP, Kingsworth, École de l'Étoile-du-Matin (réseau FSSPX) |
+| `campagne.mjs doublons` | 0 |
+| Nexora (2 567 fiches, comparaison des noms) | 8 : Steiner-Waldorf Lyon, L'Envolée, Da Vinci School, Mésanges, CIPEC, Boutons d'Or, English School Lyon, Les Pouces Verts |
+| Gmail (`in:anywhere`, domaine ou adresse entière) | 0 |
+| Liste d'opposition | 0 |
+
+Répartition : Sud 47, Ouest 48, Nord et Île-de-France 65. À revoir par Quentin s'il le souhaite : Ein Gedi (jeunes
+avec un trouble du développement intellectuel), The Old School (anglophone), écoles de deux classes (Montessori by the
+Sea, 1-2-3 Colibris, Croque la Vie, 1, 2, 3 Soleil), statut non écrit sur le site mais « hors contrat » dans l'annuaire
+officiel (Avicenne, Yunus Emre, Saint-Dominique, Saint-Bernard, Collège Louis et Zélie Martin).
 
 ## Journal
 
 | Date | Partis | Réponses | Oppositions | Notes |
 |---|---|---|---|---|
-| 2026-11-27 | 0 | 0 | 0 | Page, captures, modèle de mail ; sourcing en cours ; rien en file |
+| 2026-11-27 | 0 | 0 | 0 | Page (PR #332), captures, modèle de mail, brouillon Gmail de validation ; lot 1 : 160 adresses contrôlées ; rien en file, campagne non créée |
