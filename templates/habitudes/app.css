@@ -539,3 +539,51 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .carte-theme-tete h2{overflow-wrap:anywhere}
 .choix-theme .case{min-height:44px}
 .pastilles span{width:44px;height:44px}
+
+/* ============ Bauhaus doux · variante « Papier » (27/11/2026) ============
+   Couleurs un peu désaturées, coins de 4 px, icônes de navigation remplacées par de petits marqueurs
+   géométriques, icônes restantes au trait fin, grandes formes Bauhaus en filigrane à faible opacité.
+   Maquette de référence : docs/templates/bauhaus-doux/bauhaus-doux-habitudes.html (variante D). */
+:root{--rouge:#B85E48;--jaune:#DCA94A;--bleu:#3F6A94;--vert:#4E8A5E;--r-doux:4px}
+.btn,.btn-icone,.champ input,.champ select,.champ textarea,.vide-etat,.puce,.toast,.modale,.carte,.tuile,.aide,
+.grille-mois,.choix-theme,.ligne,.cocher,.valeur,.jauge,.jauge i,.barre-taux,.barre-taux span{border-radius:var(--r-doux)}
+.compteur .btn-icone{border-radius:var(--r-doux)}
+.pastille-etat{border-radius:3px;width:32px;height:32px}
+.journal td.c button,.journal td.c span,.legende-grille i{border-radius:3px}
+.onglet{border-bottom-width:2px}
+.onglet:hover{border-color:color-mix(in srgb,var(--encre) 25%,transparent)}
+.onglet .marqueur{width:9px;height:9px;flex:none}
+.btn-icone:hover,.btn:hover{background:color-mix(in srgb,var(--jaune) 22%,var(--surface))}
+.btn.primaire:hover{background:color-mix(in srgb,var(--encre) 85%,var(--rouge));border-color:transparent}
+.vide-etat svg{flex:none}
+/* Filigrane : cercle ocre, quart de cercle bleu, triangle terracotta, derrière l'application */
+#racine{position:relative;isolation:isolate}
+#racine::before,#racine::after{content:"";position:fixed;z-index:-1;pointer-events:none;opacity:.08}
+#racine::before{width:420px;height:420px;border-radius:50%;background:var(--jaune);right:-140px;top:-120px}
+#racine::after{width:260px;height:260px;background:var(--bleu);left:-90px;bottom:-90px;border-top-right-radius:100%}
+@media print{#racine::before,#racine::after{display:none}}
+/* Papier · tablette et téléphone : les marqueurs seuls ne suffisent pas, le libellé reste visible */
+@media (max-width:1020px){.barre .titre-produit{display:none}.onglet span{display:inline}.onglet{padding:0 8px;gap:6px;font-size:14px}}
+@media (max-width:720px){.onglet span{display:block}.onglet{font-size:11px;gap:5px}.onglet .marqueur{width:12px;height:12px}
+  #racine::before{width:260px;height:260px;right:-110px;top:-90px}#racine::after{width:170px;height:170px;left:-70px;bottom:calc(var(--nav-h) - 60px)}}
+/* Papier · partout : tous les arrondis Pastel ramenés à 4 px, onglets soulignés, illustration de connexion adoucie */
+.modale,.toast,.tuile,.carte,.examen-carte,.vide-etat,.formulaire-acces,.alerte,.etiquette,.aide,.infobulle,.carte-theme,
+.repartition,.grille-mois,.graphique,.tableau,.type,.choix-theme,.tuto li,.modale-tete button,.etapes-points span,.col-tend,mark{border-radius:var(--r-doux)}
+input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]),select,textarea{border-radius:var(--r-doux)}
+.tuto li::before{border-radius:3px}
+.onglet,.onglet:hover,.onglet[aria-current="page"]{border-radius:0;background:none}
+.onglet[aria-current="page"]{border-bottom-color:var(--encre);color:var(--encre)}
+.onglet{color:var(--texte-2)}
+.modale::backdrop{background:rgba(36,34,31,.35)}
+[fill="#D9302A"]{fill:var(--rouge)}[fill="#F5B400"]{fill:var(--jaune)}[fill="#1D4E89"]{fill:var(--bleu)}
+.marque rect[fill="#D9302A"]{fill:#D9302A}
+.composition .formes rect{opacity:.55}
+.composition .formes circle{opacity:.8}
+.composition [fill="#141414"]{fill:var(--bleu)}
+.composition [stroke="#141414"]{stroke:var(--papier)}
+@media (max-width:720px){
+  .onglet,.onglet:hover,.onglet[aria-current="page"]{border-radius:0}
+  .onglet{border-bottom:0;border-top:2px solid transparent}
+  .onglet[aria-current="page"]{border-top-color:var(--encre)}
+  .modale{border-radius:var(--r-doux) var(--r-doux) 0 0}
+}

@@ -197,8 +197,9 @@ Correspondances interaction → écritures (en plus de la fiche QME, toujours mi
 
 ### 3. Concepts
 
-1. Un concept se fait avec le skill `concept-prospect` : page `/concepts/<slug>/`, démonstration, PDF et brouillon de
-   réponse. La PR n'est **pas fusionnée** sans Quentin.
+1. Un concept se fait avec le skill `concept-prospect` **du dépôt** (`.claude/skills/concept-prospect/`, pas la version claude.ai) : page `/concepts/<slug>/`, démonstration, PDF et brouillon de
+   réponse. La PR n'est **pas fusionnée** sans Quentin. Il est **personnalisé au secteur, jamais générique**
+   (`docs/prospection/CONCEPTS-SUR-MESURE.md`, qui prime sur les gabarits du skill ; modèles : Kelly et ARVA).
 2. Registre Nexora (règle de `CLAUDE.md`, « Concepts ») :
    - `mutate_qme` `entity: "concept"`, `action: "upsert_many"`, avec les éléments donnés par
      `node outils/concepts/registre-nexora.mjs <slug>` (identifiant stable `cpt-<slug>`) ;

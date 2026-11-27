@@ -611,3 +611,11 @@ form[data-mode="parts"] .rep-parts,form[data-mode="montants"] .rep-montants{disp
 .demarrage li.fait .demarrage-num{background:var(--vert)}
 .demarrage-pied{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 @media (min-width:900px){.demarrage ol{grid-template-columns:repeat(3,1fr)}}
+
+/* Photos du voyage : liens vers un dossier Google Drive (ou un autre album) */
+.photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.photo-carte{display:flex;flex-direction:column;gap:2px;min-height:44px;padding:10px 14px;border:1px solid var(--trait);border-radius:16px;background:var(--surface);color:inherit;text-decoration:none;text-align:left;font:inherit;cursor:pointer}
+.photo-carte b{font-size:15px;overflow-wrap:anywhere}
+.photo-carte span{font-size:13px;color:var(--discret)}
+.photo-carte:hover b,.photo-carte:focus-visible b{text-decoration:underline}
+.photo-carte.principal{border-left:6px solid var(--jaune)}

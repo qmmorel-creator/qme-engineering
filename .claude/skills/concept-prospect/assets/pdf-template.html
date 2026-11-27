@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="<!--LANG-->"><head><meta charset="utf-8"><title><!--TITLE--></title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap">
+<style>
+@page{size:A4 landscape;margin:0}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Outfit",system-ui,sans-serif;color:#141414;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.p{width:297mm;height:210mm;padding:11mm 14mm 9mm 18mm;display:flex;flex-direction:column;gap:5mm;page-break-after:always;background:#F0EDE6;position:relative;overflow:hidden}
+.p:last-child{page-break-after:auto}
+.stripe{position:absolute;left:0;top:0;bottom:0;width:5mm;background:#D9302A}
+.stripe::after{content:"";position:absolute;left:0;bottom:0;width:5mm;height:28mm;background:#F5B400}
+.top{display:flex;justify-content:space-between;align-items:baseline;font-size:8.5pt;color:#5d5a55;letter-spacing:.06em;text-transform:uppercase;font-weight:500}
+.top b{color:#D9302A;font-weight:800}
+h1{font-weight:700;font-size:25pt;line-height:1.05;margin:0;letter-spacing:-.01em}
+.cap{font-size:11pt;line-height:1.4;color:#3b3934;margin:2mm 0 0;max-width:215mm}
+.shots{flex:1;display:flex;gap:7mm;align-items:flex-start;justify-content:center;min-height:0}
+.shot{border-radius:3mm;overflow:hidden;box-shadow:0 2mm 7mm rgba(20,20,20,.18);background:#fff}
+.shot img{display:block;width:100%}
+.wide{flex:1;max-width:240mm}
+.wide img{height:128mm;object-fit:cover;object-position:top left}
+.phone{width:60mm;flex:none;border-radius:7mm;border:2.4mm solid #141414}
+.phone img{height:128mm;object-fit:cover;object-position:top}
+.foot{display:flex;justify-content:space-between;font-size:8pt;color:#5d5a55}
+</style></head><body>
+<!--PAGES-->
+</body></html>
