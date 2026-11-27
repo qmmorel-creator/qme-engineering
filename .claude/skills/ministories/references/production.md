@@ -64,6 +64,27 @@ bruitages synthétisés (ka-ching, pop, whoosh, croc, zap, blips, tic-tac, chute
 boucle, volume 0,22, `sidechaincompress` déclenché par la voix (seuil 0,015, ratio 10, attaque 15 ms, relâche 350 ms),
 remontée sur le carton, fondu final ; `alimiter` 0,78. Cibles : voix -15 à -16 LUFS, mix ≈ -16 LUFS, crête ≤ -1,5 dB.
 
+## Musique (libre de droits, confirmé par Quentin le 27/11/2026)
+
+Dossier Drive « QME - Musiques MiniStories » (`1330hXpW1k2QET4cWeXyOByPCqkQ1wc6M`), 9 morceaux relevés le 27/11/2026 :
+
+| Fichier | Id Drive |
+|---|---|
+| alex-morgan-funny-bouncy-cartoon-mischief-578469.mp3 | 1QctryerPnHx6X06cAUcAuhlQAP5Ypo3c |
+| alex-morgan-funny-funny-music-545489.mp3 | 1DQL9fLyb2A2vfby-MFEDfLHiGkb0trld |
+| atlasaudio-funny-funny-music-576636.mp3 | 1k-rBVqnzWF00qvD0yEfkYJ6Lbrx1B_-F |
+| atlasaudio-funny-606256.mp3 | 1f-kN9Hog7H8i-a8Oz31QjGbUsUX6umqP |
+| andriih-funny-funny-music-585934.mp3 | 1RPgXGAAL4cq8c1R3YPRW2f1kmOSRAMB0 |
+| ikoliks_aj-funny-funny-music-634962 (1).mp3 | 11wfe8hs39qJeSdb0EwMc1AeE8x1Rhu-X |
+| nastelbom-comedy-comedy-music-617004.mp3 | 1IfDUJueXz9DHZ0w1SVmVqBzYGs9Lcpx7 |
+| starostin-funny-funny-music-638426.mp3 | 1HTPERCBJeY3G1U51WtQ8RJ9n8QLBpjBV |
+| viacheslavstarostin-funny-funny-music-634353.mp3 | 1p6_Kd5BdbzZe4fgczwLufkskQnMwe7pj |
+
+**Varier** : jamais le même morceau que l'épisode précédent (colonne « Musique » du journal) ; choisir selon le ton
+(malicieux, énergique, suspense comique). Relister le dossier s'il a changé. Téléchargement : connecteur Google Drive
+(`download_file_content`), puis remplacer le fichier `audio/musique-*.mp3` de l'épisode (un seul fichier : `audio.py`
+prend le premier). Repli : bibliothèque `docs/videos/musique/` (5 morceaux, voir son README).
+
 ## Contrôles automatiques possibles
 
 - `ffprobe` (codecs, tailles, durées des flux), `ffmpeg -f null` (décodage complet), `ebur128=peak=true` (sonie).

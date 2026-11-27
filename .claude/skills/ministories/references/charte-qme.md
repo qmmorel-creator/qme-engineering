@@ -36,10 +36,14 @@ dans Drive « QME - Vidéos Ministories ».
   (accessoires, pas des mascottes) : cela respecte « une seule mascotte à l'écran ».
 - Sous-titres en Outfit 800 noir sur cartouche jaune pâle : transposition directe de la référence typo.
 
+## Confirmé par Quentin (27/11/2026)
+
+- Les musiques du dossier Drive « QME - Musiques MiniStories » sont libres de droits.
+- La fiche de Carreau est validée.
+
 ## Inconnu (ne pas inventer)
 
 - Voix officielle de marque (aucune référence) : narrateur masculin neutre retenu à titre provisoire.
-- Licence exacte des musiques du dossier Drive (noms de fichiers de type Pixabay, non confirmés).
 - Jingle ou logo animé officiel : aucun ; le carton est une image fixe.
 
 ## Arbitrages

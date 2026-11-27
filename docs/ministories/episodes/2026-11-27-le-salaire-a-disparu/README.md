@@ -68,7 +68,7 @@ Voix seule : -15,7 LUFS, -2,0 dBTP.
 
 ## Limites et décisions
 
-- **Musique** : piste du dossier Drive « QME - Musiques MiniStories » ; nom de type Pixabay, licence à confirmer.
+- **Musique** : « funny bouncy cartoon mischief » (alex-morgan), dossier Drive « QME - Musiques MiniStories », libre de droits (confirmé par Quentin le 27/11/2026).
 - **Bruitages** : synthétisés, sans droits tiers.
 - **Carreau** : module officiel ; fiche validée par Quentin le 27/11/2026.
 - **Nom du produit** : « Mon Budget » (nom officiel publié), à la place de « Budget du foyer QME ».
