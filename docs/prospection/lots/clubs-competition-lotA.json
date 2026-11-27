@@ -322,20 +322,6 @@
   "verifie": "2026-11-27"
  },
  {
-  "id": "chambery-escalade-chambery",
-  "nom": "Chambéry Escalade",
-  "ville": "Chambéry",
-  "cp": "73000",
-  "departement": "Savoie",
-  "discipline": "escalade",
-  "email": "contact@chambery-escalade.fr",
-  "site": "https://www.chambery-escalade.fr/",
-  "source": "https://www.chambery-escalade.fr/blog/fete-club-escalade-2026",
-  "fait": "vous organisez lors de la fête du club un contest de blocs ouvert des U11 aux seniors et vétérans, au gymnase Ambroise Croizat",
-  "factSource": "https://www.chambery-escalade.fr/blog/fete-club-escalade-2026",
-  "verifie": "2026-11-27"
- },
- {
   "id": "sensabloc-carpentras",
   "nom": "Sensabloc",
   "ville": "Carpentras",
@@ -347,20 +333,6 @@
   "source": "http://www.sensabloc.fr/retour-contest-sensabloc/",
   "fait": "vous organisez le Contest Sensabloc, une épreuve de bloc conviviale pour les jeunes et les adultes, relancée en mars 2026 pour les 20 ans du club",
   "factSource": "http://www.sensabloc.fr/retour-contest-sensabloc/",
-  "verifie": "2026-11-27"
- },
- {
-  "id": "drac-vercors-escalade-fontaine",
-  "nom": "Drac Vercors Escalade",
-  "ville": "Fontaine",
-  "cp": "38600",
-  "departement": "Isère",
-  "discipline": "escalade",
-  "email": "contact@drac-vercors-escalade.fr",
-  "site": "https://drac-vercors-escalade.fr/",
-  "source": "https://drac-vercors-escalade.fr/contact",
-  "fait": "vous organisez le Contest du Drac, étape du Contest Tour Isère, qui a réuni 114 grimpeuses et grimpeurs sur 27 blocs au gymnase Aristide Bergès",
-  "factSource": "https://drac-vercors-escalade.fr/",
   "verifie": "2026-11-27"
  },
  {
