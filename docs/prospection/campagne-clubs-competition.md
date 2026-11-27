@@ -34,3 +34,6 @@ Lancée le 27/11/2026 (sous-campagne de la session « Audit campagnes ciblées �
 - 27/11/2026 : règle mise à jour (PR #330, b01111b) : Nexora aussi par radical de domaine. Lot C refait : 43 recherches
   par radical (partie locale de l'adresse pour les sites hébergés sur une plateforme), toutes vides ; témoin `cipec`
   retrouvé (vague 14). `doublons` (version à jour) : 0 écarté. Lot C toujours à 43.
+- 27/11/2026 : `doublons --campagne clubs-competition` (PR #330, 28fa78b) ignore les fichiers de la campagne : lots A et C
+  commités, contrôle relancé (0 écarté). Lot A : 40 sourcés, 9 retirés (4 faits de 2019 à 2022, 5 compétitions internes),
+  31 ; doublons 0, opposition 0 ; Nexora et Gmail en cours.
