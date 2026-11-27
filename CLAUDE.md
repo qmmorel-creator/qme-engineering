@@ -10,7 +10,7 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 ## Réseaux sociaux : une seule publication par plateforme et par jour (décision du 24/11/2026)
 
 - **Règle très importante** : Instagram, TikTok, YouTube, LinkedIn et X ont chacun **au plus une publication par jour**,
-  tous formats confondus (post, carrousel, Reel, vidéo, Short). Toute session ou tâche planifiée qui programme choisit
+  tous formats confondus (seule exception : les mini-stories, en plus, voir section Mini-stories) (post, carrousel, Reel, vidéo, Short). Toute session ou tâche planifiée qui programme choisit
   un jour **sans aucune ligne** sur la plateforme ; jamais deux lignes à la même date. Contenus audacieux en priorité.
   Règle : `docs/templates/communication/REGLES-CONTENU.md` § 1 ; calendrier refait le 24/11/2026 :
   `docs/templates/communication/CALENDRIER-UNE-PAR-JOUR.md`.
@@ -232,8 +232,8 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   « Publication » ci-dessous), dans la règle d'une publication par plateforme et par jour.
 - **Publication** (décision de Quentin du 27/11/2026) : **5 mini-stories par semaine** sur Instagram (TikTok suit),
   choisies et programmées par l'agent master dans le planning Instagram (Sheet `1R9l_AHY5fQwGvuZE-ge6F3ghvzx8OvQarkzxBf1mhf8`),
-  thème « Mini-story », en respectant une seule publication par jour : les lignes sans date imposée déplacées par une
-  mini-story vont en fin de planning. Version TikTok : carton final ramené à 1,5 s (Instagram : 4 s). L'agent de contenu
+  thème « Mini-story », à 20:30, **en plus** de la publication du jour : elles ne comptent pas dans la règle d'une
+  publication par jour et ne déplacent aucune ligne (décision du 27/11/2026). Version TikTok : carton final ramené à 1,5 s (Instagram : 4 s). L'agent de contenu
   ne remplace jamais une ligne « Mini-story ».
 - **Liste des sujets** (décision du 27/11/2026) : Quentin valide seulement les pitchs dans `docs/ministories/sujets.md`
   (rang = ordre de production, sans validation du scénario) ; **toujours 7 vidéos d'avance** dans le Drive « QME - Vidéos
