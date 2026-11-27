@@ -103,7 +103,8 @@ export async function chercherSource(media, q, { fetchImpl, tmdbAcces }) {
   }
   if (media === 'livreaudio' || media === 'podcast') {
     const d = await itunes(fetchImpl, q, media === 'podcast' ? 'podcast' : 'audiobook');
-    return (d.results || []).map((x) => fiche(media, 'itunes', x.collectionId, { titre: x.collectionName, auteur: x.artistName, annee: annee(x.releaseDate) })).filter(Boolean);
+    // Podcast : releaseDate est la date du dernier épisode, pas l'année de création ; elle n'est donc pas reprise.
+    return (d.results || []).map((x) => fiche(media, 'itunes', x.collectionId, { titre: x.collectionName, auteur: x.artistName, annee: media === 'podcast' ? 0 : annee(x.releaseDate) })).filter(Boolean);
   }
   if (media === 'film') {
     const d = await tmdb(fetchImpl, tmdbAcces, '/search/movie', { query: q, include_adult: 'false' });

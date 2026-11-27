@@ -91,6 +91,7 @@ test('index partagé : une œuvre ajoutée revient en tête, même avec des faut
   // Fiche jamais lue par le serveur : refusée (un navigateur ne peut pas écrire dans le cache partagé).
   assert.deepEqual((await appeler(req('ajout', { methode: 'POST', corps: { media: 'podcast', s: 'itunes', id: 999, titre: 'Pub' } }), opts)).corps, { ok: false });
   assert.equal((await st.get('index/podcast')).length, 1);
+  assert.equal((await st.get('index/podcast'))[0].annee, undefined, 'pas d\'année pour un podcast (date du dernier épisode chez iTunes)');
   // Source en panne : l'index répond seul, avec la fiche tolérante aux fautes.
   const panne = async () => { throw new Error('hors ligne'); };
   const r = await appeler(req('recherche?media=podcast&q=petittes questons'), { stockage: st, fetchImpl: panne });
