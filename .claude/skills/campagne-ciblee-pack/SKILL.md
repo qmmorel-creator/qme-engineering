@@ -97,10 +97,13 @@ d'eux ne reçoit rien :
    recherches** par prospect, le nom de l'entreprise puis le radical du domaine (`cipec` pour `info@cipec.com`), et
    ouvrir la fiche (`get_qme`) en cas de doute pour comparer `emailSource` et `site`. Même entreprise ou même
    établissement, quelle que soit la vague ou l'étape : écarté ;
-3. Gmail : `in:anywhere "<domaine>"` (ou l'adresse entière pour une messagerie grand public) : un seul fil trouvé
-   suffit à écarter. **Six domaines au plus par requête** (au-delà, la recherche renvoie toute la boîte, constaté le
-   27/11), et un témoin à chaque série : un domaine déjà prospecté doit sortir, un domaine inventé ne doit rien
-   renvoyer.
+3. Gmail : **une requête par domaine**, `in:anywhere "<domaine>"` entre guillemets (ou l'adresse entière pour une
+   messagerie grand public). Constaté le 27/11 : une requête groupée (OR ou accolades) manque des fils qu'une requête
+   isolée trouve, et au-delà d'une dizaine de domaines elle renvoie toute la boîte ; sans guillemets, Gmail découpe un
+   domaine à tirets en mots. Lire les fils trouvés : un seul fil avec l'entreprise suffit à écarter. Témoins à chaque
+   série : un domaine déjà prospecté doit sortir, un domaine inventé ne doit rien renvoyer. Ce contrôle ne voit pas
+   les envois OVH de la file (leurs copies ne ressortent pas dans la boîte connectée) : ceux-là, seul `doublons` les
+   couvre.
 Le journal de la campagne note, par lot, le nombre d'écartés par contrôle.
 
 ## 5. Validation par Quentin
