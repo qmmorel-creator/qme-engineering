@@ -225,6 +225,9 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   personnelle, sujets variés (journal `docs/ministories/journal.md`). Elle **produit seulement** (MP4, script ElevenLabs,
   dépôt Drive « QME - Vidéos Ministories ») : elle ne programme aucune publication ; la programmation reste à l'agent de
   contenu unique, dans la règle d'une publication par plateforme et par jour.
+- **Validation obligatoire** (décision du 27/11/2026) : sujets classés par Quentin, scénarios écrits d'avance (toujours
+  7) et validés par lui avant toute vidéo. Suivi : `docs/ministories/sujets.md` et `docs/ministories/scenarios/`, sur la
+  branche de production `claude/mini-stories-qme-caro-b07mx2`.
 
 ## Test des nouveaux formats (décision du 24/11/2026)
 

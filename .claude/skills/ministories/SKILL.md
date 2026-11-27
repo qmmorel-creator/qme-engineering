@@ -22,6 +22,15 @@ n'est pas une seconde marque. Une demande « mini-story Caro » est une mini-sto
 3. Le skill `qme-ministories` (compte claude.ai, flux ElevenLabs manuel) reste valable pour ses règles de carton et de
    musique ; ce skill-ci les reprend et y ajoute la production automatisée.
 
+## Circuit de validation (décision de Quentin du 27/11/2026)
+
+`docs/ministories/sujets.md` : **sujet** (classé par Quentin) → **scénario** (`docs/ministories/scenarios/NN-<slug>.md`,
+statut `scénario à valider`) → validation par Quentin → **vidéo**. Aucune vidéo sans scénario validé. Toujours **7
+scénarios d'avance** (à valider + validés non produits) : en manque, écrire les suivants dans l'ordre du rang, puis des
+numéros. Plus de sujets `proposé` ou `retenu` : en proposer 10 nouveaux (statut `proposé`) pour classement. Quand Quentin
+valide, corrige ou écarte dans une conversation, cette session met `sujets.md` à jour et pousse sur la branche
+`claude/mini-stories-qme-caro-b07mx2` (branche de production des mini-stories).
+
 ## 1. Brief (5 minutes)
 
 Copier `modeles/brief.md` dans un nouveau dossier `docs/ministories/episodes/AAAA-MM-JJ-<slug>/` et le remplir :
