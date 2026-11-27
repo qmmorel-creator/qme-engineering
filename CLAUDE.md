@@ -121,6 +121,8 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   secteur, vue téléphone, page de concept écrite sur mesure. Interdits : la coquille SaaS neutre des gabarits du skill et
   la page brute de `concept_page.py`. Cette règle prime sur les gabarits du skill. Détail et contrôle avant PR :
   `docs/prospection/CONCEPTS-SUR-MESURE.md`.
+- **Skill de référence : `.claude/skills/concept-prospect/` du dépôt** (règle intégrée, versionnée ici). Il prime sur le
+  skill claude.ai `anthropic-skills:concept-prospect`, resté générique : toujours appeler `concept-prospect` (version du dépôt).
 
 ## Concepts : registre dans Nexora Optim › QME › Concepts (décision du 24/11/2026)
 

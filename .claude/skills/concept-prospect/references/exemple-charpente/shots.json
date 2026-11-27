@@ -1,0 +1,5 @@
+[{"id":"planning","view":"planning","device":"desktop"},
+ {"id":"chantier","view":"chantier","device":"desktop"},
+ {"id":"pilotage","view":"pilotage","device":"desktop"},
+ {"id":"terrain","view":"terrain","device":"mobile"},
+ {"id":"heures","view":"heures","device":"mobile"}]
