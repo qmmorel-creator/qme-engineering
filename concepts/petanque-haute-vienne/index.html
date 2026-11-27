@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Concept pour les commissions d'arbitrage · CD Pétanque 87 · QME</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600;1,9..144,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
+<style>
+:root{--ink:#13202a;--sable:#dcc49a;--or:#b07a35;--terre:#e0642c;--olive:#5f7341;--lav:#6f5fa3;--paper:#f4f0e7;--muted:#5f676d;--line:#e5ddcd}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 "Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:"Fraunces",Georgia,serif;letter-spacing:-.01em;font-variant-numeric:lining-nums}
+img{max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.btn{display:inline-flex;align-items:center;gap:9px;background:var(--sable);color:var(--ink);text-decoration:none;font:600 15px "Manrope",sans-serif;padding:14px 22px;border-radius:999px;border:2px solid var(--sable);transition:transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
+.btn.line{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn.dark{background:var(--ink);color:#f4f0e7;border-color:var(--ink)}
+.btn:focus-visible{outline:3px solid var(--terre);outline-offset:3px}
+
+.bar{position:absolute;left:0;right:0;top:0;z-index:5}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:20px;padding-bottom:20px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:600;letter-spacing:.04em}
+.brand small{display:block;font-weight:400;letter-spacing:0;color:#9fb0bc;font-size:13px;line-height:1.2}
+.bar a.pdf{color:#fff;font:500 14px "Manrope";text-decoration:none;border-bottom:1px solid rgba(255,255,255,.4)}
+
+.hero{position:relative;overflow:hidden;background:radial-gradient(90% 120% at 85% 0%,#2f4a5c 0%,#18293a 45%,#101b24 100%);color:#fff;padding:122px 0 0}
+.hero .ridge{position:absolute;left:0;right:0;bottom:0;width:100%;height:260px;pointer-events:none}
+.eb{font:600 12px "Manrope",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--sable);margin:0 0 18px}
+.hero h1{font-size:clamp(38px,5.6vw,70px);line-height:1.04;margin:0;font-weight:700;max-width:16ch}
+.hero h1 em{color:var(--sable);font-style:italic}
+.hero .lede{font-size:clamp(16px,1.6vw,18.5px);color:#cbd6de;max-width:60ch;margin:22px 0 30px}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
+.hero .note{margin:18px 0 0;font-size:13px;color:#93a3af}
+.stage{position:relative;margin-top:56px;padding-bottom:70px}
+.browser{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.55);width:86%}
+.browser .tb{height:34px;background:#e4e8ea;display:flex;align-items:center;gap:7px;padding:0 14px}
+.browser .tb i{width:11px;height:11px;border-radius:50%;background:#c2cbd1}
+.browser .tb span{margin-left:14px;background:#fff;border-radius:6px;font-size:11.5px;color:#5f676d;padding:3px 12px}
+.browser img{display:block;width:100%;height:auto}
+.phone{position:absolute;right:0;bottom:30px;width:23%;min-width:150px;background:#0b141b;border-radius:34px;padding:9px;box-shadow:0 30px 70px rgba(0,0,0,.6)}
+.phone img{display:block;width:100%;height:auto;border-radius:26px;aspect-ratio:640/1240;object-fit:cover;object-position:top}
+
+.facts{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--line);background:#fffdf8}
+.facts div{padding:32px 28px;border-right:1px solid var(--line)}
+.facts div:last-child{border-right:0}
+.facts b{display:block;font:600 12.5px "Manrope",sans-serif;text-transform:uppercase;letter-spacing:.14em;color:var(--or);margin-bottom:8px}
+.facts p{margin:0;color:#33404a;font-size:15px}
+.facts q{font:italic 600 17px/1.45 "Fraunces";color:var(--ink);quotes:"«\00a0" "\00a0»"}
+
+section.mod{padding:100px 0 0}
+.mod .head{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:34px}
+.num{font:600 13px "Manrope",sans-serif;color:var(--or);letter-spacing:.16em}
+.mod h2{font-size:clamp(30px,3.6vw,46px);line-height:1.08;margin:10px 0 0;font-weight:700}
+.mod h2 em{color:var(--terre);font-style:italic}
+.mod .head p{margin:0;color:#33404a;font-size:16.5px}
+.mod ul{margin:14px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.mod li{display:flex;gap:10px;font-size:15px;color:#33404a}
+.mod li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--sable);margin-top:9px;flex:none}
+.shot{border-radius:16px;overflow:hidden;box-shadow:0 24px 60px rgba(20,32,42,.16);border:1px solid var(--line);background:#fff}
+.shot img{display:block;width:100%;height:auto}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.combo{display:grid;grid-template-columns:1fr 280px;gap:28px;align-items:center}
+.combo .phone,.phones .phone{position:static;width:100%;min-width:0}
+.phones{display:flex;justify-content:center;gap:34px;flex-wrap:wrap;background:linear-gradient(180deg,#18293a,#101b24);border-radius:22px;padding:46px 20px;position:relative;overflow:hidden}
+.phones .phone{width:300px}
+.phones .tag{position:absolute;left:26px;top:22px;font:600 11px "Manrope";letter-spacing:.16em;text-transform:uppercase;color:var(--sable)}
+
+.flow{margin-top:100px;background:var(--ink);color:#fff;border-radius:22px;padding:52px 44px}
+.flow h2{font-size:clamp(28px,3.2vw,40px);margin:8px 0 10px;font-weight:700}
+.flow>p{color:#b9c6cf;max-width:64ch;margin:0 0 36px}
+.fg{display:grid;grid-template-columns:1fr 64px 1.1fr 64px 1fr;align-items:center}
+.col{display:flex;flex-direction:column;gap:10px}
+.col .it{background:#1c2c38;border:1px solid #2a3d4b;border-radius:12px;padding:12px 14px;font-size:14px}
+.col .it b{display:block;font-weight:600;font-size:14px}
+.col .it span{color:#9fb0bc;font-size:12.5px}
+.core{background:var(--sable);color:var(--ink);border-radius:18px;padding:28px 24px;text-align:center}
+.core b{display:block;font:700 24px/1.15 "Fraunces",serif}
+.core span{display:block;margin-top:8px;font-size:14px;color:#2c3a44}
+.arr{height:2px;background:repeating-linear-gradient(90deg,#5c7181 0 6px,transparent 6px 11px);position:relative;margin:0 8px}
+.arr::after{content:"";position:absolute;right:-2px;top:-5px;border:6px solid transparent;border-left-color:#7d909e}
+.lbl{font:600 11px "Manrope";letter-spacing:.14em;text-transform:uppercase;color:#7d909e;margin-bottom:4px}
+
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:30px}
+.steps div{background:#fffdf8;border:1px solid var(--line);border-radius:16px;padding:22px}
+.steps b{font:700 36px/1 "Fraunces";color:var(--or)}
+.steps h3{font-size:18px;margin:10px 0 6px}
+.steps p{margin:0;font-size:14.5px;color:#3c4a55}
+.end{margin:100px 0 0;background:#fffdf8;border:1px solid var(--line);border-radius:22px;padding:44px;display:grid;grid-template-columns:1.4fr 1fr;gap:30px;align-items:center}
+.end h2{font-size:clamp(26px,3vw,36px);margin:0 0 10px;font-weight:700}
+.end p{margin:0;color:#33404a}
+.end .ctas{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+footer{padding:40px 0 50px;color:var(--muted);font-size:14px}
+footer a{color:var(--ink)}
+/* estimation */
+.est{position:relative;margin:8px 0 40px;background:#fff;border-radius:6px;box-shadow:0 10px 30px rgba(20,20,20,.10);padding:28px 30px 24px 40px;overflow:hidden}
+.est::before{content:"";position:absolute;left:0;top:0;bottom:0;width:10px;background:#e0642c}
+.est::after{content:"";position:absolute;left:0;bottom:0;width:10px;height:70px;background:#141414}
+.est .eb{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 6px}
+.est .eb b{color:#e0642c;font-weight:800}
+.est h2{font-size:clamp(24px,3.2vw,34px);line-height:1.08;margin:0 0 10px;font-weight:700;letter-spacing:-.01em}
+.est .intro{color:#3b3b3b;max-width:72ch;margin:0 0 20px}
+.est table{width:100%;border-collapse:collapse;font-size:15px}
+.est th{text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600;padding:8px 8px;border-bottom:2px solid #141414}
+.est td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+.est th.n,.est td.n{text-align:right;white-space:nowrap}
+.est input{width:84px;font:inherit;font-weight:600;text-align:right;padding:6px 8px;border:1px solid var(--line);border-radius:4px;background:var(--paper);color:#141414}
+.est input:focus{outline:2px solid #e0642c;outline-offset:1px;background:#fff}
+.est .u{display:block;font-size:12px;color:var(--muted)}
+.est td.s{font-weight:700;color:#e0642c}
+.est .tot{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+.est .tot div{background:var(--paper);border-radius:4px;padding:14px 16px;border-top:4px solid #141414}
+.est .tot b{display:block;font-size:32px;line-height:1.1;font-weight:700;letter-spacing:-.01em}
+.est .tot div.main{background:#e0642c;color:#fff;border-top-color:#141414}
+.est .tot span{font-size:14px;color:#5a5a5a}
+.est .tot div.main span{color:#fde4d6}
+.est .rate{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px;font-size:15px;font-weight:500}
+.est .foot{color:var(--muted);font-size:13.5px;margin:14px 0 0;max-width:82ch}
+.est .reset{background:none;border:0;color:#141414;font:inherit;font-size:14px;cursor:pointer;padding:0;text-decoration:underline;text-decoration-color:#e0642c;text-underline-offset:3px;margin-left:auto}
+@media (max-width:720px){.est{padding:20px 14px 18px 24px}.est .tot{grid-template-columns:1fr}.est table,.est tbody,.est tr,.est td{display:block}.est thead{display:none}
+ .est tr{border-bottom:1px solid var(--line);padding:8px 0}.est td{border:0;padding:4px 0}.est td.n{text-align:left;display:flex;justify-content:space-between;align-items:center}
+ .est td.n::before{content:attr(data-l);color:var(--muted);font-size:13px}}
+.est .tot div.main{background:#13202a;color:#fff;border-top-color:#dcc49a}.est .tot div.main span{color:#cbd6de}.est .tot b{font-family:"Fraunces",serif;font-variant-numeric:lining-nums}.est::after{background:#dcc49a}.est h2{font-weight:700}
+
+@media (max-width:860px){
+  .hero{padding-top:96px}
+  .browser{width:100%}
+  .hero .phone{display:none}
+  .facts{grid-template-columns:1fr}.facts div{border-right:0;border-bottom:1px solid var(--line)}
+  .mod .head,.duo,.end,.combo{grid-template-columns:1fr;gap:18px}
+  .combo .phone{max-width:300px;margin:0 auto}
+  section.mod{padding-top:64px}
+  .flow{padding:34px 20px}
+  .fg{grid-template-columns:1fr;gap:14px}.arr{width:2px;height:28px;margin:0 auto;background:repeating-linear-gradient(180deg,#5c7181 0 6px,transparent 6px 11px)}.arr::after{display:none}
+  .steps{grid-template-columns:1fr 1fr}
+  .end{padding:28px 20px}
+  .bar a.pdf{display:none}
+}
+@media (max-width:480px){.steps{grid-template-columns:1fr}.phones .phone{width:100%;max-width:300px}}
+
+.hero .ridge{height:200px}
+.steps.s3{grid-template-columns:repeat(3,1fr)}@media (max-width:860px){.steps.s3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+  <a class="brand" href="/" aria-label="Accueil QME">
+    <svg viewBox="0 0 80 80" width="34" height="34" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#fff"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#141414"/></svg>
+    <span>QME<small>Quentin Morel Engineering</small></span>
+  </a>
+  <a class="pdf" href="QME-concept-Petanque-Haute-Vienne.pdf" download data-goatcounter-click="concept-petanque-haute-vienne-pdf" data-goatcounter-title="Concept CD Pétanque 87 (PDF)">Télécharger le PDF (5 pages)</a>
+</div></header>
+
+<main>
+<section class="hero">
+  <svg class="ridge" viewBox="0 0 1440 260" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+<defs><linearGradient id="sabridge" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cdb184" stop-opacity=".0"/><stop offset=".35" stop-color="#cdb184" stop-opacity=".22"/><stop offset="1" stop-color="#d8bf92" stop-opacity=".38"/></linearGradient>
+<radialGradient id="blridge" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#f4f6f8"/><stop offset=".5" stop-color="#b9c3cb"/><stop offset="1" stop-color="#4f5c66"/></radialGradient></defs>
+<path d="M0 91.0 C360.0 72.80000000000001 864.0 78.0 1440 57.2 V260 H0Z" fill="url(#sabridge)"/>
+<circle cx="80" cy="182.0" r="1.3" fill="#e9d8b4" opacity=".35"/><circle cx="210" cy="213.2" r="1.3" fill="#e9d8b4" opacity=".35"/><circle cx="330" cy="156.0" r="1.3" fill="#e9d8b4" opacity=".35"/><circle cx="470" cy="228.8" r="1.3" fill="#e9d8b4" opacity=".35"/><circle cx="610" cy="187.2" r="1.3" fill="#e9d8b4" opacity=".35"/><circle cx="760" cy="234.0" r="1.3" fill="#e9d8b4" opacity=".35"/><circle cx="880" cy="171.6" r="1.3" fill="#e9d8b4" opacity=".35"/><circle cx="1010" cy="208.0" r="1.3" fill="#e9d8b4" opacity=".35"/><circle cx="1130" cy="182.0" r="1.3" fill="#e9d8b4" opacity=".35"/><circle cx="150" cy="239.20000000000002" r="1.3" fill="#e9d8b4" opacity=".35"/><circle cx="540" cy="166.4" r="1.3" fill="#e9d8b4" opacity=".35"/><circle cx="950" cy="244.39999999999998" r="1.3" fill="#e9d8b4" opacity=".35"/>
+<ellipse cx="172.79999999999998" cy="208.0" rx="64.8" ry="18.200000000000003" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="2"/>
+<line x1="878.4" y1="171.6" x2="1007.9999999999999" y2="156.0" stroke="#e0642c" stroke-width="2" stroke-dasharray="5 4"/>
+<circle cx="1007.9999999999999" cy="156.0" r="11.7" fill="#e0642c"/>
+<g><circle cx="878.4" cy="176.8" r="26.0" fill="url(#blridge)"/><path d="M855.0 166.4q23.4 13.0 46.8 0" stroke="#56636e" stroke-width="1.5" fill="none" opacity=".6"/></g>
+<g><circle cx="1108.8" cy="182.0" r="26.0" fill="url(#blridge)"/><path d="M1085.3999999999999 192.4q23.4 -13.0 46.8 0" stroke="#56636e" stroke-width="1.5" fill="none" opacity=".6"/></g>
+<g><circle cx="950.4000000000001" cy="213.2" r="26.0" fill="url(#blridge)"/></g>
+<path d="M0 260v-10h1440v10Z" fill="#f4f0e7"/></svg>
+  <div class="wrap">
+    <p class="eb">Concept pour Laetitia · commissions d'arbitrage de pétanque</p>
+    <h1>La bonne idée d'un comité, <em>dans la mallette de tous.</em></h1>
+    <p class="lede">Laetitia, vous m'avez écrit que chaque département fait son «&nbsp;micmac&nbsp;» dans son coin et que les bonnes idées ne circulent pas. Voici à quoi pourrait ressembler une mallette commune des commissions d'arbitrage&nbsp;: une version de référence par document, les propositions de chaque comité relues puis partagées, et sur le téléphone de l'arbitre, les documents du concours, même sans réseau.</p>
+    <div class="ctas">
+      <a class="btn" href="demo/" data-goatcounter-click="concept-petanque-haute-vienne-demo" data-goatcounter-title="Concept CD Pétanque 87 (démonstration)">Ouvrir la démonstration interactive</a>
+      <a class="btn ghost" href="QME-concept-Petanque-Haute-Vienne.pdf" download data-goatcounter-click="concept-petanque-haute-vienne-pdf" data-goatcounter-title="Concept CD Pétanque 87 (PDF)">Télécharger le PDF</a>
+    </div>
+    <p class="note">Concept réalisé à partir de votre message et de ce qui est visible publiquement. Toutes les données affichées sont fictives&nbsp;; l'exemple prend les douze comités de Nouvelle-Aquitaine, il s'adapte à tout autre territoire.</p>
+    <div class="stage">
+      <div class="browser"><div class="tb"><i></i><i></i><i></i><span>la-mallette-de-l-arbitrage · aujourd'hui</span></div><img src="s-jour.webp" width="1600" height="1000" alt="La mallette de l'arbitrage : 64 modèles en commun, données fictives"></div>
+      <div class="phone"><img src="m-concours.webp" width="640" height="1385" alt="Le jour du concours sur le téléphone de l'arbitre, données fictives"></div>
+    </div>
+  </div>
+</section>
+
+<div class="facts"><div class="wrap" style="display:contents">
+  <div><b>Ce que vous m'avez dit</b><p><q>Actuellement, chaque département fait son micmac dans son coin et nous ne partageons malheureusement pas les bonnes idées.</q></p></div>
+  <div><b>Ce que demande l'arbitrage</b><p>Des arbitres bénévoles désignés concours par concours, des documents à remettre au jury le jour même, un règlement qui évolue, et des commissions qui refont chacune leurs convocations, leurs rapports et leurs sujets d'examen.</p></div>
+  <div><b>Ce que propose le concept</b><p>Une mallette commune, rangée comme une journée de concours, où chaque comité propose, relit et reprend les modèles des autres. Et un projet découpé en étapes, finançables l'une après l'autre.</p></div>
+</div></div>
+
+<div class="wrap">
+  <section class="mod" id="jour">
+    <div class="head">
+      <div><div class="num">01 · AUJOURD'HUI</div><h2>Les modèles de tout le territoire, <em>sur un seul écran</em></h2></div>
+      <div><p>Combien de modèles sont en commun, quels comités proposent, ce qui attend une relecture et ce qui est à revoir depuis la dernière mise à jour du règlement.</p>
+        <ul><li>D'une bonne idée de département à toutes les commissions, étape par étape</li><li>Le fil des propositions, relectures et téléchargements</li><li>Les concours de la semaine, avec des documents à jour</li></ul></div>
+    </div>
+    <div class="duo"><div class="shot"><img src="s-jour.webp" width="1600" height="1000" alt="Aujourd'hui : modèles en commun et parcours d'une idée, données fictives" loading="lazy"></div><div class="shot"><img src="s-jour-bas.webp" width="1600" height="1000" alt="Le fil des commissions et les relectures, données fictives" loading="lazy"></div></div>
+  </section>
+
+  <section class="mod" id="territoire">
+    <div class="head">
+      <div><div class="num">02 · LE TERRITOIRE</div><h2>Qui utilise quoi, <em>comité par comité</em></h2></div>
+      <div><p>La carte des comités&nbsp;: les modèles communs adoptés, ceux que chacun a proposés, et ce qui reste à mettre à jour. Un clic sur un département ouvre sa commission.</p>
+        <ul><li>Les documents qui circulent le plus, et ceux que personne n'a encore repris</li><li>Les variantes locales gardées mais signalées</li><li>De quoi présenter le projet à la commission régionale ou nationale, chiffres à l'appui</li></ul></div>
+    </div>
+    <div class="shot"><img src="s-carte.webp" width="1600" height="1000" alt="Carte des comités de Nouvelle-Aquitaine et modèles adoptés, données fictives" loading="lazy"></div>
+  </section>
+
+  <section class="mod" id="mallette">
+    <div class="head">
+      <div><div class="num">03 · LA MALLETTE</div><h2>Rangée comme <em>une journée de concours</em></h2></div>
+      <div><p>Avant le concours, pendant, après, et la formation des arbitres&nbsp;: chaque document a une seule version de référence, le comité qui l'a proposé et le nombre de comités qui l'utilisent.</p>
+        <ul><li>Convocation, consignes, check-list tenue et matériel</li><li>Rapport d'incident, procès-verbal du jury, relevé des sanctions</li><li>Note de frais, bilan de saison, fiches d'observation et questionnaires d'examen</li></ul></div>
+    </div>
+    <div class="shot"><img src="s-mallette.webp" width="1600" height="1000" alt="La mallette rangée par moment du concours, données fictives" loading="lazy"></div>
+  </section>
+
+  <section class="mod" id="modele">
+    <div class="head">
+      <div><div class="num">04 · UN MODÈLE COMMUN</div><h2>Le rapport d'incident, <em>et son histoire</em></h2></div>
+      <div><p>Le document tel qu'il s'imprime, avec les cartons jaune, orange et rouge, la mène et le terrain. Chaque version est datée, chaque amélioration dit de quel comité elle vient.</p>
+        <ul><li>Pré-rempli pour un concours&nbsp;: date, lieu, arbitre, président du jury</li><li>Le logo et l'adresse de chaque comité s'ajoutent tout seuls</li><li>Une variante locale reste possible, bilingue par exemple</li></ul></div>
+    </div>
+    <div class="shot"><img src="s-modele.webp" width="1600" height="1000" alt="Fiche du rapport d'arbitre, versions et variantes, données fictives" loading="lazy"></div>
+  </section>
+
+  <section class="mod" id="idees">
+    <div class="head">
+      <div><div class="num">05 · LES BONNES IDÉES</div><h2>L'idée d'un comité <em>profite aux onze autres</em></h2></div>
+      <div><p>Un comité propose un modèle ou une amélioration, les autres disent «&nbsp;utile chez nous aussi&nbsp;», la commission relit et valide, puis le modèle est diffusé à tous.</p>
+        <ul><li>Des relecteurs désignés, un délai suivi</li><li>Les votes montrent ce qui mérite d'être fait en premier</li><li>Plus besoin d'attendre une réunion nationale pour partager</li></ul></div>
+    </div>
+    <div class="shot"><img src="s-idees.webp" width="1600" height="1000" alt="Les propositions des comités, de la proposition à la diffusion, données fictives" loading="lazy"></div>
+  </section>
+
+  <section class="mod" id="telephone">
+    <div class="head">
+      <div><div class="num">06 · SUR LE TÉLÉPHONE DE L'ARBITRE</div><h2>Le jour du concours, <em>tout est dans la poche</em></h2></div>
+      <div><p>La désignation, les documents du jour disponibles hors connexion et la check-list avant de partir. Sur place, le rapport d'incident s'ouvre déjà rempli&nbsp;: un carton à toucher, la mène, les équipes, les faits.</p>
+        <ul><li>Toujours la dernière version, jamais un vieux fichier</li><li>Tenue, mètre, compas, cartons&nbsp;: rien n'est oublié</li><li>Le rapport part au président du jury en un geste</li></ul></div>
+    </div>
+    <div class="phones"><span class="tag">Sur le téléphone d'un arbitre</span>
+      <div class="phone"><img src="m-concours.webp" width="640" height="1385" alt="Jour de concours, documents et check-list, données fictives" loading="lazy"></div>
+      <div class="phone"><img src="m-incident.webp" width="640" height="1385" alt="Rapport d'incident sur place avec les cartons, données fictives" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section class="flow">
+    <p class="eb" style="margin:0">Comment ça se branche</p>
+    <h2>Vos documents restent les vôtres. La mallette les relie.</h2>
+    <p>On part des modèles que les comités utilisent déjà&nbsp;: rien n'est à réécrire de zéro. Le détail des branchements se vérifie ensemble, outil par outil.</p>
+    <div class="fg">
+      <div class="col"><div class="lbl">Ce qui existe</div>
+        <div class="it"><b>Vos modèles Word et PDF</b><span>convocations, rapports, notes de frais</span></div>
+        <div class="it"><b>Les dossiers partagés des comités</b><span>repris tels quels pour commencer</span></div>
+        <div class="it"><b>Les mails de désignation</b><span>pour pré-remplir les documents du concours</span></div>
+        <div class="it"><b>Le site du comité</b><span>un lien vers la mallette, si vous le souhaitez</span></div></div>
+      <div class="arr"></div>
+      <div class="core"><b>La mallette de l'arbitrage</b><span>un document = une version de référence, son histoire et les comités qui l'utilisent</span></div>
+      <div class="arr"></div>
+      <div class="col"><div class="lbl">Ce que vous obtenez</div>
+        <div class="it"><b>Des modèles communs</b><span>la même base pour tous les comités</span></div>
+        <div class="it"><b>Les bonnes idées partagées</b><span>proposées, relues, diffusées</span></div>
+        <div class="it"><b>Le téléphone de l'arbitre</b><span>les documents du jour, même sans réseau</span></div>
+        <div class="it"><b>Le tableau du territoire</b><span>pour présenter le projet, chiffres à l'appui</span></div></div>
+    </div>
+  </section>
+
+  <section style="margin-top:100px">
+    <div class="num">PAR ÉTAPES, AU RYTHME DES FINANCEMENTS</div>
+    <h2 style="font-size:clamp(28px,3.2vw,40px);margin:10px 0 0;font-weight:700">On commence petit, et seulement ce qui sert</h2>
+    <p style="color:#33404a;max-width:72ch;margin:12px 0 0">Chaque étape fonctionne seule, a son périmètre et son chiffrage&nbsp;: elle peut faire l'objet d'une demande de subvention séparée, et la suivante n'est lancée que si la précédente est vraiment utilisée. Le descriptif de chaque étape peut être repris dans un dossier.</p>
+    <div class="steps s3">
+      <div><b>1</b><h3>La mallette commune</h3><p>Les modèles des comités volontaires, une version de référence par document, accessibles à tous les arbitres. Modeste, utile dès la première saison.</p></div>
+      <div><b>2</b><h3>Le circuit des bonnes idées</h3><p>Propositions, relecture par la commission, versions et variantes, alertes après une mise à jour du règlement.</p></div>
+      <div><b>3</b><h3>Le téléphone de l'arbitre</h3><p>Documents du jour hors connexion, rapport d'incident pré-rempli sur place, tableau du territoire.</p></div>
+    </div>
+  </section>
+
+  <div style="margin-top:100px"></div>
+<!-- estimation -->
+  <section class="est" id="est" aria-live="polite"></section>
+  <script>
+(function(){
+  var C = {"lang": "fr", "rate": 15, "rateLabel": "Valorisation d'une heure de bénévolat", "period": "an", "dayHours": 3, "rows": [["Retrouver ou refaire un modèle (convocation, rapport, note de frais)", "documents", 30, 40, 8], ["Mettre les modèles à jour après un changement de règlement", "modèles", 15, 60, 15], ["Répondre à un arbitre qui cherche la dernière version d'un document", "demandes", 60, 8, 2], ["Préparer les documents d'une session de formation ou d'examen", "sessions", 3, 180, 60], ["Reprendre une bonne idée vue dans un autre département", "idées", 8, 90, 20], ["Remplir l'en-tête d'une convocation ou d'un rapport de concours", "documents", 150, 6, 2]], "txt": {"h": "Le temps rendu aux bénévoles", "intro": "Un ordre de grandeur, pas une promesse, pour une commission départementale d'arbitrage. Les volumes et les durées sont des hypothèses de départ prudentes : remplacez-les par les vôtres, le total se met à jour. Ce temps rendu, ce sont des soirées que les bénévoles peuvent consacrer aux concours, à la formation des arbitres et aux projets du comité.", "days": "soirées de 3 h", "value": "valorisation du temps rendu par {p}, à {rate} € de l'heure (ce n'est pas une dépense économisée)", "foot": "Les minutes indiquées concernent une tâche faite une fois (un document, une demande, une session). Le temps gagné se partage entre les membres de la commission et les arbitres. Multiplié par le nombre de départements qui partagent la bibliothèque, il grandit d'autant. Ces hypothèses seront affinées ensemble lors de notre échange."}}, T = Object.assign({}, {"eb": "Estimation", "h": "Estimation du temps gagné", "intro": "Un ordre de grandeur, pas une promesse. Les volumes et les durées ci-dessous sont des hypothèses de départ, construites à partir de ce que l'on voit de l'extérieur : remplacez-les par les vôtres, le total se met à jour.", "task": "Tâche", "vol": "Combien par {p}", "before": "Minutes aujourd'hui", "after": "Minutes avec l'outil", "saved": "Heures gagnées", "hours": "heures gagnées par {p}", "days": "journées de 7 h", "value": "valeur du temps gagné par {p}, à {rate} € de l'heure", "reset": "Revenir aux hypothèses de départ", "foot": "Les minutes indiquées concernent une tâche faite une fois (un dossier, une relance, une semaine de planning). Ces hypothèses seront affinées ensemble lors de notre échange.", "loc": "fr-FR"}, C.txt || {}), el = document.getElementById('est');
+  var fmt = function(n, d){ return n.toLocaleString(T.loc, {maximumFractionDigits: d || 0}); };
+  var P = function(s){ return s.replace('{p}', C.period); };
+  var rows = C.rows.map(function(r, i){
+    return '<tr><td>' + r[0] + '</td>' +
+      '<td class="n" data-l="' + P(T.vol) + '"><span><input type="number" min="0" step="1" data-k="v" data-i="' + i + '" value="' + r[2] + '"><span class="u">' + r[1] + '</span></span></td>' +
+      '<td class="n" data-l="' + T.before + '"><input type="number" min="0" step="0.5" data-k="b" data-i="' + i + '" value="' + r[3] + '"></td>' +
+      '<td class="n" data-l="' + T.after + '"><input type="number" min="0" step="0.5" data-k="a" data-i="' + i + '" value="' + r[4] + '"></td>' +
+      '<td class="n s" data-l="' + T.saved + '" id="s' + i + '"></td></tr>';
+  }).join('');
+  el.innerHTML = '<p class="eb"><b>QME</b> · ' + T.eb + '</p><h2>' + T.h + '</h2><p class="intro">' + T.intro + '</p>' +
+    '<table><thead><tr><th>' + T.task + '</th><th class="n">' + P(T.vol) + '</th><th class="n">' + T.before + '</th><th class="n">' + T.after + '</th><th class="n">' + T.saved + '</th></tr></thead><tbody>' + rows + '</tbody></table>' +
+    '<div class="rate"><label for="estRate">' + C.rateLabel + '</label><span><input id="estRate" type="number" min="0" step="1" value="' + C.rate + '"> €</span><button type="button" class="reset" id="estReset">' + T.reset + '</button></div>' +
+    '<div class="tot"><div class="main"><b id="estH"></b><span>' + P(T.hours) + '</span></div><div><b id="estD"></b><span>' + T.days + '</span></div><div><b id="estV"></b><span id="estVL"></span></div></div>' +
+    '<p class="foot">' + T.foot + '</p>';
+  function calc(){
+    var tot = 0;
+    C.rows.forEach(function(r, i){
+      var g = function(k){ var v = parseFloat(el.querySelector('input[data-k="' + k + '"][data-i="' + i + '"]').value); return isNaN(v) ? 0 : v; };
+      var h = Math.max(0, g('v') * (g('b') - g('a'))) / 60; tot += h;
+      document.getElementById('s' + i).textContent = fmt(h, h < 10 ? 1 : 0) + ' h';
+    });
+    var rate = parseFloat(document.getElementById('estRate').value) || 0;
+    document.getElementById('estH').textContent = fmt(Math.round(tot)) + ' h';
+    document.getElementById('estD').textContent = fmt(tot / (C.dayHours || 7), 0);
+    document.getElementById('estVL').textContent = P(T.value).replace('{rate}', fmt(rate));
+    var v = fmt(Math.round(tot * rate / 10) * 10); document.getElementById('estV').textContent = T.loc === 'en-GB' ? '€' + v : v + ' €';
+  }
+  el.addEventListener('input', calc);
+  document.getElementById('estReset').addEventListener('click', function(){
+    C.rows.forEach(function(r, i){ ['v','b','a'].forEach(function(k, j){ el.querySelector('input[data-k="' + k + '"][data-i="' + i + '"]').value = r[2 + j]; }); });
+    document.getElementById('estRate').value = C.rate; calc();
+  });
+  calc();
+})();
+</script>
+  <!-- estimation -->
+
+  <section class="end">
+    <div><h2>Un projet à présenter sérieusement</h2><p>Ce concept est un point de départ&nbsp;: chaque écran s'adapte à vos commissions, à vos documents et à votre territoire, et peut servir de support pour présenter le projet à la commission régionale ou nationale.</p></div>
+    <div class="ctas">
+      <a class="btn dark" href="demo/" data-goatcounter-click="concept-petanque-haute-vienne-demo" data-goatcounter-title="Concept CD Pétanque 87 (démonstration)">Ouvrir la démonstration</a>
+      <a class="btn line" href="QME-concept-Petanque-Haute-Vienne.pdf" download data-goatcounter-click="concept-petanque-haute-vienne-pdf" data-goatcounter-title="Concept CD Pétanque 87 (PDF)">Télécharger le PDF (5 pages)</a>
+    </div>
+  </section>
+</div>
+</main>
+<footer><div class="wrap">Quentin Morel · QME · Quentin Morel Engineering · quentin.morel@qm-engineering.fr · <a href="/">qm-engineering.fr</a></div></footer>
+<script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

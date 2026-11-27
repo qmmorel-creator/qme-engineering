@@ -1,0 +1,183 @@
+{
+  "episode": "22-road-trip",
+  "duree": 30.0,
+  "carton": {
+    "debut": 26.0,
+    "fin": 30.0
+  },
+  "scenes": [
+    {
+      "id": "S1",
+      "debut": 0,
+      "fin": 4.9,
+      "nom": "Road trip improvisé, étapes en rafale, la carte s'envole"
+    },
+    {
+      "id": "S2",
+      "debut": 4.9,
+      "fin": 8.6,
+      "nom": "Détour de 200 km pour un « plus beau village »"
+    },
+    {
+      "id": "S3",
+      "debut": 8.6,
+      "fin": 10.0,
+      "nom": "La jauge d'essence fond"
+    },
+    {
+      "id": "S4",
+      "debut": 10.0,
+      "fin": 12.3,
+      "nom": "23 h, complet : Carreau dort dans le van"
+    },
+    {
+      "id": "S5",
+      "debut": 12.3,
+      "fin": 16.6,
+      "nom": "Version 2 : Planificateur de voyage (téléphone, jour par jour)"
+    },
+    {
+      "id": "S6",
+      "debut": 16.6,
+      "fin": 19.1,
+      "nom": "Étapes et nuits (itinéraire)"
+    },
+    {
+      "id": "S7",
+      "debut": 19.1,
+      "fin": 21.1,
+      "nom": "Nuit sans toit signalée"
+    },
+    {
+      "id": "S8",
+      "debut": 21.1,
+      "fin": 23.2,
+      "nom": "Budget prévu et réel"
+    },
+    {
+      "id": "S9",
+      "debut": 23.2,
+      "fin": 26.0,
+      "nom": "Payoff : même route, une étape prévue et un lit"
+    },
+    {
+      "id": "S10",
+      "debut": 26.0,
+      "fin": 30.0,
+      "nom": "Carton final officiel"
+    }
+  ],
+  "voix": [
+    {
+      "id": "v01",
+      "t": 0.15,
+      "texte": "Road trip improvisé.",
+      "fin": 1.38
+    },
+    {
+      "id": "v02",
+      "t": 1.84,
+      "texte": "Une étape. Puis une autre. Puis une autre.",
+      "fin": 4.57
+    },
+    {
+      "id": "v03",
+      "t": 5.16,
+      "texte": "Détour de deux cents kilomètres pour un « plus beau village ».",
+      "fin": 8.33
+    },
+    {
+      "id": "v04",
+      "t": 8.85,
+      "texte": "L'essence fond.",
+      "fin": 9.53
+    },
+    {
+      "id": "v05",
+      "t": 10.11,
+      "texte": "Vingt-trois heures. Pas de lit.",
+      "fin": 11.79
+    },
+    {
+      "id": "v06",
+      "t": 12.4,
+      "texte": "Version deux : le Planificateur de voyage, de QME.",
+      "fin": 16.26
+    },
+    {
+      "id": "v07",
+      "t": 16.82,
+      "texte": "Étapes et nuits, jour par jour.",
+      "fin": 18.62
+    },
+    {
+      "id": "v08",
+      "t": 19.3,
+      "texte": "Une nuit sans toit est signalée.",
+      "fin": 20.72
+    },
+    {
+      "id": "v09",
+      "t": 21.21,
+      "texte": "Budget prévu, et réel.",
+      "fin": 22.8
+    },
+    {
+      "id": "v10",
+      "t": 23.33,
+      "texte": "Même route. Ce soir : un lit.",
+      "fin": 25.88
+    }
+  ],
+  "bruitages": [
+    {
+      "son": "pose",
+      "t": 0.0
+    },
+    {
+      "son": "pop",
+      "t": 1.5
+    },
+    {
+      "son": "whoosh",
+      "t": 4.6
+    },
+    {
+      "son": "pose",
+      "t": 8.45
+    },
+    {
+      "son": "zap",
+      "t": 9.62
+    },
+    {
+      "son": "whoosh",
+      "t": 11.9
+    },
+    {
+      "son": "pose",
+      "t": 16.4
+    },
+    {
+      "son": "ding",
+      "t": 18.66
+    },
+    {
+      "son": "pose",
+      "t": 20.8
+    },
+    {
+      "son": "kaching",
+      "t": 22.82
+    },
+    {
+      "son": "pose",
+      "t": 25.95
+    }
+  ],
+  "voix_source": {
+    "fichier": "audio/elevenlabs/voix-elevenlabs.wav",
+    "decalage": 0.15,
+    "origine": "ElevenLabs, voix « Caroline - Warm, Sweet and Soft » (kwhMCf63M8O3rCfnQ3oQ), eleven_v4, générée le 27/11/2026 (flow 6FlR2Ylf2oT9MU69ezMz, 365 crédits, une génération) ; réplique « Nuit dans la voiture. » retirée au montage (12,03–13,75 s de la prise) sur consigne van"
+  }
+}

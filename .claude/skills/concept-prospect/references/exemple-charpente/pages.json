@@ -1,0 +1,7 @@
+{"lang":"fr","prospect":"Charpentes de l'Obiou","slug":"charpentes-obiou",
+ "lede":"Un outil de chantier pensé pour vos quatre équipes : le planning de la semaine partagé sur le téléphone des chefs d'équipe, les heures saisies chaque soir, chaque chantier relié à son devis et un tableau de bord pour le gérant. Toutes les données sont fictives. Tout peut être adapté à votre façon de travailler et construit par modules.",
+ "pages":[
+  {"title":"Le planning de la semaine, partagé avec les équipes","caption":"Quatre équipes et le camion-grue sur une seule grille. Les conflits et la météo de levage sont signalés, et chaque chef d'équipe reçoit sa journée du lendemain à 17 h : plus d'appels du soir.","shots":["s-planning.jpg"]},
+  {"title":"Sur le téléphone du chef d'équipe","caption":"Le matin : chantier, heure, équipe, matériel et plan à jour. Le soir : les heures de l'équipe, l'avancement, des photos et une remarque pour le bureau, en deux minutes.","shots":["m-terrain.jpg","m-heures.jpg"]},
+  {"title":"Chaque chantier relié à son devis, sans ressaisie","caption":"Les lots du devis sont importés depuis votre logiciel de chiffrage. Avancement, heures par lot, matériaux et situation de travaux se calculent à partir de ce que les équipes saisissent.","shots":["s-chantier.jpg"]},
+  {"title":"Le tableau de bord du gérant","caption":"Les chantiers en cours avec leur budget d'heures, les devis à relancer et la charge des équipes sur quatre semaines : un dépassement se voit le jour même, pas le vendredi.","shots":["s-pilotage.jpg"]}]}

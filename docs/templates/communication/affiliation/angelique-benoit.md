@@ -4,7 +4,18 @@
 - **Statut** : réponse le 25/11/2026 à 11:18 : « L'idée est super cool. En revanche, je le trouve un peu
   complexe à comprendre niveau prise en main... ? ». Retour préparé le 25/11/2026 (brouillon Gmail, non
   envoyé). Elle tutoie : le retour la tutoie.
-- **Commission** : aucun taux cité (à décider par Quentin).
+- **Suite** : retour envoyé le 25/11/2026 à 15 h 09 (sur ordre de Quentin). Le 26/11 à 17 h 07, elle propose une
+  visio (elle prépare un road trip en Espagne) ; Quentin propose lundi 30/11 ou mardi 01/12 (10 h, 11 h ou 16 h) et
+  lui donne la plaquette `qm-engineering.fr/partenariat/`. Suivi détaillé : Nexora Optim › QME, fiche `a-32`, et
+  projet « Le van à la française-affiliation ».
+- **Commission** : décision de Quentin du 27/11/2026, on n'en dit rien (ni mail ni visio), la plaquette parle
+  d'elle-même.
+- **Démo « Espagne » (27/11/2026)** : `qm-engineering.fr/demo/angelique-espagne` → `?demo=catalogne&prenom=Angélique`.
+  Première version (itinéraire imaginé, deux semaines), puis le même jour son itinéraire réel envoyé à 11 h 15 :
+  5 jours au départ du Barcarès (Cap de Creus et Cadaqués, Aiguamolls de l'Empordà, Garrotxa, retour par Figueres ou
+  le Cap de Creus), activités suggérées à chaque étape (règles, horaires et tarifs notés « à vérifier »), dates et
+  montants d'exemple. Profil renommé `catalogne` pour qu'une version gardée sur l'appareil ne soit pas rouverte.
+- **Visio** : lundi 30/11/2026, 10 h-11 h, Google Meet (invitation acceptée le 27/11).
 - **Sous-conversation de suivi** : `session_0183EW51nnS4WjUqsixs71qM` (« [Affiliation] Angélique Benoit · Le van à
   la française »), créée le 25/11/2026. L'envoi du 25/11 à 17 h 05 reste fait par la session master.
 
