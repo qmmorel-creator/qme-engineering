@@ -26,6 +26,14 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   (images en pièces jointes intégrées, l'outil Gmail supprimant les images distantes). Procédure :
   `docs/templates/communication/signature/README.md`. Elle remplace la signature texte, qui reste dans la version texte brut.
 
+## Floriane Jolliot en copie de tous les mails de Quentin (décision du 27/11/2026)
+
+- **Tout e-mail personnalisé rédigé ou envoyé pour Quentin** (brouillon Gmail, réponse à un prospect, client,
+  influenceur ou partenaire, relance individuelle) met `floriane.jolliot@qm-engineering.fr` en **copie (Cc), jamais
+  en copie cachée**. **Jamais dans les mails de masse** (campagnes de prospection, file OVH `/api/prospection`,
+  premiers mails et relances de campagne, vagues d'affiliation, mails automatiques du site). Son adresse personnelle
+  (Gmail) n'est plus utilisée nulle part.
+
 ## Copie cachée des e-mails automatiques (décision du 24/11/2026)
 
 - **Toute séquence d'e-mails envoyée automatiquement par le site via OVH** (essai, achat, accompagnement après achat,
