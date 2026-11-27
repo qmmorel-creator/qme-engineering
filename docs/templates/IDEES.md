@@ -98,9 +98,9 @@ déjà).
 | T22 | Tableau de bord annuel et roue de vie | Personnel | Particuliers, coachs | en vente | 15 € | M | P3 | Liste initiale 12/11/2026 + Backlog Quentin n° 50 |
 | T23 | Suivi de chantier par lot (contrat, avenants, non-conformités) | BTP / ingénierie | Maîtres d'œuvre, bureaux d'études, PME du BTP | en vente | 40 € | L | P2 | Documents de travail de Quentin 12/11/2026 |
 | T17 | Suivi de lecture | Loisirs | Lecteurs | en vente | 12 € | S | P3 | Liste initiale 12/11/2026 |
-| T18 | Calendrier du potager | Jardin | Jardiniers amateurs | prêt | 13 € | M | P3 | Liste initiale 12/11/2026 |
-| T19 | Suivi du bébé | Famille | Jeunes parents | prêt | 13 € | M | P3 | Liste initiale 12/11/2026 |
-| T20 | Suivi d'un animal de compagnie | Animaux | Propriétaires de chien ou de chat | prêt | 12 € | S | P3 | Liste initiale 12/11/2026 |
+| T18 | Calendrier du potager | Jardin | Jardiniers amateurs | en vente | 13 € | M | P3 | Liste initiale 12/11/2026 |
+| T19 | Suivi du bébé | Famille | Jeunes parents | en vente | 13 € | M | P3 | Liste initiale 12/11/2026 |
+| T20 | Suivi d'un animal de compagnie | Animaux | Propriétaires de chien ou de chat | en vente | 12 € | S | P3 | Liste initiale 12/11/2026 |
 | T24 | Circuit de visa des documents (registre des visas) | BTP / ingénierie | MOE, bureaux d'études, OPC | en vente | 39 € | M | P1 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 05 |
 | T25 | Registre des non-conformités et actions correctives | Qualité | PME du BTP et de l'industrie, responsables qualité | en vente | 20 € | M | P1 | Documents de travail de Quentin 12/11/2026 |
 | T26 | Notes de frais et indemnités kilométriques | Comptabilité | Salariés, indépendants | en vente | 15 € | S | P2 | Documents de travail de Quentin 12/11/2026 + Backlog Quentin n° 19 |
@@ -126,15 +126,15 @@ déjà).
 | T46 | Onboarding et offboarding salarié (ancien nom : Onboarding / offboarding salarié) | RH | RH de PME, managers | en vente | 19 € | S | P2 | Backlog Quentin n° 22 |
 | T47 | Planning d'équipe et staffing | RH / opérations | Managers d'équipe, agences | en vente | 35 € | L | P2 | Backlog Quentin n° 23 · fiche [`fiches/planning-equipe.md`](fiches/planning-equipe.md) |
 | T48 | Suivi des congés et absences (ancien nom : Suivi congés et absences) | RH | TPE sans SIRH | en vente | 19 € | S | P2 | Backlog Quentin n° 24 |
-| T49 | Matrice compétences et formations | RH | Responsables formation, managers | prêt | 25 € | S | P3 | Backlog Quentin n° 25 |
+| T49 | Matrice compétences et formations | RH | Responsables formation, managers | en vente | 25 € | S | P3 | Backlog Quentin n° 25 |
 | T50 | Réservation de salles et bureaux | Moyens généraux | PME en flex office, coworkings modestes, associations | en vente | 19 € | M | P3 | Backlog Quentin n° 26 |
 | T51 | Organisateur d'événement (ancien nom : Pilote événementiel complet) | Événementiel | Particuliers (mariage, fête de famille), agences, entreprises et associations (séminaire, salon, soirée, conférence) | en vente | 39 € | L | P1 | Backlog Quentin n° 27. Fusion F1 du 22/11/2026 : réunit T15 (mariage) et T54 (séminaire) ; quatre modèles, fonctions activables, présent dans les deux parties du site ; fiche Gumroad reprise de T15 (`organisateur-mariage`). Prix de 39 € décidé par Quentin. |
 | T52 | Gestion de compétition sportive | Événementiel sport | Salles de cross-training, clubs, associations | en vente | 49 € | L | P2 | Backlog Quentin n° 29 |
 | T53 | Inscriptions associatives | Associatif | Associations, centres sociaux, clubs | en vente | 29 € | M | P1 | Backlog Quentin n° 30 |
 | T54 | Séminaire / offsite | Événementiel | Assistants de direction, RH | fusionné dans T51 le 22/11/2026 | — | M | P3 | Backlog Quentin n° 31. Rationalisation F1 : SMN retiré du site et du pack Moyens généraux (remplacé par T51), adresses redirigées vers `evenementiel` ; pas de fiche Gumroad. Modèle « Séminaire ou offsite » de T51 (transports, chambres, salles parallèles, fiche traiteur). |
-| T55 | Gestion de classe | Éducation | Enseignants collège et lycée | prêt | 25 € | M | P2 | Backlog Quentin n° 32 |
-| T56 | Emploi du temps d'établissement | Éducation / formation | Organismes de formation, écoles privées | prêt | 45 € | L | P2 | Backlog Quentin n° 33 |
-| T57 | Gestion d'auto-école (ancien nom : Gestion de flotte auto-école) | Éducation / flotte | Auto-écoles | prêt | 45 € | L | P1 | Backlog Quentin n° 34 |
+| T55 | Gestion de classe | Éducation | Enseignants collège et lycée | en vente | 25 € | M | P2 | Backlog Quentin n° 32 |
+| T56 | Emploi du temps d'établissement | Éducation / formation | Organismes de formation, écoles privées | en vente | 45 € | L | P2 | Backlog Quentin n° 33 |
+| T57 | Gestion d'auto-école (ancien nom : Gestion de flotte auto-école) | Éducation / flotte | Auto-écoles | en vente | 45 € | L | P1 | Backlog Quentin n° 34 |
 | T58 | Banque de questions et quiz formateur | Formation | Formateurs, enseignants | en vente | 19 € | M | P3 | Backlog Quentin n° 35 |
 | T59 | Progression pédagogique | Éducation | Enseignants, formateurs | en vente | 15 € | S | P3 | Backlog Quentin n° 36 |
 | T60 | Pilotage de parcs multi-sites | Exploitation | Exploitants (immobilier, équipements) | fusionné dans T61 « Maintenance préventive » (option plusieurs sites) le 22/11/2026 | — | L | P2 | Backlog Quentin n° 38. Rationalisation F4 : PRK retiré du site (aucun pack), adresses redirigées vers `maintenance`, licence reprise par `FUSIONNES` ; fiche Gumroad `pilotage-parcs-multi-sites` dépubliée |
@@ -159,7 +159,7 @@ déjà).
 | T81 | Contrats fournisseurs et échéances de résiliation | Moyens généraux | Office managers, dirigeants | en vente | 25 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Moyens généraux, Exploitation) |
 | T82 | Demandes d'achat et fournitures | Moyens généraux | Office managers | en vente | 19 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Moyens généraux) |
 | T83 | Papiers du foyer (où est quoi, durée de conservation) | Budget perso | Particuliers | en vente | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
-| T84 | Remboursements santé (soins, Sécurité sociale, mutuelle) | Budget perso | Particuliers, familles | prêt | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
+| T84 | Remboursements santé (soins, Sécurité sociale, mutuelle) | Budget perso | Particuliers, familles | en vente | 12 € | S | P2 | Proposition validée par Quentin 14/11/2026 (pack Argent) |
 | T85 | Capacité d'emprunt et comparateur de prêts | Budget perso | Particuliers, primo-accédants | en vente | 15 € | S | P2 | Proposition validée par Quentin 14/11/2026 (packs Argent, Propriétaire) |
 | T86 | Cadeaux reçus et remerciements | Événementiel perso | Futurs mariés, familles | en vente | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Mariage et installation) |
 | T87 | Revue hebdomadaire et journal de bord | Personnel | Cadres, indépendants | en vente | 12 € | S | P3 | Proposition validée par Quentin 14/11/2026 (pack Productivité) |
@@ -1445,6 +1445,31 @@ Fiche rédigée et appliquée sans validation intermédiaire (décisions de cadr
   entrée dans `communication/gumroad-a-creer.json`, ajout de `VYG` aux packs PVY et PMR
   (`netlify/lib/packs.mjs`, `PAGES` de `outils/packs/donnees.mjs`, pages `/packs/` régénérées), plannings,
   carte anglaise, passage en vente du site.
+- **Retour d'audit UX (25/11/2026, retour d'Angélique Benoit, « Le van à la française » : « un peu complexe à
+  comprendre niveau prise en main »)**. Fait sur la branche `claude/affiliation-angelique-benoit` (démo
+  personnalisée seulement) : démo `?demo=van&prenom=` (six semaines en van avec deux chiens), carte « Premiers
+  pas » en 3 gestes sur l'Aperçu (voir le jour, noter une dépense, cocher les bagages), sans modale à
+  l'ouverture. Pistes non faites :
+  - type d'hébergement « dans le van / camping-car » (une saisie pour toutes les nuits d'une étape, sans
+    statut « à réserver ») ; aujourd'hui une nuit en van non saisie compte comme « sans toit » ;
+  - carte « Premiers pas » pour tous les acheteurs à la première ouverture (voyage vide : créer le voyage,
+    ajouter une étape, une nuit) ;
+  - modale d'installation (« Comme une application ») reportée à une visite ultérieure, pas empilée sur le guide ;
+  - bandeaux plus légers sur mobile (environ 200 px avant le contenu) ;
+  - vocabulaire plus simple (« sans toit », « postes », « écart ») ;
+  - poste de budget « animaux ».
+  - onglet « Jour par jour » ouvert sur aujourd'hui pendant le voyage (il s'ouvre au jour 1 ; seul le bouton de
+    la carte « Premiers pas » amène à aujourd'hui) ;
+  - formulaire « Nouvelle dépense » allégé (libellé et montant visibles d'abord, répartition repliée) ;
+  - listes ajoutées (« Mes ajouts ») plus haut dans « Préparer » (aujourd'hui sous quatre listes types).
+- **Photos du voyage (27/11/2026, demande de Quentin)** : lien vers un album (dossier Google Drive ou autre, `https`
+  seulement) sur le voyage (« Modifier le voyage ») et sur chaque étape ; bloc « Photos du voyage » dans l'Aperçu et
+  bouton « Photos » sur les étapes de l'itinéraire, ouverts dans un nouvel onglet. Pour tous les acheteurs.
+- **Démo « Espagne » (27/11/2026, feu vert de Quentin)** : `?demo=catalogne&prenom=` (alias `espagne` ; mise le jour
+  même à l'itinéraire réel d'Angélique, 5 jours en Catalogne avec activités suggérées ; lien court
+  `/demo/angelique-espagne`), road trip de deux semaines en van avec deux chiens, départ dans 10 jours (phase de
+  préparation : à réserver, budget prévu, bagages et papiers), albums photos en liens d'exemple qui expliquent quoi
+  coller au lieu d'ouvrir un faux dossier.
 
 ## Fiche T63 (cadrage délégué par Quentin, 14/11/2026)
 

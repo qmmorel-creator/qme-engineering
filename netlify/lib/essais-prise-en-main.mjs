@@ -9,6 +9,38 @@
 // citer de libellé de bouton non vérifié dans l'application.
 // Un template ouvert à l'essai sans fiche ici fait échouer `npm test` (outils/templates/essai.test.mjs).
 export const PRISE_EN_MAIN = {
+  CSE: {
+    commencer: 'choisissez trimestres ou semestres, créez une classe, collez la liste des élèves (prénom et initiale) et saisissez une première évaluation : les moyennes se calculent.',
+    astuces: [
+      'les absents, non notés et dispensés ne comptent jamais dans la moyenne, et une évaluation bonus n\'est retenue que si elle la fait monter ;',
+      'les appréciations se composent à partir d\'une banque de phrases par axe et par niveau, puis se réécrivent à votre façon.',
+    ],
+    aide: 'Un barème ou une façon de calculer les moyennes propre à votre établissement ?',
+  },
+  BBE: {
+    commencer: 'donnez votre accord, indiquez le prénom et la date de naissance de votre enfant, et notez la prochaine tétée ou le prochain biberon.',
+    astuces: [
+      'le minuteur de tétée ou de sommeil continue de compter même application fermée ;',
+      'la même clé ouverte sur le téléphone de l\'autre parent permet de noter à deux.',
+    ],
+    aide: 'Quelque chose que vous aimeriez noter et que le suivi ne prévoit pas ?',
+  },
+  RBS: {
+    commencer: 'donnez votre accord, ajoutez les membres de votre foyer et notez votre dernier soin payé, avec le remboursement attendu de la Sécurité sociale et de la mutuelle.',
+    astuces: [
+      'un remboursement non reçu après le délai choisi (30 jours par défaut) passe « à relancer », avec un message prêt à copier ;',
+      'le bilan de l\'année compare ce que la mutuelle vous a remboursé à ce que vous avez cotisé.',
+    ],
+    aide: 'Un cas de remboursement que le suivi représente mal ?',
+  },
+  ANM: {
+    commencer: 'ajoutez votre animal, cochez les soins à suivre et saisissez pour chacun l\'intervalle indiqué par votre vétérinaire : les prochaines échéances se calculent.',
+    astuces: [
+      'quand le vétérinaire inscrit lui-même la prochaine date d\'un soin, c\'est elle qui compte ;',
+      'les frais se totalisent par catégorie, par mois et par an, avec le coût annuel de l\'animal.',
+    ],
+    aide: 'Un animal ou un soin que le suivi gère mal ?',
+  },
   REV: {
     commencer: 'collez votre programme en une fois (ou partez d\'une des 12 formations préremplies) et indiquez la date de l\'examen : la liste du jour se remplit, retards compris.',
     astuces: [
@@ -673,5 +705,37 @@ export const PRISE_EN_MAIN = {
       'un produit noté épuisé alimente la liste de courses, à cocher et à copier.',
     ],
     aide: 'Un lieu de rangement ou une catégorie de produits qui manque à l\'inventaire ?',
+  },
+  AEC: {
+    commencer: 'saisissez un moniteur, un véhicule et un élève avec son forfait, puis placez une leçon : le solde d\'heures de l\'élève se met à jour au pointage.',
+    astuces: [
+      'une leçon qui chevauche une autre du même moniteur, du même véhicule ou du même élève est refusée ;',
+      'le coût par heure de conduite de chaque véhicule se calcule sur 12 mois, avec la date limite du contrôle technique.',
+    ],
+    aide: 'Un forfait ou une façon de compter les heures que l\'application gère mal ?',
+  },
+  EDT: {
+    commencer: 'indiquez votre année et vos créneaux, ajoutez un groupe, un formateur, une salle et un module, puis posez une séance sur la grille.',
+    astuces: [
+      'chaque conflit est signalé au moment où vous posez la séance : formateur ou salle déjà pris, salle trop petite, volume prévu dépassé ;',
+      'une semaine type se recopie en un geste sur les semaines suivantes, ou sur les seules semaines A ou B.',
+    ],
+    aide: 'Une contrainte de planning propre à votre établissement que la grille ne vérifie pas ?',
+  },
+  FRM: {
+    commencer: 'gardez les domaines et les postes qui vous servent, ajoutez deux personnes avec leur poste et évaluez-les : les écarts au poste se calculent.',
+    astuces: [
+      'une compétence marquée critique que moins de deux personnes maîtrisent au niveau requis est signalée ;',
+      'une formation réalisée enregistre le niveau atteint et met la matrice à jour.',
+    ],
+    aide: 'Un référentiel métier à reprendre dans la matrice ?',
+  },
+  PTG: {
+    commencer: 'cochez trois cultures, recopiez leurs fenêtres depuis vos sachets de graines et créez une planche : ce qu\'il y a à faire cette semaine s\'affiche.',
+    astuces: [
+      'une alerte prévient si une même famille botanique revient sur la même planche ;',
+      'le bilan compare les kilos récoltés par culture et par mois à ceux de l\'année précédente.',
+    ],
+    aide: 'Un jardin en plusieurs parcelles ou une serre que les planches représentent mal ?',
   },
 };

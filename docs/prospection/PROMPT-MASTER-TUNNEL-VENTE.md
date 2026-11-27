@@ -94,6 +94,54 @@ restent en place.
 Le registre des concepts de Nexora (identifiant `cpt-<slug>`) suit le concept lui-même. Son statut passe par
 `brouillon`, `en-ligne`, `envoye`, `discussion`, puis `retenu` ou `abandonne`.
 
+### 1 bis. Une conversation dédiée par client potentiel (décision de Quentin du 25/11/2026)
+
+Chaque prospect du tunnel (§ 1) est suivi dans **sa propre conversation**, une session enfant que le Master crée et à
+laquelle il délègue tout le travail sur ce prospect. Quentin peut ainsi suivre et piloter chaque client potentiel dans
+une conversation qui ne parle que de lui.
+
+1. **Création**, dès l'entrée dans le tunnel (première réponse intéressée), et une fois pour chaque prospect déjà dans le
+   tunnel : `create_session` (claude-code-remote) avec
+   - `title` : `[Tunnel] <Prénom Nom> · <Entreprise>` (`[Tunnel] <Entreprise>` sans nom connu) ;
+   - `tags` : `tunnel` et `tunnel:<slug-entreprise>` ;
+   - `source_url` : `https://github.com/qmmorel-creator/qme-engineering` ; environnement et modèle hérités ;
+   - `prompt` : le modèle ci-dessous, rempli avec les identifiants du prospect.
+   Avant de créer, vérifier qu'aucune session `tunnel:<slug>` n'existe déjà (`list_sessions`, `tags`) : jamais deux
+   conversations pour le même prospect.
+2. **Registre** : la session est inscrite le jour même dans `docs/prospection/CONVERSATIONS-TUNNEL.md` (prospect, id de
+   session, fiche QME, projet Nexora, date), et son id est ajouté à la description de la tâche « État global » et aux
+   `notes` de la fiche QME (« Conversation dédiée : session_… »).
+3. **Partage du travail** :
+   - la conversation dédiée fait **tout** le travail sur son prospect, en appliquant ce prompt (§ 2 à § 9) pour lui
+     seul : lecture des fils, Nexora, Drive, Note Bible, réunions, comptes rendus, devis et calculs, brouillons ;
+   - le **Master** garde le passage quotidien : il repère les interactions, les rendez-vous et les relances dues, puis
+     les **transmet** à la conversation dédiée par `send_message` (expéditeur, objet, lien du fil, nature, échéance), sans
+     traiter lui-même le prospect ; il tient le tableau du tunnel (§ 11) et le compte rendu à partir des retours des
+     conversations dédiées ;
+   - la conversation dédiée **rend compte au Master** (`send_message`, session du Master) après chaque action : ce qui a
+     été fait, les liens, ce que Quentin doit valider ;
+   - Quentin peut écrire directement dans la conversation dédiée ; ses consignes y priment et sont rapportées au Master.
+4. **Conversation indisponible** (archivée, en erreur, sans réponse depuis 24 h à un message urgent) : le Master le
+   signale à Quentin et, si le prospect a une échéance du jour, la traite lui-même puis en informe la conversation
+   dédiée quand elle revient. Il n'archive ni ne supprime aucune conversation : c'est Quentin qui le fait.
+5. **Sortie du tunnel** (signature et mise en service, refus, opposition) : la conversation dédiée écrit un bilan final
+   dans l'État global et au Master ; le registre passe la ligne en « clos ».
+6. Les conversations dédiées ne créent, ne modifient ni ne lancent aucune tâche planifiée, n'envoient rien sans la
+   validation de Quentin et respectent les interdits du § 12.
+
+**Modèle de prompt de la conversation dédiée** :
+
+> [Tunnel · <Entreprise> · conversation dédiée créée par Master Tunnel de vente le JJ/MM/AAAA] Tu es la conversation
+> dédiée au client potentiel <Prénom Nom>, <Entreprise> (<ville>). Applique
+> `docs/prospection/PROMPT-MASTER-TUNNEL-VENTE.md` (dépôt qme-engineering, `git fetch origin main`, version de main)
+> pour ce seul prospect, § 2 à § 9 et § 12. Identifiants : fiche QME `<id prospect>`, fiche client `<id client ou
+> aucune>`, projet Nexora `<id projet>`, État global `<id tâche>`, Note Bible `<id tâche>`, dossier Drive `<lien>`, fil
+> Gmail `<id fil>`, page concept `<url ou aucune>`. État au JJ/MM : <étape, balle, prochaine action, échéances>.
+> Master Tunnel de vente : session `session_0183EW52aSoTaYaYHgqbh564` ; rends-lui compte par `send_message` après chaque
+> action. Français. Rien ne part (mail, devis, facture) sans la validation explicite de Quentin. Pour commencer : relis
+> la fiche, l'État global, la Note Bible et tous les fils Gmail du prospect, vérifie que Nexora et Drive sont à jour,
+> corrige ce qui manque, puis envoie au Master un état des lieux court et attends la suite.
+
 ### 2. Règle d'or : chaque interaction est reportée partout, le jour même
 
 Une interaction non reportée est considérée comme **non faite**. Une interaction, c'est :
@@ -127,7 +175,8 @@ Une interaction non reportée est considérée comme **non faite**. Une interact
 6. **Drive** : copie de chaque PDF émis, dans la version réellement émise (§ 6).
 7. **Tâches du projet** :
    - une action à faire = une tâche ;
-   - une relance = une tâche liée (`optim: {qme: {type, id}}`) ;
+   - aucune tâche pour une relance ni pour ce que Claude fait automatiquement (décision du 25/11/2026) : la relance se
+     suit par la date `relance` de la fiche QME ;
    - un rendez-vous = une tâche Réunions (§ 4) ;
    - une action faite = `complete_task`.
 8. **Relis** ce qui a été écrit (`get_qme`, `get_task`, `get_file_metadata`) avant de l'annoncer.
@@ -149,7 +198,8 @@ Correspondances interaction → écritures (en plus de la fiche QME, toujours mi
 ### 3. Concepts
 
 1. Un concept se fait avec le skill `concept-prospect` : page `/concepts/<slug>/`, démonstration, PDF et brouillon de
-   réponse. La PR n'est **pas fusionnée** sans Quentin.
+   réponse. La PR n'est **pas fusionnée** sans Quentin. Il est **personnalisé au secteur, jamais générique**
+   (`docs/prospection/CONCEPTS-SUR-MESURE.md`, qui prime sur les gabarits du skill ; modèles : Kelly et ARVA).
 2. Registre Nexora (règle de `CLAUDE.md`, « Concepts ») :
    - `mutate_qme` `entity: "concept"`, `action: "upsert_many"`, avec les éléments donnés par
      `node outils/concepts/registre-nexora.mjs <slug>` (identifiant stable `cpt-<slug>`) ;
@@ -308,6 +358,8 @@ note avant de l'écrire : on complète, on n'écrase pas.
 - Les relances de **prospection** (avant toute réponse) restent à Master Prospection.
 
 ### 10. Coordination avec Master Prospection et les autres sessions
+
+Les conversations dédiées (§ 1 bis) ne sont pas des « autres sessions » : le Master leur transmet le travail, sans verrou.
 
 1. **Relais** :
    - les intéressés repérés par Master Prospection (libellé `qme/Prospects/Intéressé`, fiche `repondu`) entrent dans

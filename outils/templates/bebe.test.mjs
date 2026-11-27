@@ -255,6 +255,7 @@ test('app.js : produit envoyé dans les deux appels à /connexion (code administ
   for (const a of appels) assert.match(a, /produit: PRODUIT/);
   assert.match(APP, /const PRODUIT = 'BBE';/);
   assert.match(APP, /qme-bbe-code/);
-  assert.match(APP, /class="bientot-demo" href="\/catalogue\/bebe\/"/);
+  // Bandeau « Bientôt en vente » tant que BBE n'est pas en vente ; retiré par mettre-en-vente.py à la mise en vente.
+  if (!/BBE: \{[^}]*gumroad:/.test(readFileSync(new URL('../../netlify/lib/templates-acces.mjs', import.meta.url), 'utf8'))) assert.match(APP, /class="bientot-demo" href="\/catalogue\/bebe\/"/);
   assert.match(APP, /qme-bbe-ecran-accueil/);
 });

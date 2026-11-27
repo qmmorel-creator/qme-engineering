@@ -219,7 +219,7 @@ async function destinataires({ secret, store, exclure = [] }) {
   return [...parEmail.values()].filter((d) => !ex.includes(d.email) && !opposes.has(cleEmail(secret, d.email)) && !domaines.has(d.email.split('@')[1]));
 }
 
-export async function traiterCompte(requete, { secret, store, envoyer = null, revoques = [], maintenant = Date.now, admin = '', testeurs = '', verifierLicence = verifierLicenceGumroad, jetonOpposition = '', lecture = '' }) {
+export async function traiterCompte(requete, { secret, store, envoyer = null, revoques = [], maintenant = Date.now, admin = '', testeurs = '', verifierLicence = verifierLicenceGumroad, jetonOpposition = '', jetonProspection = '', lecture = '' }) {
   if (!secret || secret.length < 32 || !store) return json(503, { erreur: 'Service non configuré' });
   const chemin = new URL(requete.url).pathname.replace(/^\/api\/compte/, '').replace(/\/$/, '') || '/';
   const methode = requete.method;
@@ -243,9 +243,12 @@ export async function traiterCompte(requete, { secret, store, envoyer = null, re
   // Opposition : page publique /ne-plus-recevoir/ (une adresse), ou administrateur (ajout groupé, vérification).
   if (chemin === '/opposition' || chemin === '/opposition/verifier') {
     const estAdm = estAdmin(requete.headers.get('x-admin') || '', { secret, admin });
-    // Lecture seule (vérification avant envoi) : code administrateur ou jeton dédié OPPOSITION_TOKEN.
+    // Lecture seule (vérification avant envoi) : code administrateur, jeton dédié OPPOSITION_TOKEN, ou jeton des
+    // campagnes de prospection PROSPECTION_TOKEN (le proxy des sessions n'injecte qu'un secret par domaine : 25/11/2026).
     const jeton = String(requete.headers.get('x-opposition-token') || '').trim();
-    const peutLire = estAdm || (String(jetonOpposition).length >= 32 && egal(jeton, String(jetonOpposition)));
+    const jetonP = String(requete.headers.get('x-prospection-token') || '').trim();
+    const peutLire = estAdm || (String(jetonOpposition).length >= 32 && egal(jeton, String(jetonOpposition)))
+      || (String(jetonProspection).length >= 32 && egal(jetonP, String(jetonProspection)));
     if (chemin === '/opposition' && methode === 'GET') {
       if (!peutLire) return json(401, { erreur: 'Code administrateur ou jeton de lecture requis.' });
       const email = normEmail(new URL(requete.url).searchParams.get('email'));

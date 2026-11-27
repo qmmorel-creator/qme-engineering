@@ -47,7 +47,10 @@
 
   // tutorielVu : le guide « Comment ça marche » s'est déjà ouvert seul pour ce compte (synchronisé).
   const etatVide = () => ({ ...R.etatVide(), tutorielVu: false });
-  const normaliser = (d) => ({ ...R.normaliser(d, B.postes), tutorielVu: Boolean(d?.tutorielVu) });
+  // Démo personnalisée (?demo=van&prenom=…) : profil, prénom et carte « Premiers pas », gardés sur l'appareil
+  // seulement (jamais présents dans les données d'un acheteur).
+  const champsDemo = (d) => (d?.demoProfil ? { demoProfil: String(d.demoProfil).slice(0, 20), prenom: String(d.prenom || '').slice(0, 40), premiersPas: { ...(d.premiersPas || {}) } } : {});
+  const normaliser = (d) => ({ ...R.normaliser(d, B.postes), tutorielVu: Boolean(d?.tutorielVu), ...champsDemo(d) });
   const voyageur = (id) => E.voyageurs.find((v) => v.id === id);
   const nomVoyageur = (id) => voyageur(id)?.nom || 'Voyageur retiré';
   const COLL = { etape: 'etapes', nuit: 'nuits', transport: 'transports', activite: 'activites', depense: 'depenses', virement: 'virements', bagage: 'bagages', document: 'documents', voyageur: 'voyageurs' };
@@ -197,10 +200,14 @@
     if (E) { cache(false); demarrer(); } else ecranAccueil();
   }
 
-  function ouvrirDemo(memoriser = true) {
+  // voulue : démo demandée par l'adresse ({ profil, prenom }) ; null = bouton de démo, on garde celle de l'appareil.
+  function ouvrirDemo(memoriser = true, voulue = null) {
     session.demo = true; session.code = null; session.jeton = null;
     if (memoriser) stock.ecrire(CLE_CODE, CODE_DEMO);
-    E = stock.lire(CLE_DEMO) ? normaliser(stock.lire(CLE_DEMO)) : donneesDemo();
+    const garde = stock.lire(CLE_DEMO);
+    const profil = voulue ? voulue.profil : (garde?.demoProfil || '');
+    const meme = garde && (garde.demoProfil || '') === profil && (!voulue?.prenom || garde.prenom === voulue.prenom);
+    E = meme ? normaliser(garde) : donneesDemo(profil, voulue?.prenom || '');
     cache();
     demarrer();
   }
@@ -217,7 +224,8 @@
   // Un voyage fictif de 10 jours entre amis, commencé il y a 3 jours : tous les états visibles
   // (nuit sans toit, hébergement et train à réserver, reste à payer sur place, poste dépassé, dépense
   // partagée à parts inégales, remboursement déjà fait, bagages en partie cochés, un voyage archivé).
-  function donneesDemo() {
+  function donneesDemo(profil = '', prenom = '') {
+    if (DEMOS[profil]) return DEMOS[profil](prenom);
     const e = etatVide();
     const t = auj();
     const j = (n) => ajout(t, n);
@@ -276,6 +284,153 @@
     e.archives = [{ id: uid(), nom: 'Week-end à la mer (exemple fictif)', debut: j(-120), fin: j(-118), voyageurs: 2, prevu: 42000, reel: 45500, modifLe: '' }];
     return e;
   }
+
+  // ---------- Démos personnalisées ----------
+  // `?demo=van&prenom=Angélique` : long voyage en van aménagé avec deux chiens, le long de la côte atlantique
+  // jusqu'au Portugal (6 semaines). Données inventées ; les nuits passées dans le van comptent comme
+  // hébergement (une aire ou un spot à 0 €), pour qu'aucune nuit ne soit signalée « sans toit ».
+  // Le guide et la fenêtre « Comme une application » ne s'ouvrent pas seuls : une carte « Premiers pas »
+  // en trois gestes les remplace en haut de l'Aperçu.
+  const DEMOS = {
+    van(prenom) {
+      const e = etatVide();
+      const t = auj();
+      const j = (n) => ajout(t, n);
+      const nom = prenom || 'Angélique';
+      e.demoProfil = 'van'; e.prenom = nom; e.premiersPas = {}; e.tutorielVu = true;
+      e.voyage = { nom: 'La côte atlantique en van, jusqu\'à Porto', destination: 'France, Espagne et Portugal (exemple fictif)', debut: j(-6), fin: j(36), note: 'Six semaines en van aménagé avec Pistache et Moka, les deux chiens. Données inventées pour la démonstration.', modifLe: '' };
+      const [moi, copilote] = [nom, 'Copilote (fictif)'].map((n) => R.normaliserVoyageur({ id: uid(), nom: n }));
+      e.voyageurs = [moi, copilote];
+      const et = (lieu, a, d, note = '') => R.normaliserEtape({ id: uid(), lieu, arrivee: j(a), depart: j(d), note });
+      e.etapes = [
+        et('Presqu\'île de Quiberon', -6, -2, 'Plages autorisées aux chiens hors saison : à vérifier sur place.'),
+        et('Île de Ré', -2, 3), et('Bassin d\'Arcachon', 3, 8), et('Pays basque', 8, 14),
+        et('Asturies', 14, 21, 'Côte et montagne, beaucoup de bivouacs possibles.'), et('Galice', 21, 29), et('Porto', 29, 36),
+      ];
+      const h = (lieuNom, adresse, a, d, statut, montant, note = '') => R.normaliserNuit({ id: uid(), nom: lieuNom, adresse, arrivee: j(a), depart: j(d), statut, montant, acompte: statut === 'reserve' ? montant : 0, solde: statut === 'reserve', note });
+      e.nuits = [
+        h('Dans le van · aire de camping-car (fictive)', 'Près du port (adresse fictive)', -6, -2, 'reserve', 4800, 'Aire sans réservation, payée à la borne : 12 € la nuit.'),
+        h('Dans le van · camping (fictif)', 'Côté nord de l\'île (fictif)', -2, 3, 'reserve', 12500, 'Chiens acceptés, électricité comprise.'),
+        h('Dans le van · spot nature (fictif)', 'Forêt au-dessus de la dune (fictif)', 3, 5, 'reserve', 0, 'Bivouac toléré : se renseigner sur les règles locales.'),
+        h('Dans le van · aire de camping-car (fictive)', 'Bord du bassin (fictif)', 5, 8, 'reserve', 3600),
+        h('Gîte avec jardin clos (fictif)', 'Village de l\'arrière-pays (fictif)', 8, 11, 'aReserver', 27000, 'Trois nuits au sec pour faire les lessives et laisser les chiens se dépenser.'),
+        h('Dans le van · aires et spots', 'Côte basque (fictif)', 11, 14, 'reserve', 3600),
+        h('Dans le van · spots et campings', 'Asturies (fictif)', 14, 21, 'reserve', 8400),
+        h('Dans le van · spots et campings', 'Galice (fictif)', 21, 29, 'reserve', 9600),
+        h('Dans le van · camping près de la ville (fictif)', 'Porto (fictif)', 29, 36, 'aReserver', 17500),
+      ];
+      const tr = (n, heure, de, vers, prix, ref = 'Van') => R.normaliserTransport({ id: uid(), date: j(n), heure, mode: 'voiture', de, vers, statut: 'reserve', prix, ref });
+      e.transports = [
+        tr(-6, '08:30', 'Maison', 'Quiberon', 6500), tr(-2, '09:00', 'Quiberon', 'Île de Ré', 7200, 'Van · pont payant'),
+        tr(3, '10:00', 'Île de Ré', 'Bassin d\'Arcachon', 5800), tr(8, '09:30', 'Arcachon', 'Pays basque', 5200),
+        tr(14, '08:00', 'Pays basque', 'Asturies', 9400), tr(21, '09:00', 'Asturies', 'Galice', 8800), tr(29, '10:00', 'Galice', 'Porto', 7400),
+        R.normaliserTransport({ id: uid(), date: j(36), heure: '07:00', mode: 'voiture', de: 'Porto', vers: 'Maison', statut: 'aReserver', prix: 24000, ref: 'Retour en deux jours' }),
+      ];
+      const ac = (n, heure, titre, lieu, statut, prix, note = '') => R.normaliserActivite({ id: uid(), date: n === null ? '' : j(n), heure, titre, lieu, statut, prix, note });
+      e.activites = [
+        ac(-5, '09:00', 'Balade sur la côte sauvage avec les chiens', 'Quiberon', 'libre', 0),
+        ac(-1, '10:00', 'Tour de l\'île à vélo', 'Île de Ré', 'libre', 2400, 'Location de deux vélos (fictive).'),
+        ac(0, '08:00', 'Plage où les chiens sont acceptés', 'Côté nord de l\'île', 'libre', 0, 'Horaires et saison à vérifier sur place.'),
+        ac(0, '18:30', 'Vidange et plein d\'eau du van', 'Borne de l\'aire', 'libre', 400),
+        ac(1, '11:00', 'Marché du village', 'Île de Ré', 'libre', 0),
+        ac(4, '07:30', 'Lever de soleil sur la dune', 'Bassin d\'Arcachon', 'libre', 0),
+        ac(6, '10:00', 'Rappel de vaccin de Moka chez le vétérinaire', 'Cabinet vétérinaire (fictif)', 'aReserver', 6500, 'Prendre le passeport européen des chiens.'),
+        ac(16, '09:00', 'Randonnée dans les Picos de Europa', 'Asturies', 'libre', 0, 'Règles d\'accès des chiens dans le parc : à vérifier.'),
+        ac(30, '15:00', 'Visite des caves au bord du fleuve', 'Porto', 'aReserver', 3000),
+        ac(null, '', 'Toilettage des chiens', '', 'libre', 0, 'À caser quand on trouve un toiletteur sur la route.'),
+      ];
+      e.budget = { prevus: { repas: 30000, courses: 90000, surplace: 15000, assurance: 9000, achats: 5000, divers: 25000 }, modifLe: '' };
+      const tous = e.voyageurs.map((v) => v.id);
+      const dep = (n, libelle, montant, posteId, payeur) => R.normaliserDepense({ id: uid(), date: j(n), libelle, montant, poste: posteId, payeur: payeur.id, repartition: { mode: 'egale', participants: tous } }, e.voyageurs, B.postes);
+      e.depenses = [
+        dep(-20, 'Assurance du van et assistance (fictive)', 9000, 'assurance', moi),
+        dep(-6, 'Plein de gazole', 8200, 'transport', copilote),
+        dep(-6, 'Croquettes pour deux chiens (stock)', 6400, 'courses', moi),
+        dep(-5, 'Courses de la semaine', 7800, 'courses', copilote),
+        dep(-4, 'Aire de camping-car', 4800, 'hebergement', moi),
+        dep(-3, 'Crêperie', 3600, 'repas', copilote),
+        dep(-2, 'Péage du pont', 1600, 'surplace', moi),
+        dep(-2, 'Camping de l\'île', 12500, 'hebergement', copilote),
+        dep(-1, 'Location de vélos', 2400, 'activites', moi),
+        dep(0, 'Bouteille de gaz', 3200, 'divers', moi),
+      ];
+      e.bagages = R.genererBagages(B.bagages, [], ['essentiels', 'camping', 'voiture', 'plage']);
+      for (const texte of ['Croquettes et gamelles des chiens', 'Laisses, harnais et longe', 'Médicaments et vermifuge des chiens', 'Gilet de sauvetage pour chien', 'Cales et rallonge électrique du van']) e.bagages.push(R.normaliserCase({ texte, liste: 'chiens' }));
+      e.bagages.forEach((b, i) => { b.fait = i % 5 !== 3; });
+      e.documents = R.genererDocuments(B.documents);
+      e.documents.push(R.normaliserCase({ texte: 'Passeports européens des chiens', detail: 'Vaccins et règles d\'entrée des animaux dans chaque pays : à vérifier sur les sources officielles avant le départ.' }));
+      e.documents.forEach((d, i) => { d.fait = ![1, 6, 8].includes(i); });
+      return e;
+    },
+    // `?demo=catalogne&prenom=Angélique` (lien court /demo/angelique-espagne) : le road trip réel d'Angélique en Catalogne (son itinéraire du 27/11/2026,
+    // 5 jours au départ du Barcarès), en van avec deux chiens. Dates, nuits, montants et dépenses sont des exemples ;
+    // les activités sont des suggestions (règles, horaires et tarifs à vérifier sur place). Départ dans 10 jours :
+    // l'Aperçu montre la préparation. Albums photos en liens d'exemple (aucun vrai dossier).
+    catalogne(prenom) {
+      const e = etatVide();
+      const t = auj();
+      const j = (n) => ajout(t, n);
+      const nom = prenom || 'Angélique';
+      e.demoProfil = 'catalogne'; e.prenom = nom; e.premiersPas = {}; e.tutorielVu = true;
+      e.voyage = { nom: 'Road trip en Catalogne avec les chiens', destination: 'Catalogne, Espagne', debut: j(10), fin: j(14), note: 'Cinq jours en van avec les deux chiens, au départ du Barcarès : Cap de Creus et Cadaqués, Aiguamolls de l\'Empordà, Garrotxa, retour par Figueres ou le Cap de Creus. Itinéraire d\'Angélique ; dates, nuits et montants d\'exemple, activités suggérées à vérifier.', album: `${LIEN_EXEMPLE}road-trip-catalogne`, modifLe: '' };
+      const [moi, copilote] = [nom, 'Copilote (fictif)'].map((n) => R.normaliserVoyageur({ id: uid(), nom: n }));
+      e.voyageurs = [moi, copilote];
+      const et = (lieu, a, d, note = '', photos = '') => R.normaliserEtape({ id: uid(), lieu, arrivee: j(a), depart: j(d), note, photos: photos ? `${LIEN_EXEMPLE}${photos}` : '' });
+      e.etapes = [
+        et('Cap de Creus et Cadaqués', 10, 11, 'Parc naturel : stationnement de nuit et bivouac encadrés, à vérifier avant de choisir où dormir.', 'cap-de-creus'),
+        et('Aiguamolls de l\'Empordà', 11, 12, 'Réserve naturelle : accès des chiens aux sentiers et observatoires à vérifier.', 'emporda'),
+        et('Garrotxa', 12, 14, 'Zone volcanique, hêtraie de la Fageda d\'en Jordà, chemins de campagne.', 'garrotxa'),
+      ];
+      const h = (lieuNom, adresse, a, d, statut, montant, note = '') => R.normaliserNuit({ id: uid(), nom: lieuNom, adresse, arrivee: j(a), depart: j(d), statut, montant, acompte: statut === 'reserve' ? montant : 0, solde: statut === 'reserve', note });
+      e.nuits = [
+        h('Dans le van · camping près de Cadaqués (à choisir)', 'Secteur Cadaqués', 10, 11, 'aReserver', 3500, 'Montant d\'exemple. Chiens acceptés : à vérifier en réservant.'),
+        h('Dans le van · aire ou camping (à choisir)', 'Secteur de l\'Empordà', 11, 12, 'aReserver', 2500, 'Montant d\'exemple.'),
+        h('Dans le van · camping en Garrotxa (à choisir)', 'Secteur Olot', 12, 14, 'aReserver', 6000, 'Deux nuits, montant d\'exemple.'),
+      ];
+      const tr = (n, heure, de, vers, prix, statut = 'reserve', ref = 'Van') => R.normaliserTransport({ id: uid(), date: j(n), heure, mode: 'voiture', de, vers, statut, prix, ref });
+      e.transports = [
+        tr(10, '08:30', 'Le Barcarès', 'Cap de Creus', 3500, 'reserve', 'Van · gazole et péage (exemple)'),
+        tr(11, '10:00', 'Cap de Creus', 'Aiguamolls de l\'Empordà', 1500),
+        tr(12, '09:30', 'Empordà', 'Garrotxa', 2500),
+        tr(14, '09:00', 'Garrotxa', 'Le Barcarès', 4000, 'reserve', 'Retour par Figueres ou le Cap de Creus'),
+      ];
+      const ac = (n, heure, titre, lieu, statut, prix, note = '') => R.normaliserActivite({ id: uid(), date: n === null ? '' : j(n), heure, titre, lieu, statut, prix, note });
+      const verif = 'Suggestion : horaires, tarif et accès des chiens à vérifier.';
+      e.activites = [
+        ac(10, '11:00', 'Balade jusqu\'au phare du Cap de Creus', 'Cap de Creus', 'libre', 0, 'Suggestion : sentier côtier, emporter de l\'eau pour les chiens.'),
+        ac(10, '17:00', 'Flânerie dans le village et le port de Cadaqués', 'Cadaqués', 'libre', 0, 'Suggestion.'),
+        ac(11, '09:00', 'Maison-musée Dalí de Portlligat', 'Portlligat, près de Cadaqués', 'aReserver', 0, 'Suggestion : visite sur réservation, chiens à faire garder. ' + verif),
+        ac(11, '15:00', 'Observatoires d\'oiseaux des Aiguamolls', 'Parc naturel des Aiguamolls de l\'Empordà', 'libre', 0, verif),
+        ac(11, '18:30', 'Plage de la baie de Roses', 'Sant Pere Pescador', 'libre', 0, 'Suggestion : plages autorisées aux chiens à vérifier.'),
+        ac(12, '10:00', 'Ruines grecques et romaines d\'Empúries', 'L\'Escala', 'libre', 0, verif),
+        ac(12, '16:00', 'Balade dans la Fageda d\'en Jordà', 'Garrotxa', 'libre', 0, 'Suggestion : hêtraie sur une ancienne coulée de lave, sentier facile.'),
+        ac(13, '09:30', 'Montée aux volcans Santa Margarida et Croscat', 'Parc naturel de la zone volcanique de la Garrotxa', 'libre', 0, 'Suggestion : chemins balisés ; chiens en laisse, à vérifier.'),
+        ac(13, '16:00', 'Village de Castellfollit de la Roca', 'Garrotxa', 'libre', 0, 'Suggestion : village perché sur une falaise de basalte.'),
+        ac(14, '10:00', 'Pont médiéval de Besalú', 'Besalú', 'libre', 0, 'Suggestion : sur la route du retour.'),
+        ac(14, '12:00', 'Théâtre-musée Dalí', 'Figueres', 'aReserver', 0, 'Suggestion si le retour passe par Figueres : chiens à faire garder. ' + verif),
+        ac(null, '', 'Tournage d\'une vidéo du road trip', '', 'libre', 0, 'À caser sur une étape avec une belle lumière.'),
+      ];
+      e.budget = { prevus: { repas: 8000, courses: 12000, surplace: 5000, assurance: 2000, achats: 2000, divers: 5000 }, modifLe: '' };
+      const tous = e.voyageurs.map((v) => v.id);
+      const dep = (n, libelle, montant, posteId, payeur) => R.normaliserDepense({ id: uid(), date: j(n), libelle, montant, poste: posteId, payeur: payeur.id, repartition: { mode: 'egale', participants: tous } }, e.voyageurs, B.postes);
+      e.depenses = [
+        dep(-6, 'Assistance du van en Europe (exemple)', 2000, 'assurance', moi),
+        dep(-3, 'Vidange du van (exemple)', 9000, 'transport', copilote),
+        dep(-1, 'Croquettes pour la semaine (exemple)', 2800, 'courses', moi),
+      ];
+      e.bagages = R.genererBagages(B.bagages, [], ['essentiels', 'camping', 'voiture', 'plage']);
+      for (const texte of ['Croquettes et gamelles des chiens', 'Laisses, harnais et longe', 'Eau en réserve et bols pliables', 'Médicaments des chiens', 'Jumelles pour les oiseaux']) e.bagages.push(R.normaliserCase({ texte, liste: 'chiens' }));
+      e.bagages.forEach((b, i) => { b.fait = i % 3 === 0; });
+      e.documents = R.genererDocuments(B.documents);
+      e.documents.push(R.normaliserCase({ texte: 'Passeports européens des chiens', detail: 'Vaccins et règles d\'entrée des animaux en Espagne : à vérifier sur les sources officielles avant le départ.' }));
+      e.documents.push(R.normaliserCase({ texte: 'Assurance du van valable en Espagne', detail: 'Vérifier l\'attestation avec ton assureur.' }));
+      e.documents.forEach((d, i) => { d.fait = i % 2 === 0; });
+      return e;
+    },
+  };
+  // Ancienne adresse de la démo d'Angélique (27/11/2026) : même démo, profil renommé pour ne pas rouvrir
+  // une version gardée sur l'appareil.
+  DEMOS.espagne = DEMOS.catalogne;
 
   // ---------- Rendu : connexion ----------
   const SYMBOLE = '<svg viewBox="0 0 80 80" width="32" height="32" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="currentColor"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg>';
@@ -461,6 +616,7 @@
   }
 
   function changerVue(v) {
+    if (v === 'jours' || v === 'preparer') gesteFait(v);
     vue = v;
     history.replaceState(null, '', `#${v}`);
     rendre();
@@ -532,6 +688,25 @@
     return res.length ? `<div class="alerte-conflit" role="note"><b>À vérifier</b><ul>${res.join('')}</ul></div>` : '';
   }
 
+  // ---------- Photos : un dossier Google Drive (ou un autre album) pour le voyage et pour chaque étape ----------
+  const AIDE_ALBUM = 'Dans Google Drive : clic droit sur le dossier, Partager, puis Copier le lien. Colle-le ici.';
+  const LIEN_ILLISIBLE = 'Lien illisible : colle une adresse qui commence par https://';
+  // Les démos utilisent des liens d'exemple (aucun vrai dossier) : un clic explique quoi coller à la place.
+  const LIEN_EXEMPLE = 'https://drive.google.com/drive/folders/exemple-';
+  const estExemple = (url) => String(url || '').startsWith(LIEN_EXEMPLE);
+  const lienPhotos = (url, texte, classe = 'btn petit') => (estExemple(url)
+    ? `<button class="${classe}" type="button" data-action="photos-exemple">${texte}</button>`
+    : `<a class="${classe}" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${texte}</a>`);
+  function blocPhotos() {
+    const album = E.voyage.album;
+    const etapes = R.trierEtapes(E.etapes).filter((x) => x.photos);
+    if (!album && !etapes.length) {
+      return `<h2 class="titre-section">Photos du voyage</h2><p class="mention">Range tes photos dans un dossier Google Drive et colle son lien dans <button class="btn lien" data-action="voyage">le voyage</button> ou dans une étape : il s'ouvre ensuite d'ici en un geste.</p>`;
+    }
+    return `<h2 class="titre-section">Photos du voyage <span>${etapes.length ? pluriel(etapes.length, 'étape') + ' avec un album' : ''}</span></h2>
+      <div class="photos">${album ? lienPhotos(album, '<b>Album du voyage</b><span>Ouvrir le dossier</span>', 'photo-carte principal') : ''}${etapes.map((x) => lienPhotos(x.photos, `<b>${esc(x.lieu)}</b><span>${dateCourte(x.arrivee)}</span>`, 'photo-carte')).join('')}</div>`;
+  }
+
   function vueApercu() {
     const t = auj();
     const v = E.voyage;
@@ -556,7 +731,7 @@
       <div class="tuile" style="--c:var(--bleu)"><p class="surtitre">Dépensé</p><b>${eur0(b.reel)}</b><span>sur ${eur0(b.prevu)} prévus · ${eur0(b.parPersonneReel)} / pers.</span></div>
       <div class="tuile rond" style="--c:var(--vert)"><p class="surtitre">Préparation</p><b>${pb.pct} %</b><span>des bagages · documents ${pd.fait}/${pd.total}</span></div>
     </div>`;
-    return `${enTete(esc(v.nom || 'Mon voyage'), resumeVoyage(), `<button class="btn petit" data-action="voyage">Modifier le voyage</button><button class="btn petit" data-action="copier-itineraire">Copier l'itinéraire</button>`)}
+    return `${carteDemarrage()}${enTete(esc(v.nom || 'Mon voyage'), resumeVoyage(), `<button class="btn petit" data-action="voyage">Modifier le voyage</button><button class="btn petit" data-action="copier-itineraire">Copier l'itinéraire</button>`)}
       ${bandeau}
       ${R.cheminTexte(E, B.modes) ? `<p class="chemin">${esc(R.cheminTexte(E, B.modes))}</p>` : ''}
       ${tuiles}
@@ -571,11 +746,36 @@
           <h2 class="titre-section">À réserver <span>${ar.length ? 'du plus proche au plus lointain' : ''}</span></h2>
           ${ar.length ? `<ul class="prochains">${ar.slice(0, 7).map((x) => `<li><span class="date-pastille ${x.urgent ? 'retard' : ''}"><b>${x.date ? versDate(x.date).getDate() : '?'}</b>${x.date ? fmt(x.date, { month: 'short' }).replace('.', '') : ''}</span><button class="lien-ligne" data-action="${x.type}" data-id="${x.id}"><b>${esc(x.titre)}</b><span>${{ nuit: 'Hébergement', transport: 'Transport', activite: 'Activité' }[x.type]}${x.montant ? ` · ${euros(x.montant)}` : ''}${x.urgent && x.joursAvant !== null ? ` · ${x.joursAvant < 0 ? 'date passée' : x.joursAvant === 0 ? 'aujourd\'hui' : `dans ${pluriel(x.joursAvant, 'jour')}`}` : ''}</span></button><button class="btn petit" data-action="marquer-reserve" data-type="${x.type}" data-id="${x.id}">Réservé</button></li>`).join('')}</ul>${ar.length > 7 ? `<p class="mention" style="margin-top:8px">Et ${ar.length - 7} autre(s) dans l'itinéraire et le jour par jour.</p>` : ''}` : '<div class="vide-etat petit"><h3>Tout est réservé</h3><p>Rien n\'attend de réservation dans ton plan.</p></div>'}
           ${R.aPayer(E).length ? `<h2 class="titre-section">À payer sur place</h2><ul class="prochains">${R.aPayer(E).map((x) => `<li><span class="date-pastille"><b>${x.date ? versDate(x.date).getDate() : '?'}</b>${x.date ? fmt(x.date, { month: 'short' }).replace('.', '') : ''}</span><button class="lien-ligne" data-action="nuit" data-id="${x.id}"><b>${esc(x.nom)}</b><span>Reste après acompte</span></button><span class="nb">${euros(x.reste)}</span></li>`).join('')}</ul>` : ''}
+          ${blocPhotos()}
           <h2 class="titre-section">Qui doit quoi</h2>
           ${E.voyageurs.length < 2 ? '<p class="mention">Un seul voyageur : rien à partager.</p>' : rembours.length ? `<ul class="prochains">${rembours.map((x) => `<li><span class="pastille-rond"></span><span><b>${esc(nomVoyageur(x.de))}</b> doit <b>${euros(x.montant)}</b> à <b>${esc(nomVoyageur(x.a))}</b></span><button class="btn petit" data-action="rembourse" data-de="${x.de}" data-a="${x.a}" data-montant="${x.montant}">Fait</button></li>`).join('')}</ul>` : '<p class="mention">Personne ne doit rien : les comptes sont à zéro.</p>'}
         </div>
       </div>
       ${AVERTISSEMENT}`;
+  }
+
+  // ---------- Premiers pas (démo personnalisée) ----------
+  // Trois gestes, chacun coché dès qu'il est fait : voir la journée, noter une dépense, cocher un bagage.
+  const GESTES = [
+    ['jours', 'Voir le programme d\'aujourd\'hui', 'Ouvre <b>Jour par jour</b> : la route, les balades et la nuit du jour, sur une seule carte.', '<button class="btn petit primaire" data-action="vue" data-vue="jours" data-defiler="aujourdhui">Jour par jour</button>'],
+    ['depense', 'Noter une dépense', 'Un plein, des croquettes, une aire : montant et poste, le budget se met à jour tout seul.', '<button class="btn petit primaire" data-action="nouvelle-depense">Ajouter une dépense</button>'],
+    ['preparer', 'Cocher ce qui est prêt', 'Dans <b>Préparer</b>, les bagages du van et des chiens, et les papiers à emporter.', '<button class="btn petit primaire" data-action="vue" data-vue="preparer">Préparer</button>'],
+  ];
+  function carteDemarrage() {
+    const pp = E.premiersPas;
+    if (!pp || pp.masque) return '';
+    const faits = GESTES.filter(([id]) => pp[id]).length;
+    const avant = R.phase(E.voyage, auj()).etat === 'avant';
+    return `<section class="demarrage" aria-labelledby="demarrage-titre">
+      <div class="demarrage-tete"><h2 id="demarrage-titre">Bonjour ${esc(E.prenom || '')}&nbsp;! Prise en main en 3 gestes</h2><span class="demarrage-compte">${faits}/${GESTES.length}</span></div>
+      <p>Voici un voyage d'exemple déjà rempli : ${['catalogne', 'espagne'].includes(E.demoProfil) ? 'ton road trip en Catalogne en van avec les deux chiens, avec des idées d\'activités à chaque étape' : 'six semaines en van avec deux chiens'}. Tout se modifie ; rien n'est envoyé nulle part.</p>
+      <ol>${GESTES.map(([id, titre, texte, action]) => `<li class="${pp[id] ? 'fait' : ''}"><span class="demarrage-num">${pp[id] ? '✓' : GESTES.findIndex(([g]) => g === id) + 1}</span><div><b>${id === 'jours' && avant ? 'Voir le programme jour par jour' : titre}</b><span>${id === 'jours' && avant ? 'Ouvre <b>Jour par jour</b> : la route, les balades et la nuit de chaque journée, sur une seule carte.' : texte}</span>${pp[id] ? '' : `<div class="actions">${action}</div>`}</div></li>`).join('')}</ol>
+      <div class="demarrage-pied"><button class="btn petit" data-action="tutoriel">Le guide complet</button><button class="btn petit" data-action="demarrage-masquer">${faits === GESTES.length ? 'C\'est bon, j\'ai compris' : 'Masquer'}</button></div>
+    </section>`;
+  }
+  function gesteFait(id) {
+    if (!E?.premiersPas || E.premiersPas[id]) return;
+    E.premiersPas[id] = true; sauver();
   }
 
   // ---------- Itinéraire ----------
@@ -588,7 +788,7 @@
     const it = R.itineraire(E, B.modes);
     const actions = `${bouton('nouvelle-etape', 'Étape', 'primaire petit')}${bouton('nouvelle-nuit', 'Hébergement', 'petit')}${bouton('nouveau-transport', 'Transport', 'petit')}`;
     const fil = it.length ? `<ol class="fil">${it.map((x) => x.type === 'etape'
-      ? `<li class="fil-etape"><span class="fil-point"></span><button class="lien-ligne" data-action="etape" data-id="${x.id}"><b>${esc(x.lieu)}</b><span>${dateCourte(x.date)} → ${dateCourte(x.depart)} · ${x.nuits ? nuitsTxt(x.nuits) : 'de passage'}${x.hebergements.length ? ` · ${x.hebergements.map((h) => esc(h.nom)).join(', ')}` : ''}</span></button></li>`
+      ? `<li class="fil-etape"><span class="fil-point"></span><button class="lien-ligne" data-action="etape" data-id="${x.id}"><b>${esc(x.lieu)}</b><span>${dateCourte(x.date)} → ${dateCourte(x.depart)} · ${x.nuits ? nuitsTxt(x.nuits) : 'de passage'}${x.hebergements.length ? ` · ${x.hebergements.map((h) => esc(h.nom)).join(', ')}` : ''}</span></button>${x.photos ? lienPhotos(x.photos, 'Photos', 'btn petit') : ''}</li>`
       : `<li class="fil-transport"><span class="fil-trait"></span><button class="lien-ligne" data-action="transport" data-id="${x.id}"><span>${esc(x.mode)} · ${dateCourte(x.date)}${x.heure ? ` à ${x.heure}` : ''} · ${esc(x.de || '?')} → ${esc(x.vers || '?')}</span></button>${etiquetteStatut(x.statut)}</li>`).join('')}</ol>` : '';
     return `${enTete('Itinéraire', resumeVoyage(), actions)}
       ${R.cheminTexte(E, B.modes) ? `<p class="chemin">${esc(R.cheminTexte(E, B.modes))}</p>` : ''}
@@ -787,14 +987,17 @@
       <label class="champ">Destination<input name="destination" maxlength="80" value="${esc(v.destination)}"></label>
       <div class="rang-champs"><label class="champ">Départ<input type="date" name="debut" value="${esc(v.debut)}"></label><label class="champ">Retour<input type="date" name="fin" value="${esc(v.fin)}"></label></div>
       <label class="champ">Note<textarea name="note" maxlength="1000">${esc(v.note)}</textarea></label>
+      <label class="champ">Album photos du voyage<small>${AIDE_ALBUM}</small><input type="url" name="album" maxlength="500" inputmode="url" placeholder="https://drive.google.com/…" value="${esc(v.album || '')}"></label>
       <p class="erreur" role="alert"></p>`;
     ouvrirModale('Le voyage', corps, '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button>', (fd) => {
       const debut = lireDate(fd, 'debut'), fin = lireDate(fd, 'fin');
       if (!debut || !fin) return 'Indique les dates de départ et de retour.';
       if (fin < debut) return 'Le retour est avant le départ.';
       if (R.ecart(debut, fin) > 365) return 'Un voyage dure au plus un an.';
+      const album = R.lireLien(fd.get('album'));
+      if (album === null) return LIEN_ILLISIBLE;
       retenir();
-      E.voyage = toucher({ nom: String(fd.get('nom') || '').trim(), destination: String(fd.get('destination') || '').trim(), debut, fin, note: String(fd.get('note') || '').trim() });
+      E.voyage = toucher({ nom: String(fd.get('nom') || '').trim(), destination: String(fd.get('destination') || '').trim(), debut, fin, note: String(fd.get('note') || '').trim(), album });
       sauver(); rendre(); annulable('Voyage enregistré.');
     });
   }
@@ -807,6 +1010,7 @@
       <label class="champ">Lieu<input name="lieu" maxlength="80" required value="${esc(x?.lieu || '')}" placeholder="Ville, région, parc…"></label>
       <div class="rang-champs"><label class="champ">Arrivée<input type="date" name="arrivee" value="${esc(arrivee)}"></label><label class="champ">Départ<small>Même jour : simple passage.</small><input type="date" name="depart" value="${esc(x?.depart || '')}"></label></div>
       <label class="champ">Note<textarea name="note" maxlength="500">${esc(x?.note || '')}</textarea></label>
+      <label class="champ">Photos de l'étape<small>${AIDE_ALBUM}</small><input type="url" name="photos" maxlength="500" inputmode="url" placeholder="https://drive.google.com/…" value="${esc(x?.photos || '')}"></label>
       <p class="recap" id="recap"></p>
       <p class="erreur" role="alert"></p>`;
     ouvrirModale(x ? 'Étape' : 'Nouvelle étape', corps, piedEdition(id, 'etape'), (fd) => {
@@ -815,7 +1019,9 @@
       const a = lireDate(fd, 'arrivee'), d = lireDate(fd, 'depart') || a;
       if (!a) return 'Indique la date d\'arrivée.';
       if (d < a) return 'Le départ est avant l\'arrivée.';
-      enregistrer('etape', R.normaliserEtape({ id: id || uid(), lieu, arrivee: a, depart: d, note: fd.get('note') }), id, `Étape « ${lieu} » enregistrée.`);
+      const photos = R.lireLien(fd.get('photos'));
+      if (photos === null) return LIEN_ILLISIBLE;
+      enregistrer('etape', R.normaliserEtape({ id: id || uid(), lieu, arrivee: a, depart: d, note: fd.get('note'), photos }), id, `Étape « ${lieu} » enregistrée.`);
     });
     const recap = () => { const f = modale().querySelector('form'); const a = f.arrivee.value, d = f.depart.value; $('#recap').textContent = R.estDate(a) && R.estDate(d) && d >= a ? `${nuitsTxt(R.ecart(a, d))} sur place.` : ''; };
     modale().querySelector('form').addEventListener('input', recap); recap();
@@ -1104,6 +1310,7 @@
 
   // Premier lancement : le guide d'abord, puis (sur téléphone) la fenêtre « Comme une application ».
   function premiersPas() {
+    if (E.premiersPas) return; // démo personnalisée : la carte « Premiers pas » de l'Aperçu remplace les fenêtres
     if (E.tutorielVu) return proposerEcranAccueil();
     setTimeout(() => {
       if (!E || E.tutorielVu || modale().open) return;
@@ -1190,13 +1397,22 @@
     const { action, id } = el.dataset;
     switch (action) {
       case 'demo': ouvrirDemo(); break;
-      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(); E.tutorielVu = vu; cache(); rendre(); } break;
+      case 'photos-exemple': toast('Lien d\'exemple : dans ton voyage, colle ici le lien de ton dossier Google Drive (Partager, puis Copier le lien).'); break;
+      case 'demo-reinit': if (confirm('Effacer les données de démo et repartir de l\'exemple ?')) { stock.suppr(CLE_DEMO); const vu = E.tutorielVu; E = donneesDemo(E.demoProfil || '', E.prenom || ''); E.tutorielVu = vu; cache(); rendre(); } break;
+      case 'demarrage-masquer': if (E.premiersPas) { E.premiersPas.masque = true; sauver(); rendre(); } break;
       case 'deconnexion': if (modale().open) modale().close(); deconnecter(); break;
       case 'accueil-voyageur': if (accueil.voyageurs.length < R.MAX_VOYAGEURS) { accueil.voyageurs.push(''); ecranAccueil(); } break;
       case 'accueil-suivant': accueilSuivant(); break;
       case 'accueil-retour': accueil.etape = 1; ecranAccueil(); break;
       case 'accueil-fin': terminerAccueil(); break;
-      case 'vue': if (modale().open) modale().close(); changerVue(el.dataset.vue); break;
+      case 'vue': {
+        if (modale().open) modale().close();
+        changerVue(el.dataset.vue);
+        // Carte « Premiers pas » : amène directement au jour d'aujourd'hui.
+        const cible = el.dataset.defiler && document.querySelector(`.jour.${el.dataset.defiler}`);
+        if (cible) cible.scrollIntoView({ block: 'start' });
+        break;
+      }
       case 'reglages': modaleReglages(); break;
       case 'ecran-accueil': modaleEcranAccueil(); break;
       case 'tutoriel': modaleTutoriel(); break;
@@ -1216,7 +1432,7 @@
       case 'activite': modaleActivite(id); break;
       case 'nouvelle-activite': modaleActivite(null, el.dataset.date || ''); break;
       case 'depense': modaleDepense(id); break;
-      case 'nouvelle-depense': modaleDepense(null); break;
+      case 'nouvelle-depense': gesteFait('depense'); modaleDepense(null); break;
       case 'nouveau-virement': modaleVirement(); break;
       case 'prevus': modalePrevus(); break;
       case 'listes': modaleListes(); break;
@@ -1305,7 +1521,15 @@
   async function init() {
     if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
     const code = stock.lire(CLE_CODE);
-    if (new URLSearchParams(location.search).has('demo') && code !== CODE_DEMO && !code) { history.replaceState(null, '', location.pathname + location.hash); return ouvrirDemo(false); }
+    const params = new URLSearchParams(location.search);
+    // Démo personnalisée (?demo=van&prenom=…) : ouverte même si une autre démo est gardée sur l'appareil,
+    // jamais à la place d'un vrai compte connecté.
+    const profil = params.get('demo') || '';
+    if (DEMOS[profil] && (!code || code === CODE_DEMO)) {
+      history.replaceState(null, '', location.pathname + location.hash);
+      return ouvrirDemo(true, { profil, prenom: (params.get('prenom') || '').trim().slice(0, 40) });
+    }
+    if (params.has('demo') && code !== CODE_DEMO && !code) { history.replaceState(null, '', location.pathname + location.hash); return ouvrirDemo(false); }
     if (new URLSearchParams(location.search).has('demo')) history.replaceState(null, '', location.pathname + location.hash);
     if (!code) return ecranConnexion();
     if (code === CODE_DEMO) return ouvrirDemo();

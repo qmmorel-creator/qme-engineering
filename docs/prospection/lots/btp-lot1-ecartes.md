@@ -1,0 +1,65 @@
+# Lot 1 — entreprises écartées (sourcing du 25/11/2026)
+
+- MOTEC Ingénierie (Vertou, 44) : aucune adresse e-mail sur le site (formulaire), et société d'un groupe.
+- ADENO (Rennes, 35) : seule une adresse nominative affichée.
+- COEGIS : seule une adresse nominative affichée.
+- OPMO (Bordeaux, 33) : aucune adresse e-mail sur le site (formulaire).
+- PERENNE (Orléans, 45) : bureau d'études VRD, adresses nominatives uniquement.
+- Pexamo (Tours, 37) : pas d'adresse générique (formulaire ; adresse nominative dans les mentions légales).
+- Mareal (Lyon, 69) : aucune adresse e-mail sur le site.
+- AB Exécution (Saint-Martin-d'Uriage, 38) : adresse nominative uniquement.
+- Distingo (Saint-Genis-Laval, 69) : adresse nominative uniquement.
+- MV Ingénierie Bâtiments (38) : aucune adresse e-mail sur le site.
+- OPCI (Eybens, 38) : adresse nominative uniquement.
+- NAÏA MOE (Montpellier, 34) : adresse nominative uniquement.
+- Exetek (Montpellier, 34) : aucune adresse e-mail sur le site.
+- Borteq (Bordeaux, 33) : aucune adresse e-mail trouvée sur le site.
+- Modex (64) : aucune adresse e-mail sur le site.
+- Arpège Ingénierie (Lyon, 69) : aucune adresse e-mail sur le site.
+- C2L : adresse c2l@ trouvée, mais aucune adresse postale sur le site (téléphone parisien) : localisation non vérifiable.
+- Batimexpert (Grand-Quevilly, 76) : adresse nominative uniquement.
+- ID Maîtrise (76) : aucune adresse e-mail sur le site.
+- economie2 (67) : aucune adresse e-mail trouvée.
+- E3 Economie (Strasbourg, 67) : aucune adresse réelle (adresse d'exemple du modèle de site).
+- Nicolas Dubois (Montauban, 82) : adresses nominatives ou personnelles uniquement.
+- EICB (Albi, 81) : aucune adresse e-mail trouvée.
+- Cabinet Morère (31) : adresse aux initiales (nominative).
+- Opus Bati (31) : adresse yahoo seulement dans les mentions légales, sans adresse de contact claire ; écarté par prudence.
+- Boucard Éco Pro (31) : adresse nominative uniquement.
+- Crescendo Conseil : structure multi-agences (8 agences régionales), hors cible « petite structure ».
+- Marielle Concept (45) : aucune adresse e-mail sur le site.
+- LT Économiste (Cierp-Gaud, 31) : économiste sans suivi de travaux affiché.
+- Primoe : cabinet national, hors cible.
+- Alcena : groupe (siège Asnières-sur-Seine), contractant général et MOE multi-sites, hors cible.
+- ED Ouest : réseau de 9 agences (plus de 20 000 chantiers), hors cible.
+- SOTRA (Saint-Barthélemy-d'Anjou, 49) : adresse nominative uniquement.
+- NEXUS Construction (Laval, 53) : aucune adresse e-mail sur le site.
+- DEFICO (Caen, 14) : aucune adresse e-mail sur le site.
+- L2A Agencement : implantations multiples (92, 33, 44, 30), hors cible petite structure locale.
+- EAB Construction (Lyon, 69) : aucune adresse e-mail sur le site.
+- MCE Bâtiment (Clermont-Ferrand) : adresse générique trouvée mais aucune adresse postale sur le site, ville non vérifiable.
+- 2S Prestige : multi-agences, et adresse générique « etude@ » à côté d'adresses nominatives ; écarté par prudence.
+- Sam Rénovation (Montpellier) : aucune adresse e-mail sur le site.
+- Atelier Rénovation Montpellier : plusieurs adresses hotmail/gmail de villes différentes, structure de réseau ambiguë.
+- Groupe OPTIM : groupe (siège Ivry-sur-Seine), hors cible.
+- Batiglobal : multi-agences (Strasbourg, Paris, Côte d'Azur), hors cible.
+- Craft Travaux, PG Bâtiment : aucune adresse e-mail sur le site.
+- Progineer : adresse gmail générique mais siège indiqué à Paris 1er et activité affichée en PACA ; localisation ambiguë.
+- Green House (13) : adresse aux initiales (nominative).
+- Socorebat, Avenir Rénovations, Activ Travaux, Artisans Réno, Omnium, Magestime (Emalec) : réseaux / groupes, exclus.
+- L'Archi Sereine (56), 7|9|1 Architecture (25), Gougeon Architecture (39), CARRE3 (10), S. Mart Architecture (17), Agence Eliat (16), Samuel Concas (17), Area Creatio (17) : aucune adresse e-mail sur le site.
+- Hexagone Architecture (56) : deux agences avec adresses gmail par agence ; écarté (doublon d'établissement, peu clair).
+- AACT+ (25) : uniquement des adresses nominatives (environ 18 personnes).
+- Arkos Concepteurs (21) : adresses nominatives uniquement.
+- Tyerra Architectes (29) : seule une adresse d'exemple du modèle de site.
+- DO Architecte (77) : adresse gmail d'un autre nom commercial (« kpconcept »), ambiguë.
+- Pepops Architecture (10) : deux adresses postales différentes et pas de direction de travaux affichée.
+- J2E Architecte (25/15) : adresse @architectes.org au nom du cabinet, mais deux implantations (Doubs, Cantal) ; écarté par prudence.
+- AC2, Ynspir : réseaux nationaux.
+- Architectes d'intérieur (Oll Design, Harmonie Design, Histoires d'intérieurs, Mille Archi, Steiner) : hors cible.
+- CBPME (Tours, 37) : adresse nominative uniquement.
+- Renovavie (Clermont-Ferrand, 63) : adresse gmail générique, mais aucune adresse postale sur le site.
+- Rénovation Limoges, Rénovation Habitation (60), FP Constructions (62), 2R Bâtiment (57), Striving (57), Logis France Entreprises (54), SOS Bâtiment (57) : aucune adresse e-mail sur le site.
+- RG Rénovation générale Amiens (80) : adresse wanadoo au nom d'une autre enseigne (« unautreregard »), ambiguë.
+- Avoltis Rénovation : implantations multiples (Paris, La Rochelle, Montpellier, Amiens), réseau.
+- GCC Construction, Groupe GB : groupes / majors, exclus.

@@ -360,6 +360,21 @@ test('opposition des prospects : jeton de lecture seule (X-Opposition-Token)', a
   assert.equal((await req('/annonce', { methode: 'POST', entetes: t, corps: {} })).statut, 401);
 });
 
+test('opposition des prospects : le jeton de prospection (X-Prospection-Token) ouvre aussi la lecture, rien de plus', async () => {
+  const w = monde();
+  const JP = 'p'.repeat(40);
+  const req = (chemin, { methode = 'GET', corps, entetes = {} } = {}) => traiterCompte(new Request(`http://t/api/compte${chemin}`, {
+    method: methode, headers: entetes, body: corps ? JSON.stringify(corps) : undefined,
+  }), { secret: SECRET, store: w.store, maintenant: () => w.t, jetonProspection: JP }).then(async (r) => ({ statut: r.status, j: await r.json() }));
+  await req('/opposition', { methode: 'POST', entetes: { 'x-admin': ADMIN }, corps: { emails: ['stop@exemple.fr'] } });
+  const t = { 'x-prospection-token': JP };
+  assert.equal((await req('/opposition?email=stop@exemple.fr', { entetes: t })).j.opposition.par, 'adresse');
+  assert.equal((await req('/opposition/verifier', { methode: 'POST', entetes: t, corps: { emails: ['libre@exemple.fr'] } })).j.resultats[0].opposition, null);
+  assert.equal((await req('/opposition?email=stop@exemple.fr', { entetes: { 'x-prospection-token': 'q'.repeat(40) } })).statut, 401);
+  assert.equal((await req('/registre', { entetes: t })).statut, 401);
+  assert.equal((await req('/annonce', { methode: 'POST', entetes: t, corps: {} })).statut, 401);
+});
+
 test('règle de prospection : mention d\'opposition dans les modèles, la règle et chaque fichier prospects', async () => {
   const { readdir } = await import('node:fs/promises');
   const racine = new URL('../../', import.meta.url);

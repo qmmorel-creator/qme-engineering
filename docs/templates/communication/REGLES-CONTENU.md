@@ -5,9 +5,19 @@ TikTok, YouTube Shorts et X, par toutes les tâches planifiées et tous les skil
 
 ## 1. Cadence
 
-- **Au moins une publication par jour et par plateforme**, et **au moins 7 jours d'avance** programmés sur chacune.
-- TikTok reprend Instagram ; YouTube reçoit les vidéos démo, les Reels du soir et, les jours sans Short, le diaporama
-  TikTok du carrousel Instagram du jour (tâche « TikTok · diaporamas J+14 »).
+- **Une seule publication par plateforme et par jour, jamais plus** (décision de Quentin du 24/11/2026, règle très
+  importante) : Instagram, TikTok, YouTube, LinkedIn et X ont chacun au plus une ligne par date (statut ≠ « Annulé »),
+  tous formats confondus (post, carrousel, Reel, vidéo, Short). Toujours au moins 7 jours d'avance programmés.
+- **Priorité aux contenus audacieux** : nouveaux formats (`formats-test/`), concours, Reels de référence (§ 3 bis) et
+  vidéos passent dans les jours libres les plus proches ; carrousels de template et posts méthode viennent ensuite.
+- Calendrier refait le 24/11/2026 selon cette règle : `docs/templates/communication/CALENDRIER-UNE-PAR-JOUR.md`.
+- **Routine unique** : la tâche « Agent contenu réseaux sociaux QME (quotidien) » (10:07) garde au moins 7 jours d'avance
+  sur chaque réseau et garantit une publication par jour : `ROUTINES-RESEAUX.md`. Instinct ne corrige jamais les plannings.
+- **Toute session ou tâche planifiée qui programme** relit le planning juste avant d'écrire et choisit un jour sans
+  aucune ligne ; elle ne crée jamais une deuxième ligne sur une date déjà occupée, et ne déplace une ligne existante
+  que sur demande de Quentin.
+- TikTok reprend Instagram (donc une publication par jour au plus) ; YouTube reçoit les vidéos démo, les Reels du soir
+  et, les jours sans Short, le diaporama TikTok du carrousel Instagram du jour (produit par l'agent de contenu unique, `ROUTINES-RESEAUX.md`).
 - Heures : `HEURES.md`.
 
 ## 2. Toujours poser un problème, puis le résoudre

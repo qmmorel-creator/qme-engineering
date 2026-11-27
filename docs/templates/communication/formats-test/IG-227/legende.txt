@@ -1,0 +1,48 @@
+−20 %, puis +20 %. Vous revenez au même prix ?
+
+Non : 100 € soldés à −20 % font 80 €. Remontés de 20 %, 96 €.
+Il manque 4 €, parce que la hausse s'applique à une base plus petite.
+Pour revenir à 100 €, il faut +25 %, pas +20 %.
+Dans l'autre ordre, +20 % puis −20 % : 96 € aussi.
+La règle à garder : après une baisse de x %, il faut x ÷ (100 − x) × 100 % pour revenir.
+Exemples fictifs, ne remplace pas un conseil financier.
+
+Enregistrez-le. Envoyez-le à quelqu'un qui dit « −20 % puis +20 %, ça s'annule ».
+Le calcul que personne ne fait, n°4 la semaine prochaine.
+
+#CalculUtile #Pourcentages #Budget #Soldes #Finances
+———
+NOTES
+Format : F3 « Le calcul que personne ne fait » n°3 (suite d'IG-213 et d'IG-226), habillage série F7. Carrousel 6 vues 1080 × 1350, même gabarit et mêmes styles qu'IG-226. Couleur dominante rouge, texte blanc sur rouge (n°1 bleu, n°2 jaune). Voisins vérifiés le 24/11 : colonne M sans couleur notée pour IG-17 (07/12 19:00, vue 1 papier, accent jaune), IG-158 (07/12 12:30, Reel), IG-159 (08/12 19:00, vue 1 encre, accent jaune) et IG-222 (08/12 20:00, à produire) : pas de conflit rouge relevé. Aucun produit montré. Exemples génériques et fictifs (prix soldé, temps partiel, épargne) : aucun cours de bourse, aucun taux réel, aucune promesse de rendement.
+
+Calcul refait en code (docs/templates/communication/formats-test/IG-227/calcul.py, fractions exactes, sortie collée, toutes les assertions passent) :
+Étape 1 · 100 € − 20 % puis + 20 % (exemple fictif)
+  100 € − 20 % : − 20,00 € -> 80,00 €
+  80,00 € + 20 % : + 16,00 € -> 96,00 €
+  il manque 4,00 € (soit − 4,0 %)
+Étape 2 · la hausse s'applique à 80 €, pas à 100 € : 20 % de 80 € = 16,00 €
+  pour revenir à 100 € : il faut + 20 € sur 80 € = + 25,0 %
+Étape 3 · ordre inverse : 100 € + 20 % = 120,00 € ; − 20 % = 96,00 €
+  coefficient : 0,8 × 1,2 = 1,2 × 0,8 = 0,96 (la multiplication est commutative)
+  −10 % puis +10 % : perte de 1,0 % (= 10² ÷ 100)
+  −20 % puis +20 % : perte de 4,0 % (= 20² ÷ 100)
+  −50 % puis +50 % : perte de 25,0 % (= 50² ÷ 100)
+Règle à garder · hausse pour revenir = x ÷ (100 − x) × 100
+  − 10,0 % -> + 11,111 % -> affiché + 11,1 %
+  − 20,0 % -> + 25,000 % -> affiché + 25,0 %
+  − 25,0 % -> + 33,333 % -> affiché + 33,3 %
+  − 33,3 % -> + 50,000 % -> affiché + 50,0 %
+  − 50,0 % -> + 100,000 % -> affiché + 100,0 %
+  (avec x = 33,3 tout rond : + 49,93 % ; le tableau parle d'un tiers exact, d'où + 50 %)
+Exemples fictifs
+  prix soldé : 50 € − 20 % = 40,00 € ; + 20 % = 48,00 € (pas 50 €)
+  temps partiel à 80 % -> temps plein : + 25,0 % de temps de travail (20 ÷ 80)
+  épargne fictive : 10 000 € − 10 % = 9000,00 € ; + 10 % = 9900,00 € ; pour revenir : + 11,1 %
+Toutes les assertions passent.
+(« −33,3 % » du tableau = un tiers exact, d'où + 50 % ; avec 33,3 tout rond on obtiendrait + 49,93 %. Le temps partiel est en temps de travail, sans montant d'argent.)
+
+Source de la formule : (1 − x/100) × (1 + h/100) = 1, donc h = x ÷ (100 − x) × 100 ; perte après −x % puis +x % = x² ÷ 100 % (−20/+20 : 4 %). Calcul vérifié en code ci-dessus (aucune donnée officielle utilisée, aucun taux réel cité).
+
+Accroches non retenues :
+- « Soldé à −20 %, remonté de 20 % : il manque 4 €. »
+- « −20 % puis +20 % : ça s'annule, vraiment ? »

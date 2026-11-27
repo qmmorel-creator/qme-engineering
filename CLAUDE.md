@@ -7,12 +7,32 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 - Netlify publie tout le dépôt : rien de privé hors de `docs/`, `.claude/` et `CLAUDE.md` (bloqués en 404
   dans `netlify.toml`).
 
+## Réseaux sociaux : une seule publication par plateforme et par jour (décision du 24/11/2026)
+
+- **Règle très importante** : Instagram, TikTok, YouTube, LinkedIn et X ont chacun **au plus une publication par jour**,
+  tous formats confondus (post, carrousel, Reel, vidéo, Short). Toute session ou tâche planifiée qui programme choisit
+  un jour **sans aucune ligne** sur la plateforme ; jamais deux lignes à la même date. Contenus audacieux en priorité.
+  Règle : `docs/templates/communication/REGLES-CONTENU.md` § 1 ; calendrier refait le 24/11/2026 :
+  `docs/templates/communication/CALENDRIER-UNE-PAR-JOUR.md`.
+- **Agent de contenu unique** (décision du 24/11/2026) : une seule tâche planifiée, « Agent contenu réseaux sociaux QME
+  (quotidien) », 10:07, produit et programme tout le contenu automatique (Instagram, TikTok, YouTube, LinkedIn, X) avec
+  les skills ci-dessous. Les anciennes tâches (Publications du jour, Vidéo démo du jour, Reel du soir, Campagne X,
+  diaporamas J+14) sont supprimées : ne pas en recréer. Détail : `docs/templates/communication/ROUTINES-RESEAUX.md`.
+
 ## Signature graphique dans tous les mails (décision du 22/11/2026)
 
 - **Tout e-mail rédigé pour Quentin** (brouillon Gmail ou envoi) porte sa signature graphique « Bandeau » dans la version
   HTML, comme les mails automatiques du site : `node docs/templates/communication/signature/brouillon-gmail.mjs --json`
   (images en pièces jointes intégrées, l'outil Gmail supprimant les images distantes). Procédure :
   `docs/templates/communication/signature/README.md`. Elle remplace la signature texte, qui reste dans la version texte brut.
+
+## Floriane Jolliot en copie de tous les mails de Quentin (décision du 27/11/2026)
+
+- **Tout e-mail personnalisé rédigé ou envoyé pour Quentin** (brouillon Gmail, réponse à un prospect, client,
+  influenceur ou partenaire, relance individuelle) met `floriane.jolliot@qm-engineering.fr` en **copie (Cc), jamais
+  en copie cachée**. **Jamais dans les mails de masse** (campagnes de prospection, file OVH `/api/prospection`,
+  premiers mails et relances de campagne, vagues d'affiliation, mails automatiques du site). Son adresse personnelle
+  (Gmail) n'est plus utilisée nulle part.
 
 ## Copie cachée des e-mails automatiques (décision du 24/11/2026)
 
@@ -39,8 +59,9 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   (`entity: "summary"` : relances dues, balle chez QME, prospects sérieux et tièdes), `list_qme` (filtres, pagination),
   `mutate_qme` (étape, relance, balle, prochaine action, échanges datés, clients, devis `QME-AAAA-NNN`, contrats,
   factures, créateurs et pilotage de la file d'affiliation). À lire avant toute relance, devis, réponse ou nouveau mail
-  à un prospect ; à mettre à jour le jour même par la session qui traite un échange. Une relance = une tâche Nexora
-  (`create_task`, `optim: {qme: {type, id}}`). Avant de conclure qu'un prospect attend une réponse, chercher
+  à un prospect ; à mettre à jour le jour même par la session qui traite un échange. **Aucune tâche Nexora pour ce que
+  Claude fait automatiquement** (décision du 25/11/2026 : relances, envois, suivis de campagne) : une relance se suit par
+  la date `relance` de la fiche QME (filtre `dueOnly`), jamais par `create_task`. Avant de conclure qu'un prospect attend une réponse, chercher
   `to:<adresse>` dans tous les fils Gmail.
 - **Jamais de prospect sans adresse e-mail** (décision de Quentin du 24/11/2026) : une entreprise sans adresse e-mail publique (formulaire, téléphone seul) n'est pas créée dans Nexora Optim › QME ; l'étape `pas-de-mail` n'est plus utilisée, et les 410 fiches qui la portaient ont été supprimées le 24/11/2026.
 - `docs/prospection/suivi-prospects.md`, `journal-refus.md` et le Sheet « QME · Affiliation · file d'envoi » sont des
@@ -58,7 +79,7 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   prospect, d'un client ou d'un créateur en discussion (mail reçu ou envoyé, réponse, relance, appel, visio, concept,
   proposition, devis, contrat, facture, refus) est reporté **le jour même, avant de rendre la main**, dans tous les
   endroits concernés de Nexora Optim : fiche QME (échanges, étape, balle, prochaine action, relance), fiche client et
-  devis, tâche « État global du prospect », Note Bible, tâches de relance ou de réunion du projet. Liste de contrôle :
+  devis, tâche « État global du prospect », Note Bible, tâches de réunion du projet (aucune tâche de relance). Liste de contrôle :
   `docs/prospection/NEXORA-PROSPECTS.md` § 2. Une action non reportée dans Nexora est considérée comme non faite.
 - **Note Bible par prospect** (décision du 24/11/2026) : chaque projet prospect a une tâche « Note Bible · <Prospect> »
   (type Notes, statut Valable) qui porte **en tête le lien de la page de concept**, puis la liste de tous les PDF émis
@@ -78,6 +99,28 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 - Opposition vérifiée par l'API avec le jeton de lecture injecté par le proxy (`X-Opposition-Token`) : si elle ne répond
   pas, rien ne part. Réponses aux prospects intéressés : **toujours en brouillon**, Quentin valide. Seuls partent seuls les
   premiers mails de campagne et la relance unique à J+7.
+
+## Campagnes ciblées par pack (décision du 25/11/2026)
+
+- **Skill `.claude/skills/campagne-ciblee-pack/`** : un template ou un pack prêt présenté à tout un secteur (page concept
+  avec captures réelles de la démo, mail personnalisé « template tout prêt, sur mesure possible »), sourcing sans
+  limite d'adresses vérifiées. Première vague : auto-écoles (`docs/prospection/campagne-auto-ecole.md`).
+- **Envoi par OVH via le site** : file `/api/prospection` et tâche `prospection-envoi` (un mail toutes les 2 minutes,
+  lundi–samedi, 8 h–18 h à Paris, sans plafond global depuis le 25/11/2026, soit 300 par jour au plus ; **campagnes actives en parallèle**, à tour
+  de rôle mail par mail, chacune s'étalant sur plusieurs jours si besoin), copie cachée vers la boîte pro de Quentin, signature et mention
+  d'opposition ajoutées par le serveur, opposition relue avant chaque envoi.
+- **Page et brouillon validés par Quentin avant tout envoi** ; projets Nexora seulement pour les retours intéressés,
+  après son accord. Prospects tenus à jour dans Nexora Optim › QME (`vague: "cible-<sujet>"`).
+
+## Concepts : personnalisés au secteur, jamais un SaaS générique (décision du 27/11/2026)
+
+- **Tout concept** (skill `concept-prospect`, page `concepts/<slug>/`, démo, PDF, pages des campagnes par concept) est
+  conçu pour le métier du prospect, sur le modèle de Kelly (`concepts/conciergerie-en-provence/`) et d'ARVA
+  (`concepts/arva/`) : démonstration interactive publiée dans `concepts/<slug>/demo/`, identité propre (nom de l'outil,
+  palette, typographies), grand chiffre métier, entonnoir de leur processus, visuels du terrain, vocabulaire et objets du
+  secteur, vue téléphone, page de concept écrite sur mesure. Interdits : la coquille SaaS neutre des gabarits du skill et
+  la page brute de `concept_page.py`. Cette règle prime sur les gabarits du skill. Détail et contrôle avant PR :
+  `docs/prospection/CONCEPTS-SUR-MESURE.md`.
 
 ## Concepts : registre dans Nexora Optim › QME › Concepts (décision du 24/11/2026)
 
@@ -115,6 +158,11 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   est suivi selon `docs/prospection/PROMPT-MASTER-TUNNEL-VENTE.md` (concepts, réunions et comptes rendus, devis et
   calculs, contrats, factures), chaque interaction reportée le jour même dans Nexora Optim et Google Drive. Il prend
   le relais de Master Prospection (`docs/prospection/PROMPT-AGENT-PROSPECTION.md`).
+- **Une conversation dédiée par client potentiel** (décision du 25/11/2026) : chaque prospect du tunnel de vente est
+  délégué **systématiquement** à une session enfant de Master Tunnel de vente (`create_session`, titre
+  `[Tunnel] <Prénom Nom> · <Entreprise>`, tags `tunnel` et `tunnel:<slug>`), qui fait tout le travail sur ce prospect et
+  rend compte au Master ; le Master lui transmet interactions et relances. Registre :
+  `docs/prospection/CONVERSATIONS-TUNNEL.md` ; détail : `PROMPT-MASTER-TUNNEL-VENTE.md` § 1 bis. Hors affiliation.
 
 ## Templates
 
@@ -140,6 +188,14 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   personnalisée `/demo/<prénom>`, vidéo privée, brouillon en deux volets : produits à recommander contre commission,
   puis sur-mesure pour lui). Aucun taux de commission dans les mails : le demander à Quentin à chaque fois. Rien
   n'est fusionné ni envoyé sans son feu vert. Fiches : `docs/templates/communication/affiliation/`.
+- **Une sous-conversation par retour d'influenceur** (décision du 25/11/2026) : dès que Quentin demande de traiter le
+  retour d'un influenceur précis, la session master crée **systématiquement** une session enfant liée (`create_session`,
+  titre `[Affiliation] <Prénom Nom> · <compte>`, tags `affiliation` et `affiliation:<prénom-nom>`) qui tient ce dossier
+  jusqu'au bout et rend compte à la master. Identifiant noté dans la fiche du créateur. Détail : skill
+  `retour-affiliation`, § « Sous-conversation de suivi ».
+- **QME - Plaquette partenariat réseaux sociaux** (référence du 25/11/2026) : A4 Carreau, commission de 25 % par vente
+  Gumroad, outil sur mesure offert. Page : `qm-engineering.fr/partenariat/` ; Drive : `13 - Entreprise QME / 03 - Marque QME & site` ; source et PDF :
+  `docs/templates/communication/affiliation/plaquette/`. Jointe à un mail seulement avec l'accord de Quentin.
 
 ## Vidéos de démonstration (LinkedIn, Instagram, YouTube Shorts, TikTok)
 
@@ -164,17 +220,34 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   dont Quentin préfère largement le dynamisme. Toute vidéo suit `docs/templates/communication/REGLES-CONTENU.md` § 3 bis :
   vrai problème chiffré avec tension, bascule, solution montrée ; accroche entière dès la première image.
 - **Reels du soir** : skill `.claude/skills/reel-du-soir/` (motion design en musique à partir des démos), lundi, mercredi et
-  vendredi, Instagram 21:00 + YouTube Short 20:00 ; tâche planifiée « Reel du soir ». Journal :
+  vendredi à l'origine, Instagram 21:00 + YouTube Short 20:00 ; lancé par l'agent de contenu unique. Journal :
   `docs/templates/communication/instagram/production/journal-reels.md`.
 - **Publications classiques** (post, carrousel, grand chiffre…) : skill `.claude/skills/publication-classique/`,
-  lancé chaque jour par une tâche planifiée ; il ne produit que si la réserve passe sous 7 jours. Journal :
+  lancé par l'agent de contenu unique ; il ne produit que si la réserve passe sous 7 jours. Journal :
   `docs/templates/communication/journal-publications.md`.
+
+## Mini-stories QME (décision du 27/11/2026)
+
+- **Skill `.claude/skills/ministories/`** : micro-histoires publicitaires de 20 à 30 s avec la mascotte **Carreau**
+  (« Caro », fiche validée par Quentin le 27/11/2026), du script au MP4 contrôlé. Pilote : `docs/ministories/episodes/
+  2026-11-27-le-salaire-a-disparu/`. Voix définitive : ElevenLabs, MP3 fourni par Quentin (la voix edge-tts est provisoire).
+- **Tâche planifiée « Mini-story QME du jour »** (8:40, Paris) : une vidéo par jour sur un template ou un pack de la vie
+  personnelle, sujets variés (journal `docs/ministories/journal.md`). Elle **produit seulement** (MP4, script ElevenLabs,
+  dépôt Drive « QME - Vidéos Ministories ») : elle ne programme aucune publication ; la programmation reste à l'agent de
+  contenu unique, dans la règle d'une publication par plateforme et par jour.
+
+## Test des nouveaux formats (décision du 24/11/2026)
+
+- Quentin veut sortir du contenu toujours identique : 9 formats testés (pire tableur, calcul utile sans produit, test
+  `/diagnostic/`, conversation de couple, quiz, série numérotée, défi chronométré, actualité chiffrée, satisfaisant),
+  **sans visage ni voix de Quentin**, tout animé par Claude. Skill `.claude/skills/formats-test/`, calendrier et
+  mesure : `docs/templates/communication/formats-test/README.md`. Thème « Test formats » dans le planning Instagram.
 
 ## Campagne X (anglais, sur mesure)
 
 - **Publication quotidienne sur X** (décision du 18/11/2026) : skill `.claude/skills/campagne-x/`, en anglais uniquement, volet
   sur mesure uniquement, une publication par jour (post, image ou vidéo en rotation, accroches et thèmes variés), produite une semaine
-  d'avance par la tâche planifiée « Campagne X · contenu J+7 », à 10:00 heure de Californie (19:00 à Paris), publié par Instinct (Sheet « Planning
+  d'avance par l'agent de contenu unique, publiée à 10:00 heure de Californie (19:00 à Paris), publié par Instinct (Sheet « Planning
   publications X », routine `PROMPT-INSTINCT-X.md`). Dossier :
   `docs/templates/communication/x/` (journal `journal-x.md`, bannière du profil `banniere.html`). Lien de toutes les
   publications : `qm-engineering.fr/x` → `/en/english-version/`, générée par `node outils/x/generer.mjs` (bouton

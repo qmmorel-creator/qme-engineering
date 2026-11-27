@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Concours « Le pire tableur de France » · QME</title>
+<meta name="description" content="Décrivez votre pire tableur avant le 06/12/2026 : le pire, choisi par le vote, gagne son outil sur mesure. Gratuit, sans obligation d'achat, dès 18 ans.">
+<meta name="theme-color" content="#FBF7F1">
+<link rel="canonical" href="https://qm-engineering.fr/concours/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Le pire tableur de France">
+<meta property="og:description" content="Votre pire tableur mérite mieux. Le pire gagne son outil sur mesure. Participations jusqu'au 06/12/2026.">
+<meta property="og:url" content="https://qm-engineering.fr/concours/">
+<link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
+<link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
+<link rel="stylesheet" href="/assets/site.css?v=2026112401">
+<style>
+.cc{max-width:var(--max);margin:0 auto;padding:0 16px}
+.cc-hero{display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:start;padding:56px 0 40px}
+.cc-hero .eyebrow{margin-bottom:14px}
+.cc-hero h1{font-size:clamp(36px,5.4vw,64px)}
+.cc-hero h1 span{display:block;color:var(--bleu)}
+.cc-intro{margin-top:18px;font-size:19px;color:var(--texte-2);max-width:56ch}
+.cc-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.cc-dates{margin:22px 0 0;padding:0;list-style:none;display:grid;gap:6px;font-size:16px;color:var(--texte-2)}
+.cc-dates b{color:var(--encre)}
+.cc-compte{background:var(--beurre);border-radius:24px;padding:24px}
+.cc-compte h2{font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--beurre-texte)}
+.cc-chiffres{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0 10px}
+.cc-chiffres div{background:var(--surface);border-radius:14px;padding:12px 4px;text-align:center}
+.cc-chiffres b{display:block;font-size:clamp(26px,3vw,34px);font-weight:700;line-height:1}
+.cc-chiffres span{font-size:13px;color:var(--texte-2)}
+.cc-etat{font-size:15px;color:var(--texte-2)}
+.cc-etat.clos{font-size:22px;font-weight:700;color:var(--encre)}
+.cc-lots{display:grid;grid-template-columns:1.3fr 1fr;gap:14px;padding:8px 0 48px}
+.cc-lot{border-radius:22px;padding:26px;background:var(--ciel)}
+.cc-lot.second{background:var(--sable)}
+.cc-lot .label{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ciel-texte)}
+.cc-lot.second .label{color:var(--texte-2)}
+.cc-lot h2{font-size:clamp(24px,2.6vw,32px);margin:8px 0 10px}
+.cc-lot p{color:var(--texte-2)}
+.cc-section{border-top:1px solid var(--trait);padding:48px 0}
+.cc-section>h2{font-size:clamp(28px,3.4vw,40px);margin-bottom:22px}
+.cc-etapes{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;counter-reset:e}
+.cc-etapes li{background:var(--surface);border:1px solid var(--trait);border-radius:22px;padding:22px;counter-increment:e}
+.cc-etapes li::before{content:counter(e);display:inline-grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--encre);color:var(--papier);font-weight:700;margin-bottom:12px}
+.cc-etapes h3{font-size:21px;margin-bottom:8px}
+.cc-etapes p{color:var(--texte-2);font-size:16px}
+.cc-etapes .quand{display:block;margin-top:10px;font-weight:600;color:var(--encre);font-size:15px}
+.cc-form-zone{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px;align-items:start}
+.cc-form-zone .aside p{color:var(--texte-2);margin-bottom:12px}
+#concours-form{background:var(--surface);border:1px solid var(--trait);border-radius:24px;padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+#concours-form fieldset{border:0;margin:0;padding:0;display:contents}
+#concours-form .full{grid-column:1/-1}
+#concours-form label.champ{display:flex;flex-direction:column;gap:6px;font-size:15px;font-weight:600}
+#concours-form .opt{font-weight:400;color:var(--discret)}
+#concours-form input[type=text],#concours-form input[type=email],#concours-form textarea{font:400 16px Outfit,sans-serif;padding:11px 12px;border:1px solid #B9B0A1;border-radius:14px;background:#fff;color:var(--encre);width:100%}
+#concours-form input[type=file]{font:400 15px Outfit,sans-serif;padding:10px;border:1px dashed #B9B0A1;border-radius:14px;background:var(--papier);width:100%}
+#concours-form input:focus-visible,#concours-form textarea:focus-visible{outline:3px solid var(--bleu);outline-offset:0}
+#concours-form .aide{font-size:14px;font-weight:400;color:var(--texte-2)}
+.cc-alerte{margin:0;padding:12px 14px;border-radius:14px;background:var(--rose);color:var(--rose-texte);font-size:15px;font-weight:600}
+.cc-case{display:flex;gap:10px;align-items:flex-start;font-size:15px;line-height:1.45}
+.cc-case input{width:20px;height:20px;margin:2px 0 0;flex:none;accent-color:var(--bleu)}
+.cc-case a{color:var(--ciel-texte)}
+#concours-form .btn{min-height:52px;width:fit-content}
+#concours-form:has(fieldset:disabled){opacity:.55}
+#concours-note{font-size:14px;color:var(--texte-2);margin:0}
+#concours-note.error{color:#A63A26;font-weight:600}
+.cc-regle{max-width:820px}
+.cc-regle details{border:1px solid var(--trait);border-radius:18px;background:var(--surface);margin-bottom:10px}
+.cc-regle summary{cursor:pointer;padding:16px 20px;font-weight:700;font-size:18px}
+.cc-regle summary:focus-visible{outline:3px solid var(--bleu);outline-offset:2px;border-radius:18px}
+.cc-regle .corps{padding:0 20px 18px}
+.cc-regle .corps p,.cc-regle .corps li{color:var(--texte-2);font-size:16px;line-height:1.6}
+.cc-regle .corps p{margin:0 0 10px}
+.cc-regle .corps ul{margin:0 0 10px;padding-left:22px}
+.cc-regle .vigueur{margin-top:18px;font-weight:600}
+/* --- Ludique : tableur maudit, cauchemaromètre, galerie --- */
+.cc-sticker{display:inline-block;margin:0 0 18px;padding:8px 14px;background:var(--jaune);color:var(--encre);font-weight:800;font-size:15px;letter-spacing:.04em;text-transform:uppercase;border:2px solid var(--encre);box-shadow:4px 4px 0 var(--encre);transform:rotate(-2.5deg)}
+.cc-hero h1 em{font-style:normal;background:var(--rouge);color:#fff;padding:0 .18em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.cc-droite{display:grid;gap:16px}
+.cc-maudit{border:2px solid var(--encre);border-radius:14px;background:#fff;box-shadow:6px 6px 0 var(--encre);overflow:hidden;transform:rotate(1.2deg)}
+.cc-maudit .barre{display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--encre);color:var(--papier);font:600 12.5px/1.2 Outfit,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cc-maudit .barre i{width:9px;height:9px;border-radius:50%;background:var(--rouge);flex:none}
+.cc-maudit .barre i+i{background:var(--jaune)}.cc-maudit .barre i+i+i{background:#7DB37A}
+.cc-grille{display:grid;grid-template-columns:26px repeat(5,1fr);font:500 12.5px/1 Outfit,sans-serif}
+.cc-grille span{border-right:1px solid #D9D2C4;border-bottom:1px solid #D9D2C4;padding:7px 5px;min-height:28px;white-space:nowrap;overflow:hidden;text-overflow:clip;color:var(--encre)}
+.cc-grille .t{background:#EEE9DF;color:#7a7266;text-align:center;font-weight:600}
+.cc-grille .err{color:#B00020;font-weight:800;background:#FFE3E0;animation:cc-secousse .35s}
+@keyframes cc-secousse{0%,100%{transform:translateX(0)}25%{transform:translateX(-2px)}75%{transform:translateX(2px)}}
+.cc-onglets{display:flex;gap:4px;padding:6px;background:#EEE9DF;overflow:hidden;font:500 11.5px/1 Outfit,sans-serif;white-space:nowrap}
+.cc-onglets span{padding:5px 8px;background:#fff;border:1px solid #D9D2C4;border-radius:6px 6px 0 0}
+.cc-onglets span.rouge{background:var(--rouge);color:#fff;border-color:var(--rouge)}
+.cc-maudit .fictif{display:block;padding:5px 10px 7px;font-size:12px;color:var(--texte-2);background:#EEE9DF}
+.cc-metre{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:start}
+.cc-symptomes{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cc-symptomes label{display:flex;gap:10px;align-items:flex-start;height:100%;padding:14px;border:2px solid var(--trait);border-radius:16px;background:var(--surface);cursor:pointer;font-size:16px;line-height:1.35;transition:transform .15s,border-color .15s,background .15s}
+.cc-symptomes input{width:20px;height:20px;margin:1px 0 0;flex:none;accent-color:var(--rouge)}
+.cc-symptomes label:has(input:checked){border-color:var(--encre);background:var(--rose);transform:rotate(-.6deg)}
+.cc-symptomes label:has(input:focus-visible){outline:3px solid var(--bleu);outline-offset:2px}
+.cc-verdict{position:sticky;top:96px;border:2px solid var(--encre);border-radius:22px;padding:24px;background:var(--surface);box-shadow:6px 6px 0 var(--encre)}
+.cc-jauge{height:22px;border:2px solid var(--encre);border-radius:999px;background:var(--sable);overflow:hidden;margin:14px 0 6px}
+.cc-jauge b{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--jaune),var(--rouge));transition:width .4s cubic-bezier(.2,.8,.2,1)}
+.cc-score{font-size:clamp(44px,6vw,64px);font-weight:800;line-height:1}
+.cc-score small{font-size:20px;color:var(--texte-2);font-weight:600}
+.cc-verdict h3{font-size:24px;margin:10px 0 6px}
+.cc-verdict p{color:var(--texte-2);margin:0 0 14px}
+.cc-galerie{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.cc-horreur{border:2px solid var(--encre);border-radius:18px;padding:18px;background:var(--surface);box-shadow:4px 4px 0 var(--encre)}
+.cc-horreur:nth-child(1){transform:rotate(-1.2deg);background:var(--beurre)}
+.cc-horreur:nth-child(2){transform:rotate(.8deg);background:var(--ciel)}
+.cc-horreur:nth-child(3){transform:rotate(-.6deg);background:var(--rose)}
+.cc-horreur:nth-child(4){transform:rotate(1.1deg)}
+.cc-horreur code{display:block;font:700 14px/1.3 ui-monospace,Menlo,monospace;word-break:break-all;margin-bottom:10px}
+.cc-horreur p{margin:0;font-size:15px;color:var(--texte-2)}
+.cc-horreur b{color:var(--encre)}
+.cc-sous{color:var(--texte-2);margin:-10px 0 22px;max-width:60ch}
+@media (prefers-reduced-motion:reduce){.cc-grille .err{animation:none}.cc-jauge b,.cc-symptomes label{transition:none}.cc-symptomes label:has(input:checked){transform:none}}
+@media (max-width:900px){
+  .cc-metre{grid-template-columns:1fr}
+  .cc-verdict{position:static}
+  .cc-galerie{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){
+  .cc-symptomes,.cc-galerie{grid-template-columns:1fr}
+}
+@media (max-width:900px){
+  .cc-hero,.cc-form-zone,.cc-lots{grid-template-columns:1fr}
+  .cc-hero{padding-top:36px;gap:28px}
+  .cc-etapes{grid-template-columns:1fr}
+  #concours-form{grid-template-columns:1fr;padding:18px}
+  #concours-form .btn{width:100%}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="/" aria-label="QME, accueil">
+    <svg viewBox="0 0 80 80" width="34" height="34" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#FBF7F1"/></svg>
+    <span class="wordmark"><span class="q">Q</span><span class="m">M</span><span class="e">E</span></span>
+    <span class="tagline">Quentin Morel<br>Engineering</span>
+  </a>
+  <nav aria-label="Navigation principale">
+    <a href="/pro/">Pros</a>
+    <a href="/perso/">Vie perso</a>
+    <a href="/packs/">Packs</a>
+    <a href="/sur-mesure/">Sur mesure</a>
+    <a class="login" href="/connexion/">Connexion</a>
+    <a class="cta" href="/contact/">Parler de votre projet</a>
+  </nav>
+  <button class="menu" type="button" aria-expanded="false" aria-label="Menu"><span></span><span></span></button>
+</header>
+
+<main class="cc">
+<section class="cc-hero">
+  <div>
+    <p class="cc-sticker">À gagner : votre outil sur mesure</p>
+    <p class="eyebrow">Concours · Le pire tableur de France</p>
+    <h1>Votre tableur vous fait <em>peur</em> ? <span>Il peut enfin vous rapporter quelque chose.</span></h1>
+    <p class="cc-intro">41 onglets. Une cellule rouge que personne ne sait expliquer. Un fichier qui s'appelle « final_v3_OK_vraiment ». Si vous venez de penser au vôtre, vous êtes au bon endroit : décrivez-le. Les trois pires passent au vote, et le pire de tous repart avec un outil construit pour lui.</p>
+    <ul class="cc-dates">
+      <li><b>Participations</b> : du mercredi 25/11/2026 20:00 au dimanche 06/12/2026 23:59 (heure de Paris)</li>
+      <li><b>Vote</b> : du mardi 08/12 20:00 au jeudi 10/12 23:59</li>
+      <li><b>Résultat</b> : vendredi 11/12 à 19:00</li>
+    </ul>
+    <div class="cc-actions">
+      <a class="btn primary" href="#participer">Participer</a>
+      <a class="btn" href="#reglement">Lire le règlement</a>
+    </div>
+  </div>
+  <div class="cc-droite">
+  <figure class="cc-maudit" aria-label="Exemple de tableur fictif plein d'erreurs" style="margin:0">
+    <div class="barre"><i></i><i></i><i></i><span>COMPTA_2019_final_v3_OK_vraiment (2)</span></div>
+    <div class="cc-grille" id="maudit" aria-hidden="true"></div>
+    <div class="cc-onglets" aria-hidden="true"><span>Feuil1</span><span>Planning (2)</span><span class="rouge">NE PAS TOUCHER</span><span>copie de copie</span><span>TOTAL2</span><span>archives</span></div>
+    <figcaption class="fictif">Tableur fictif. Toute ressemblance avec le vôtre serait parfaitement volontaire.</figcaption>
+  </figure>
+  <aside class="cc-compte" aria-labelledby="compte-titre">
+    <h2 id="compte-titre">Fin des participations</h2>
+    <div class="cc-chiffres" id="compte" aria-hidden="true">
+      <div><b data-u="j">–</b><span>jours</span></div>
+      <div><b data-u="h">–</b><span>heures</span></div>
+      <div><b data-u="m">–</b><span>minutes</span></div>
+      <div><b data-u="s">–</b><span>secondes</span></div>
+    </div>
+    <p class="cc-etat" id="compte-etat">Dimanche 6 décembre 2026 à 23:59, heure de Paris.</p>
+  </aside>
+  </div>
+</section>
+
+<section class="cc-lots" aria-label="Lots">
+  <article class="cc-lot">
+    <p class="label">Pour le gagnant</p>
+    <h2>Un outil sur mesure, construit pour votre besoin</h2>
+    <p>D'une ampleur équivalente au template <a href="/catalogue/taches/">Gestionnaire de tâches</a> QME : une application web sur téléphone et ordinateur, données synchronisées, jusqu'à 5 écrans. Périmètre fixé ensemble, livré au plus tard le 31/03/2027.</p>
+  </article>
+  <article class="cc-lot second">
+    <p class="label">Pour les 2 autres finalistes</p>
+    <h2>Un template QME au choix</h2>
+    <p>Un code d'accès offert à l'un des <a href="/templates/">templates du catalogue</a>.</p>
+  </article>
+</section>
+
+<section class="cc-section" id="cauchemarometre" aria-labelledby="metre-titre">
+  <h2 id="metre-titre">Le cauchemaromètre</h2>
+  <p class="cc-sous">Avant de participer, mesurez le niveau de votre tableur. Cochez ce qui vous parle. Honnêtement.</p>
+  <div class="cc-metre">
+    <ul class="cc-symptomes" id="symptomes">
+      <li><label><input type="checkbox" value="onglets">Il a plus de 10 onglets, dont certains que personne n'a jamais ouverts.</label></li>
+      <li><label><input type="checkbox" value="nepastoucher">Un onglet ou une cellule dit « NE PAS TOUCHER ».</label></li>
+      <li><label><input type="checkbox" value="final">Le fichier s'appelle « final », « V2 », « OK » ou « vraiment ». Ou tout à la fois.</label></li>
+      <li><label><input type="checkbox" value="seul">Une seule personne sait le mettre à jour. Elle part en vacances bientôt.</label></li>
+      <li><label><input type="checkbox" value="rouge">Une cellule est en rouge et personne ne sait pourquoi.</label></li>
+      <li><label><input type="checkbox" value="erreur">Il affiche une erreur (#REF!, #N/A…) que tout le monde a appris à ignorer.</label></li>
+      <li><label><input type="checkbox" value="recopie">Vous recopiez des chiffres à la main, chaque semaine, depuis un autre fichier.</label></li>
+      <li><label><input type="checkbox" value="filtre">Il suffit d'un tri ou d'un filtre pour tout casser.</label></li>
+    </ul>
+    <div class="cc-verdict" aria-live="polite">
+      <div class="cc-score"><span id="score">0</span><small> / 8</small></div>
+      <div class="cc-jauge" aria-hidden="true"><b id="jauge"></b></div>
+      <h3 id="verdict-titre">Tableur sage</h3>
+      <p id="verdict-texte">Cochez les symptômes de votre tableur pour connaître son verdict.</p>
+      <a class="btn primary" href="#participer" id="verdict-cta">Participer</a>
+    </div>
+  </div>
+</section>
+
+<section class="cc-section" aria-labelledby="galerie-titre">
+  <h2 id="galerie-titre">La galerie des horreurs</h2>
+  <p class="cc-sous">Exemples fictifs. Pour vous donner le ton, pas pour vous décourager : le vôtre est peut-être pire.</p>
+  <div class="cc-galerie">
+    <article class="cc-horreur"><code>COMPTA_2019_final_v3_OK_vraiment</code><p><b>41 onglets.</b> Le bon chiffre est dans l'onglet 27. Personne ne se souvient pourquoi.</p></article>
+    <article class="cc-horreur"><code>Planning (2) (copie)</code><p>Cellule A1 : <b>« NE PAS TRIER »</b>. Quelqu'un a trié.</p></article>
+    <article class="cc-horreur"><code>Suivi_notes_DEF</code><p><b>Trois moyennes</b> pour le même élève. Trois résultats différents.</p></article>
+    <article class="cc-horreur"><code>Stock_à_jour_SAUF_mars</code><p>Le stock est <b>négatif depuis mars</b>. Les ventes continuent.</p></article>
+  </div>
+</section>
+
+<section class="cc-section" aria-labelledby="etapes-titre">
+  <h2 id="etapes-titre">Comment ça se passe</h2>
+  <ol class="cc-etapes">
+    <li><h3>Décrivez</h3><p>Votre pire tableur en une phrase, en commentaire sous la publication de lancement (Instagram ou TikTok) ou dans le formulaire ci-dessous, avec une capture masquée si vous le souhaitez.</p><span class="quand">Jusqu'au 06/12 23:59</span></li>
+    <li><h3>Trois finalistes</h3><p>Quentin retient trois participations selon le temps perdu, le risque d'erreur et le potentiel d'amélioration. Les tableurs sont recréés en version fictive : aucune capture réelle n'est publiée.</p><span class="quand">Publiés le 08/12 à 20:00</span></li>
+    <li><h3>Le vote</h3><p>Votez « A », « B » ou « C » en commentaire, un vote par compte. Les votes Instagram et TikTok sont additionnés.</p><span class="quand">Jusqu'au 10/12 23:59, résultat le 11/12 à 19:00</span></li>
+  </ol>
+</section>
+
+<section class="cc-section" id="participer" aria-labelledby="participer-titre">
+  <div class="cc-form-zone">
+    <div class="aside">
+      <h2 id="participer-titre" style="font-size:clamp(28px,3.4vw,40px);margin-bottom:16px">Participer</h2>
+      <p>Gratuit, sans obligation d'achat ni d'abonnement. Réservé aux personnes de 18 ans et plus résidant en France ; une participation par personne.</p>
+      <p>Vous préférez commenter ? Écrivez votre phrase sous la publication de lancement sur <a href="https://www.instagram.com/qmengineering/" target="_blank" rel="noopener">Instagram</a> ou <a href="https://www.tiktok.com/@qme.qm.engineering" target="_blank" rel="noopener">TikTok</a>. Partager la publication n'est jamais une condition.</p>
+    </div>
+    <form id="concours-form" name="concours" method="POST" action="/concours/merci/" enctype="multipart/form-data" data-netlify="true" netlify-honeypot="site_internet">
+      <input type="hidden" name="form-name" value="concours">
+      <input type="hidden" name="source" id="concours-source" value="">
+      <input type="hidden" name="cauchemarometre" id="concours-score" value="">
+      <fieldset id="concours-champs">
+        <legend class="sr-only">Votre participation</legend>
+        <label class="champ">Prénom ou pseudo<input type="text" name="prenom" autocomplete="given-name" maxlength="80"></label>
+        <label class="champ">E-mail<input type="email" name="email" autocomplete="email" required placeholder="vous@exemple.fr"></label>
+        <label class="champ full"><span>Compte Instagram ou TikTok <span class="opt">(facultatif)</span></span><input type="text" name="compte" maxlength="80" placeholder="@votrecompte"></label>
+        <label class="champ full">Votre pire tableur en une phrase<textarea name="phrase" rows="3" required maxlength="400" placeholder="Exemple : 14 onglets, 3 versions « final » et une formule que plus personne n'ose toucher."></textarea></label>
+        <label class="champ full"><span>Ce qu'il vous fait perdre <span class="opt">(facultatif)</span></span><textarea name="perte" rows="3" maxlength="1200" placeholder="Temps chaque semaine, erreurs, oublis, nerfs…"></textarea></label>
+        <div class="full" style="display:grid;gap:10px">
+          <label class="champ"><span>Une capture <span class="opt">(facultative, image, 8 Mo max)</span></span><input type="file" name="capture" id="concours-capture" accept="image/*" aria-describedby="capture-alerte"></label>
+          <p class="cc-alerte" id="capture-alerte">Masquez ou floutez noms, montants personnels, clients et données d'élèves avant l'envoi. Nous ne publions jamais une capture réelle.</p>
+        </div>
+        <label class="cc-case full"><input type="checkbox" name="majeur" value="oui" required><span>J'ai 18 ans ou plus.</span></label>
+        <label class="cc-case full"><input type="checkbox" name="reglement" value="oui" required><span>J'ai lu le <a href="#reglement">règlement</a>.</span></label>
+        <label class="cc-case full"><input type="checkbox" name="accord_version_recreee" value="oui"><span>J'accepte qu'une version recréée et anonymisée de mon tableur soit montrée si je suis finaliste (mon accord écrit sera redemandé). <span class="opt">(facultatif)</span></span></label>
+        <label class="hp-field" aria-hidden="true">Votre site internet<input type="text" name="site_internet" tabindex="-1" autocomplete="off"></label>
+        <button class="btn primary full" type="submit" id="concours-envoyer">Envoyer ma participation</button>
+      </fieldset>
+      <p id="concours-note" class="full" role="status" aria-live="polite">Participation transmise à QME par le service de formulaires de l'hébergeur du site (Netlify), utilisée uniquement pour le concours (voir <a href="#reglement-donnees">données personnelles</a>).</p>
+    </form>
+  </div>
+</section>
+
+<section class="cc-section cc-regle" id="reglement" aria-labelledby="reglement-titre">
+  <h2 id="reglement-titre">Règlement du concours</h2>
+
+  <details open>
+    <summary>1. Organisateur</summary>
+    <div class="corps"><p>Le concours « Le pire tableur de France » est organisé par Quentin Morel, QME · Quentin Morel Engineering, joignable à <a href="mailto:quentin.morel@qm-engineering.fr">quentin.morel@qm-engineering.fr</a> (ci-après « l'organisateur »).</p></div>
+  </details>
+
+  <details>
+    <summary>2. Durée</summary>
+    <div class="corps">
+      <p>Les participations sont reçues du mercredi 25 novembre 2026 à 20:00 au dimanche 6 décembre 2026 à 23:59 (heure de Paris). Une participation reçue en dehors de cette période n'est pas prise en compte.</p>
+      <p>Les finalistes sont publiés le mardi 8 décembre 2026 à 20:00 ; le vote est ouvert jusqu'au jeudi 10 décembre 2026 à 23:59 ; le résultat est annoncé le vendredi 11 décembre 2026 à 19:00.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>3. Conditions de participation</summary>
+    <div class="corps"><ul>
+      <li>Participation gratuite, sans obligation d'achat ni d'abonnement.</li>
+      <li>Réservée aux personnes physiques de 18 ans et plus résidant en France.</li>
+      <li>Une participation par personne : un commentaire et un formulaire envoyés par la même personne comptent pour une seule participation.</li>
+      <li>Partager, aimer ou suivre un compte n'est jamais une condition de participation.</li>
+    </ul></div>
+  </details>
+
+  <details>
+    <summary>4. Comment participer</summary>
+    <div class="corps">
+      <p>Au choix :</p>
+      <ul>
+        <li><strong>en commentaire</strong> sous la publication de lancement du concours sur Instagram ou sur TikTok, en décrivant votre pire tableur ou outil de suivi en une phrase ;</li>
+        <li><strong>par le formulaire</strong> de cette page (<a href="#participer">qm-engineering.fr/concours</a>) : description, adresse e-mail et, si vous le souhaitez, une capture.</li>
+      </ul>
+      <p>Une capture n'est jamais publiée en commentaire ni sur le site. Avant de l'envoyer, masquez ou floutez les noms, montants personnels, clients et données d'élèves : vous restez responsable des informations sur des tiers que vous transmettez.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>5. Sélection des finalistes</summary>
+    <div class="corps">
+      <p>À la clôture, l'organisateur choisit 3 finalistes parmi les participations, selon trois critères : le temps perdu, le risque d'erreur et le potentiel d'amélioration.</p>
+      <p>Les finalistes sont prévenus par message. Leur accord écrit est demandé avant toute mise en avant ; sans cet accord, la participation n'est pas montrée et une autre participation est retenue. Les tableurs des finalistes sont présentés dans une version recréée et fictive, jamais l'original.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>6. Vote</summary>
+    <div class="corps"><ul>
+      <li>Les 3 finalistes (A, B et C) sont publiés le 8 décembre 2026 à 20:00 sur Instagram et TikTok.</li>
+      <li>Le vote se fait en commentaire sous cette publication, en écrivant « A », « B » ou « C », jusqu'au 10 décembre 2026 à 23:59.</li>
+      <li>Un vote par compte ; les votes Instagram et TikTok sont additionnés.</li>
+      <li>Les votes de comptes suspects (faux comptes, votes achetés) sont écartés.</li>
+      <li>Le finaliste qui obtient le plus de votes gagne.</li>
+      <li>En cas d'égalité, l'organisateur départage les finalistes à égalité selon les critères de sélection de l'article 5.</li>
+    </ul></div>
+  </details>
+
+  <details>
+    <summary>7. Lots</summary>
+    <div class="corps">
+      <p><strong>Gagnant</strong> : un outil sur mesure construit pour son besoin, d'une ampleur équivalente au template Gestionnaire de tâches QME (une application web sur téléphone et ordinateur, données synchronisées, jusqu'à 5 écrans). Le périmètre est fixé ensemble ; l'outil est livré au plus tard le 31 mars 2027. Le lot n'est échangeable ni contre de l'argent ni contre un autre lot.</p>
+      <p><strong>Deux autres finalistes</strong> : un template QME au choix, remis sous la forme d'un code d'accès offert.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>8. Désignation des gagnants, contact et remise des lots</summary>
+    <div class="corps">
+      <p>Le résultat est annoncé le 11 décembre 2026 à 19:00. Le gagnant et les deux autres finalistes sont contactés par l'organisateur, par e-mail ou par message sur le réseau utilisé pour participer.</p>
+      <p>Sans réponse du gagnant dans les 7 jours suivant ce contact, le lot revient au finaliste suivant dans l'ordre des votes.</p>
+      <p>L'outil sur mesure est construit après un échange sur le besoin du gagnant et livré au plus tard le 31 mars 2027. Le code d'accès des autres finalistes leur est envoyé par e-mail.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>9. Instagram, Meta et TikTok</summary>
+    <div class="corps"><p>Ce concours n'est ni organisé, ni parrainé, ni géré par Instagram, Meta ou TikTok. Les informations transmises le sont à l'organisateur, et non à ces plateformes.</p></div>
+  </details>
+
+  <details id="reglement-donnees">
+    <summary>10. Données personnelles</summary>
+    <div class="corps">
+      <p><strong>Données</strong> : pour le formulaire, prénom ou pseudo, adresse e-mail, compte Instagram ou TikTok s'il est donné, description du tableur, ce qu'il vous fait perdre, capture éventuelle, cases cochées et provenance de la visite ; pour un commentaire, le nom du compte et le texte publié.</p>
+      <p><strong>Finalité</strong> : gérer le concours et contacter les finalistes. Ni revente, ni publicité. Aucune capture réelle n'est jamais publiée.</p>
+      <p><strong>Base légale</strong> : l'exécution du présent règlement, que vous acceptez en participant ; votre consentement pour la présentation d'une version recréée de votre tableur si vous êtes finaliste, que vous pouvez retirer à tout moment.</p>
+      <p><strong>Hébergement</strong> : formulaire et captures gérés par l'hébergeur du site, Netlify.</p>
+      <p><strong>Durée</strong> : conservées jusqu'au 31 mars 2027, puis supprimées ; pour le gagnant, pendant la durée de la construction de son outil.</p>
+      <p><strong>Vos droits</strong> : accès, rectification, effacement, limitation, opposition et portabilité, en écrivant à <a href="mailto:quentin.morel@qm-engineering.fr">quentin.morel@qm-engineering.fr</a> ; réclamation possible auprès de la CNIL. Détails : <a href="/confidentialite/#concours">politique de confidentialité</a>.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>11. Modification ou annulation</summary>
+    <div class="corps"><p>L'organisateur peut modifier, prolonger, écourter ou annuler le concours en cas de force majeure ou d'événement indépendant de sa volonté (notamment fraude ou panne d'une plateforme). Toute modification est publiée sur cette page.</p></div>
+  </details>
+
+  <details>
+    <summary>12. Loi applicable</summary>
+    <div class="corps"><p>Le présent règlement est soumis à la loi française. Toute question peut être adressée à <a href="mailto:quentin.morel@qm-engineering.fr">quentin.morel@qm-engineering.fr</a>.</p></div>
+  </details>
+
+  <p class="vigueur">Règlement en vigueur au 25/11/2026.</p>
+</section>
+</main>
+
+<nav class="reseaux" aria-label="QME sur les réseaux">
+  <a href="https://www.linkedin.com/company/qme-qm-engineering/" target="_blank" rel="noopener" aria-label="QME sur LinkedIn (nouvel onglet)" title="LinkedIn"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor"><rect x="3.5" y="9" width="3.6" height="11.5"/><circle cx="5.3" cy="5.2" r="2.1"/><path d="M10 9h3.4v1.6c.6-1 1.9-1.9 3.7-1.9 3.1 0 4.3 2 4.3 5.2v6.6h-3.6v-5.8c0-1.6-.4-2.7-1.9-2.7s-2.3 1.1-2.3 2.7v5.8H10z"/></svg></a>
+  <a href="https://www.instagram.com/qmengineering/" target="_blank" rel="noopener" aria-label="QME sur Instagram (nouvel onglet)" title="Instagram"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+</nav>
+
+<footer>
+  <span>QME · Quentin Morel Engineering · © <span id="year"></span> · Mesure d'audience sans cookie (GoatCounter)</span>
+  <span><a href="/">Accueil</a> · <a href="/sur-mesure/">Sur mesure</a> · <a href="/templates/">Templates</a> · <a href="/packs/">Packs</a> · <a href="/guides/">Guides</a> · <a href="/contact/">Contact</a> · <a href="/connexion/">Connexion</a> · <a href="/confidentialite/">Confidentialité</a></span>
+</footer>
+
+<script src="/assets/site.js?v=2026112401" defer></script>
+<script>
+// Concours : compte à rebours (heure de Paris, CET = UTC+1 sur toute la période), ouverture et clôture du
+// formulaire, provenance (utm_source), contrôle de la taille de la capture (8 Mo, limite de Netlify Forms).
+(() => {
+  const OUVERTURE = Date.parse('2026-11-25T20:00:00+01:00');
+  const CLOTURE = Date.parse('2026-12-06T23:59:59+01:00');
+  const MAX = 8 * 1024 * 1024;
+  const champs = document.getElementById('concours-champs');
+  const note = document.getElementById('concours-note');
+  const noteInit = note.innerHTML;
+  const etat = document.getElementById('compte-etat');
+  const titre = document.getElementById('compte-titre');
+  const unites = Object.fromEntries([...document.querySelectorAll('#compte [data-u]')].map((b) => [b.dataset.u, b]));
+  const source = document.getElementById('concours-source');
+  try { source.value = (new URLSearchParams(location.search).get('utm_source') || '').slice(0, 60); } catch {}
+  const deux = (n) => String(n).padStart(2, '0');
+  let minuterie;
+  const tic = () => {
+    const now = Date.now();
+    if (now > CLOTURE) {
+      clearInterval(minuterie);
+      document.getElementById('compte').hidden = true;
+      titre.textContent = 'Concours';
+      etat.textContent = 'Participations closes';
+      etat.classList.add('clos');
+      champs.disabled = true;
+      document.getElementById('concours-envoyer').textContent = 'Participations closes';
+      note.textContent = 'Les participations sont closes depuis le dimanche 6 décembre 2026 à 23:59. Merci à toutes et à tous.';
+      return;
+    }
+    const avant = now < OUVERTURE;
+    champs.disabled = avant;
+    if (avant) note.textContent = 'Le formulaire ouvre le mercredi 25 novembre 2026 à 20:00 (heure de Paris).';
+    else if (note.innerHTML !== noteInit) note.innerHTML = noteInit;
+    const reste = Math.max(0, Math.floor((CLOTURE - now) / 1000));
+    unites.j.textContent = Math.floor(reste / 86400);
+    unites.h.textContent = deux(Math.floor(reste % 86400 / 3600));
+    unites.m.textContent = deux(Math.floor(reste % 3600 / 60));
+    unites.s.textContent = deux(reste % 60);
+    const j = Math.floor(reste / 86400), h = Math.floor(reste % 86400 / 3600), m = Math.floor(reste % 3600 / 60);
+    const pl = (n, mot) => `${n} ${mot}${n > 1 ? 's' : ''}`;
+    const duree = j ? `${pl(j, 'jour')} et ${pl(h, 'heure')}` : h ? `${pl(h, 'heure')} et ${pl(m, 'minute')}` : m ? pl(m, 'minute') : 'quelques secondes';
+    etat.textContent = `Plus que ${duree} : clôture le dimanche 6 décembre 2026 à 23:59, heure de Paris.`;
+  };
+  tic();
+  minuterie = setInterval(tic, 1000);
+  const capture = document.getElementById('concours-capture');
+  capture.addEventListener('change', () => {
+    const f = capture.files[0];
+    capture.setCustomValidity(f && f.size > MAX ? 'Cette image dépasse 8 Mo : réduisez-la ou envoyez une autre capture.' : '');
+    if (f && f.size > MAX) capture.reportValidity();
+  });
+})();
+</script>
+<script>
+// Ludique : tableur maudit (erreurs qui apparaissent au hasard) et cauchemaromètre.
+(() => {
+  const calme = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const g = document.getElementById('maudit');
+  const lignes = [
+    ['', 'A', 'B', 'C', 'D', 'E'],
+    ['1', 'Client', 'Montant', 'TOTAL2', 'Payé ?', 'Note'],
+    ['2', 'Martin', '1 200', '1 200', 'oui ?', 'voir Karine'],
+    ['3', 'Bernard', '850', '#REF!', '???', ''],
+    ['4', 'Durand', '2 100', '4 200', 'NON', 'doublon ?'],
+    ['5', 'Petit', '-', '#N/A', 'oui', 'NE PAS TOUCHER'],
+    ['6', 'TOTAL', '4 150', '9 999', '', 'faux ?'],
+  ];
+  const fonds = ['#FFF3B0', '#D8F0D2', '#FFD6E0', '#D6E8FF', '#fff', '#fff', '#fff'];
+  const cases = [];
+  lignes.forEach((l, i) => l.forEach((v, j) => {
+    const c = document.createElement('span');
+    c.textContent = v;
+    if (i === 0 || j === 0) c.className = 't';
+    else { c.style.background = fonds[(i * 3 + j * 5) % fonds.length]; if (/^(#|\?)/.test(v)) c.classList.add('err'); cases.push(c); }
+    g.appendChild(c);
+  }));
+  const erreurs = ['#REF!', '#N/A', '#VALEUR!', '#DIV/0!', '####', '???'];
+  if (!calme) setInterval(() => {
+    const c = cases[Math.floor(Math.random() * cases.length)];
+    if (c.classList.contains('err')) return;
+    const avant = c.textContent;
+    c.textContent = erreurs[Math.floor(Math.random() * erreurs.length)];
+    c.classList.add('err');
+    setTimeout(() => { c.textContent = avant; c.classList.remove('err'); }, 1600);
+  }, 700);
+
+  const niveaux = [
+    [0, 'Tableur sage', 'Cochez les symptômes de votre tableur pour connaître son verdict.'],
+    [1, 'Tableur sage', 'Presque rien à signaler. Vous êtes sûr de nous avoir tout dit ?'],
+    [3, 'Tableur grognon', 'Il tient encore. Mais il garde des rancunes.'],
+    [5, 'Tableur hanté', 'Il se passe des choses la nuit dans ce fichier. Participez.'],
+    [7, 'Candidat au titre', 'Votre tableur a toutes ses chances. Décrivez-le, vite.'],
+  ];
+  const boites = [...document.querySelectorAll('#symptomes input')];
+  const score = document.getElementById('score');
+  const jauge = document.getElementById('jauge');
+  const titre = document.getElementById('verdict-titre');
+  const texte = document.getElementById('verdict-texte');
+  const champ = document.getElementById('concours-score');
+  const maj = () => {
+    const n = boites.filter((b) => b.checked).length;
+    const [, t, x] = niveaux.filter(([min]) => n >= min).pop();
+    score.textContent = n;
+    jauge.style.width = `${(n / boites.length) * 100}%`;
+    titre.textContent = t;
+    texte.textContent = x;
+    champ.value = n ? `${n}/8 · ${t}` : '';
+  };
+  boites.forEach((b) => b.addEventListener('change', maj));
+  maj();
+})();
+</script>
+<script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

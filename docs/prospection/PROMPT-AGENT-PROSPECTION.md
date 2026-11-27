@@ -101,8 +101,8 @@ libellé ni classé ni écrit dans Nexora par l'agent : il est renvoyé à la se
    (`node docs/templates/communication/signature/brouillon-gmail.mjs --json`, six images `inline`) et la mention
    d'opposition en dernier paragraphe. Ton : celui du dernier échange ; court ; une seule relance par échéance ; jamais
    de prix nouveau, de date de rendez-vous inventée ni de promesse.
-5. **N'envoie aucune relance** : brouillon seulement, et une tâche Nexora « Relance à valider · <prospect> » dans son
-   projet (`create_task`, `optim: {qme: {type: "prospect", id}}`, échéance du jour), avec le lien du brouillon.
+5. **N'envoie aucune relance** : brouillon seulement, signalé à Quentin dans le compte rendu avec son lien (aucune tâche
+   Nexora : décision du 25/11/2026, rien de ce que Claude fait automatiquement ne devient une tâche).
    Exception : un brouillon que Quentin a validé explicitement dans cette session depuis le passage précédent (« envoie
    la relance X ») : envoie-le, vérifie-le dans le fil, puis mets Nexora à jour (§ 5).
 6. Les relances de masse suivent le § 2 bis, jamais une par une ici.

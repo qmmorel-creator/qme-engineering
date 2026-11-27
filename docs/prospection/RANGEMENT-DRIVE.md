@@ -86,6 +86,7 @@ dans la racine `04 - Prospects & clients` ; note Bible dans le projet Nexora du 
 | Nell Dumas · CS Charpennes-Tonkin | [dossier](https://drive.google.com/drive/folders/1JMvdJxoidvCSVraYtFNUkD6hN6D_SMVw) | concept, plaquette (+ documents internes du 03/11 à la racine, non émis) | `mcp-2dade9be-19f9-4075-ab57-463d395f7010` |
 | Barteau Traiteur | [dossier](https://drive.google.com/drive/folders/1py_vIyZwoV99qPlLXLLUmJ3GSIex5YO-) | plaquette | `mcp-e48d7088-5de0-4592-9e38-a2007075f2b1` |
 | Laurine Mebs · Optimind Formation | [dossier](https://drive.google.com/drive/folders/1sYswA4EX55gxDdTxAYr1IH9VS9vSIP7d) | comparatif des outils de révision (pièce jointe, `07 - Autres documents`) | `mcp-2b94d2fb-2a1f-4a5a-905e-122c2544e1e3` |
+| Armelle Derne · Qui Plus Est architectes urbanistes | [dossier](https://drive.google.com/drive/folders/1H2YsbxYxQdvwlHfJaProwcUcjBG_3oTA) | plaquette, références (liens « documents » du 02/11 et du 25/11) | `mcp-2e6c68f5-9bf0-4df0-b420-fb16e578b2d7` |
 | Christophe Yzet · Yuzu Agency (Odélia) | aucun (aucun PDF émis : liens seulement) | — | `mcp-f2398b09-55e2-4916-828f-256a8e8054bc` · `mcp-08bddce3-8d86-4a2b-9c46-2acfd2d18d38` |
 
 **Points ouverts**

@@ -9,6 +9,12 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 
 ## Bloquant
 
+- **Décisions de Quentin du 25/11/2026 (agent Gumroad)** : les trois points ci-dessous sont tranchés : **T84 Remboursements
+  santé, T19 Suivi du bébé et T55 Gestion de classe sont vendus tels quels**, avec le consentement explicite déjà codé
+  (T84, T19, comme Nutrition) et les avertissements actuels (T55 : prénom + initiale, rappel RGPD). À faire à la mise en
+  vente : paragraphe propre à chaque template dans `/confidentialite/` (celui de T19 est proposé dans
+  `communication/bebe/integration.md`), test `bebe.test.mjs` à adapter (il exige encore le bandeau « Bientôt en vente »),
+  publications IG-80, IG-90, LI-125 et LI-135 libérées (à signaler à l'agent contenu).
 - **T55 Gestion de classe : RGPD des données d'élèves mineurs** hébergées en ligne par QME. À trancher avant
   toute vente et avant de publier LI-125 et IG-80. Options : `docs/templates/fiches/gestion-classe.md`. Déjà
   en place : prénom + initiale ou pseudonyme, aucun champ sensible, avertissements, effacement en fin d'année.
@@ -28,6 +34,7 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 
 ## Gumroad (à faire dans l'éditeur, aucun outil ne le permet)
 
+- **Clés de licence à activer (27/11/2026)** : aucune (packs PNS, PFA et PAR activés et en vente le 27/11). Ces 3 packs et le Pack Associations n'ont pas de couverture.
 - Couverture en double à supprimer : Générateur de devis, Trésorerie prévisionnelle, Organisateur d'événement (garder la
   nouvelle couverture « evenementiel » ajoutée le 24/11, supprimer l'ancienne couverture mariage),
   Circuit de visa (garder la couverture Pastel).

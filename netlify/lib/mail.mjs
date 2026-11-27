@@ -21,10 +21,12 @@ import nodemailer from 'nodemailer';
 export const COPIE_CACHEE = 'quentin.morel@qm-engineering.fr';
 
 // Options de nodemailer pour un envoi (sans le transport) : expéditeur, réponse, destinataire, copie cachée.
-export function optionsEnvoi({ a, objet, texte, html, copieCachee = true }, { de, env = process.env }) {
+// messageId / inReplyTo / references (facultatifs) : fil de discussion, pour la relance de prospection (prospection.mjs).
+export function optionsEnvoi({ a, objet, texte, html, copieCachee = true, messageId, inReplyTo, references }, { de, env = process.env }) {
   const copie = String(env.ESSAI_COPIE_CACHEE ?? COPIE_CACHEE).trim();
   const avecCopie = copieCachee && copie && copie.toLowerCase() !== 'non' && copie.toLowerCase() !== String(a || '').trim().toLowerCase();
-  return { from: de, replyTo: de, to: a, ...(avecCopie ? { bcc: copie } : {}), subject: objet, text: texte, html };
+  const fil = { ...(messageId ? { messageId } : {}), ...(inReplyTo ? { inReplyTo } : {}), ...(references ? { references } : {}) };
+  return { from: de, replyTo: de, to: a, ...(avecCopie ? { bcc: copie } : {}), subject: objet, text: texte, html, ...fil };
 }
 
 export function envoyeurDepuisEnv(env = process.env) {

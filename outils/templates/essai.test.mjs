@@ -30,8 +30,8 @@ const creer = async (w, corps, ip = '1.2.3.4') => {
 test('templates ouverts à l\'essai : tous les templates vie personnelle et pro en vente, payants', () => {
   const attendus = Object.keys(PRODUITS).filter((p) => publics(TEMPLATES[p]).some((x) => ['perso', 'pro'].includes(x)) && PRODUITS[p].gumroad && TEMPLATES[p].prix > 0);
   assert.deepEqual([...PRODUITS_ESSAI].sort(), attendus.sort(), 'un template en vente sans lien d\'achat (permalien) manque à l\'essai');
-  assert.equal(PRODUITS_ESSAI.filter((p) => publics(TEMPLATES[p]).includes('perso')).length, 38);
-  assert.equal(PRODUITS_ESSAI.filter((p) => publics(TEMPLATES[p]).includes('pro')).length, 47); // PRS fusionné dans CRM, CND dans CAN (présent dans les deux parties), PRK dans GMA le 22/11/2026 ; MRG et SMN dans EVT (en vente, deux parties) le 22/11/2026
+  assert.equal(PRODUITS_ESSAI.filter((p) => publics(TEMPLATES[p]).includes('perso')).length, 42);
+  assert.equal(PRODUITS_ESSAI.filter((p) => publics(TEMPLATES[p]).includes('pro')).length, 51); // PRS fusionné dans CRM, CND dans CAN (présent dans les deux parties), PRK dans GMA le 22/11/2026 ; MRG et SMN dans EVT (en vente, deux parties) le 22/11/2026
   assert.deepEqual(publics(TEMPLATES.CAN), ['pro', 'perso'], 'Suivi de candidatures dans les deux parties');
   assert.deepEqual(publics(TEMPLATES.EVT), ['pro', 'perso'], 'Organisateur d\'événement dans les deux parties');
   assert.ok(PRODUITS_ESSAI.includes('EVT') && !PRODUITS_ESSAI.includes('MRG'), 'Organisateur d\'événement à l\'essai');
@@ -106,7 +106,7 @@ test('création : code, e-mail de remerciement, un essai par adresse et par temp
 
 test('création refusée : template non ouvert, e-mail invalide, sans accord, robot, trop d\'essais par IP', async () => {
   const w = monde();
-  assert.equal((await creer(w, { produit: 'potager', email: 'a@b.fr' })).statut, 400);
+  assert.equal((await creer(w, { produit: 'secret-santa', email: 'a@b.fr' })).statut, 400); // gratuit, pas ouvert à l'essai
   assert.equal((await creer(w, { produit: 'budget', email: 'pas-une-adresse' })).statut, 400);
   assert.equal((await creer(w, { produit: 'budget', email: 'a@b.fr', consentement: false })).statut, 400);
   assert.equal((await creer(w, { produit: 'budget', email: 'a@b.fr', site_web: 'http://spam' })).statut, 400);

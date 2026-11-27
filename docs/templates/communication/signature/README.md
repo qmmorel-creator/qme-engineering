@@ -31,3 +31,8 @@ adresse · site »).
   en créer un nouveau (`create_draft`, mêmes destinataires, `replyToMessageId` pour rester dans le fil) puis supprimer
   l'ancien.
 - **Vérifier** avant de rendre la main : `get_draft` (RAW) montre six images `inline` et six `cid:` dans le HTML.
+
+## Copie à Floriane (décision du 27/11/2026)
+
+Tout brouillon ou envoi **personnalisé** pour Quentin met `floriane.jolliot@qm-engineering.fr` en **Cc** (pas en Cci). Jamais dans les mails de masse (campagnes, file OVH, vagues d'affiliation). Ne plus utiliser
+son adresse Gmail personnelle.

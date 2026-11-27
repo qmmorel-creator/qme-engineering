@@ -593,3 +593,29 @@ form[data-mode="parts"] .rep-parts,form[data-mode="montants"] .rep-montants{disp
 .tuto li b{font-size:16px}
 .tuto li span{color:var(--texte-2);line-height:1.45;font-size:15px}
 .tuto li span b{font-size:inherit;color:var(--encre)}
+
+/* Démo personnalisée : carte « Premiers pas » (3 gestes), en haut de l'Aperçu. */
+.demarrage{border:2px solid var(--encre);border-radius:16px;background:var(--beurre);padding:18px 20px;margin:0 0 22px}
+.demarrage-tete{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.demarrage-tete h2{font-size:20px;line-height:1.25;margin:0}
+.demarrage-compte{font-weight:800;font-size:18px;color:var(--beurre-texte)}
+.demarrage>p{color:var(--texte-2);margin:6px 0 12px}
+.demarrage ol{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.demarrage li{display:grid;grid-template-columns:32px 1fr;gap:12px;align-items:start;background:var(--surface);border-radius:12px;padding:12px 14px}
+.demarrage li>div>b{display:block}
+.demarrage li>div>span{display:block;color:var(--texte-2);margin-top:2px}
+.demarrage li .actions{margin-top:8px}
+.demarrage li.fait{opacity:.7}
+.demarrage li.fait>div>b{text-decoration:line-through}
+.demarrage-num{width:32px;height:32px;border-radius:50%;background:var(--encre);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800}
+.demarrage li.fait .demarrage-num{background:var(--vert)}
+.demarrage-pied{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+@media (min-width:900px){.demarrage ol{grid-template-columns:repeat(3,1fr)}}
+
+/* Photos du voyage : liens vers un dossier Google Drive (ou un autre album) */
+.photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.photo-carte{display:flex;flex-direction:column;gap:2px;min-height:44px;padding:10px 14px;border:1px solid var(--trait);border-radius:16px;background:var(--surface);color:inherit;text-decoration:none;text-align:left;font:inherit;cursor:pointer}
+.photo-carte b{font-size:15px;overflow-wrap:anywhere}
+.photo-carte span{font-size:13px;color:var(--discret)}
+.photo-carte:hover b,.photo-carte:focus-visible b{text-decoration:underline}
+.photo-carte.principal{border-left:6px solid var(--jaune)}

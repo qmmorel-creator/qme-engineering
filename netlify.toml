@@ -46,6 +46,19 @@
   [headers.values]
     Cache-Control = "no-cache"
 
+# Versions privées (hors catalogue, hors sitemap, hors Gumroad) : jamais indexées, toujours revalidées.
+# « Révisions QME X Laurine » : prive/revisions-laurine/ (produit RVX, clés de bêta-test).
+[[headers]]
+  for = "/prive/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/prive/revisions-laurine/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
 [[headers]]
   for = "/templates/compte-rendu/*"
   [headers.values]
@@ -1224,6 +1237,22 @@
   for = "/templates/voyage/sw.js"
   [headers.values]
     Cache-Control = "no-cache"
+
+# Lien court de démo personnalisée (Angélique Benoit, « Le van à la française », 25/11/2026) : démo
+# van + deux chiens du Planificateur de voyage, carte « Premiers pas » à son prénom.
+[[redirects]]
+  from = "/demo/angelique"
+  to = "/templates/voyage/?demo=van&prenom=Ang%C3%A9lique"
+  status = 302
+  force = true
+
+# Démo du road trip d'Angélique (27/11/2026, feu vert de Quentin), mise à son itinéraire réel en Catalogne le même jour
+# (profil « catalogne » : une version gardée sur l'appareil n'est pas rouverte). Albums photos en liens d'exemple. Placée avant toute règle plus large sur /demo/*.
+[[redirects]]
+  from = "/demo/angelique-espagne"
+  to = "/templates/voyage/?demo=catalogne&prenom=Ang%C3%A9lique"
+  status = 302
+  force = true
 
 # Lien court de démo personnalisée (partenariat Optimind, 16/11/2026) : sans « & », que certaines
 # messageries coupent. Redirection temporaire vers la démo PASS au prénom de la destinataire.

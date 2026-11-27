@@ -1,0 +1,177 @@
+<!doctype html>
+<!-- IG-220 · Concours « Le pire tableur de France » · Reel de lancement (pièce boostée).
+     Instagram 25/11/2026 20:00 (+ TikTok par Instinct), YouTube YT-75 25/11 18:00, LinkedIn LI-173 25/11 17:30.
+     Couleur dominante : jaune (IG-151 du 25/11 19:00 : rouge ; IG-213 du 24/11 : bleu). 1080 × 1920, 30 i/s, 26 s.
+     Faits du concours : docs/templates/communication/formats-test/concours-pire-tableur.md (source de vérité) :
+     participation jusqu'au dimanche 06/12/2026 23:59, 3 finalistes, vote du 08/12 au 10/12, lot : un outil sur mesure,
+     ampleur d'un template QME (validé par Quentin le 24/11/2026, aucune valeur en euros) ; 18 ans et plus, gratuit.
+     Tableur FICTIF repris d'IG-216 (formats-test/IG-216/IG-216.html, non modifié) : planning S48, 9 personnes,
+     total réel 216 h, total affiché 174 h (#REF! sur Hugo, 42 h).
+     Musique : Product Launch (120 BPM, la plus rapide et la plus forte de la bibliothèque, RMS −14,6 dB), forcée par
+       node docs/templates/communication/formats-test/IG-220/rendre.mjs IG-220 26 4300 concours-lancement
+     Zones sûres : rien d'important dans les 250 px du haut ni les 340 px du bas. -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Reel IG-220</title>
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1E9F;}
+:root{--papier:#F0EDE6;--surface:#FBFAF6;--encre:#141414;--texte-2:#45413A;--rouge:#D9302A;--jaune:#F5B400;--bleu:#1D4E89}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--papier);font-family:Outfit,sans-serif;color:var(--encre);font-variant-numeric:tabular-nums}
+.s{position:absolute;inset:0;overflow:hidden}
+*{animation-play-state:paused!important;animation-fill-mode:both!important;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+.x{position:absolute;left:84px;right:84px;font-weight:800;letter-spacing:-.025em;line-height:1.04}
+.sourcil{position:absolute;left:84px;right:84px;font-weight:700;font-size:34px;letter-spacing:.14em;text-transform:uppercase}
+.f{position:absolute}
+mark{background:var(--jaune);color:var(--encre);padding:0 12px}
+@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes tampon{0%{opacity:0;transform:scale(2.4) rotate(-8deg)}100%{opacity:1;transform:scale(1) rotate(-8deg)}}
+@keyframes monte{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
+@keyframes sortie{from{opacity:1}to{opacity:0}}
+@keyframes entree-fond{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes entree-g{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes largeur{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes secousse{0%,100%{transform:none}20%{transform:translateX(-14px) rotate(-.6deg)}40%{transform:translateX(12px) rotate(.5deg)}60%{transform:translateX(-8px)}80%{transform:translateX(5px)}}
+@keyframes anneau{from{opacity:0;transform:scale(1.8)}to{opacity:1;transform:none}}
+@keyframes clignote{0%,49%{opacity:1}50%,100%{opacity:.25}}
+@keyframes tourne{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+/* Tableur fictif (repris d'IG-216) */
+#bloc{position:absolute;left:0;top:0;width:1080px;height:1920px}
+#feuille{position:absolute;left:40px;right:40px;top:640px;background:#fff;border:3px solid #9a9a9a;font-family:Arial,Helvetica,sans-serif;font-size:25px;color:#111}
+#feuille table{border-collapse:collapse;width:100%;table-layout:fixed}
+#feuille td{border:1px solid #b9b9b9;height:52px;padding:0 6px;white-space:nowrap;overflow:hidden;position:relative}
+#feuille td.n,#feuille tr.l td{background:#e9e9e9;color:#555;text-align:center;font-size:20px}
+#feuille tr.l td{height:36px}
+#feuille td.c::after{content:'';position:absolute;right:0;top:0;border-top:14px solid #e01b1b;border-left:14px solid transparent}
+.err{color:#d00000;font-weight:700}
+#onglets{position:absolute;left:40px;right:40px;top:1385px;display:flex;flex-wrap:wrap;gap:6px;font-family:Arial,Helvetica,sans-serif;font-size:20px}
+#onglets span{background:#e4e4e4;border:1px solid #a9a9a9;padding:5px 10px;white-space:nowrap}
+#onglets span.a{background:#fff;font-weight:700;border-bottom:3px solid #0a8a2a}
+.bulle{position:absolute;background:#fff8b0;border:2px solid #9b8b1a;font-family:Arial,Helvetica,sans-serif;font-size:21px;padding:8px 12px;box-shadow:3px 3px 0 rgba(0,0,0,.25);white-space:nowrap}
+.anneau{position:absolute;border:9px solid var(--rouge);border-radius:50%}
+.etiq{position:absolute;background:var(--rouge);color:var(--surface);font-weight:800;font-size:46px;padding:16px 26px;border:5px solid var(--encre);box-shadow:10px 10px 0 var(--encre);letter-spacing:-.01em;line-height:1.1;white-space:nowrap}
+.fictif{position:absolute;left:40px;top:1500px;background:var(--encre);color:var(--surface);font-weight:700;font-size:30px;padding:8px 18px;letter-spacing:.04em}
+
+.etape{position:absolute;left:84px;right:84px;display:grid;grid-template-columns:150px 1fr;gap:34px;align-items:start}
+.etape .no{width:150px;height:150px;border-radius:50%;background:var(--encre);color:var(--jaune);font-weight:800;font-size:96px;display:flex;align-items:center;justify-content:center}
+.etape .t{font-weight:800;font-size:74px;letter-spacing:-.025em;line-height:1.02;padding-top:12px}
+.etape .st{font-weight:600;font-size:38px;line-height:1.2;margin-top:12px;color:var(--encre)}
+.signe{position:absolute;left:84px;display:flex;align-items:center;gap:22px;font-weight:800;font-size:60px;letter-spacing:-.03em}
+.signe svg{width:80px;height:80px}
+.signe .m{color:var(--bleu)}.signe .e{color:var(--surface)}
+.bouton{position:absolute;left:84px;background:var(--encre);color:var(--jaune);font-weight:800;font-size:56px;padding:26px 40px;box-shadow:16px 16px 0 var(--rouge);letter-spacing:-.025em;white-space:nowrap}
+.petit{position:absolute;left:84px;right:84px;font-weight:600;font-size:32px;line-height:1.3}
+</style>
+</head>
+<body>
+
+<!-- Scène 1 : l'accroche + le tableur monstrueux (tout visible dès la première image, sans animation d'entrée) -->
+<div class="s" id="s1" style="animation:sortie 250ms 5000ms">
+  <p class="x" style="top:280px;font-size:86px">Votre pire tableur peut vous rapporter <mark style="white-space:nowrap">un outil</mark> <mark style="white-space:nowrap">sur mesure.</mark></p>
+  <div id="bloc" style="animation:secousse 450ms 900ms">
+    <div id="feuille"></div>
+    <div id="onglets"></div>
+    <div class="bulle" style="left:610px;top:732px">NE PAS SUPPRIMER (formule)</div>
+    <div class="bulle" style="left:120px;top:1020px">voir avec Karine ??</div>
+  </div>
+  <div class="anneau" id="a-hugo" style="animation:anneau 300ms 1500ms"></div>
+  <div class="etiq" id="e-hugo" style="animation:pop 300ms 1750ms">#REF! : 42&nbsp;h envolées</div>
+  <div class="anneau" id="a-total" style="animation:anneau 300ms 2500ms"></div>
+  <div class="etiq" id="e-total" style="animation:pop 300ms 2750ms;background:var(--encre)">Total faux : 174&nbsp;h au lieu de 216</div>
+  <div class="f" style="left:230px;top:700px;background:var(--jaune);border:7px solid var(--encre);box-shadow:14px 14px 0 var(--encre);font-weight:800;font-size:76px;padding:18px 36px;white-space:nowrap;animation:tampon 300ms 3500ms">Le vôtre est pire&nbsp;?</div>
+  <p class="fictif">Tableur fictif</p>
+</div>
+
+<!-- Scène 2 : bascule -->
+<div class="s" id="s2" style="animation:entree-fond 300ms 5000ms,sortie 250ms 8000ms;background:var(--encre);color:var(--surface)">
+  <div class="f" style="right:-160px;top:1150px;width:560px;height:560px;border-radius:50%;background:var(--jaune);animation:pop 500ms 5200ms"></div>
+  <div class="f" style="left:84px;top:1240px;width:170px;height:170px;background:var(--rouge);animation:pop 400ms 5600ms,tourne 6000ms 5600ms"></div>
+  <p class="sourcil" style="top:470px;color:var(--jaune);font-size:48px;animation:monte 350ms 5200ms">Concours</p>
+  <p class="x" style="top:560px;font-size:128px;animation:monte 400ms 5500ms">Le <span style="background:var(--jaune);color:var(--encre);padding:0 14px">pire</span> tableur de France</p>
+  <p class="x" style="top:1010px;font-size:46px;font-weight:700;color:var(--jaune);animation:monte 350ms 6500ms">Montrez-le. Le gagnant repart avec son outil.</p>
+</div>
+
+<!-- Scène 3 : les règles en 3 temps -->
+<div class="s" id="s3" style="animation:entree-g 300ms 8000ms,sortie 250ms 16000ms;background:var(--jaune)">
+  <p class="sourcil" style="top:300px;animation:monte 300ms 8100ms">Comment participer</p>
+  <div class="f" style="left:84px;top:356px;width:912px;height:8px;background:var(--encre);transform-origin:left;animation:largeur 400ms 8200ms"></div>
+  <div class="etape" style="top:430px;animation:monte 350ms 8400ms"><div class="no">1</div><div><p class="t">Décrivez-le en commentaire</p><p class="st">ou envoyez-le sur <b style="white-space:nowrap">qm-engineering.fr/concours</b></p></div></div>
+  <div class="etape" style="top:800px;animation:monte 350ms 10700ms"><div class="no" style="background:var(--rouge);color:var(--surface)">2</div><div><p class="t">Je choisis 3&nbsp;finalistes</p></div></div>
+  <div class="etape" style="top:1080px;animation:monte 350ms 13000ms"><div class="no" style="background:var(--bleu);color:var(--surface)">3</div><div><p class="t">Vous votez</p><p class="st">du 08/12 au 10/12, en commentaire</p></div></div>
+</div>
+
+<!-- Scène 4 : le lot et la date -->
+<div class="s" id="s4" style="animation:entree-fond 300ms 16000ms,sortie 250ms 21000ms;background:var(--encre);color:var(--surface)">
+  <div class="f" style="left:-140px;top:250px;width:420px;height:420px;border-radius:50%;background:var(--jaune);opacity:.18;animation:pop 500ms 16100ms"></div>
+  <p class="sourcil" style="top:400px;color:var(--jaune);font-size:44px;animation:monte 300ms 16200ms">À gagner</p>
+  <p class="x" style="top:480px;font-size:112px;color:var(--jaune);animation:monte 400ms 16400ms">Votre outil sur mesure</p>
+  <p class="x" style="top:740px;font-size:52px;font-weight:700;line-height:1.2;animation:monte 350ms 17000ms">de l'ampleur d'un template QME,<br><span style="border-bottom:8px solid var(--jaune)">construit pour votre besoin.</span></p>
+  <div class="f" style="left:84px;right:84px;top:1060px;background:var(--rouge);border:6px solid var(--surface);padding:26px 34px;animation:pop 350ms 18500ms">
+    <p style="font-weight:700;font-size:36px;letter-spacing:.1em;text-transform:uppercase">Clôture</p>
+    <p style="font-weight:800;font-size:68px;letter-spacing:-.02em;line-height:1.05;white-space:nowrap">Dimanche 06/12, 23:59</p>
+  </div>
+</div>
+
+<!-- Scène 5 : appel -->
+<div class="s" id="s5" style="animation:entree-g 300ms 21000ms;background:var(--jaune)">
+  <p class="x" style="top:330px;font-size:120px">Participez&nbsp;:</p>
+  <p class="x" style="top:470px;font-size:120px"><span style="background:var(--encre);color:var(--jaune);padding:0 18px;white-space:nowrap">lien en bio.</span></p>
+  <div class="bouton" style="top:720px;animation:pop 350ms 21600ms">qm-engineering.fr/concours</div>
+  <p class="petit" style="top:950px;font-size:38px;font-weight:700;animation:monte 300ms 22100ms">18 ans et plus · gratuit</p>
+  <p class="petit" style="top:1010px;animation:monte 300ms 22300ms">Règlement sur qm-engineering.fr/concours</p>
+  <div class="signe" style="top:1400px;animation:monte 350ms 22600ms"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg><span>Q<span class="m">M</span><span class="e">E</span></span></div>
+</div>
+
+<script>
+// Tableur fictif repris d'IG-216 (mêmes données, mêmes contrôles).
+const C = ['#ffff00', '#ff99cc', '#99ff99', '#ffcc66', '#66ffff', '#cc99ff', '#c0c0c0', '#ff6666', '#99ccff', '#ccff33'];
+const gens = [
+  ['Camille', [6, 6, 5, 5, 6], '28', '28'],
+  ['Malik', [4, 4, 5, 4, 4], '21', '=G4*1'],
+  ['Sophie', [5, 4, 4, 4, 4], '21', '#VALEUR!'],
+  ['Hugo', [9, 9, 8, 8, 8], '#REF!', ''],
+  ['Théo', [3, 3, 3, 3, 2], '14', '14 ?'],
+  ['Inès', [7, 7, 7, 7, 0], '28', '28'],
+  ['Julien', [4, 4, 5, 4, 4], '21', '21'],
+  ['Nora', [1, 1, 2, 1, 1], '6', '#N/A'],
+  ['Léa', [7, 7, 7, 7, 7], '35', '35 (vérifier)'],
+];
+const vrai = { Camille: 28, Malik: 21, Sophie: 21, Hugo: 42, Théo: 14, Inès: 28, Julien: 21, Nora: 6, Léa: 35 };
+for (const [n, j] of gens) if (j.reduce((a, b) => a + b, 0) !== vrai[n]) throw new Error('Heures incohérentes : ' + n);
+const totalTableur = gens.filter((g) => g[2] !== '#REF!').reduce((a, g) => a + +g[2], 0);
+const totalVrai = Object.values(vrai).reduce((a, b) => a + b, 0);
+if (totalTableur !== 174 || totalVrai !== 216 || totalVrai - totalTableur !== vrai.Hugo || vrai.Hugo !== 42) throw new Error('Totaux incohérents');
+const e = (v) => (/^#/.test(v) ? `<span class="err">${v}</span>` : v);
+let h = '<table><colgroup><col style="width:46px"><col style="width:170px"><col span="5" style="width:78px"><col style="width:140px"><col></colgroup>';
+h += '<tr class="l"><td></td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td></tr>';
+h += `<tr><td class="n">1</td><td colspan="8" class="c" style="background:#ff3b3b;color:#fff;font-weight:700;text-align:center;font-size:26px">PLANNING ÉQUIPE S48 — NE PAS TOUCHER !!!</td></tr>`;
+h += `<tr style="font-weight:700"><td class="n">2</td><td style="background:#00b0f0">Personne</td><td style="background:#ffc000">Lun</td><td style="background:#92d050">Mar</td><td style="background:#ff99cc">Mer</td><td style="background:#ccff33">Jeu</td><td style="background:#cc99ff">Ven</td><td style="background:#ffff00">TOTAL</td><td class="c" style="background:#ff6600;color:#fff;font-size:21px">TOTAL2 FINAL v3</td></tr>`;
+gens.forEach(([n, j, t, t2], i) => {
+  const r = i + 3;
+  let cel = j.map((v, k) => `<td style="background:${C[(i * 3 + k * 7) % 10]};text-align:right"${k === 2 && i % 3 === 0 ? ' class="c"' : ''}>${v}</td>`);
+  if (n === 'Théo') cel = [`<td colspan="2" style="background:#66ffff;text-align:center;font-style:italic">6 (audit ?)</td>`, ...cel.slice(2)];
+  h += `<tr><td class="n">${r}</td><td style="background:${C[(i * 5 + 2) % 10]};font-weight:700"${n === 'Hugo' ? ' class="c"' : ''}>${n}</td>${cel.join('')}<td id="${n === 'Hugo' ? 'g-hugo' : ''}" style="text-align:right;background:#ffff00;font-weight:700">${e(t)}</td><td style="text-align:right;background:${i % 2 ? '#ffcc99' : '#fff'}">${e(t2)}</td></tr>`;
+});
+h += `<tr><td class="n">12</td><td colspan="8" style="background:#fff"></td></tr>`;
+h += `<tr style="font-weight:700"><td class="n">13</td><td colspan="6" style="background:#d9d9d9;text-align:right">TOTAL ÉQUIPE (=SOMME(G3:G11))</td><td id="g-total" style="background:#00ff00;text-align:right">${totalTableur}</td><td style="background:#ff99cc" class="c">à jour ? (mars)</td></tr>`;
+h += '</table>';
+document.getElementById('feuille').innerHTML = h;
+const ONGLETS = ['Planning', 'Planning (2)', 'copie de Planning', 'copie de copie de Planning', 'S48 FINAL', 'S48 FINAL v2', 'NE PAS TOUCHER', 'Feuil3', 'Congés 2024', 'Congés VRAI', 'TOTAL2', 'archives', 'Hugo', 'Brouillon'];
+document.getElementById('onglets').innerHTML = ONGLETS.map((o, i) => `<span class="${i === 5 ? 'a' : ''}">${o}</span>`).join('');
+function poser(idA, idE, idC, dxE, dyE) {
+  const r = document.getElementById(idC).getBoundingClientRect();
+  const a = document.getElementById(idA);
+  Object.assign(a.style, { left: r.left - 26 + 'px', top: r.top - 22 + 'px', width: r.width + 52 + 'px', height: r.height + 44 + 'px' });
+  const et = document.getElementById(idE);
+  Object.assign(et.style, { right: dxE + 'px', top: r.bottom + dyE + 'px' });
+}
+poser('a-hugo', 'e-hugo', 'g-hugo', 60, 34);
+poser('a-total', 'e-total', 'g-total', 40, -190);
+window.placer = (ms) => { document.getAnimations().forEach((a) => { a.pause(); a.currentTime = ms; }); };
+window.placer(0);
+</script>
+</body>
+</html>

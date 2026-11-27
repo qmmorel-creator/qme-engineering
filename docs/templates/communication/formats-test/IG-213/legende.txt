@@ -1,0 +1,39 @@
+10 minutes perdues par jour. Sur un an, ça fait combien ?
+
+Un fichier introuvable, un mot de passe, une info recopiée deux fois.
+En 2027, un temps plein compte 229 jours travaillés.
+229 × 10 minutes = 2 290 minutes, soit 38 h 10.
+Plus d'une semaine de 35 heures, chaque année.
+La règle à garder : 1 minute par jour ≈ 4 heures par an.
+
+Enregistrez-le. Envoyez-le à quelqu'un qui dit « ce n'est que 10 minutes ».
+Le calcul que personne ne fait, n°2 la semaine prochaine.
+
+#Organisation #Productivité #GestionDuTemps #CalculUtile #Travail
+———
+NOTES
+Format : F3 « Le calcul que personne ne fait » n°1, habillage série F7. Carrousel 6 vues 1080 × 1350, couleur dominante bleu (IG-07 du 23/11 à 19:00 : jaune). Aucun produit montré. Exemple : temps plein, année 2027 (10 minutes par jour est une hypothèse d'exemple, pas une statistique).
+
+Calcul refait en code (docs/templates/communication/formats-test/IG-213/calcul.py, sortie collée) :
+Pâques 2027 : 2027-03-28
+Jours du lundi au vendredi en 2027 : 261
+Fériés tombant en semaine : 7 -> 1er janvier, lundi de Pâques, Ascension, lundi de Pentecôte, 14 juillet, 1er novembre, 11 novembre
+Jours ouvrés : 254 ; moins 25 jours de congés = 229 jours travaillés
+ 1 min/jour x 229 = 229 min = 3 h 49 min = 0.11 semaine(s) de 35 h
+ 5 min/jour x 229 = 1145 min = 19 h 05 min = 0.55 semaine(s) de 35 h
+10 min/jour x 229 = 2290 min = 38 h 10 min = 1.09 semaine(s) de 35 h
+15 min/jour x 229 = 3435 min = 57 h 15 min = 1.64 semaine(s) de 35 h
+30 min/jour x 229 = 6870 min = 114 h 30 min = 3.27 semaine(s) de 35 h
+10 min/jour : 5.45 journées de 7 h ; sur 10 ans : 382 h = 10.9 semaines de 35 h
+(« Sur 10 ans » : au rythme de 229 jours par an ; « 1 minute ≈ 4 heures » : 3 h 49 arrondi.)
+Le lundi de Pentecôte est compté comme férié (il peut être la journée de solidarité travaillée selon l'employeur : 230 jours, 38 h 20, conclusion inchangée).
+
+Sources :
+- 11 jours fériés légaux : Code du travail, art. L3133-1 (legifrance.gouv.fr) ; liste aussi sur service-public.fr, https://www.service-public.fr/particuliers/vosdroits/F2405
+- Congés payés, 5 semaines (30 jours ouvrables, soit 25 jours ouvrés) : service-public.fr, https://www.service-public.fr/particuliers/vosdroits/F2258
+- Durée légale du travail, 35 heures par semaine : Code du travail, art. L3121-27 (legifrance.gouv.fr) ; service-public.fr, https://www.service-public.fr/particuliers/vosdroits/F1911
+- 254 jours ouvrés en 2027 : déjà utilisé dans IG-46 (cohérent).
+
+Accroches non retenues :
+- « Une semaine de travail par an, perdue 10 minutes à la fois. »
+- « 10 minutes par jour, ce n'est rien ? Faites le calcul. »
