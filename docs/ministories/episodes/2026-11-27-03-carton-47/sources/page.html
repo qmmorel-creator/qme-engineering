@@ -167,7 +167,7 @@ S.S5 = (t, l) => {                       // Payoff : le carton 47, le dernier ; 
 
 const scene = document.getElementById('scene'), st = document.getElementById('st'), carton = document.getElementById('carton');
 // Sous-titres : une réplique = un sous-titre, calé sur la voix réelle (début, fin + 0,12 s), deux lignes au plus.
-const COUPES = { v01: 'Vingt-deux heures.<br>Il veut juste un thé.', v03: 'Carton douze :<br>encore des chaussettes.', v05: 'Quarante-six cartons.<br>Toujours pas de bouilloire.', v06: (tv) => tv < 14.55 ? 'Avec Déménagement,<br>de QME,' : 'chaque carton a son numéro<br>et son contenu.', v07: 'Une recherche : bouilloire.<br>Carton quarante-sept.' };
+const COUPES = { v01: 'Vingt-deux heures.<br>Il veut juste un thé.', v03: 'Carton douze :<br>encore des chaussettes.', v05: 'Quarante-six cartons.<br>Toujours pas de bouilloire.', v06: (tv) => tv < 15.1 ? 'Avec Déménagement,<br>de QME,' : 'chaque carton a son numéro<br>et son contenu.', v07: 'Une recherche : bouilloire.<br>Carton quarante-sept.' };
 window.placer = (ms) => {
   const tv = ms / 1000; const t = recaler(tv); ms = t * 1000; window.__t = ms;
   const fin = tv >= T.carton.debut;
