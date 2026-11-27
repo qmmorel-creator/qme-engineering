@@ -1,9 +1,9 @@
 {
   "episode": "01-abonnement-fantome",
-  "duree": 29.6,
+  "duree": 30.5,
   "carton": {
-    "debut": 25.6,
-    "fin": 29.6
+    "debut": 26.5,
+    "fin": 30.5
   },
   "scenes": [
     {
@@ -60,49 +60,49 @@
       "id": "v01",
       "t": 0.25,
       "texte": "Neuf euros quatre-vingt-dix-neuf. Pour méditer.",
-      "fin": 2.898
+      "fin": 2.84
     },
     {
       "id": "v02",
-      "t": 3.25,
+      "t": 3.3,
       "texte": "Ouverte une fois. En 2024.",
-      "fin": 5.794
+      "fin": 5.5
     },
     {
       "id": "v03",
-      "t": 6.15,
+      "t": 5.9,
       "texte": "Attendez… il y en a d'autres.",
-      "fin": 7.448
+      "fin": 7.66
     },
     {
       "id": "v04",
-      "t": 7.75,
+      "t": 8.2,
       "texte": "Le streaming oublié. La salle de sport. Le magazine.",
-      "fin": 11.572
+      "fin": 11.59
     },
     {
       "id": "v05",
-      "t": 12.0,
+      "t": 11.97,
       "texte": "Quatre-vingt-sept euros par mois. De fantômes.",
-      "fin": 14.713
+      "fin": 14.45
     },
     {
       "id": "v06",
-      "t": 15.5,
+      "t": 14.84,
       "texte": "Le Suivi des abonnements, de QME, ramène tout au mois et à l'année.",
-      "fin": 18.639
+      "fin": 19.19
     },
     {
       "id": "v07",
-      "t": 19.0,
+      "t": 19.68,
       "texte": "Un essai qui se termine ? L'alerte arrive avant le prélèvement.",
-      "fin": 22.166
+      "fin": 22.98
     },
     {
       "id": "v08",
-      "t": 22.7,
+      "t": 23.43,
       "texte": "Cette fois, Caro médite… gratuitement.",
-      "fin": 24.921
+      "fin": 26.13
     }
   ],
   "bruitages": [
@@ -112,19 +112,19 @@
     },
     {
       "son": "fizz",
-      "t": 5.82
+      "t": 5.52
     },
     {
       "son": "whoosh",
-      "t": 7.42
+      "t": 7.7
     },
     {
       "son": "pose",
-      "t": 9.4
+      "t": 9.25
     },
     {
       "son": "pose",
-      "t": 10.8
+      "t": 10.45
     },
     {
       "son": "chute",
@@ -132,23 +132,23 @@
     },
     {
       "son": "whoosh",
-      "t": 15.25
+      "t": 14.46
     },
     {
       "son": "pose",
-      "t": 17.95
+      "t": 19.2
     },
     {
       "son": "pose",
-      "t": 18.35
+      "t": 19.35
     },
     {
       "son": "pose",
-      "t": 18.88
+      "t": 19.5
     },
     {
       "son": "ding",
-      "t": 24.95
+      "t": 26.15
     }
   ],
   "reperes": {
@@ -162,5 +162,76 @@
     "cadre_an": 18.4,
     "alerte": 20.8,
     "prelevement": 21.8
-  }
+  },
+  "voix_source": {
+    "fichier": "audio/elevenlabs/voix-elevenlabs.wav",
+    "decalage": 0.2,
+    "origine": "ElevenLabs, voix « Caroline - Warm, Sweet and Soft » (kwhMCf63M8O3rCfnQ3oQ), eleven_v4, générée le 27/11/2026"
+  },
+  "montage": [
+    [
+      0,
+      0
+    ],
+    [
+      3.3,
+      3.25
+    ],
+    [
+      5.9,
+      6.15
+    ],
+    [
+      8.3,
+      7.85
+    ],
+    [
+      9.7,
+      9.45
+    ],
+    [
+      11.0,
+      10.85
+    ],
+    [
+      11.97,
+      12.0
+    ],
+    [
+      14.84,
+      15.5
+    ],
+    [
+      18.3,
+      18.0
+    ],
+    [
+      19.0,
+      18.4
+    ],
+    [
+      19.68,
+      19.0
+    ],
+    [
+      21.1,
+      20.8
+    ],
+    [
+      22.5,
+      21.8
+    ],
+    [
+      23.43,
+      22.7
+    ],
+    [
+      26.5,
+      25.6
+    ],
+    [
+      30.5,
+      29.6
+    ]
+  ]
 }
