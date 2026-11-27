@@ -22,7 +22,12 @@ Lancée le 27/11/2026 (sous-campagne de la session « Audit campagnes ciblées �
 
 | Lot | Date | Sourcés | Écartés `doublons` | Écartés Nexora | Écartés Gmail | Écartés opposition | Retenus |
 |---|---|---|---|---|---|---|---|
+| C (natation, badminton, tennis de table, vélo) | 27/11/2026 | 45 (2 retirés : ville non lue sur le site) | 0 | 0 | 0 | 0 | 43 |
 
 ## Journal
 
-- 27/11/2026 : page, captures, modèle de mail, concept enregistré dans Nexora (`cpt-clubs-competition`, brouillon).
+- 27/11/2026 : page, captures, modèle de mail, concept enregistré dans Nexora (`cpt-clubs-competition`, brouillon). PR #335
+  (aperçu contrôlé : 200, `noindex`). Campagne créée sur le site, en pause, sans `parJour`. Lot C contrôlé (43 prêts) ;
+  témoins Gmail vérifiés (domaine inventé : 0 fil ; `qm-engineering.fr` : environ 4 300 fils), une requête par domaine,
+  entre guillemets. Brouillon de validation à Quentin (club réel du lot C). Lots A et B en cours de sourcing.
+  Les lots restent hors du dépôt jusqu'à la mise en file (sinon `doublons` les écarterait comme déjà cités).
