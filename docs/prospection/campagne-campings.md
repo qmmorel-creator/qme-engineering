@@ -45,10 +45,15 @@ structure du mail : `docs/prospection/mail-type-packs-niches.md`.
 - 80 campings sourcés (adresse lue sur la page exacte du site officiel, fait lu sur le site ; 37 départements, 5 au plus
   par département) ; environ 390 sites examinés, écartés au sourcing : une cinquantaine de chaînes et groupes, 6
   municipaux ou douteux, 1 adresse nominative, 4 trop petits ou hors sujet, environ 120 sans adresse visible.
-- Contrôles anti-doublon : `doublons` 0 écarté (référence 1 330 adresses, 817 domaines) ; **Nexora 2 écartés**
-  (Camping Europa à Saint-Jorioz et Domaine de la Gautière, vague 10 « Hébergement et loisirs ») ; Gmail
-  `in:anywhere` 0 écarté (requêtes groupées refaites par petits groupes, domaines entre guillemets, témoin vérifié) ;
-  liste d'opposition 0 ; `desinscrits.md` 0.
+- Contrôles anti-doublon (méthode de la PR #330 au 27/11, commits b01111b, 28fa78b, 001e536) :
+  - `doublons --campagne campings` : 0 écarté (référence 1 330 adresses, 817 domaines) ;
+  - Nexora : **2 écartés** (Camping Europa à Saint-Jorioz et Domaine de la Gautière, vague 10 « Hébergement et
+    loisirs ») ; puis 156 recherches sur les 78 retenus (nom, puis radical du domaine) : 0 de plus, 8 homonymes
+    vérifiés (autres établissements, autres villes) ;
+  - Gmail : 0 écarté, **une requête par domaine** `in:anywhere "<domaine>"` (adresse entière pour une messagerie grand
+    public), 78 requêtes, témoins vérifiés au début et à la fin (domaine déjà prospecté trouvé, domaine inventé vide) ;
+    les requêtes groupées faites d'abord ne comptent pas ;
+  - liste d'opposition 0 ; `desinscrits.md` 0.
 - **78 adresses prêtes**. Sondage : 4 adresses sur 4 retrouvées sur leur page source. Prénoms d'exploitants retirés de
   3 faits (aucune donnée personnelle dans un mail de masse). Fichier de lot hors dépôt (adresses : pas dans un dépôt
   publié).
