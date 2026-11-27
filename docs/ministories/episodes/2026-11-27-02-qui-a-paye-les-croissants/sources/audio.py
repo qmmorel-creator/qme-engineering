@@ -134,7 +134,12 @@ json.dump(TL, open('sources/timeline.json', 'w'), ensure_ascii=False, indent=2)
 musique = glob.glob('audio/musique-*.mp3')[0]
 c = TL['carton']['debut']
 filtre = (
-    f"[0:a]aloop=loop=-1:size=2e9,atrim=0:{DUREE},asetpts=PTS-STARTPTS,aformat=sample_rates={SR}:channel_layouts=stereo,"
+    # La musique (24,96 s) est plus courte que l'épisode : au lieu d'une boucle qui reprendrait n'importe où,
+    # elle repart du début au carton final (fondu croisé de 0,3 s), la reprise devient la ponctuation du carton.
+    f"[0:a]aformat=sample_rates={SR}:channel_layouts=stereo,asplit=2[ma][mb];"
+    f"[ma]atrim=0:{c + 0.3},afade=t=out:st={c}:d=0.3[m1];"
+    f"[mb]atrim=0:{DUREE - c},asetpts=PTS-STARTPTS,afade=t=in:d=0.3,adelay={int(c * 1000)}:all=1[m2];"
+    f"[m1][m2]amix=inputs=2:normalize=0:duration=longest,apad,atrim=0:{DUREE},asetpts=PTS-STARTPTS,"
     f"volume=0.22,afade=t=in:d=0.2,volume='if(gte(t,{c}),1.6,1)':eval=frame,afade=t=out:st={DUREE - 1.6}:d=1.6[m];"
     f"[1:a]aformat=sample_rates={SR}:channel_layouts=stereo,asplit=2[v][vs];"
     f"[m][vs]sidechaincompress=threshold=0.015:ratio=10:attack=15:release=350:makeup=1[md];"

@@ -2,7 +2,7 @@
 """Mini-story « Le marathon de la veille » : construit la piste voix, les bruitages et le mix final.
 
 Usage : python3 sources/audio.py   (depuis le dossier de l'épisode)
-Entrées : sources/timeline.json, audio/voix/vNN.wav, audio/musique-*.mp3
+Entrées : sources/timeline.json, voix_source (ElevenLabs) ou audio/voix/vNN.wav, audio/musique-*.mp3
 Sorties : audio/piste-voix.wav, audio/piste-bruitages.wav, audio/bruitages/*.wav, audio/mix-final.wav
 Les bruitages sont synthétisés ici (aucun échantillon tiers, donc aucun droit à vérifier).
 """
