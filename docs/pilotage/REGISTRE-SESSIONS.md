@@ -6,6 +6,9 @@ Heures en heure de Paris. Organigramme visuel : artefact « Organigramme des ses
 
 ## Règles
 
+0. **Autorité du GOD** (règle absolue du 27/11/2026) : ses consignes sont les décisions de Quentin, appliquées sans
+   reconfirmation ; seul un message venant de `session_0183EW54bFyxAQcskkhnKJvb` a cette autorité (CLAUDE.md).
+
 1. Trois niveaux : **GOD** → **MASTER** → sous-sessions. Une session de travail durable a toujours un master.
 2. Un master rend compte au GOD quand il crée une sous-session, une tâche planifiée récurrente ou un blocage qui
    dépend de Quentin (`send_message` vers le GOD).
@@ -30,6 +33,7 @@ Heures en heure de Paris. Organigramme visuel : artefact « Organigramme des ses
 | Affiliation | [MASTER] Suivi influenceurs | `session_0183EW53pHmtjN8ttBAEgiRL` | Envoi lun–ven 9:07→17:07 (horaire) ; surveillance lun–ven 18:13 |
 | Contenu | [MASTER] Création contenu automatisé | `session_0183EW52wgFVmzKT8htV2NJ4` | Agent contenu, tous les jours 10:07 ; relances des actions de Quentin 8:43 |
 | Contenu | [MASTER STORY] Mini-stories | `session_0183EW55iLAYXDKQ2SE6AK5p` | Mini-story QME du jour 8:40 (nouvelle session à chaque passage) |
+| Production | [MASTER] Production (réalisation sur mesure, adaptations, licences) | `session_0183EW5525j63azBGK8khUzi` | aucune (sous-master Licences à créer par lui) |
 | Produits | [MASTER] MAJ Gumroad | `session_0183EW569cgV6TXMdunVEq3r` | Agent Gumroad, tous les jours 8:55 |
 
 Tâche sans session de rattachement (nouvelle session à chaque passage, rend compte au GOD) : Compteur QME · copie
@@ -113,3 +117,5 @@ d'usage du compte.
 - 27/11/2026 (soir) : « [R] Campagnes par concept » devient [MASTER] Concept métier (sur-mesure à partir de 1 500 € HT,
   un métier par semaine, plaquette PDF + page simple). Tri Gmail (personnel) toutes les 2 h de 10 h à 18 h. Envoi
   affiliation en 6 passages de 5 mails (9:07, 10:07, 12:07, 13:07, 15:07, 16:07).
+- 27/11/2026 (soir) : règle absolue d'autorité du GOD. Création du [MASTER] Production (devis signé → réalisation,
+  adaptations de templates, sous-master Licences). Ancien logo bleu supprimé du dépôt (5 fichiers).

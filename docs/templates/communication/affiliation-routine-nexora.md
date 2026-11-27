@@ -11,7 +11,7 @@ Prérequis : le connecteur MCP Nexora est disponible dans la session où se déc
 
 | Tâche | Quand (heure de Paris) | Id |
 |---|---|---|
-| Affiliation QME · envoi (30/jour) | lundi–vendredi, 9 h 07 à 17 h 07, toutes les heures | `trig_01KqME2ZeqiJUAzJUosvu49x` |
+| Affiliation QME · envoi (30/jour) | lundi–vendredi, 9 h 07, 10 h 07, 12 h 07, 13 h 07, 15 h 07 et 16 h 07 (6 passages, décision du 27/11/2026) | `trig_01KqME2ZeqiJUAzJUosvu49x` |
 | Affiliation QME · surveillance quotidienne | lundi–vendredi, 18 h 13 | `trig_01XvvqPhSnTNyvgprvGZgKgo` |
 
 Correspondance avec l'ancien tableur : A ordre → `ordre` ; B statut → `etape` (`a-envoyer`, `envoye`, `rebond`,
@@ -27,7 +27,7 @@ Quentin pilote depuis Optim (`/qme/affiliation` : bouton pause, quota) ou en le 
 2. `list_qme` `domain: "createurs"`, `limit: 200`, en suivant `nextOffset` jusqu'au bout. Compter les créateurs
    dont `dateEnvoi` est la date du jour à Paris, **quelle que soit l'étape**. reste = `quotaJour` − ce compte ;
    si ≤ 0, s'arrêter.
-3. n = min(3, reste) ; à 17 h ou plus, n = reste.
+3. n = min(5, reste) ; au dernier passage (16 h ou plus), n = reste. Six passages de 5 font les 30 du jour : ne jamais envoyer tout le reste au premier passage (décision de Quentin du 27/11/2026).
 4. Pour les n premiers créateurs à l'étape `a-envoyer` (ordre croissant) dont `aVerifier` ne commence pas par
    « erreur » : Gmail `send_message` avec **uniquement** `draftId`. Succès : `mutate_qme` `entity: "createur"`,
    `action: "update"`, `changes: { etape: "envoye", dateEnvoi: <jour>, messageId, threadId }`. Échec après un

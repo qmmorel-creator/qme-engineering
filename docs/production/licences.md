@@ -83,11 +83,10 @@ livraison (correctif, évolution) ajoute une ligne de version.
 **Contrôle périodique** (à chaque sollicitation du master, au moins chaque lundi) : `list_products` contre le code
 (script du § 1), `ecart.mjs`, `list_sales` depuis le dernier contrôle (§ 2), fiches clients `gagne` / `signe` (§ 4).
 
-## 6. Points ouverts pour Quentin
+## 6. Décisions et points ouverts
 
-1. Option « clé de licence » : non lisible par le connecteur Gumroad. Contrôle visuel des 110 fiches actives à faire
-   par Quentin (ou capture du tableau de bord), ou acceptation de l'indice indirect.
-2. `RVX_GUMROAD_ID` : confirmer que la variable Netlify vaut `Bxld7Q6KTUy5ValRUfIvMA==` (non vérifié, lecture des
-   variables Netlify non faite).
+1. Option « clé de licence » : décision de Quentin du 27/11/2026, on se fie à l'indice des 2 ventes ; à chaque
+   nouvelle vente, contrôle visuel de la fiche concernée (clé reçue par l'acheteur et ouvrant le bon template).
+2. `RVX_GUMROAD_ID` = `Bxld7Q6KTUy5ValRUfIvMA==` : confirmé par Quentin le 27/11/2026.
 3. Écarts de nom (domaine de l'agent Gumroad, sans effet sur les licences) : fiche CRM nommée « CRM freelance » sur
    Gumroad contre « CRM et prospection » sur le site.
