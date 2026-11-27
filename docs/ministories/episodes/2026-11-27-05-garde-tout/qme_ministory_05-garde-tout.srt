@@ -1,49 +1,43 @@
 1
-00:00:00,200 --> 00:00:01,641
+00:00:00,230 --> 00:00:01,880
 Garde tout, on sait jamais.
 
 2
-00:00:02,050 --> 00:00:02,845
+00:00:02,150 --> 00:00:03,290
 Les factures.
 
 3
-00:00:02,900 --> 00:00:03,521
+00:00:03,280 --> 00:00:04,290
 Les relevés.
 
 4
-00:00:03,700 --> 00:00:05,933
+00:00:04,370 --> 00:00:07,310
 La garantie du grille-pain… de 2009.
 
 5
-00:00:06,350 --> 00:00:08,575
+00:00:07,660 --> 00:00:09,780
 Et un jour, on cherche l'avis d'imposition.
 
 6
-00:00:10,350 --> 00:00:11,315
+00:00:09,960 --> 00:00:10,930
 Il est tout en bas.
 
 7
-00:00:13,150 --> 00:00:15,100
-Avec Papiers du foyer,
-de QME,
+00:00:11,290 --> 00:00:15,900
+Avec Papiers du foyer, de QME, vous savez combien de temps garder chaque papier.
 
 8
-00:00:15,100 --> 00:00:17,293
-vous savez combien de temps
-garder chaque papier.
-
-9
-00:00:17,400 --> 00:00:19,994
+00:00:16,210 --> 00:00:18,850
 Et la liste de ce qui peut être jeté se remplit seule.
 
-10
-00:00:20,050 --> 00:00:21,572
+9
+00:00:19,150 --> 00:00:20,770
 La moitié part au recyclage.
 
-11
-00:00:21,650 --> 00:00:24,600
+10
+00:00:21,070 --> 00:00:23,580
 L'avis d'imposition, lui, reste à sa place.
 
-12
-00:00:24,700 --> 00:00:25,998
+11
+00:00:23,860 --> 00:00:25,000
 Maintenant, on sait.

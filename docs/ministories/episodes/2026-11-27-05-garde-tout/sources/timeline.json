@@ -1,9 +1,9 @@
 {
   "episode": "garde-tout",
-  "duree": 30.0,
+  "duree": 29.4,
   "carton": {
-    "debut": 26.0,
-    "fin": 30.0
+    "debut": 25.4,
+    "fin": 29.4
   },
   "scenes": [
     {
@@ -58,111 +58,210 @@
   "voix": [
     {
       "id": "v01",
-      "t": 0.25,
+      "t": 0.23,
       "texte": "Garde tout, on sait jamais.",
-      "fin": 1.521
+      "fin": 1.76
     },
     {
       "id": "v02",
-      "t": 2.1,
+      "t": 2.15,
       "texte": "Les factures.",
-      "fin": 2.725
+      "fin": 3.17
     },
     {
       "id": "v03",
-      "t": 2.95,
+      "t": 3.28,
       "texte": "Les relevés.",
-      "fin": 3.401
+      "fin": 4.17
     },
     {
       "id": "v04",
-      "t": 3.75,
+      "t": 4.37,
       "texte": "La garantie du grille-pain… de 2009.",
-      "fin": 5.813
+      "fin": 7.19
     },
     {
       "id": "v05",
-      "t": 6.4,
+      "t": 7.66,
       "texte": "Et un jour, on cherche l'avis d'imposition.",
-      "fin": 8.455
+      "fin": 9.66
     },
     {
       "id": "v06",
-      "t": 10.4,
+      "t": 9.96,
       "texte": "Il est tout en bas.",
-      "fin": 11.195
+      "fin": 10.81
     },
     {
       "id": "v07",
-      "t": 13.2,
+      "t": 11.29,
       "texte": "Avec Papiers du foyer, de QME, vous savez combien de temps garder chaque papier.",
-      "fin": 17.173
+      "fin": 15.78
     },
     {
       "id": "v08",
-      "t": 17.45,
+      "t": 16.21,
       "texte": "Et la liste de ce qui peut être jeté se remplit seule.",
-      "fin": 19.874
+      "fin": 18.73
     },
     {
       "id": "v09",
-      "t": 20.1,
+      "t": 19.15,
       "texte": "La moitié part au recyclage.",
-      "fin": 21.452
+      "fin": 20.65
     },
     {
       "id": "v10",
-      "t": 21.7,
+      "t": 21.07,
       "texte": "L'avis d'imposition, lui, reste à sa place.",
-      "fin": 24.48
+      "fin": 23.46
     },
     {
       "id": "v11",
-      "t": 24.75,
+      "t": 23.86,
       "texte": "Maintenant, on sait.",
-      "fin": 25.878
+      "fin": 24.88
     }
   ],
   "bruitages": [
     {
       "son": "pose",
-      "t": 1.95
+      "t": 2.02
     },
     {
       "son": "pose",
-      "t": 2.8
+      "t": 3.19
     },
     {
       "son": "pose",
-      "t": 3.6
+      "t": 4.19
     },
     {
       "son": "chute",
-      "t": 8.5
+      "t": 9.68
     },
     {
       "son": "whoosh",
-      "t": 8.65
-    },
-    {
-      "son": "tick",
-      "t": 11.3
-    },
-    {
-      "son": "whoosh",
-      "t": 12.75
+      "t": 10.86
     },
     {
       "son": "pop",
-      "t": 19.95
+      "t": 18.76
     },
     {
       "son": "pose",
-      "t": 21.5
+      "t": 20.7
     },
     {
       "son": "ding",
-      "t": 25.92
+      "t": 24.92
     }
+  ],
+  "voix_source": {
+    "fichier": "audio/elevenlabs/voix-elevenlabs.wav",
+    "decalage": 0.2,
+    "origine": "ElevenLabs, voix « Caroline - Warm, Sweet and Soft » (kwhMCf63M8O3rCfnQ3oQ), eleven_v4, générée le 27/11/2026"
+  },
+  "montage": [
+    [
+      0,
+      0
+    ],
+    [
+      1.76,
+      1.52
+    ],
+    [
+      2.05,
+      1.95
+    ],
+    [
+      3.28,
+      2.95
+    ],
+    [
+      4.37,
+      3.75
+    ],
+    [
+      7.19,
+      5.81
+    ],
+    [
+      7.66,
+      6.4
+    ],
+    [
+      9.5,
+      8.45
+    ],
+    [
+      9.66,
+      8.6
+    ],
+    [
+      10.3,
+      9.6
+    ],
+    [
+      10.35,
+      10.35
+    ],
+    [
+      10.85,
+      11.25
+    ],
+    [
+      11.2,
+      13.1
+    ],
+    [
+      11.29,
+      13.2
+    ],
+    [
+      15.78,
+      17.17
+    ],
+    [
+      16.21,
+      17.45
+    ],
+    [
+      18.73,
+      19.87
+    ],
+    [
+      19.15,
+      20.1
+    ],
+    [
+      20.65,
+      21.45
+    ],
+    [
+      21.07,
+      21.7
+    ],
+    [
+      23.46,
+      24.48
+    ],
+    [
+      23.86,
+      24.75
+    ],
+    [
+      24.88,
+      25.88
+    ],
+    [
+      25.4,
+      25.99
+    ],
+    [
+      29.4,
+      29.99
+    ]
   ]
 }
