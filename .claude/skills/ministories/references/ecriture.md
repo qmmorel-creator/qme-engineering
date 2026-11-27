@@ -46,3 +46,13 @@ S'applique à toute mini-story produite ou refaite à partir du 27/11/2026 ; il 
 - **Fin = chute qui boucle sur le début**, puis le carton.
 - **Envoi** : le script répond par écrit à « à qui le spectateur va-t-il l'envoyer ? » (coloc, conjoint, pote de promo…).
 - 30 à 45 mots de voix au plus. Rythme rapide, une idée par plan.
+- **Formes qui donnent envie d'envoyer** (décision de Quentin du 27/11/2026, audit § 3 priorité 2) : privilégier le POV
+  (« POV : ton abonnement se renouvelle le 3 »), les types de personnes (« le coloc qui "a tout payé" »), le « nous »
+  (« nous la veille du partiel »). L'accroche écrite peut porter cette forme.
+- **Légende** : 1re ligne = question ouverte qui fait taguer quelqu'un (« Lequel de tes potes fait ça ? »), adaptée à
+  la réponse « à qui l'envoyer ? » ; nom du produit et lien en légende ou en premier commentaire ; rien d'absent de la
+  vidéo ou de la fiche catalogue. **Légende TikTok** prête à coller, dans un fichier texte
+  `qme_ministory_<NN>-<slug>_tiktok-legende.txt` à côté du MP4 dans le Drive : environ 150 caractères, mots que le
+  public cherche (« budget étudiant », « abonnements oubliés », « réviser ses partiels »), 3 à 5 hashtags, « lien en bio ».
+- **Calendrier saisonnier** (audit § 3) : décembre Secret Santa, cadeaux et remerciements ; janvier résolutions,
+  abonnements ; février partiels, Saint-Valentin ; printemps-été candidatures, déménagement, road trip, sport.
