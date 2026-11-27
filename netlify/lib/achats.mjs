@@ -21,7 +21,7 @@
 // /admin/suivi/, puis elle est effacée ; non envoyée à la fin du rattrapage, effacée aussitôt. Rien pour une adresse sur
 // la liste d'opposition.
 import { createHmac } from 'node:crypto';
-import { PRODUITS, PACKS, verifierLicenceGumroad, cleEmail, jourParis, decalerJour } from './templates-acces.mjs';
+import { PRODUITS, PACKS, PRODUITS_PRIVES, configPrives, verifierLicenceGumroad, cleEmail, jourParis, decalerJour } from './templates-acces.mjs';
 import { ficheEssai, corpsHtml, enveloppeHtml, SIGNATURE, SITE } from './essais.mjs';
 import { PRISE_EN_MAIN } from './essais-prise-en-main.mjs';
 import { ajouterAchat } from './comptes.mjs';
@@ -35,9 +35,11 @@ const json = (statut, corps) => new Response(JSON.stringify(corps), { status: st
 const dateFr = (jour) => new Date(`${jour}T12:00:00Z`).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'Europe/Paris' }).replace(/ 1 /, ' 1er ');
 const cleAchat = (secret, licence) => `achat/${createHmac('sha256', secret).update(`achat:${String(licence).trim().toUpperCase()}`).digest('hex').slice(0, 32)}`;
 
-// Produit Gumroad → template ou pack vendu.
-export function produitVendu(idGumroad) {
+// Produit Gumroad → template ou pack vendu, ou produit privé (RVX) si son identifiant est configuré.
+export function produitVendu(idGumroad, prives = configPrives()) {
   if (!idGumroad) return null;
+  const v = Object.keys(PRODUITS_PRIVES).find((p) => prives?.[p]?.gumroad && prives[p].gumroad === idGumroad);
+  if (v) return { type: 'prive', code: v, nom: PRODUITS_PRIVES[v].nom, produits: [], gumroad: idGumroad };
   const t = Object.keys(PRODUITS).find((p) => PRODUITS[p].gumroad === idGumroad);
   if (t) return { type: 'template', code: t, nom: PRODUITS[t].nom, produits: [t] };
   const k = Object.keys(PACKS).find((p) => PACKS[p].gumroad === idGumroad);
@@ -54,6 +56,7 @@ const prenomDe = (essai, nomComplet) => {
 
 export function contenuMailAchat({ vente, essais = [], prenom = '', aujourdhui }) {
   const bonjour = prenom ? `Bonjour ${prenom},` : 'Bonjour,';
+  if (vente.type === 'prive') return contenuMailPrive({ vente, bonjour });
   const nom = `« ${vente.nom} »`;
   const pack = vente.type === 'pack';
   let objet, texte;
@@ -100,18 +103,39 @@ ${SIGNATURE}`;
   };
 }
 
+// Produit privé (RVX) : lien direct vers l'application privée et clé de licence Gumroad. Aucun lien vers /connexion/.
+function contenuMailPrive({ vente, bonjour }) {
+  const url = `${SITE}${PRODUITS_PRIVES[vente.code].url}`;
+  const objet = `Votre accès : ${vente.nom}`;
+  const texte = `${bonjour}
+
+Merci de participer à la bêta de « ${vente.nom} ». Votre accès est prêt.
+
+Pour l'ouvrir : allez sur ${url} et collez la clé de licence reçue dans le reçu Gumroad (4 blocs de 8 caractères). Sur vos autres appareils, la même clé retrouve les mêmes données.
+
+Ce lien est privé : merci de ne pas le partager.
+
+Une question, une idée, un bug ? Répondez simplement à cet e-mail : vos retours servent directement à améliorer l'outil.
+
+Merci encore,
+${SIGNATURE}`;
+  const pied = '\n\n—\nVous recevez cet e-mail parce que vous avez obtenu un accès QME sur Gumroad.';
+  return { type: 'achat-prive', objet, texte: texte + pied,
+    html: enveloppeHtml(`${corpsHtml(texte)}<p style="margin:24px 0 0;font-size:12px;color:#6b6660">Vous recevez cet e-mail parce que vous avez obtenu un accès QME sur Gumroad.</p>`) };
+}
+
 // POST /api/achat (ping Gumroad, application/x-www-form-urlencoded). Répond toujours 200, sauf échec d'envoi
 // (500 : Gumroad renvoie alors le ping, et la vente n'est pas marquée traitée).
-export async function traiterAchat(requete, { secret, essais, envoyer = null, notifier = '', maintenant = Date.now, verifierLicence = verifierLicenceGumroad }) {
+export async function traiterAchat(requete, { secret, essais, envoyer = null, notifier = '', maintenant = Date.now, verifierLicence = verifierLicenceGumroad, prives = configPrives() }) {
   if (requete.method !== 'POST') return json(405, { erreur: 'POST attendu' });
   if (!secret || !essais) return json(503, { erreur: 'Service non configuré' });
   const f = new URLSearchParams(await requete.text());
-  const vente = produitVendu(f.get('product_id'));
+  const vente = produitVendu(f.get('product_id'), prives);
   const licence = f.get('license_key');
   if (!vente || !licence) return json(200, { ok: true, ignore: 'produit ou licence absent' });
   const cle = cleAchat(secret, licence);
   if (await essais.get(cle)) return json(200, { ok: true, deja: true });
-  const produitGumroad = vente.type === 'pack' ? PACKS[vente.code].gumroad : PRODUITS[vente.code].gumroad;
+  const produitGumroad = vente.type === 'prive' ? vente.gumroad : vente.type === 'pack' ? PACKS[vente.code].gumroad : PRODUITS[vente.code].gumroad;
   const v = await verifierLicence(produitGumroad, licence);
   if (!v.ok || !v.achat?.email) return json(200, { ok: true, ignore: v.raison || 'adresse absente' });
   const email = v.achat.email;
@@ -133,13 +157,14 @@ export async function traiterAchat(requete, { secret, essais, envoyer = null, no
     }
   }
   for (const reg of trouves) await essais.set(`essai/${reg.id}`, { ...reg, paye: date });
-  // Accompagnement J+3 (tournerSuivisAchat). Un échec n'empêche jamais le ping.
-  if (envoyer) {
+  // Accompagnement J+3 (tournerSuivisAchat) et compte acheteur : jamais pour un produit privé (pas d'espace /connexion/).
+  const prive = vente.type === 'prive';
+  if (envoyer && !prive) {
     try { await essais.set(`suivi-${cle}`, { email, prenom: prenomDe(trouves[0], f.get('full_name')), type: vente.type, code: vente.code, achat: aujourdhui, du: decalerJour(aujourdhui, SUIVI_ACHAT.jours) }); }
     catch (x) { console.error('Mise en file de l\'accompagnement impossible', x); }
   }
   // Compte acheteur (comptes.mjs) : la licence rejoint le compte de cette adresse. Un échec n'empêche jamais le ping.
-  try { await ajouterAchat({ secret, store: essais, email, vente, licence, nomComplet: f.get('full_name'), maintenant }); } catch (x) { console.error('Ajout au compte impossible', x); }
+  if (!prive) try { await ajouterAchat({ secret, store: essais, email, vente, licence, nomComplet: f.get('full_name'), maintenant }); } catch (x) { console.error('Ajout au compte impossible', x); }
   await essais.set(cle, { produit: vente.code, date, mail: envoyer ? m.type : null, essai: trouves.map((r) => r.id) });
   if (envoyer && notifier) {
     await envoyer({ a: notifier, objet: `Nouvelle vente : ${vente.nom} · ${trouves.length ? 'après essai' : 'directe'}`,
