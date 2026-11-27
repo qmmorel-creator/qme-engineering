@@ -43,3 +43,15 @@ Sous-campagne lancée le 27/11/2026 depuis la session « Audit campagnes ciblée
 - Contrôles anti-doublon : `doublons --campagne coworking` 0 écarté ; Nexora (nom puis radical du domaine, 95
   recherches) 0 écarté ; Gmail (une requête par domaine, 52 clés, témoins connu et inventé valides) 0 écarté.
 - Opposition : à vérifier par l'API au moment de la mise en file (après feu vert). Fichier de lot hors dépôt.
+
+### Lot B (27/11/2026) · Auvergne-Rhône-Alpes, Provence-Alpes-Côte d'Azur, Occitanie, Nouvelle-Aquitaine, Corse
+
+- 49 lieux sourcés, 34 écartés au sourcing (réseau ou plus de 3 sites 9, adresse nominative ou incertaine 8, pas
+  d'adresse 6, pas un coworking indépendant 7, site sans rapport 3, non vérifié 1).
+- 4 écartés au tri : coworking activité secondaire (3), peut-être 4 sites (1). **45 retenus.**
+- Contrôles anti-doublon : `doublons --campagne coworking` 0 ; Nexora (103 recherches) 0 ; Gmail (une requête par
+  clé, 50 clés, témoins valides au début et à la fin) 0.
+- À revoir à la main avant l'envoi : 3 sites protégés par une page anti-robot au second passage (Le Phare, Ocube,
+  Maison Calvé), adresse lue au premier passage.
+
+**Total prêt après feu vert : 85 adresses** (opposition à vérifier par l'API juste avant `file`, puis `doublons` relancé).
