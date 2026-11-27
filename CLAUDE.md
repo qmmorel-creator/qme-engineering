@@ -7,6 +7,17 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 - Netlify publie tout le dépôt : rien de privé hors de `docs/`, `.claude/` et `CLAUDE.md` (bloqués en 404
   dans `netlify.toml`).
 
+## Pilotage des sessions : GOD, masters, sous-sessions (décision du 27/11/2026)
+
+- **Hiérarchie à trois niveaux** : la session **GOD** (`session_0183EW54bFyxAQcskkhnKJvb`) pilote les sessions
+  **MASTER**, qui pilotent leurs sous-sessions (`[Tunnel]`, `[Affiliation]`, campagnes ciblées…). Le GOD arbitre les
+  périmètres, transmet les consignes de Quentin et tient le registre ; il ne fait pas le travail d'un master.
+- **Registre unique** : `docs/pilotage/REGISTRE-SESSIONS.md` (masters, identifiants, tâches planifiées, sous-sessions).
+  Toute session qui crée un master, rattache une sous-session ou crée une tâche planifiée récurrente le signale au GOD
+  (`send_message`), qui met le registre à jour. Aucune session sans master ni tâche planifiée orpheline.
+- **Supprimer une tâche planifiée supprime les sessions qu'elle a lancées** : on désactive (`enabled: false`), on ne
+  supprime que si sa session n'existe plus.
+
 ## Réseaux sociaux : une seule publication par plateforme et par jour (décision du 24/11/2026)
 
 - **Règle très importante** : Instagram, TikTok, YouTube, LinkedIn et X ont chacun **au plus une publication par jour**,
@@ -244,7 +255,7 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   « Publication » ci-dessous), dans la règle d'une publication par plateforme et par jour.
 - **Publication** (décision de Quentin du 27/11/2026) : **5 mini-stories par semaine** sur Instagram (TikTok suit),
   choisies et programmées par l'agent master dans le planning Instagram (Sheet `1R9l_AHY5fQwGvuZE-ge6F3ghvzx8OvQarkzxBf1mhf8`),
-  thème « Mini-story », à 20:30, **en plus** de la publication du jour : elles ne comptent pas dans la règle d'une
+  thème « Mini-story », à 20:15 (passage d'Instinct ; heure alignée sur la tâche planifiée le 27/11/2026), **en plus** de la publication du jour : elles ne comptent pas dans la règle d'une
   publication par jour et ne déplacent aucune ligne (décision du 27/11/2026). Version TikTok : carton final ramené à 1,5 s (Instagram : 4 s). L'agent de contenu
   ne remplace jamais une ligne « Mini-story ».
 - **Liste des sujets** (décision du 27/11/2026) : Quentin valide seulement les pitchs dans `docs/ministories/sujets.md`
