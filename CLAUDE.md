@@ -235,6 +235,11 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   thème « Mini-story », à 20:15 (passage d'Instinct), **en plus** de la publication du jour : elles ne comptent pas dans la règle d'une
   publication par jour et ne déplacent aucune ligne (décision du 27/11/2026). Version TikTok : carton final ramené à 1,5 s (Instagram : 4 s). L'agent de contenu
   ne remplace jamais une ligne « Mini-story ».
+- **Rangement après publication** (décision du 27/11/2026) : dès qu'une mini-story est publiée (Instagram et TikTok),
+  **Instinct** déplace sa vidéo et sa version TikTok dans le sous-dossier Drive « Publiées »
+  (`1SQ-ivu-pPCfd8Od6FD6vwq-tFkQb-DbP`) de « QME - Vidéos Ministories » (consigne `instagram/PROMPT-INSTINCT-v8.md`) ;
+  la tâche quotidienne de 8:40 rattrape ce qui n'a pas été rangé. Seules les vidéos à la racine du dossier comptent dans
+  la réserve de 7.
 - **Liste des sujets** (décision du 27/11/2026) : Quentin valide seulement les pitchs dans `docs/ministories/sujets.md`
   (rang = ordre de production, sans validation du scénario) ; **toujours 7 vidéos d'avance** dans le Drive « QME - Vidéos
   Ministories ». Branche de production : `claude/mini-stories-qme-caro-b07mx2`.
