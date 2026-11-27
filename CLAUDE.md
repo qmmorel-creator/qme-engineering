@@ -183,7 +183,7 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
   titre `[Affiliation] <Prénom Nom> · <compte>`, tags `affiliation` et `affiliation:<prénom-nom>`) qui tient ce dossier
   jusqu'au bout et rend compte à la master. Identifiant noté dans la fiche du créateur. Détail : skill
   `retour-affiliation`, § « Sous-conversation de suivi ».
-- **QME - Plaquette partenariat réseaux sociaux** (référence du 25/11/2026) : A4 Carreau, commission de 25 % par vente
+- **QME - Plaquette partenariat réseaux sociaux** (référence du 25/11/2026) : A4 Grillon, commission de 25 % par vente
   Gumroad, outil sur mesure offert. Page : `qm-engineering.fr/partenariat/` ; Drive : `13 - Entreprise QME / 03 - Marque QME & site` ; source et PDF :
   `docs/templates/communication/affiliation/plaquette/`. Jointe à un mail seulement avec l'accord de Quentin.
 
@@ -219,11 +219,11 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 ## Mini-stories QME (décision du 27/11/2026)
 
 - **Agent master des mini-stories** (décision de Quentin du 27/11/2026) : la session `session_0183EW55iLAYXDKQ2SE6AK5p`
-  pilote tout le volet mini-stories (liste des sujets, production, réserve Drive, accessoires de Carreau, audit et
+  pilote tout le volet mini-stories (liste des sujets, production, réserve Drive, accessoires de Grillon, audit et
   stratégie). Les autres sessions lui transmettent les demandes (`send_message`) ou y renvoient Quentin. Cible : Instagram
-  et TikTok, public jeune, volet personnel ; charte de Carreau (« Caro »).
-- **Skill `.claude/skills/ministories/`** : micro-histoires publicitaires de 15 à 22 s (format v2) avec la mascotte **Carreau**
-  (« Caro », fiche validée par Quentin le 27/11/2026), du script au MP4 contrôlé. Pilote : `docs/ministories/episodes/
+  et TikTok, public jeune, volet personnel ; charte de Grillon.
+- **Skill `.claude/skills/ministories/`** : micro-histoires publicitaires de 15 à 22 s (format v2) avec la mascotte **Grillon**
+ , du script au MP4 contrôlé. Pilote : `docs/ministories/episodes/
   2026-11-27-le-salaire-a-disparu/`. Voix : connecteur ElevenLabs, voix « Caroline - Warm, Sweet and Soft » ; à défaut, voix provisoire edge-tts + texte
   `_elevenlabs.txt` dans le Drive, supprimés avec le MP4 provisoire dès que la version Caroline est déposée.
 - **Tâche planifiée « Mini-story QME du jour »** (8:40, Paris) : complète la réserve de 7 vidéos, sujets pris dans la liste, templates ou packs de la vie

@@ -4,11 +4,11 @@
 
 | Temps | Rôle | Pilote |
 |---|---|---|
-| 0–1,5 s | Accroche : image ou action qui intrigue, jamais d'introduction | notification « Salaire +2 100 € », Carreau saute |
+| 0–1,5 s | Accroche : image ou action qui intrigue, jamais d'introduction | notification « Salaire +2 100 € », Grillon saute |
 | 1,5–4 s | Situation identifiable + premier gag | champagne → eau pétillante |
 | 4–9 s | Escalade en 3 ou 4 temps qui accélèrent | loyer, factures, courses, abonnements en rafale |
 | 9–10,5 s | Ellipse ou moment de vérité | « Trois jours plus tard… » |
-| 10,5–12,5 s | Gag central, réaction surtout visuelle | 3,00 € ; Carreau vire au rouge |
+| 10,5–12,5 s | Gag central, réaction surtout visuelle | 3,00 € ; Grillon vire au rouge |
 | 12,5–19 s | Solution dans l'histoire : le produit agit, capture réelle | enveloppes, prévu/réel, trajet de l'argent |
 | 19–22,5 s | Payoff qui reprend un élément du début | les monstres font la queue ; « besoin d'un plan » |
 | 22,5–26,5 s | Carton officiel | - |

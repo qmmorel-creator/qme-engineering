@@ -15,7 +15,7 @@ docs/ministories/episodes/AAAA-MM-JJ-<slug>/
 ```
 
 Partir d'une copie du pilote ; ne jamais modifier les fichiers de référence d'origine (assets du site, Drive, module
-Carreau) : on copie dans `assets/` de l'épisode.
+Grillon) : on copie dans `assets/` de l'épisode.
 
 ## Assets de référence
 

@@ -1,16 +1,16 @@
 ---
 name: ministories
-description: Produire une mini-story publicitaire QME (micro-histoire drôle de 15 à 22 s au format v2, verticale 1080 × 1920, avec la mascotte Carreau dite « Caro ») de l'idée au MP4 final contrôlé - script, découpage, storyboard, animation vectorielle par le moteur docs/videos/rendu.mjs, voix française, musique, bruitages, sous-titres, carton final officiel. À utiliser quand Quentin écrit « fais une mini-story QME sur <sujet> », « une mini-story avec Caro / Carreau sur <sujet> », « QME MiniStories », ou demande de corriger, décliner ou refaire un épisode de docs/ministories/episodes/.
+description: Produire une mini-story publicitaire QME (micro-histoire drôle de 15 à 22 s au format v2, verticale 1080 × 1920, avec la mascotte Grillon) de l'idée au MP4 final contrôlé - script, découpage, storyboard, animation vectorielle par le moteur docs/videos/rendu.mjs, voix française, musique, bruitages, sous-titres, carton final officiel. À utiliser quand Quentin écrit « fais une mini-story QME sur <sujet> », « une mini-story avec Grillon sur <sujet> », « QME MiniStories », ou demande de corriger, décliner ou refaire un épisode de docs/ministories/episodes/.
 ---
 
-# Mini-stories QME (avec Carreau, « Caro »)
+# Mini-stories QME (avec Grillon)
 
 Une mini-story raconte en 20 à 30 s une situation reconnaissable qui dégénère, puis un produit QME **réel** la résout
 dans l'histoire. Ce skill est la procédure ; les données permanentes sont dans `references/`, les modèles à remplir
 dans `modeles/`, et l'épisode pilote complet sert de gabarit : `docs/ministories/episodes/2026-11-27-le-salaire-a-disparu/`.
 
-**Une seule marque, un seul personnage.** « Caro » est **Carreau**, la mascotte QME (cellule de tableur « A1 ») : ce
-n'est pas une seconde marque. Une demande « mini-story Caro » est une mini-story QME où Carreau tient le rôle principal
+**Une seule marque, un seul personnage.** **Grillon** (anciennement Carreau, « Caro » ; renommé par Quentin le 27/11/2026) est la mascotte QME (cellule de tableur « A1 ») : ce
+n'est pas une seconde marque. Une demande « mini-story Grillon » est une mini-story QME où Grillon tient le rôle principal
 (c'est le cas par défaut). Charte : `references/charte-qme.md` ; personnage : `references/carreau.md`.
 
 ## 0. Avant tout
@@ -48,13 +48,13 @@ rien inventer : ni fonction, ni prix, ni chiffre de résultat, ni témoignage. L
 Structure : accroche (0–2 s) → situation → escalade en 3 ou 4 temps qui accélèrent → ellipse ou moment de vérité →
 gag central → solution intégrée (le produit agit à l'écran, capture réelle) → payoff qui rappelle le gag → carton 4 s.
 Écrire dans `script.md` (modèle `modeles/script.md`) : note d'intention en 4 lignes, répliques courtes (narrateur hors
-champ ; **Carreau ne parle jamais**), bruitages, silences. 45 à 65 mots. Lire à voix haute ; couper toute réplique
+champ ; **Grillon ne parle jamais**), bruitages, silences. 45 à 65 mots. Lire à voix haute ; couper toute réplique
 qui dit ce que l'image montre.
 
 ## 3. Découpage et continuité
 
 `decoupage.md` (modèle `modeles/decoupage.md`) : plan par plan (temps, action, cadrage, intention, son, transition),
-fiche de continuité (expressions de Carreau par plan, formes et couleurs fixes des accessoires), plan audio, plan de
+fiche de continuité (expressions de Grillon par plan, formes et couleurs fixes des accessoires), plan audio, plan de
 sous-titres. Tous les temps vivent dans **`sources/timeline.json`** (scènes, voix, bruitages) : c'est la source unique.
 
 ## 4. Voix : ElevenLabs, voix « Caroline » (décision de Quentin du 27/11/2026)
@@ -79,7 +79,7 @@ la version avec la voix Caroline existe (connecteur revenu ou MP3 fourni par Que
 ## 5. Image
 
 Copier `sources/page.html` du pilote et réécrire seulement les fonctions de scène `S.Sn(t, l)` : décor, accessoires,
-Carreau (`mascotte({x, y, s, expr, bras})`, qui appelle le module officiel `carreau.js`), captures réelles du produit
+Grillon (`mascotte({x, y, s, expr, bras})`, qui appelle le module officiel `carreau.js`), captures réelles du produit
 (`assets/templates-<produit>-*.webp`). Tout est fonction du temps (`window.placer(ms)`) : rendu exact et rejouable.
 Faire une **planche d'aperçu** (`references/production.md` § Aperçu) et la corriger avant le rendu complet.
 
