@@ -1,0 +1,203 @@
+{
+  "episode": "18-resolution-2-janvier",
+  "duree": 21.722,
+  "carton": {
+    "debut": 17.722,
+    "fin": 21.722
+  },
+  "scenes": [
+    {
+      "id": "S1",
+      "debut": 0,
+      "fin": 2.7,
+      "nom": "1er janvier : la résolution"
+    },
+    {
+      "id": "S2",
+      "debut": 2.7,
+      "fin": 4.6,
+      "nom": "2 janvier : canapé"
+    },
+    {
+      "id": "S3",
+      "debut": 4.6,
+      "fin": 7.0,
+      "nom": "Les jours défilent"
+    },
+    {
+      "id": "S4",
+      "debut": 7.0,
+      "fin": 11.1,
+      "nom": "Canapé 10, Grillon 0"
+    },
+    {
+      "id": "S5",
+      "debut": 11.1,
+      "fin": 17.4,
+      "nom": "Suivi d'habitudes et routines"
+    },
+    {
+      "id": "S6",
+      "debut": 17.4,
+      "fin": 24.3,
+      "nom": "La série tient"
+    },
+    {
+      "id": "S7",
+      "debut": 24.3,
+      "fin": 28.3,
+      "nom": "Carton final officiel"
+    }
+  ],
+  "voix": [
+    {
+      "id": "v01",
+      "t": 0.2,
+      "fin": 1.96,
+      "texte": "Sport tous les jours, promis !"
+    },
+    {
+      "id": "v02",
+      "t": 2.45,
+      "fin": 4.661,
+      "texte": "Deux janvier : bon… demain."
+    },
+    {
+      "id": "v03",
+      "t": 5.181,
+      "fin": 6.835,
+      "texte": "Trois janvier : demain aussi."
+    },
+    {
+      "id": "v04",
+      "t": 7.245,
+      "fin": 10.124,
+      "texte": "Dix janvier. Canapé dix, Grillon zéro."
+    },
+    {
+      "id": "v05",
+      "t": 10.588,
+      "fin": 12.424,
+      "texte": "Une touche par jour. Il coche."
+    },
+    {
+      "id": "v06",
+      "t": 12.834,
+      "fin": 15.32,
+      "texte": "Un jour. Deux jours. Dix jours."
+    },
+    {
+      "id": "v07",
+      "t": 15.8,
+      "fin": 17.612,
+      "texte": "Sport tous les jours. Pour de vrai."
+    }
+  ],
+  "bruitages": [
+    {
+      "son": "whoosh",
+      "t": 2.17
+    },
+    {
+      "son": "whoosh",
+      "t": 6.925
+    },
+    {
+      "son": "whoosh",
+      "t": 10.228
+    },
+    {
+      "son": "pose",
+      "t": 12.464
+    },
+    {
+      "son": "ding",
+      "t": 17.672
+    }
+  ],
+  "voix_source": {
+    "fichier": "audio/elevenlabs/voix-elevenlabs.wav",
+    "decalage": 0.2,
+    "origine": "ElevenLabs, voix « Caroline - Warm, Sweet and Soft » (kwhMCf63M8O3rCfnQ3oQ), eleven_v4, une prise le 27/11/2026 (nom « Grillon », flow Nr8baYZfy1iZs0CDTZNY), répliques recalées sur les silences de la prise précédente , accélérée ×1,06 (atempo)"
+  },
+  "montage": [
+    [
+      0,
+      0
+    ],
+    [
+      0.2,
+      0.25
+    ],
+    [
+      2.37,
+      2.65
+    ],
+    [
+      2.42,
+      2.7
+    ],
+    [
+      4.991,
+      4.6
+    ],
+    [
+      5.595,
+      5.9
+    ],
+    [
+      7.125,
+      7.0
+    ],
+    [
+      8.116,
+      8.8
+    ],
+    [
+      10.328,
+      11.1
+    ],
+    [
+      10.785,
+      11.6
+    ],
+    [
+      11.407,
+      14.3
+    ],
+    [
+      12.006,
+      14.78
+    ],
+    [
+      12.654,
+      14.99
+    ],
+    [
+      12.664,
+      17.4
+    ],
+    [
+      13.005,
+      17.55
+    ],
+    [
+      13.707,
+      18.95
+    ],
+    [
+      14.719,
+      20.4
+    ],
+    [
+      17.722,
+      23.4
+    ],
+    [
+      21.722,
+      27.4
+    ]
+  ],
+  "scenes_repere": "temps du montage de référence (voir montage)",
+  "accroche": "Sport tous les jours. Tenu : 24 heures."
+}

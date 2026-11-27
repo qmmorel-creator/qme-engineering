@@ -139,7 +139,7 @@ par vidéo.** D'ici là : commentaire épinglé et lien en bio vers la démo gra
 
 ## 8. Décisions de Quentin (27/11/2026)
 
-1. **5 mini-stories par semaine** sur Instagram (TikTok suit), **en plus** des publications existantes : elles ne comptent pas dans la règle d'une publication par jour (précision de Quentin) ; 20:30, aucune ligne déplacée. Le premier, le pilote « Le salaire a
+1. **5 mini-stories par semaine** sur Instagram (TikTok suit), **en plus** des publications existantes : elles ne comptent pas dans la règle d'une publication par jour (précision de Quentin) ; 20:15, aucune ligne déplacée. Le premier, le pilote « Le salaire a
    disparu ! », est sorti le 27/11.
 2. **Choix des épisodes publiés** : délégué à l'agent master.
 3. **Carton final** : délégué à l'agent master. Décision : carton officiel 4 s sur Instagram ; version TikTok coupée
