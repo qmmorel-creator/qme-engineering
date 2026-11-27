@@ -105,7 +105,7 @@ S.S2 = (t, l) => {                       // Escalade : tousse, crache, s'éteint
   g += mascotte({x: 810, y: 1300, s: .62, expr: ['inquiet', 'choc', 'panique'][k], bras: k ? 'tete' : 'bas'});
   return g;
 };
-S.S3 = (t, l) => {                       // Carreau grelotte sous trois couvertures
+S.S3 = (t, l) => {                       // Grillon grelotte sous trois couvertures
   const tr = (hash(pose(l)) - .5) * 18;
   const n = 1 + Math.min(2, Math.floor(l / 450));
   let g = `<rect width="1080" height="1920" fill="#D8E4F0"/>` + fenetre(l + 3000) + sol();
@@ -144,7 +144,7 @@ S.S5 = (t, l) => {                       // La révision tombait en octobre (car
   g += mascotte({x: 220, y: 1300, s: .6, expr: t < 20.1 ? 'neutre' : 'choc', bras: t < 20.1 ? 'bas' : 'tete'});
   return g;
 };
-S.S6 = (t, l) => {                       // Payoff : octobre noté, chaudière qui ronronne… et Carreau qui tousse
+S.S6 = (t, l) => {                       // Payoff : octobre noté, chaudière qui ronronne… et Grillon qui tousse
   const tousse = t >= 25.1;
   const sec = tousse ? (hash(pose(l)) - .5) * 24 : 0;
   let g = `<rect width="1080" height="1920" fill="${C.creme}"/>` + fenetre(l) + sol();
@@ -158,7 +158,7 @@ S.S6 = (t, l) => {                       // Payoff : octobre noté, chaudière q
 
 const scene = document.getElementById('scene'), st = document.getElementById('st'), carton = document.getElementById('carton');
 // Sous-titres : une réplique = un sous-titre, calé sur la voix réelle (début, fin + 0,12 s), deux lignes au plus.
-const COUPES = { v04: 'Carreau grelotte<br>sous trois couvertures.', v05: 'Une case cochée : la révision,<br>c’était octobre.', v09: 'Maintenant, c’est Carreau<br>qui tousse.' };
+const COUPES = { v04: 'Grillon grelotte<br>sous trois couvertures.', v05: 'Une case cochée : la révision,<br>c’était octobre.', v09: 'Maintenant, c’est Grillon<br>qui tousse.' };
 // Accroche v2 : texte à l'écran dès la première image, lisible sans le son
 const ACCROCHE = (tv) => tv < 1.85 ? `<g><rect x="72" y="132" width="936" height="300" fill="${C.noir}" transform="translate(14 14)"/><rect x="72" y="132" width="936" height="300" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/><text x="540" y="262" font-size="92" font-weight="800" text-anchor="middle" fill="${C.noir}">Moins deux dehors.</text><text x="540" y="372" font-size="72" font-weight="800" text-anchor="middle" fill="${C.rouge}">Et la chaudière lâche.</text></g>` : '';
 window.placer = (ms) => {

@@ -111,14 +111,14 @@ S.S3 = (t, l) => {                       // Les jours défilent
   g += mascotte({x: 540, y: 1150, s: .75, expr: 'blase', bras: 'bas', ecrase: .9});
   return g;
 };
-S.S4 = (t, l) => {                       // Canapé 10, Carreau 0
+S.S4 = (t, l) => {                       // Canapé 10, Grillon 0
   const buzz = t >= 9.2 && t < 10.6;
   const flash = buzz && Math.floor((t - 9.2) / .33) % 2 === 0;
   const tremble = buzz ? (hash(pose(l)) - .5) * 24 : 0;
   let g = `<rect width="1080" height="1920" fill="${flash ? '#F6D7D0' : C.creme}"/><circle cx="540" cy="600" r="420" fill="${C.jaune}"/>`;
   g += calendrier(220, 330, '10', .55, -6);
   const sb = rebond(prog(pose(l), 1800, 2200));
-  g += `<g transform="translate(${560 + tremble} 640) scale(${sb})"><rect x="-380" y="-150" width="760" height="300" fill="${C.noir}"/><text x="-190" y="-80" font-size="36" font-weight="800" letter-spacing="4" text-anchor="middle" fill="${C.jaune}">CANAPÉ</text><text x="190" y="-80" font-size="36" font-weight="800" letter-spacing="4" text-anchor="middle" fill="${C.jaune}">CARREAU</text><text x="-190" y="100" font-size="170" font-weight="800" text-anchor="middle" fill="#fff">10</text><text x="190" y="100" font-size="170" font-weight="800" text-anchor="middle" fill="${C.rouge}">0</text><rect x="-6" y="-60" width="12" height="160" fill="#fff"/></g>`;
+  g += `<g transform="translate(${560 + tremble} 640) scale(${sb})"><rect x="-380" y="-150" width="760" height="300" fill="${C.noir}"/><text x="-190" y="-80" font-size="36" font-weight="800" letter-spacing="4" text-anchor="middle" fill="${C.jaune}">CANAPÉ</text><text x="190" y="-80" font-size="36" font-weight="800" letter-spacing="4" text-anchor="middle" fill="${C.jaune}">GRILLON</text><text x="-190" y="100" font-size="170" font-weight="800" text-anchor="middle" fill="#fff">10</text><text x="190" y="100" font-size="170" font-weight="800" text-anchor="middle" fill="${C.rouge}">0</text><rect x="-6" y="-60" width="12" height="160" fill="#fff"/></g>`;
   g += canape(540, 1130, 1.05, 1);
   const pan = t >= 8.95;
   g += mascotte({x: 540 + tremble * .5, y: pan ? 1150 - Math.abs(Math.sin(pose(l) / 120)) * 30 : 1150, s: .75, expr: pan ? 'panique' : 'choc', bras: pan ? 'tete' : 'bas'});
@@ -161,7 +161,7 @@ S.S6 = (t, l) => {                       // La série tient (payoff : même cale
 
 const scene = document.getElementById('scene'), st = document.getElementById('st'), carton = document.getElementById('carton');
 // Sous-titres : une réplique = un sous-titre, calé sur la voix réelle (début, fin + 0,12 s), deux lignes au plus.
-const COUPES = { v01: 'Sport tous les jours,<br>promis !', v04: 'Dix janvier.<br>Canapé dix, Carreau zéro.', v06: 'Un jour. Deux jours.<br>Dix jours.', v07: 'Sport tous les jours.<br>Pour de vrai.' };
+const COUPES = { v01: 'Sport tous les jours,<br>promis !', v04: 'Dix janvier.<br>Canapé dix, Grillon zéro.', v06: 'Un jour. Deux jours.<br>Dix jours.', v07: 'Sport tous les jours.<br>Pour de vrai.' };
 // Accroche v2 : texte à l'écran dès la première image, lisible sans le son
 const ACCROCHE = (tv) => tv < 2.4 ? `<g><rect x="72" y="132" width="936" height="300" fill="${C.noir}" transform="translate(14 14)"/><rect x="72" y="132" width="936" height="300" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/><text x="540" y="262" font-size="84" font-weight="800" text-anchor="middle" fill="${C.noir}">Sport tous les jours.</text><text x="540" y="372" font-size="72" font-weight="800" text-anchor="middle" fill="${C.rouge}">Tenu : 24 heures.</text></g>` : '';
 window.placer = (ms) => {

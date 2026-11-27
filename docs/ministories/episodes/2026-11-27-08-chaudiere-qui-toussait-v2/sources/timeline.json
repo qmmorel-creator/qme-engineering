@@ -1,9 +1,9 @@
 {
   "episode": "08-chaudiere-qui-toussait",
-  "duree": 20.5,
+  "duree": 20.426,
   "carton": {
-    "debut": 16.5,
-    "fin": 20.5
+    "debut": 16.426,
+    "fin": 20.426
   },
   "scenes": [
     {
@@ -22,7 +22,7 @@
       "id": "S3",
       "debut": 6.6,
       "fin": 11.6,
-      "nom": "Carreau grelotte"
+      "nom": "Grillon grelotte"
     },
     {
       "id": "S4",
@@ -40,7 +40,7 @@
       "id": "S6",
       "debut": 21.35,
       "fin": 26.0,
-      "nom": "Octobre noté ; Carreau tousse"
+      "nom": "Octobre noté ; Grillon tousse"
     },
     {
       "id": "S7",
@@ -54,103 +54,103 @@
       "id": "v01",
       "t": 0.3,
       "texte": "La chaudière tousse.",
-      "fin": 1.48
+      "fin": 1.462
     },
     {
       "id": "v02",
-      "t": 1.88,
+      "t": 1.862,
       "texte": "Elle crache.",
-      "fin": 2.62
+      "fin": 2.614
     },
     {
       "id": "v03",
-      "t": 2.98,
+      "t": 2.974,
       "texte": "Elle s'éteint.",
-      "fin": 3.52
+      "fin": 3.496
     },
     {
       "id": "v04",
-      "t": 4.07,
-      "texte": "Carreau grelotte sous trois couvertures.",
-      "fin": 6.0
+      "t": 4.046,
+      "texte": "Grillon grelotte sous trois couvertures.",
+      "fin": 6.072
     },
     {
       "id": "v05",
-      "t": 6.59,
+      "t": 6.662,
       "texte": "Une case cochée : la révision, c'était octobre.",
-      "fin": 9.51
+      "fin": 9.407
     },
     {
       "id": "v06",
-      "t": 9.95,
+      "t": 9.847,
       "texte": "Trois mois trop tard.",
-      "fin": 10.85
+      "fin": 10.794
     },
     {
       "id": "v07",
-      "t": 11.2,
+      "t": 11.144,
       "texte": "Cette fois, c'est noté.",
-      "fin": 12.38
+      "fin": 12.206
     },
     {
       "id": "v08",
-      "t": 12.85,
+      "t": 12.676,
       "texte": "La chaudière ronronne.",
-      "fin": 14.04
+      "fin": 13.908
     },
     {
       "id": "v09",
-      "t": 14.45,
-      "texte": "Maintenant, c'est Carreau qui tousse.",
-      "fin": 16.21
+      "t": 14.318,
+      "texte": "Maintenant, c'est Grillon qui tousse.",
+      "fin": 16.136
     }
   ],
   "bruitages": [
     {
       "son": "chomp",
-      "t": 1.5
+      "t": 1.482
     },
     {
       "son": "pop",
-      "t": 2.65
+      "t": 2.644
     },
     {
       "son": "zap",
-      "t": 3.55
+      "t": 3.526
     },
     {
       "son": "whoosh",
-      "t": 6.1
+      "t": 6.172
     },
     {
       "son": "pose",
-      "t": 7.42
+      "t": 7.441
     },
     {
       "son": "pose",
-      "t": 9.55
+      "t": 9.447
     },
     {
       "son": "pop",
-      "t": 10.9
+      "t": 10.844
     },
     {
       "son": "kaching",
-      "t": 12.4
+      "t": 12.226
     },
     {
       "son": "chomp",
-      "t": 16.28
+      "t": 16.206
     },
     {
       "son": "ding",
-      "t": 16.45
+      "t": 16.376
     }
   ],
   "voix_source": {
     "fichier": "audio/elevenlabs/voix-elevenlabs.wav",
     "decalage": 0.3,
-    "origine": "ElevenLabs, voix « Caroline - Warm, Sweet and Soft » (eleven_v4), une prise, 27/11/2026, format v2 (flow YIQDp82hIbkVixhboYgs)"
+    "origine": "ElevenLabs, voix « Caroline - Warm, Sweet and Soft » (eleven_v4), une prise le 27/11/2026 (nom « Grillon », flow 0LqTrQnvHivh2OncZkDX), répliques recalées sur les silences de la prise précédente"
   },
   "montage": [
     [
@@ -158,63 +158,63 @@
       2.5
     ],
     [
-      1.85,
+      1.832,
       4.1
     ],
     [
-      2.95,
+      2.944,
       5.3
     ],
     [
-      3.95,
+      3.926,
       6.5
     ],
     [
-      4.0,
+      3.976,
       6.6
     ],
     [
-      6.5,
+      6.572,
       9.3
     ],
     [
-      6.55,
+      6.622,
       11.75
     ],
     [
-      7.0,
+      7.046,
       13.0
     ],
     [
-      7.6,
+      7.621,
       13.35
     ],
     [
-      7.65,
+      7.671,
       18.4
     ],
     [
-      9.0,
+      8.933,
       20.1
     ],
     [
-      11.05,
+      10.994,
       21.3
     ],
     [
-      11.1,
+      11.044,
       21.35
     ],
     [
-      15.75,
+      15.651,
       25.1
     ],
     [
-      16.5,
+      16.426,
       25.85
     ],
     [
-      20.5,
+      20.426,
       29.85
     ]
   ],

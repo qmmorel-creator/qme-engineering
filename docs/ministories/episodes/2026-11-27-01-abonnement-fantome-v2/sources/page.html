@@ -169,7 +169,7 @@ S.S6 = (t, l) => {                       // L'alerte arrive avant le prélèveme
   g += mascotte({x: 150, y: 1300, s: .55, expr: t >= R.alerte ? 'fier' : 'neutre', bras: 'montrer'});
   return g;
 };
-S.S7 = (t, l) => {                       // Payoff : Caro médite… gratuitement
+S.S7 = (t, l) => {                       // Payoff : Grillon médite… gratuitement
   let g = decor(t, 1) + sol();
   g += `<circle cx="540" cy="760" r="300" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/>`;
   const lev = Math.sin(pose(l) / 400) * 18;
@@ -182,7 +182,7 @@ S.S7 = (t, l) => {                       // Payoff : Caro médite… gratuitemen
 
 const scene = document.getElementById('scene'), st = document.getElementById('st'), carton = document.getElementById('carton');
 // Sous-titres : une réplique = un sous-titre, calé sur la voix réelle (début, fin + 0,12 s), deux lignes au plus.
-const COUPES = { v01: '9,99\u00a0€.<br>Pour méditer.', v05: '87\u00a0€ par mois.<br>De fantômes.', v06: 'Le tableau : tout,<br>au mois et à l’année.', v07: 'Cette fois, Caro<br>médite… gratuitement.' };
+const COUPES = { v01: '9,99\u00a0€.<br>Pour méditer.', v05: '87\u00a0€ par mois.<br>De fantômes.', v06: 'Le tableau : tout,<br>au mois et à l’année.', v07: 'Cette fois, Grillon<br>médite… gratuitement.' };
 // Accroche v2 : texte à l'écran dès la première image, lisible sans le son
 const ACCROCHE = (tv) => tv < 2.6 ? `<g><rect x="72" y="132" width="936" height="300" fill="${C.noir}" transform="translate(14 14)"/><rect x="72" y="132" width="936" height="300" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/><text x="540" y="262" font-size="92" font-weight="800" text-anchor="middle" fill="${C.noir}">87\u00a0€ par mois.</text><text x="540" y="372" font-size="56" font-weight="800" text-anchor="middle" fill="${C.rouge}">Pour des applis jamais ouvertes.</text></g>` : '';
 window.placer = (ms) => {
