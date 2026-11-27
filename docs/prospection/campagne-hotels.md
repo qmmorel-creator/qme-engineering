@@ -39,10 +39,15 @@ signale. Les démos ouvertes depuis la page restent les démos génériques (ate
 
 | Lot | Sourcés | Doublons (outil) | Nexora | Gmail | Opposition | Retenus |
 |---|---|---|---|---|---|---|
-| 1 | en cours | | | | | |
+| 1 | 83 (21 départements) | 0 écarté (`doublons --campagne hotels`, outil du commit 001e536) | 1 écarté (Les Châtaigniers, Privas : vague 13), recherche par nom puis radical de domaine, témoins positif et négatif conformes | 1 écarté (même hôtel : mail du 02/11 et relance du 25/11), une requête par domaine, témoins conformes | 0 opposée (API), 0 dans `desinscrits.md` | **82** |
+
+Lot 1, réserves : 6 fiches sans fait relevé (phrase sans fait) ; 17 adresses en messagerie grand public au nom de
+l'hôtel (gmail, orange, wanadoo) ; Hôtel de France à Chaudeyrac (aussi camping et pods) et quelques hôtels labellisés
+Logis ou Relais & Châteaux, gardés comme indépendants. Fichier de lot hors dépôt (adresses), comme pour `gites`.
+Les doublons sont relancés juste avant `file` (d'autres campagnes tournent en même temps).
 
 ## Journal
 
 | Date | Partis | Réponses | Oppositions | Notes |
 |---|---|---|---|---|
-| 2026-11-27 | 0 | 0 | 0 | Page `/concepts/hotels/` (PR), captures, modèle de mail, journal ; lot 1 en sourcing ; en attente de validation de Quentin |
+| 2026-11-27 | 0 | 0 | 0 | Page `/concepts/hotels/` (PR #338, aperçu contrôlé), captures, modèle de mail, brouillon Gmail « [À valider · campagne hotels] », concept `cpt-hotels` (brouillon), campagne `hotels` créée en pause sans `parJour` ; lot 1 : 82 adresses prêtes, rien en file ; en attente de validation de Quentin |
