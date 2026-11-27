@@ -41,4 +41,8 @@ Lancée le 27/11/2026 (sous-campagne de la session « Audit campagnes ciblées �
   31 ; doublons 0, opposition 0. Nexora (nom, radical, ville) et Gmail (témoins conformes) : 2 écartés, Chambéry
   Escalade et Drac Vercors Escalade (vague 16, même adresse, fil Gmail), que `doublons` ne voyait pas. Lot A : 29.
 - 27/11/2026 : lot B contrôlé (doublons `--campagne`, opposition, Nexora par nom, épreuve, radical et ville, Gmail
-  par groupes de 6 au plus, témoins conformes) : 46 retenus. **Total prêt : 118 adresses (A 29, B 46, C 43)**, rien en file.
+  par groupes de 6 au plus, témoins conformes) : 46 retenus, rien en file.
+- 27/11/2026 : règle Gmail durcie (PR #330, 001e536) : une requête par domaine, plus de groupes. Les contrôles Gmail des
+  lots A et B (faits par groupes de 6) sont **à refaire** : ces deux lots ne sont pas prêts avant cette passe. Lot C
+  (une requête par domaine) prêt : 43. Nexora : on garde deux recherches par prospect (nom, radical du domaine) ; la
+  portée exacte de `list_qme` (site, adresse) n'est pas établie.
