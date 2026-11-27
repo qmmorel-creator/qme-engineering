@@ -2,7 +2,7 @@
 
 Règles : audit `AUDIT-VIRALITE-2026-11-27.md` § 3 (1re ligne = question qui pousse à taguer, rien hors vidéo ou fiche catalogue, aucun prix ni promesse ; la ligne « 14 jours d'essai gratuit » est retirée du premier commentaire).
 
-**À faire par Quentin (ou une session disposant d'un outil d'édition de Docs)** : le connecteur Google Drive ne permet pas de modifier le contenu d'un Google Doc (`update_file` ne change que les métadonnées). Les Docs légende (colonne G) **n'ont pas été modifiés** : coller dans chacun la légende et le premier commentaire ci-dessous, à la place de l'ancien texte, en gardant la structure (légende, `———`, PREMIER COMMENTAIRE). Les Docs n'ont pas de texte alternatif.
+**Docs légende v2 en place** (27/11/2026) : le connecteur Drive ne réécrivant pas un Google Doc, un nouveau Doc « (v2) » a été créé par ligne (dossier `1uOEyjI7iKVDVu9qXxRcxwGvoNouP-ORd`) et les colonnes G et H des lignes 215 à 224 pointent dessus ; ancien ID noté en Remarque, anciens Docs conservés. Nouveaux IDs : 215 `1bQE0BNjOh_3EGVZqLvJ_TszjgPf3T44vSSS8F1KULfU`, 216 `1MGbM0NFyX_pZU7liCMen0vluqh5d3Ha9Jviuw5hYj3k`, 217 `1GYPIMqJYbBWtmyRoYuJdZFzjvvNETy6nw6_v-gKcM6w`, 218 `1iV8yNZVD6B5bCq9Ak7EQ-Dn8jjDmwZObtFK1BMKuxP8`, 219 `17DRbHJ2wJwN9drmm6dD0NZN21FdNc5uWgKRP7v5E5QM`, 220 `17Fby3hHDZB35ciMuFzMkG0lA0rrU6U28sVPrNFybeww`, 221 `165CFOZMAXwX1HmTk0YMNkdpaTAwdetAU80LHzfZsQjY`, 222 `15nOgTrkedLZYRQVXT5xn-VZ1rzOhS1HpAEXdwAbrO1k`, 223 `1cWVMuEa5FNC6iiSYYEHAYVLlqPOA_ONhMoB7q0UImK4`, 224 `1gw1v2QqT3cRHGz7YLpVUF-1pi19S_4f3_VSPjoDieyU`.
 
 Fichiers TikTok : dossier Drive « QME - Vidéos Ministories » (`1lpoKvq5L43X8gm9TZKcslXMwkYViOtOr`), texte brut prêt à coller.
 
