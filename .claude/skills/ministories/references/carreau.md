@@ -1,7 +1,7 @@
 # Carreau (« Caro »), mascotte QME : bible pour les mini-stories
 
 Source de vérité : `docs/templates/communication/formats-test/mascotte/carreau.js` (dessin) et `fiche-carreau.png`
-(fiche du 24/11/2026, « à valider par Quentin »). Ne jamais le redessiner : toujours appeler `carreau()`.
+(fiche du 24/11/2026, **validée par Quentin le 27/11/2026**). Ne jamais le redessiner : toujours appeler `carreau()`.
 
 - **Qui** : une cellule de tableur « A1 » échappée de son tableur. A vu 41 onglets, trois versions « final » et un
   #REF! qui ne partait jamais ; aide maintenant les autres à en sortir. Nom : « se tenir à carreau ». On l'appelle

@@ -40,7 +40,6 @@ dans Drive « QME - Vidéos Ministories ».
 
 - Voix officielle de marque (aucune référence) : narrateur masculin neutre retenu à titre provisoire.
 - Licence exacte des musiques du dossier Drive (noms de fichiers de type Pixabay, non confirmés).
-- Fin de validation de la fiche Carreau (« à valider par Quentin », 24/11/2026).
 - Jingle ou logo animé officiel : aucun ; le carton est une image fixe.
 
 ## Arbitrages

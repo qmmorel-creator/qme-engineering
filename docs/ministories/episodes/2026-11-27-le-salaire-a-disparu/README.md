@@ -1,6 +1,6 @@
 # Mini-story QME · « Le salaire a disparu ! » (pilote, 27/11/2026)
 
-Statut : **livré, à valider par Quentin** (voix provisoire, fiche Carreau encore marquée « à valider »).
+Statut : **validé par Quentin le 27/11/2026**, voix ElevenLabs à intégrer (version légère à produire après réception du MP3).
 
 ## Fichiers
 
@@ -68,7 +68,7 @@ partiellement). À faire par Quentin avant publication.
 - **Musique** : piste du dossier Drive « QME - Musiques MiniStories » ; le nom du fichier suggère Pixabay, provenance
   et licence à confirmer par Quentin.
 - **Bruitages** : synthétisés pour l'épisode, sans droits tiers.
-- **Carreau** : module officiel, mais sa fiche (24/11/2026) est encore « à valider par Quentin ».
+- **Carreau** : module officiel ; fiche validée par Quentin le 27/11/2026.
 - **Nom du produit** : le brief dit « Budget du foyer QME » ; le nom officiel publié est « Mon Budget » (le slug Gumroad
   est `budget-foyer`). Arbitrage : nom officiel.
 - **Pas d'appel à l'action** dans la voix : le carton officiel porte déjà le site et « démos gratuites ».
