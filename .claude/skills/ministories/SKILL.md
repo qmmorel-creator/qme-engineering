@@ -60,7 +60,7 @@ Faire une **planche d'aperçu** (`references/production.md` § Aperçu) et la co
 ## 6. Audio
 
 `python3 sources/audio.py` : place les répliques, normalise la voix (-15,5 LUFS, -2 dBTP), synthétise les bruitages,
-mixe la musique avec ducking, limiteur. Musique : dossier Drive « QME - Musiques MiniStories » ou bibliothèque
+mixe la musique avec ducking, limiteur. Musique libre de droits, différente à chaque épisode (`references/production.md` § Musique) : Drive « QME - Musiques MiniStories » ou
 `docs/videos/musique/` (provenance consignée dans le README de l'épisode).
 
 ## 7. Rendu et assemblage
