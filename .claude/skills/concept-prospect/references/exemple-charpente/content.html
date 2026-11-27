@@ -1,0 +1,56 @@
+      <section data-view="planning" data-title="Planning des équipes" data-sub="Semaine 45 · du lundi 2 au vendredi 6 novembre 2026">
+        <div class="kpis" id="plan-kpis"></div>
+        <div class="card">
+          <header><h2>Semaine 45</h2><span class="muted sm">Les chefs d'équipe voient leur ligne sur leur téléphone</span><span class="sp"></span>
+            <div class="seg"><button>Jour</button><button class="on">Semaine</button><button>Mois</button></div>
+            <button class="btn pri">+ Affecter</button></header>
+          <div class="plan" id="plan"></div>
+        </div>
+        <div class="grid2">
+          <div class="card"><header><h2>À arbitrer</h2><span class="b late">2</span></header><div class="list" id="alerts"></div></div>
+          <div class="card"><header><h2>Prévenu ce soir à 17 h</h2></header><div class="body sm">
+            Chaque chef d'équipe reçoit sur son téléphone le chantier du lendemain, l'heure de rendez-vous, l'équipe, le matériel et le plan à jour. <b>Plus d'appels du soir.</b>
+            <div class="list" id="notif" style="margin:10px -16px -14px"></div></div></div>
+        </div>
+      </section>
+
+      <section data-view="chantier" data-title="C-2604 · Charpente de la grange des Clots" data-sub="SCI Les Clots · Mens (38) · Équipe 1 Julien M.">
+        <div class="kpis" id="ch-kpis"></div>
+        <div class="grid2">
+          <div class="card">
+            <header><h2>Lots du devis D-2026-087</h2><span class="b info">Importé du logiciel de chiffrage · 14/10</span><span class="sp"></span><button class="btn">Mettre à jour le devis</button></header>
+            <table class="t" id="lots"></table>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:18px">
+            <div class="card"><header><h2>Heures</h2><span class="sp"></span><span class="muted sm">saisies chaque soir</span></header><div class="body" id="heures"></div></div>
+            <div class="card"><header><h2>Matériaux</h2></header><div class="list" id="mat"></div></div>
+          </div>
+        </div>
+        <div class="grid2">
+          <div class="card"><header><h2>Journal du chantier</h2><span class="muted sm">photos et remarques envoyées par l'équipe</span></header><div class="list" id="journal"></div></div>
+          <div class="card"><header><h2>Situation de travaux n° 2</h2><span class="b warn">À établir</span></header><div class="body" id="situation"></div></div>
+        </div>
+      </section>
+
+      <section data-view="pilotage" data-title="Pilotage" data-sub="Vue du gérant · lundi 2 novembre 2026">
+        <div class="kpis" id="pi-kpis"></div>
+        <div class="card"><header><h2>Chantiers en cours</h2><span class="sp"></span><div class="seg"><button class="on">Tous</button><button>En dépassement</button><button>À facturer</button></div></header>
+          <table class="t" id="chantiers"></table></div>
+        <div class="grid2">
+          <div class="card"><header><h2>Devis en attente de signature</h2><span class="sp"></span><span class="muted sm">relance proposée</span></header><table class="t" id="devis"></table></div>
+          <div class="card"><header><h2>Charge des équipes · 4 semaines</h2></header><div class="body" id="charge"></div></div>
+        </div>
+      </section>
+
+      <section data-view="terrain" data-title="Mardi 3 novembre" data-sub="Équipe 1 · Julien M.">
+        <div class="card" id="jour"></div>
+        <div class="card"><header><h2>À faire aujourd'hui</h2></header><div class="list" id="todo"></div></div>
+        <div class="card"><header><h2>Documents</h2></header><div class="list" id="docs"></div></div>
+      </section>
+
+      <section data-view="heures" data-title="Fin de journée" data-sub="Mardi 3 novembre · C-2604 Grange des Clots">
+        <div class="card"><header><h2>Heures de l'équipe</h2><span class="sp"></span><span class="muted sm">prévu 32 h</span></header><div class="list" id="hrs"></div></div>
+        <div class="card"><header><h2>Avancement</h2></header><div class="body" id="avt"></div></div>
+        <div class="card"><header><h2>Remarque pour le bureau</h2></header><div class="body"><div style="border:1px solid var(--line);border-radius:8px;padding:10px;min-height:58px" class="sm">Il manque 6 chevrons 63×175 pour finir le versant nord. À commander pour jeudi.</div>
+          <button class="btn pri" style="width:100%;justify-content:center;margin-top:12px;padding:12px">Envoyer au bureau</button></div></div>
+      </section>
