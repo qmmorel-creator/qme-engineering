@@ -31,3 +31,6 @@ Lancée le 27/11/2026 (sous-campagne de la session « Audit campagnes ciblées �
   témoins Gmail vérifiés (domaine inventé : 0 fil ; `qm-engineering.fr` : environ 4 300 fils), une requête par domaine,
   entre guillemets. Brouillon de validation à Quentin (club réel du lot C). Lots A et B en cours de sourcing.
   Les lots restent hors du dépôt jusqu'à la mise en file (sinon `doublons` les écarterait comme déjà cités).
+- 27/11/2026 : règle mise à jour (PR #330, b01111b) : Nexora aussi par radical de domaine. Lot C refait : 43 recherches
+  par radical (partie locale de l'adresse pour les sites hébergés sur une plateforme), toutes vides ; témoin `cipec`
+  retrouvé (vague 14). `doublons` (version à jour) : 0 écarté. Lot C toujours à 43.
