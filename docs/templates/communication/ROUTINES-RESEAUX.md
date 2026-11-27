@@ -52,6 +52,10 @@ jusqu'au 10/12, X jusqu'au 02/12 ; l'agent les prolonge chaque jour.
   accord de Quentin** sur le texte (tâche Nexora à créer le 21/12). L'agent ne le produit jamais avant.
 - **IG-21 et LI-92** réécrits pour l'Organisateur d'événement à 39 € (nouveaux Docs) : leurs images peuvent encore porter
   l'ancien nom « Organisateur de mariage » ou 29 €. L'agent vérifie et refait les images 14 jours avant leur date.
+- **IG-80, IG-90, LI-125 et LI-135** (demande de Quentin du 27/11/2026) : ces publications attendaient la mise en vente de
+  Gestion de classe, Suivi du bébé, Remboursements santé, Suivi d'un animal de compagnie et du Pack Associations et clubs
+  (en vente depuis le 27/11, PR #318). L'agent vérifie leurs visuels et leur texte (nom exact et prix de la fiche Gumroad,
+  lien) 14 jours avant leur date (LI-125 le 18/03/2027, LI-135 le 27/03, IG-80 le 29/03, IG-90 le 16/04) et les refait s'il le faut.
 - Lignes passées en « Annulé » le 24/11 (produits retirés le 22/11) : LI-89, LI-94, LI-127, LI-136, IG-18, IG-23, IG-59,
   IG-82, IG-91, YT-34. La tâche « Rédiger le bilan LI-170 » de la session archivée ne peut plus s'exécuter : l'agent la
   remplace.
