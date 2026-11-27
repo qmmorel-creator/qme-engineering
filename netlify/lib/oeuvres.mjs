@@ -94,6 +94,23 @@ function itunes(fetchImpl, q, media) {
   return lireJson(fetchImpl, u);
 }
 
+// Requête de repli quand la source ne trouve rien (faute de frappe : les sources ne tolèrent pas les fautes). Chaque mot
+// de 5 lettres ou plus est tronqué aux 60 % de sa longueur (4 lettres au moins), suivi d'un joker pour Open Library
+// (Solr) ; TMDB et iTunes, sans joker, cherchent déjà par début de mot. Ex. : « les miserabls » → « les misera* ».
+export function requeteRepli(q, joker) {
+  const m = mots(q);
+  const r = m.map((w) => (w.length >= 5 ? `${w.slice(0, Math.max(4, Math.ceil(w.length * 0.6)))}${joker ? '*' : ''}` : w)).join(' ');
+  return r !== m.join(' ') ? r : '';
+}
+// Recherche chez la source ; sans résultat, repli tolérant aux fautes, puis tri par ressemblance avec la saisie d'origine.
+export async function chercherTolerant(media, q, dep) {
+  const directs = await chercherSource(media, q, dep);
+  if (directs.length) return directs;
+  const repli = requeteRepli(q, media === 'livre');
+  if (!repli) return [];
+  const larges = await chercherSource(media, repli, dep);
+  return larges.map((f) => ({ f, sc: scoreRecherche(q, `${f.titre} ${f.auteur}`) })).filter((x) => x.sc > 0).sort((a, b) => b.sc - a.sc).map((x) => x.f);
+}
 export async function chercherSource(media, q, { fetchImpl, tmdbAcces }) {
   if (media === 'livre') {
     const u = new URL('https://openlibrary.org/search.json');
@@ -189,7 +206,7 @@ export async function traiterOeuvres(requete, { secret, revoques = [], stockage,
       if (c && maintenant() - c.t < DUREE_CACHE) distants = c.r;
       else {
         try {
-          distants = await chercherSource(media, q, dep);
+          distants = await chercherTolerant(media, q, dep);
           await stockage.set(cleQ, { t: maintenant(), r: distants });
           // Chaque fiche lue chez la source est mémorisée : c'est elle (jamais une fiche envoyée par un navigateur)
           // qui entrera dans l'index si un utilisateur ajoute l'œuvre.

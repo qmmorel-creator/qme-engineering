@@ -1,7 +1,7 @@
 // Tests du proxy de recherche d'œuvres du Suivi culturel (netlify/lib/oeuvres.mjs) : sources simulées, aucun appel réel.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { traiterOeuvres, LIMITE_DEMO, scoreRecherche } from '../../netlify/lib/oeuvres.mjs';
+import { traiterOeuvres, LIMITE_DEMO, scoreRecherche, requeteRepli } from '../../netlify/lib/oeuvres.mjs';
 import { genererCode } from '../../netlify/lib/templates-acces.mjs';
 
 const SECRET = 'secret-de-test-oeuvres-0123456789abcdef';
@@ -136,4 +136,21 @@ test('panne d\'une source : message générique sans le jeton, les autres source
   // Open Library et iTunes répondent normalement pendant la panne de TMDB.
   assert.equal((await appeler(req('recherche?media=livre&q=miserables'), opts)).corps.resultats.length, 1);
   assert.equal((await appeler(req('recherche?media=podcast&q=questions'), opts)).corps.resultats.length, 1);
+});
+
+test('faute de frappe : repli par début de mot quand la source ne trouve rien, résultats filtrés par ressemblance', async () => {
+  assert.equal(requeteRepli('les miserabls', true), 'les misera*');
+  assert.equal(requeteRepli('harry poter', false), 'harr pote');
+  assert.equal(requeteRepli('le roi', true), '', 'rien à tronquer');
+  const appels = [];
+  // Source qui ne tolère pas les fautes : « miserabls » ne donne rien, « misera* » donne trois titres.
+  const f = async (url) => {
+    const u = new URL(url); const q = u.searchParams.get('q');
+    appels.push(q);
+    const docs = q === 'les misera*' ? [{ key: '/works/OL2W', title: 'Misery', author_name: ['S. King'] }, { key: '/works/OL1W', title: 'Les Misérables', author_name: ['Victor Hugo'] }, { key: '/works/OL3W', title: 'Les Miserables abrégé', author_name: [] }] : [];
+    return new Response(JSON.stringify({ docs }), { status: 200 });
+  };
+  const r = await appeler(req('recherche?media=livre&q=les%20miserabls'), { stockage: memoire(), fetchImpl: f });
+  assert.deepEqual(appels, ['les miserabls', 'les misera*']);
+  assert.deepEqual(r.corps.resultats.map((x) => x.titre), ['Les Misérables', 'Les Miserables abrégé'], '« Misery » écarté : trop éloigné de la saisie');
 });
