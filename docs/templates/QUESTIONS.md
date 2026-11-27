@@ -34,7 +34,9 @@ Ordre : bloquant d'abord, puis Gumroad, puis par lot. Dernière mise à jour : 1
 
 ## Gumroad (à faire dans l'éditeur, aucun outil ne le permet)
 
-- **Clés de licence à activer (27/11/2026)** : aucune (CSE, BBE, RBS, ANM et Pack Associations activés et en vente le 27/11).
+- **Clés de licence à activer (27/11/2026)** : Pack Écoles et formateurs (https://gumroad.com/products/kshdmi/edit),
+  Pack Maison et famille (https://gumroad.com/products/brtsu/edit), Pack Papiers et décisions d’argent
+  (https://gumroad.com/products/emquvt/edit). Sans couverture : en ajouter une si tu veux.
 - Couverture en double à supprimer : Générateur de devis, Trésorerie prévisionnelle, Organisateur d'événement (garder la
   nouvelle couverture « evenementiel » ajoutée le 24/11, supprimer l'ancienne couverture mariage),
   Circuit de visa (garder la couverture Pastel).
