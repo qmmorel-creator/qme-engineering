@@ -221,13 +221,13 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 - **Skill `.claude/skills/ministories/`** : micro-histoires publicitaires de 20 à 30 s avec la mascotte **Carreau**
   (« Caro », fiche validée par Quentin le 27/11/2026), du script au MP4 contrôlé. Pilote : `docs/ministories/episodes/
   2026-11-27-le-salaire-a-disparu/`. Voix définitive : ElevenLabs, MP3 fourni par Quentin (la voix edge-tts est provisoire).
-- **Tâche planifiée « Mini-story QME du jour »** (8:40, Paris) : une vidéo par jour sur un template ou un pack de la vie
+- **Tâche planifiée « Mini-story QME du jour »** (8:40, Paris) : complète la réserve de 7 vidéos, sujets pris dans la liste, templates ou packs de la vie
   personnelle, sujets variés (journal `docs/ministories/journal.md`). Elle **produit seulement** (MP4, script ElevenLabs,
   dépôt Drive « QME - Vidéos Ministories ») : elle ne programme aucune publication ; la programmation reste à l'agent de
   contenu unique, dans la règle d'une publication par plateforme et par jour.
-- **Validation obligatoire** (décision du 27/11/2026) : sujets classés par Quentin, scénarios écrits d'avance (toujours
-  7) et validés par lui avant toute vidéo. Suivi : `docs/ministories/sujets.md` et `docs/ministories/scenarios/`, sur la
-  branche de production `claude/mini-stories-qme-caro-b07mx2`.
+- **Liste des sujets** (décision du 27/11/2026) : Quentin valide seulement les pitchs dans `docs/ministories/sujets.md`
+  (rang = ordre de production, sans validation du scénario) ; **toujours 7 vidéos d'avance** dans le Drive « QME - Vidéos
+  Ministories ». Branche de production : `claude/mini-stories-qme-caro-b07mx2`.
 
 ## Test des nouveaux formats (décision du 24/11/2026)
 

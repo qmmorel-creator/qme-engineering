@@ -22,14 +22,13 @@ n'est pas une seconde marque. Une demande « mini-story Caro » est une mini-sto
 3. Le skill `qme-ministories` (compte claude.ai, flux ElevenLabs manuel) reste valable pour ses règles de carton et de
    musique ; ce skill-ci les reprend et y ajoute la production automatisée.
 
-## Circuit de validation (décision de Quentin du 27/11/2026)
+## Liste des sujets et réserve (décision de Quentin du 27/11/2026)
 
-`docs/ministories/sujets.md` : **sujet** (classé par Quentin) → **scénario** (`docs/ministories/scenarios/NN-<slug>.md`,
-statut `scénario à valider`) → validation par Quentin → **vidéo**. Aucune vidéo sans scénario validé. Toujours **7
-scénarios d'avance** (à valider + validés non produits) : en manque, écrire les suivants dans l'ordre du rang, puis des
-numéros. Plus de sujets `proposé` ou `retenu` : en proposer 10 nouveaux (statut `proposé`) pour classement. Quand Quentin
-valide, corrige ou écarte dans une conversation, cette session met `sujets.md` à jour et pousse sur la branche
-`claude/mini-stories-qme-caro-b07mx2` (branche de production des mini-stories).
+**Suivre toujours `docs/ministories/sujets.md`**, la liste gérée avec Quentin dans ses conversations : il ne valide que
+les pitchs ; un sujet `retenu` se produit directement, dans l'ordre du rang, **sans validation du scénario** (le
+scénario est écrit dans `script.md` de l'épisode). **Réserve : 7 vidéos d'avance** dans le dossier Drive « QME - Vidéos
+Ministories » (fichiers `qme_ministory_*.mp4`) ; produire chaque jour ce qui manque pour revenir à 7. Moins de 5 sujets
+`retenu` : proposer 10 pitchs (`proposé`) pour classement. Branche de production : `claude/mini-stories-qme-caro-b07mx2`.
 
 ## 1. Brief (5 minutes)
 
