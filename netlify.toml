@@ -46,6 +46,19 @@
   [headers.values]
     Cache-Control = "no-cache"
 
+# Versions privées (hors catalogue, hors sitemap, hors Gumroad) : jamais indexées, toujours revalidées.
+# « Révisions QME X Laurine » : prive/revisions-laurine/ (produit RVX, clés de bêta-test).
+[[headers]]
+  for = "/prive/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/prive/revisions-laurine/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
 [[headers]]
   for = "/templates/compte-rendu/*"
   [headers.values]

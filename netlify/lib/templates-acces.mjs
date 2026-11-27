@@ -127,6 +127,17 @@ export const PRODUITS = {
   QZZ: { nom: 'Banque de questions et quiz', url: '/templates/quiz/', gumroad: 'LmF33uw6vlpiC0CrcqnQPQ==' },
   SVT: { nom: 'Vivre sans voiture', url: '/templates/sans-voiture/', gumroad: '1DfML3czjZu5bg95z3KuRg==' },
 };
+// Templates privés (hors Gumroad, hors catalogue, hors espace /connexion/) : ouverts par code PRODUIT-… comme les
+// autres, mais absents de PRODUITS, que lisent le site, les essais et l'espace acheteurs. Préfixe sans O, I ni L
+// (normaliser les change en 0 et 1).
+//  - RVX : « Révisions QME X Laurine », version privée du planning de révision pour Laurine Mebs (Optimind
+//    Formation) et ses bêta-testeurs (décision du 26/11/2026). Codes : npm run code -- RVX <nombre>.
+export const PRODUITS_PRIVES = {
+  RVX: { nom: 'Révisions QME X Laurine', url: '/prive/revisions-laurine/' },
+};
+// Produits ouvrables par code : vendus et privés (les préfixes privés ne recouvrent aucun préfixe vendu).
+const OUVRABLES = { ...PRODUITS, ...PRODUITS_PRIVES };
+
 const GUMROAD_VERIFY = 'https://api.gumroad.com/v2/licenses/verify';
 export const TAILLE_MAX = 900_000; // octets, marge sous la limite d'1 Mo d'une requête
 
@@ -173,7 +184,7 @@ const formater = (produit, id, sig) => `${produit}-${id.slice(0, 4)}-${id.slice(
 
 export function genererCode(secret, produit) {
   if (!secret || secret.length < 32) throw new Error('TEMPLATES_SECRET absent ou trop court (32 caractères minimum)');
-  if (!PRODUITS[produit]) throw new Error(`Produit inconnu : ${produit}`);
+  if (!OUVRABLES[produit]) throw new Error(`Produit inconnu : ${produit}`);
   const id = base32(randomBytes(5));
   return formater(produit, id, signature(secret, produit, id));
 }
@@ -383,7 +394,7 @@ function reponsePack(secret, acces, code) {
 export function verifierCode(secret, saisie, revoques = []) {
   if (!secret) return null;
   const n = normaliser(saisie);
-  const produit = Object.keys(PRODUITS).find((p) => n.startsWith(normaliser(p)) && n.length === normaliser(p).length + 16);
+  const produit = Object.keys(OUVRABLES).find((p) => n.startsWith(normaliser(p)) && n.length === normaliser(p).length + 16);
   if (!produit) return null;
   const reste = n.slice(normaliser(produit).length);
   const id = reste.slice(0, 8), sig = reste.slice(8);
@@ -470,7 +481,7 @@ export async function traiter(requete, { secret, revoques = [], stockage, essais
 
   // Code administrateur : ouvre le template qui le demande (champ produit), avec l'espace personnel de Quentin.
   if (chemin === '/connexion' && requete.method === 'POST' && estCodeAdmin(secret, code)) {
-    if (!PRODUITS[corps?.produit]) return json(400, { erreur: 'Code administrateur : précise le template à ouvrir.' });
+    if (!OUVRABLES[corps?.produit]) return json(400, { erreur: 'Code administrateur : précise le template à ouvrir.' });
     code = codeAdminProduit(secret, corps.produit);
   }
 
@@ -504,7 +515,7 @@ export async function traiter(requete, { secret, revoques = [], stockage, essais
   if (chemin === '/connexion' && requete.method === 'POST') {
     if (achatVerifie && !essai) await reporter(acces.produit, cle);
     const jeton = essai ? essai.code : formater(acces.produit, acces.id, signature(secret, acces.produit, acces.id));
-    return json(200, { ok: true, produit: acces.produit, url: PRODUITS[acces.produit].url, jeton, donnees: (await stockage.get(cle)) ?? null, ...extra });
+    return json(200, { ok: true, produit: acces.produit, url: OUVRABLES[acces.produit].url, jeton, donnees: (await stockage.get(cle)) ?? null, ...extra });
   }
   if (chemin === '/donnees' && requete.method === 'GET') {
     return json(200, { donnees: (await stockage.get(cle)) ?? null, ...extra });
