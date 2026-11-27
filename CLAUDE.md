@@ -10,7 +10,7 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 ## Réseaux sociaux : une seule publication par plateforme et par jour (décision du 24/11/2026)
 
 - **Règle très importante** : Instagram, TikTok, YouTube, LinkedIn et X ont chacun **au plus une publication par jour**,
-  tous formats confondus (post, carrousel, Reel, vidéo, Short). Toute session ou tâche planifiée qui programme choisit
+  tous formats confondus (seule exception : les mini-stories, en plus, voir section Mini-stories) (post, carrousel, Reel, vidéo, Short). Toute session ou tâche planifiée qui programme choisit
   un jour **sans aucune ligne** sur la plateforme ; jamais deux lignes à la même date. Contenus audacieux en priorité.
   Règle : `docs/templates/communication/REGLES-CONTENU.md` § 1 ; calendrier refait le 24/11/2026 :
   `docs/templates/communication/CALENDRIER-UNE-PAR-JOUR.md`.
@@ -228,13 +228,26 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 
 ## Mini-stories QME (décision du 27/11/2026)
 
+- **Agent master des mini-stories** (décision de Quentin du 27/11/2026) : la session `session_0183EW55iLAYXDKQ2SE6AK5p`
+  pilote tout le volet mini-stories (liste des sujets, production, réserve Drive, accessoires de Carreau, audit et
+  stratégie). Les autres sessions lui transmettent les demandes (`send_message`) ou y renvoient Quentin. Cible : Instagram
+  et TikTok, public jeune, volet personnel ; charte de Carreau (« Caro »).
 - **Skill `.claude/skills/ministories/`** : micro-histoires publicitaires de 20 à 30 s avec la mascotte **Carreau**
   (« Caro », fiche validée par Quentin le 27/11/2026), du script au MP4 contrôlé. Pilote : `docs/ministories/episodes/
-  2026-11-27-le-salaire-a-disparu/`. Voix définitive : ElevenLabs, MP3 fourni par Quentin (la voix edge-tts est provisoire).
-- **Tâche planifiée « Mini-story QME du jour »** (8:40, Paris) : une vidéo par jour sur un template ou un pack de la vie
-  personnelle, sujets variés (journal `docs/ministories/journal.md`). Elle **produit seulement** (MP4, script ElevenLabs,
-  dépôt Drive « QME - Vidéos Ministories ») : elle ne programme aucune publication ; la programmation reste à l'agent de
-  contenu unique, dans la règle d'une publication par plateforme et par jour.
+  2026-11-27-le-salaire-a-disparu/`. Voix : connecteur ElevenLabs, voix « Caroline - Warm, Sweet and Soft » ; à défaut, voix provisoire edge-tts + texte
+  `_elevenlabs.txt` dans le Drive, supprimés avec le MP4 provisoire dès que la version Caroline est déposée.
+- **Tâche planifiée « Mini-story QME du jour »** (8:40, Paris) : complète la réserve de 7 vidéos, sujets pris dans la liste, templates ou packs de la vie
+  personnelle, sujets variés (journal `docs/ministories/journal.md`). Elle produit (MP4, voix Caroline,
+  dépôt Drive « QME - Vidéos Ministories ») et programme les 5 créneaux hebdomadaires des mini-stories (voir
+  « Publication » ci-dessous), dans la règle d'une publication par plateforme et par jour.
+- **Publication** (décision de Quentin du 27/11/2026) : **5 mini-stories par semaine** sur Instagram (TikTok suit),
+  choisies et programmées par l'agent master dans le planning Instagram (Sheet `1R9l_AHY5fQwGvuZE-ge6F3ghvzx8OvQarkzxBf1mhf8`),
+  thème « Mini-story », à 20:30, **en plus** de la publication du jour : elles ne comptent pas dans la règle d'une
+  publication par jour et ne déplacent aucune ligne (décision du 27/11/2026). Version TikTok : carton final ramené à 1,5 s (Instagram : 4 s). L'agent de contenu
+  ne remplace jamais une ligne « Mini-story ».
+- **Liste des sujets** (décision du 27/11/2026) : Quentin valide seulement les pitchs dans `docs/ministories/sujets.md`
+  (rang = ordre de production, sans validation du scénario) ; **toujours 7 vidéos d'avance** dans le Drive « QME - Vidéos
+  Ministories ». Branche de production : `claude/mini-stories-qme-caro-b07mx2`.
 
 ## Test des nouveaux formats (décision du 24/11/2026)
 

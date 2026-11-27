@@ -22,6 +22,14 @@ n'est pas une seconde marque. Une demande « mini-story Caro » est une mini-sto
 3. Le skill `qme-ministories` (compte claude.ai, flux ElevenLabs manuel) reste valable pour ses règles de carton et de
    musique ; ce skill-ci les reprend et y ajoute la production automatisée.
 
+## Liste des sujets et réserve (décision de Quentin du 27/11/2026)
+
+**Suivre toujours `docs/ministories/sujets.md`**, la liste gérée avec Quentin dans ses conversations : il ne valide que
+les pitchs ; un sujet `retenu` se produit directement, dans l'ordre du rang, **sans validation du scénario** (le
+scénario est écrit dans `script.md` de l'épisode). **Réserve : 7 vidéos d'avance** dans le dossier Drive « QME - Vidéos
+Ministories » (fichiers `qme_ministory_*.mp4`) ; produire chaque jour ce qui manque pour revenir à 7. Moins de 5 sujets
+`retenu` : proposer 10 pitchs (`proposé`) pour classement. Branche de production : `claude/mini-stories-qme-caro-b07mx2`.
+
 ## 1. Brief (5 minutes)
 
 Copier `modeles/brief.md` dans un nouveau dossier `docs/ministories/episodes/AAAA-MM-JJ-<slug>/` et le remplir :
@@ -43,12 +51,24 @@ qui dit ce que l'image montre.
 fiche de continuité (expressions de Carreau par plan, formes et couleurs fixes des accessoires), plan audio, plan de
 sous-titres. Tous les temps vivent dans **`sources/timeline.json`** (scènes, voix, bruitages) : c'est la source unique.
 
-## 4. Voix
+## 4. Voix : ElevenLabs, voix « Caroline » (décision de Quentin du 27/11/2026)
 
-Une réplique = un fichier `audio/voix/vNN.wav` (48 kHz mono). Outil disponible ici : edge-tts (voir
-`references/production.md` § Voix ; **provisoire**, droits commerciaux non établis). Voix définitive : ElevenLabs, générée
-par Quentin à partir du texte continu du script. Mesurer chaque durée réelle, puis caler `timeline.json` sur ces durées
-(le montage suit la voix).
+Voix définitive générée par le **connecteur ElevenLabs** (outils `mcp__ElevenLabs__*`, à charger par ToolSearch
+« elevenlabs ») avec la voix **« Caroline - Warm, Sweet and Soft »** (celle du pilote), en français :
+`creative_generate_speech` avec `voice_id: "kwhMCf63M8O3rCfnQ3oQ"` (relevé le 27/11/2026 par `creative_list_voices`,
+recherche « Caroline », langue `fr` ; le revérifier si l'appel échoue), `model_id: "eleven_v4"`, **`generations_count: 1`**,
+`prompt` = texte continu du script. Puis `creative_get_flow_run_status` (flow_id, session_ids) en attendant
+`poll_after_seconds` entre deux appels, jusqu'à `all_completed` ; télécharger l'audio par l'URL de la génération.
+Ne jamais relancer une génération pour « réessayer » : chaque appel est facturé. Générer le **texte
+continu** du script en une seule prise (meilleure interprétation), récupérer le MP3, puis le recaler comme le pilote
+(`references/production.md` § Voix ElevenLabs : `voix_source`, répliques relevées par silences et transcription,
+`montage` si la durée change). Copie du MP3 dans `audio/elevenlabs/`. Consomme les crédits ElevenLabs de Quentin : une
+seule génération par épisode, sauf défaut audible ou transcription en échec.
+
+**Si le connecteur ne répond pas** : voix provisoire edge-tts (`references/production.md` § Voix) et, à côté de la vidéo
+dans le Drive, un fichier `qme_ministory_NN-<slug>_elevenlabs.txt` contenant le texte à coller dans ElevenLabs. Dès que
+la version avec la voix Caroline existe (connecteur revenu ou MP3 fourni par Quentin) : déposer le MP4 final, puis
+**supprimer du Drive le MP4 provisoire et le fichier texte** ; seul reste le MP4 avec la bonne voix (même nom de fichier).
 
 ## 5. Image
 
