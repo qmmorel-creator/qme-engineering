@@ -218,6 +218,10 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 
 ## Mini-stories QME (décision du 27/11/2026)
 
+- **Agent master des mini-stories** (décision de Quentin du 27/11/2026) : la session `session_0183EW55iLAYXDKQ2SE6AK5p`
+  pilote tout le volet mini-stories (liste des sujets, production, réserve Drive, accessoires de Carreau, audit et
+  stratégie). Les autres sessions lui transmettent les demandes (`send_message`) ou y renvoient Quentin. Cible : Instagram
+  et TikTok, public jeune, volet personnel ; charte de Carreau (« Caro »).
 - **Skill `.claude/skills/ministories/`** : micro-histoires publicitaires de 20 à 30 s avec la mascotte **Carreau**
   (« Caro », fiche validée par Quentin le 27/11/2026), du script au MP4 contrôlé. Pilote : `docs/ministories/episodes/
   2026-11-27-le-salaire-a-disparu/`. Voix : connecteur ElevenLabs, voix « Caroline - Warm, Sweet and Soft » ; à défaut, voix provisoire edge-tts + texte
