@@ -1465,7 +1465,8 @@ Fiche rédigée et appliquée sans validation intermédiaire (décisions de cadr
 - **Photos du voyage (27/11/2026, demande de Quentin)** : lien vers un album (dossier Google Drive ou autre, `https`
   seulement) sur le voyage (« Modifier le voyage ») et sur chaque étape ; bloc « Photos du voyage » dans l'Aperçu et
   bouton « Photos » sur les étapes de l'itinéraire, ouverts dans un nouvel onglet. Pour tous les acheteurs.
-- **Démo « Espagne » (27/11/2026, feu vert de Quentin)** : `?demo=espagne&prenom=` (lien court
+- **Démo « Espagne » (27/11/2026, feu vert de Quentin)** : `?demo=catalogne&prenom=` (alias `espagne` ; mise le jour
+  même à l'itinéraire réel d'Angélique, 5 jours en Catalogne avec activités suggérées ; lien court
   `/demo/angelique-espagne`), road trip de deux semaines en van avec deux chiens, départ dans 10 jours (phase de
   préparation : à réserver, budget prévu, bagages et papiers), albums photos en liens d'exemple qui expliquent quoi
   coller au lieu d'ouvrir un faux dossier.
