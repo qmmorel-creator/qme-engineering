@@ -562,3 +562,7 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 #racine::before{width:420px;height:420px;border-radius:50%;background:var(--jaune);right:-140px;top:-120px}
 #racine::after{width:260px;height:260px;background:var(--bleu);left:-90px;bottom:-90px;border-top-right-radius:100%}
 @media print{#racine::before,#racine::after{display:none}}
+/* Papier · tablette et téléphone : les marqueurs seuls ne suffisent pas, le libellé reste visible */
+@media (max-width:1020px){.barre .titre-produit{display:none}.onglet span{display:inline}.onglet{padding:0 8px;gap:6px;font-size:14px}}
+@media (max-width:720px){.onglet span{display:block}.onglet{font-size:11px;gap:5px}.onglet .marqueur{width:12px;height:12px}
+  #racine::before{width:260px;height:260px;right:-110px;top:-90px}#racine::after{width:170px;height:170px;left:-70px;bottom:calc(var(--nav-h) - 60px)}}
