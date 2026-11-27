@@ -1,0 +1,237 @@
+window.TL = {
+  "episode": "01-abonnement-fantome",
+  "duree": 30.5,
+  "carton": {
+    "debut": 26.5,
+    "fin": 30.5
+  },
+  "scenes": [
+    {
+      "id": "S1",
+      "debut": 0,
+      "fin": 3.15,
+      "nom": "Prélèvement fantôme"
+    },
+    {
+      "id": "S2",
+      "debut": 3.15,
+      "fin": 6.0,
+      "nom": "Ouverte une fois en 2024"
+    },
+    {
+      "id": "S3",
+      "debut": 6.0,
+      "fin": 11.8,
+      "nom": "Les fantômes sortent du placard"
+    },
+    {
+      "id": "S4",
+      "debut": 11.8,
+      "fin": 15.35,
+      "nom": "87 € par mois : panique"
+    },
+    {
+      "id": "S5",
+      "debut": 15.35,
+      "fin": 18.85,
+      "nom": "Suivi des abonnements : au mois et à l'année"
+    },
+    {
+      "id": "S6",
+      "debut": 18.85,
+      "fin": 22.5,
+      "nom": "L'alerte avant le prélèvement"
+    },
+    {
+      "id": "S7",
+      "debut": 22.5,
+      "fin": 25.6,
+      "nom": "Caro médite gratuitement"
+    },
+    {
+      "id": "S8",
+      "debut": 25.6,
+      "fin": 29.6,
+      "nom": "Carton final officiel"
+    }
+  ],
+  "voix": [
+    {
+      "id": "v01",
+      "t": 0.25,
+      "texte": "Neuf euros quatre-vingt-dix-neuf. Pour méditer.",
+      "fin": 2.84
+    },
+    {
+      "id": "v02",
+      "t": 3.3,
+      "texte": "Ouverte une fois. En 2024.",
+      "fin": 5.5
+    },
+    {
+      "id": "v03",
+      "t": 5.9,
+      "texte": "Attendez… il y en a d'autres.",
+      "fin": 7.66
+    },
+    {
+      "id": "v04",
+      "t": 8.2,
+      "texte": "Le streaming oublié. La salle de sport. Le magazine.",
+      "fin": 11.59
+    },
+    {
+      "id": "v05",
+      "t": 11.97,
+      "texte": "Quatre-vingt-sept euros par mois. De fantômes.",
+      "fin": 14.45
+    },
+    {
+      "id": "v06",
+      "t": 14.84,
+      "texte": "Le Suivi des abonnements, de QME, ramène tout au mois et à l'année.",
+      "fin": 19.19
+    },
+    {
+      "id": "v07",
+      "t": 19.68,
+      "texte": "Un essai qui se termine ? L'alerte arrive avant le prélèvement.",
+      "fin": 22.98
+    },
+    {
+      "id": "v08",
+      "t": 23.43,
+      "texte": "Cette fois, Caro médite… gratuitement.",
+      "fin": 26.13
+    }
+  ],
+  "bruitages": [
+    {
+      "son": "pop",
+      "t": 0.05
+    },
+    {
+      "son": "fizz",
+      "t": 5.52
+    },
+    {
+      "son": "whoosh",
+      "t": 7.7
+    },
+    {
+      "son": "pose",
+      "t": 9.25
+    },
+    {
+      "son": "pose",
+      "t": 10.45
+    },
+    {
+      "son": "chute",
+      "t": 11.6
+    },
+    {
+      "son": "whoosh",
+      "t": 14.46
+    },
+    {
+      "son": "pose",
+      "t": 19.2
+    },
+    {
+      "son": "pose",
+      "t": 19.35
+    },
+    {
+      "son": "pose",
+      "t": 19.5
+    },
+    {
+      "son": "ding",
+      "t": 26.15
+    }
+  ],
+  "reperes": {
+    "fantomes": [
+      7.85,
+      9.45,
+      10.85
+    ],
+    "panique": 13.3,
+    "cadre_mois": 18.0,
+    "cadre_an": 18.4,
+    "alerte": 20.8,
+    "prelevement": 21.8
+  },
+  "voix_source": {
+    "fichier": "audio/elevenlabs/voix-elevenlabs.wav",
+    "decalage": 0.2,
+    "origine": "ElevenLabs, voix « Caroline - Warm, Sweet and Soft » (kwhMCf63M8O3rCfnQ3oQ), eleven_v4, générée le 27/11/2026"
+  },
+  "montage": [
+    [
+      0,
+      0
+    ],
+    [
+      3.3,
+      3.25
+    ],
+    [
+      5.9,
+      6.15
+    ],
+    [
+      8.3,
+      7.85
+    ],
+    [
+      9.7,
+      9.45
+    ],
+    [
+      11.0,
+      10.85
+    ],
+    [
+      11.97,
+      12.0
+    ],
+    [
+      14.84,
+      15.5
+    ],
+    [
+      18.3,
+      18.0
+    ],
+    [
+      19.0,
+      18.4
+    ],
+    [
+      19.68,
+      19.0
+    ],
+    [
+      21.1,
+      20.8
+    ],
+    [
+      22.5,
+      21.8
+    ],
+    [
+      23.43,
+      22.7
+    ],
+    [
+      26.5,
+      25.6
+    ],
+    [
+      30.5,
+      29.6
+    ]
+  ]
+};

@@ -1,0 +1,230 @@
+{
+  "episode": "06-marathon-de-la-veille",
+  "duree": 21.9,
+  "carton": {
+    "debut": 17.9,
+    "fin": 21.9
+  },
+  "scenes": [
+    {
+      "id": "S1",
+      "debut": 0.0,
+      "fin": 3.9,
+      "nom": "Inscrit… dans trois jours"
+    },
+    {
+      "id": "S2",
+      "debut": 3.9,
+      "fin": 8.8,
+      "nom": "Lundi, mardi, mercredi"
+    },
+    {
+      "id": "S3",
+      "debut": 8.8,
+      "fin": 12.0,
+      "nom": "Jour J : premier kilomètre"
+    },
+    {
+      "id": "S4",
+      "debut": 12.0,
+      "fin": 14.55,
+      "nom": "Rembobinons"
+    },
+    {
+      "id": "S5",
+      "debut": 14.55,
+      "fin": 21.0,
+      "nom": "Plan d'entraînement course à pied"
+    },
+    {
+      "id": "S6",
+      "debut": 21.0,
+      "fin": 26.0,
+      "nom": "Arrivée, frais"
+    }
+  ],
+  "voix": [
+    {
+      "id": "v01",
+      "t": 0.15,
+      "texte": "Inscrit au dix kilomètres… dans trois jours.",
+      "fin": 2.63,
+      "st": [
+        [
+          0,
+          "Inscrit au dix kilomètres…"
+        ],
+        [
+          1.6,
+          "… dans trois jours."
+        ]
+      ]
+    },
+    {
+      "id": "v02",
+      "t": 2.85,
+      "texte": "Lundi : footing à minuit.",
+      "fin": 4.48
+    },
+    {
+      "id": "v03",
+      "t": 4.68,
+      "texte": "Mardi : fractionné dans l'escalier.",
+      "fin": 6.6
+    },
+    {
+      "id": "v04",
+      "t": 6.8,
+      "texte": "Mercredi : trois assiettes de pâtes.",
+      "fin": 8.47
+    },
+    {
+      "id": "v05",
+      "t": 8.88,
+      "texte": "Premier kilomètre…",
+      "fin": 9.75
+    },
+    {
+      "id": "v06",
+      "t": 10.58,
+      "texte": "Rembobinons. Huit semaines avant.",
+      "fin": 12.2
+    },
+    {
+      "id": "v07",
+      "t": 12.4,
+      "texte": "Son plan : une séance, une coche.",
+      "fin": 14.58
+    },
+    {
+      "id": "v08",
+      "t": 14.79,
+      "texte": "Jour J. Il passe l'arrivée.",
+      "fin": 16.48
+    },
+    {
+      "id": "v09",
+      "t": 16.68,
+      "texte": "Et la veille ? Repos.",
+      "fin": 17.75
+    }
+  ],
+  "bruitages": [
+    {
+      "son": "pop",
+      "t": 0.02
+    },
+    {
+      "son": "whoosh",
+      "t": 2.64
+    },
+    {
+      "son": "chute",
+      "t": 9.77
+    },
+    {
+      "son": "pose",
+      "t": 12.97
+    },
+    {
+      "son": "ding",
+      "t": 17.8
+    }
+  ],
+  "voix_source": {
+    "fichier": "audio/elevenlabs/voix-elevenlabs-resserree.wav",
+    "decalage": 0.1,
+    "origine": "ElevenLabs, voix « Caroline - Warm, Sweet and Soft » (kwhMCf63M8O3rCfnQ3oQ), eleven_v4, une génération le 27/11/2026 (21,36 s), format v2 ; pauses resserrées par sources/resserrer.py (17,76 s), aucun mot coupé"
+  },
+  "montage": [
+    [
+      0,
+      0
+    ],
+    [
+      1.75,
+      2.65
+    ],
+    [
+      2.75,
+      3.85
+    ],
+    [
+      2.8,
+      3.9
+    ],
+    [
+      4.6,
+      5.25
+    ],
+    [
+      6.7,
+      6.95
+    ],
+    [
+      8.6,
+      8.8
+    ],
+    [
+      8.61,
+      9.5
+    ],
+    [
+      8.9,
+      10.2
+    ],
+    [
+      9.8,
+      11.0
+    ],
+    [
+      10.5,
+      12.0
+    ],
+    [
+      11.3,
+      13.3
+    ],
+    [
+      12.3,
+      14.5
+    ],
+    [
+      12.31,
+      18.6
+    ],
+    [
+      13.15,
+      19.55
+    ],
+    [
+      14.2,
+      20.6
+    ],
+    [
+      14.7,
+      21.0
+    ],
+    [
+      15.9,
+      21.9
+    ],
+    [
+      16.9,
+      23.3
+    ],
+    [
+      17.25,
+      23.95
+    ],
+    [
+      17.9,
+      24.6
+    ],
+    [
+      21.9,
+      28.6
+    ]
+  ],
+  "accroche": "10 km dans 3 jours. Zéro entraînement."
+}
