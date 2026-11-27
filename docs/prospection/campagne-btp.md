@@ -51,6 +51,12 @@ n'a ni plans annotés ni photos géolocalisées.
 | 2 | `docs/prospection/lots/btp-lot2.json` (écartés : `btp-lot2-ecartes.md`) | 88, 64 départements | 54 `moe`, 34 `eg` (une EG retirée : ECIB Project, déjà contacté) | mêmes contrôles ; désinscrits 0 ; opposition 0 ; Nexora 0 doublon hors ECIB ; Gmail : ECIB seulement |
 | 3 | `docs/prospection/lots/btp-lot3.json` (écartés : `btp-lot3-ecartes.md`) | 92, 59 départements (dont 04, 08, 09, 18, 26, 32, 39, 43, 46, 53, 58, 60, 61, 64, 70, 77, 80, 81, 93) | 69 `moe` (56 architectes), 23 `eg` ; Architectes Associés retiré (site injoignable à la relecture) | mêmes contrôles ; désinscrits 0 ; opposition 0 ; Nexora 0 ; Gmail 0 |
 | 4 | `docs/prospection/lots/btp-lot4.json` (écartés : `btp-lot4-ecartes.md`) | 71, 51 départements (2 au plus par département) | 55 `moe`, 16 `eg` ; ONICO retiré (30 collaborateurs), IBSE retiré (déjà contacté) | mêmes contrôles ; désinscrits 0 ; opposition 0 ; Nexora 0 ; Gmail : IBSE seulement |
+| 5 | `docs/prospection/lots/btp-lot5.json` (écartés : `btp-lot5-ecartes.md`) | 68 | 47 `moe`, 21 `eg` ; EGP Bat et Sinequanon retirés (déjà contactés) | mêmes contrôles ; désinscrits 0 ; opposition 0 ; Nexora 0 ; Gmail : EGP Bat et Sinequanon seulement |
+
+À surveiller dans le lot 5 : clientèle de particuliers (ARCMO, Agence Makao, Halfa Architecture, Concept Habitation, GGC Bâtiment,
+Bati Services 28, DESTPEC, TPP Bâti) ; activité limite (Cantal Construction, gros œuvre ; Baffy, second œuvre en macro-lots ;
+EPC Dax, ingénierie pour entreprises ; Esquisse Aménagement, aménagement de bureaux) ; taille (AMGX, GERA Architectes, 13 personnes) ;
+webmails (Agence Mobé, Alpes Travaux Locaux, ARCMO, Atelier R-2, AEF, Halfa Architecture, CBC MOE, EG TCE).
 
 À surveiller dans le lot 4 : taille limite (Cosinus, 20 personnes ; Brail Architectes, 11 ; MP Constructions, petit groupe
 régional) ; clientèle mixte avec particuliers (EGV Bâtiment, RC Bâtiment, Renovo, Alex Construction, STB Groupe, Atelier 9F,
@@ -79,3 +85,4 @@ moins ; sept adresses en webmail générique affichées sur le site ; Bloc Const
 | 2026-11-26 (bilan traité le 27/11 au matin, pilotage reçu en retard) | 78 | 1 « STOP » | 1 | 112 premiers mails partis au total, aucune erreur ; RHON'ECO « STOP » → liste d'opposition (27/11) et `oppose` ; AMO Services : adresse plus attribuée → `perdu` ; 6 nouveaux filtres Mailinblack (EPC, EIC, Axxion, NiU, Partition, Di Raffaello), 8 au total à valider par Quentin ; 139 en file → lot 4 de sourcing lancé |
 | 2026-11-27 (matin) | — | — | — | Lot 4 (71 adresses) contrôlé, mis en file et versé dans Nexora (`lot: 4`) ; 200 en file |
 | 2026-11-27 (point de 16 h) | 76 dans la journée | 1 refus poli | 0 | Cabinet Lechevallier : retraite et fermeture au 30/11 → `perdu`, brouillon de réponse courte (Floriane en Cc) à valider ; 2 nouveaux filtres Mailinblack (Artech, BTCE), 10 au total ; 134 en file → lot 5 de sourcing lancé |
+| 2026-11-27 (soir) | — | — | — | Lot 5 (68 adresses) contrôlé, mis en file et versé dans Nexora (`lot: 5`) ; EGP Bat et Sinequanon retirés (déjà contactés) ; 194 en file, 196 premiers mails partis au total |
