@@ -86,7 +86,8 @@ source, fait, verifie }]`, `id` = slug stable. Garder **au moins trois jours d'a
 **Aucun doublon entre campagnes** (décision de Quentin du 27/11/2026) : la file du site ne bloque une adresse que dans
 sa propre campagne. Avant toute mise en file, chaque lot passe les trois contrôles, et une entreprise écartée par l'un
 d'eux ne reçoit rien :
-1. `node outils/prospection/campagne.mjs doublons <lot.json> <retenus.json>` : écarte toute adresse, et tout domaine
+1. `node outils/prospection/campagne.mjs doublons <lot.json> <retenus.json> --campagne <sujet>` (l'option fait ignorer
+   les fichiers de la campagne elle-même : modèle, journal, lots déjà commités) : écarte toute adresse, et tout domaine
    d'entreprise (hors messageries grand public, comparées à l'adresse entière), déjà vu dans **n'importe quelle
    campagne** de la file (en attente ou traité) ou cité dans le dépôt (anciennes vagues, archives, concepts), et les
    doublons internes au lot ;
@@ -113,7 +114,7 @@ points ouverts. Attendre son feu vert.
 
 1. Fusion squash de la PR, contrôle en production (200, `X-Robots-Tag: noindex`) ; concept `statut: "en-ligne"`.
 2. `POST /api/prospection/campagne { id, nom, pause: false }`.
-3. Pour chaque lot : `doublons` (et contrôles Nexora et Gmail, § 4) → `messages` → `opposition` → `file` ; Nexora `mutate_qme` `entity: "prospect"` `upsert_many`
+3. Pour chaque lot : `doublons … --campagne <sujet>` (et contrôles Nexora et Gmail, § 4) → `messages` → `opposition` → `file` ; Nexora `mutate_qme` `entity: "prospect"` `upsert_many`
    (`entreprise`, `segment`, `ville`, `site`, `emailSource` = adresse, `sourceUrl`, `signal` = fait, `vague`,
    `etape: "a-contacter"`, `conceptUrl`, `mailObjet`), 400 au plus par appel.
 

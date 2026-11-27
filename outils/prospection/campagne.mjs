@@ -10,7 +10,7 @@
 //        → relances J+7 (type relance, relanceDe = id du premier mail, pasAvant = date)
 //   node outils/prospection/campagne.mjs file <campagne> <messages.json>
 //        → mise en file sur le site (jeton X-Prospection-Token injecté par le proxy)
-//   node outils/prospection/campagne.mjs doublons <prospects.json> [sortie.json]
+//   node outils/prospection/campagne.mjs doublons <prospects.json> [sortie.json] [--campagne <id>]
 //        → écarte les adresses et domaines déjà vus dans toute campagne de la file ou dans le dépôt, et les doublons du lot
 //   node outils/prospection/campagne.mjs etat <campagne> [details]
 //
@@ -83,8 +83,13 @@ if (commande === 'messages') {
   // file (en attente ou traité) ou cité dans le dépôt (anciennes vagues, archives, journaux, concepts), et les
   // doublons internes au lot. Limite : les adresses des anciennes vagues ne sont que dans Nexora, pas dans le dépôt ;
   // restent donc obligatoires Nexora (list_qme query = nom, puis radical du domaine) et Gmail (in:anywhere "<domaine>").
+  // --campagne <id> : les fichiers du dépôt propres à cette campagne (modèle, journal, lots : chemin contenant <id>)
+  // ne servent pas de référence, sinon un lot déjà commité s'écarterait lui-même ; le fichier du lot non plus.
+  const iCamp = args.indexOf('--campagne');
+  const propre = iCamp >= 0 ? args.splice(iCamp, 2)[1] : null;
   const [f, sortie] = args;
   const lot = await lireJson(f);
+  const { resolve, relative } = await import('node:path');
   const vus = { email: new Map(), domaine: new Map() };
   const noter = (email, origine) => {
     const e = String(email || '').trim().toLowerCase();
@@ -100,10 +105,12 @@ if (commande === 'messages') {
   }
   const { execFileSync } = await import('node:child_process');
   const racine = new URL('../../', import.meta.url).pathname;
-  const sortieGrep = execFileSync('git', ['-C', racine, 'grep', '-hoIE', '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}', '--', 'docs', 'outils', 'concepts'], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
-  for (const e of sortieGrep.split('\n')) if (!/qm-engineering\.fr$/i.test(e)) noter(e, 'dépôt (docs, outils, concepts)');
-  const sites = execFileSync('git', ['-C', racine, 'grep', '-hoIE', 'https?://(www\\.)?[A-Za-z0-9.-]+\\.[A-Za-z]{2,}', '--', 'docs/prospection', 'outils/prospection', 'concepts'], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
-  for (const u of sites.split('\n')) { const d = u.replace(/^https?:\/\/(www\.)?/i, '').toLowerCase(); if (d && !/qm-engineering\.fr$/.test(d) && !vus.domaine.has(d)) vus.domaine.set(d, 'dépôt (site cité)'); }
+  const fichierLot = relative(racine, resolve(f));
+  const ignore = (chemin) => chemin === fichierLot || (propre && chemin.includes(propre));
+  const greper = (motif, chemins) => execFileSync('git', ['-C', racine, 'grep', '-oIE', motif, '--', ...chemins], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 })
+    .split('\n').map((l) => { const i = l.indexOf(':'); return [l.slice(0, i), l.slice(i + 1)]; }).filter(([c, v]) => v && !ignore(c));
+  for (const [c, e] of greper('[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}', ['docs', 'outils', 'concepts'])) if (!/qm-engineering\.fr$/i.test(e)) noter(e, `dépôt (${c})`);
+  for (const [c, u] of greper('https?://(www\\.)?[A-Za-z0-9.-]+\\.[A-Za-z]{2,}', ['docs/prospection', 'outils/prospection', 'concepts'])) { const d = u.replace(/^https?:\/\/(www\.)?/i, '').toLowerCase(); if (d && !/qm-engineering\.fr$/.test(d) && !vus.domaine.has(d)) vus.domaine.set(d, `dépôt (site cité, ${c})`); }
   const retenus = [], ecartes = [], dansLot = new Map();
   for (const p of lot) {
     const e = String(p.email || '').trim().toLowerCase();
