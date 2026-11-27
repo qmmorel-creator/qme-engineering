@@ -42,8 +42,9 @@ conversation `[Prod]` porte le travail technique. Elles s'informent mutuellement
 ### Acheteur Gumroad qui demande une modification
 
 La demande arrive par mail ou par Gumroad. Elle suit le même chemin : chiffrage et devis par le Tunnel de vente,
-puis passation ici une fois le devis accepté. Petite modification (moins d'une demi-journée) : devis simplifié, même
-règle.
+puis passation ici une fois le devis accepté. **Décision de Quentin du 27/11/2026 : toute modification payante pour
+un acheteur Gumroad passe par un devis du Tunnel, même petite** (moins d'une demi-journée : devis simplifié, même règle).
+Aucune modification n'est faite sur la seule demande de l'acheteur.
 
 ## 3. Étapes d'une réalisation
 
@@ -64,6 +65,9 @@ Note Bible ; rien de secret dans le dépôt (identifiants clients, clés d'API r
 
 ## 4. Pilotage par le master
 
+- **Pas de tâche planifiée** (décision de Quentin du 27/11/2026) tant qu'aucun devis n'est signé : le master est réveillé
+  par le Tunnel de vente (`send_message`) à chaque signature. Une tâche ne sera proposée qu'avec des réalisations en
+  cours, et créée seulement avec l'accord de Quentin.
 - Tient le registre (§ 6) et le planning de toutes les réalisations.
 - Transmet aux `[Prod]` les messages du client reçus par le Tunnel ou par Gmail.
 - Regroupe les validations attendues de Quentin et les envoie au GOD (aperçus, brouillons, fusions).
