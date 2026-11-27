@@ -54,12 +54,20 @@
   const heure = (v) => (estHeure(v) ? v : '');
   const statut = (v, liste = STATUTS, defaut = 'aReserver') => (liste.includes(v) ? v : defaut);
   const horo = (v) => (typeof v === 'string' ? v : '');
+  // Lien d'album photos (dossier Google Drive ou autre) : https uniquement, 500 caractères au plus.
+  // '' = pas de lien ; null = saisie illisible (à signaler à l'utilisateur).
+  function lireLien(saisie) {
+    const s = String(saisie ?? '').trim();
+    if (!s) return '';
+    return /^https:\/\/[^\s<>"'`]+$/i.test(s) && s.length <= 500 ? s : null;
+  }
+  const lien = (v) => lireLien(v) || '';
 
   const normaliserVoyageur = (v = {}) => ({ id: texte(v.id, 40) || nouvelId(), nom: texte(v.nom, 40) || 'Voyageur', modifLe: horo(v.modifLe) });
   function normaliserEtape(e = {}) {
     let arrivee = date(e.arrivee), depart = date(e.depart);
     if (arrivee && depart && depart < arrivee) [arrivee, depart] = [depart, arrivee];
-    return { id: texte(e.id, 40) || nouvelId(), lieu: texte(e.lieu, 80) || 'Étape', arrivee, depart: depart || arrivee, note: texte(e.note, 500), modifLe: horo(e.modifLe) };
+    return { id: texte(e.id, 40) || nouvelId(), lieu: texte(e.lieu, 80) || 'Étape', arrivee, depart: depart || arrivee, note: texte(e.note, 500), photos: lien(e.photos), modifLe: horo(e.modifLe) };
   }
   function normaliserNuit(h = {}) {
     let arrivee = date(h.arrivee), depart = date(h.depart);
@@ -106,7 +114,7 @@
   function etatVide() {
     return {
       version: 1,
-      voyage: { nom: '', destination: '', debut: '', fin: '', note: '', modifLe: '' },
+      voyage: { nom: '', destination: '', debut: '', fin: '', note: '', album: '', modifLe: '' },
       budget: { prevus: {}, modifLe: '' },
       voyageurs: [], etapes: [], nuits: [], transports: [], activites: [], depenses: [], virements: [],
       bagages: [], documents: [], archives: [], supprimes: {},
@@ -119,7 +127,7 @@
     const v = d.voyage || {};
     let debut = date(v.debut), fin = date(v.fin);
     if (debut && fin && fin < debut) [debut, fin] = [fin, debut];
-    e.voyage = { nom: texte(v.nom, 80), destination: texte(v.destination, 80), debut, fin: fin || debut, note: texte(v.note, 1000), modifLe: horo(v.modifLe) };
+    e.voyage = { nom: texte(v.nom, 80), destination: texte(v.destination, 80), debut, fin: fin || debut, note: texte(v.note, 1000), album: lien(v.album), modifLe: horo(v.modifLe) };
     const prevus = {};
     for (const [k, c] of Object.entries(d.budget?.prevus || {})) if (postes.some((p) => p.id === k) && montant(c)) prevus[k] = montant(c);
     e.budget = { prevus, modifLe: horo(d.budget?.modifLe) };
@@ -221,7 +229,7 @@
       ...transports.map((t) => ({ type: 'transport', date: t.date, ordre: 0, t })),
     ].sort((a, b) => a.date.localeCompare(b.date) || a.ordre - b.ordre || (a.t && b.t ? parHeure(a.t, b.t) : 0));
     return elements.map((x) => (x.type === 'etape'
-      ? { type: 'etape', id: x.e.id, date: x.e.arrivee, lieu: x.e.lieu, nuits: nuitsEtape(x.e), depart: x.e.depart, hebergements: etat.nuits.filter((h) => h.arrivee && h.arrivee < x.e.depart && x.e.arrivee < h.depart) }
+      ? { type: 'etape', id: x.e.id, date: x.e.arrivee, lieu: x.e.lieu, nuits: nuitsEtape(x.e), depart: x.e.depart, photos: x.e.photos || '', hebergements: etat.nuits.filter((h) => h.arrivee && h.arrivee < x.e.depart && x.e.arrivee < h.depart) }
       : { type: 'transport', id: x.t.id, date: x.t.date, mode: libMode(modes, x.t.mode), de: x.t.de, vers: x.t.vers, heure: x.t.heure, statut: x.t.statut }));
   }
   // Une ligne : « Lyon → (Train) → Turin · 2 nuits → (Voiture) → Côme · 3 nuits »
@@ -401,7 +409,7 @@
     STATUTS, LIB_STATUT, STATUTS_ACTIVITE, MAX_VOYAGEURS, URGENT_JOURS, COLLECTIONS,
     iso, versDate, ajout, ecart, estDate, estHeure, dates, maxDate, minDate,
     lireMontant, saisieMontant, euros, versCentimes, nouvelId, sansAccent,
-    normaliserVoyageur, normaliserEtape, normaliserNuit, normaliserTransport, normaliserActivite, normaliserDepense, normaliserVirement, normaliserCase,
+    lireLien, normaliserVoyageur, normaliserEtape, normaliserNuit, normaliserTransport, normaliserActivite, normaliserDepense, normaliserVirement, normaliserCase,
     etatVide, normaliser, nbJours, nbNuits, phase,
     nuitsHebergement, couvre, resteAPayer, couverture, horsVoyage, resumeNuits,
     trierEtapes, nuitsEtape, etapeDeLaNuit, etapesDuJour, etapesChevauchantes,

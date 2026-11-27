@@ -2,8 +2,8 @@
 // Les appels à l'API ne sont jamais mis en cache (données personnelles, toujours fraîches).
 // Le moteur des dépenses partagées vient du budget commun (../budget-commun/regles.js) : gardé aussi.
 // Seuls les anciens caches de CE template sont supprimés : d'autres templates partagent le domaine.
-const VERSION = 'voyage-20261122a';
-const COQUILLE = ['./', 'app.css?v=20261122a', 'donnees.js?v=20261122a', '../budget-commun/regles.js?v=20261122a', 'regles.js?v=20261122a', 'app.js?v=20261122a', 'icone.svg', 'manifest.webmanifest', '/assets/mes-templates.js?v=20261123b'];
+const VERSION = 'voyage-20261127a';
+const COQUILLE = ['./', 'app.css?v=20261127a', 'donnees.js?v=20261122a', '../budget-commun/regles.js?v=20261127a', 'regles.js?v=20261127a', 'app.js?v=20261127a', 'icone.svg', 'manifest.webmanifest', '/assets/mes-templates.js?v=20261123b'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(COQUILLE)).then(() => self.skipWaiting()));
