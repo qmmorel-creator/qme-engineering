@@ -1,4 +1,4 @@
-// Carreau, mascotte QME (format F11 du test des formats, fiche du 24/11/2026, à valider par Quentin).
+// Carreau, mascotte QME (format F11 du test des formats, fiche du 24/11/2026, validée par Quentin le 27/11/2026).
 // Une cellule de tableur qui s'est échappée de son tableur. Uniquement des formes Bauhaus (carré, cercles, triangle,
 // traits) et la palette du kit. Usage : carreau({ expression, pose, couleur }) renvoie un <svg> en texte.
 // expressions : neutre, inquiet, panique, soulage, fier ; poses : debout, court, montre.
