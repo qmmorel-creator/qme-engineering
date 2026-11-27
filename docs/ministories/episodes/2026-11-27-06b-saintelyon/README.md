@@ -7,7 +7,7 @@ Variante de l'épisode 06 (lu, non modifié).
 | Livrable | Chemin |
 |---|---|
 | MP4 final (11,8 Mo) | `rendu/qme_ministory_06b-saintelyon_final.mp4` |
-| MP4 léger (2,76 Mo), Drive | `rendu/qme_ministory_06b-saintelyon_drive.mp4` · [Drive « QME - Vidéos Ministories »](https://drive.google.com/file/d/1RWPABgsIXVHVE4vxVBGGxUpBlWI8r8ul/view) (`qme_ministory_06b-saintelyon.mp4`, id `1RWPABgsIXVHVE4vxVBGGxUpBlWI8r8ul`) |
+| MP4 léger (2,76 Mo), Drive | `rendu/qme_ministory_06b-saintelyon_drive.mp4` · [Drive « QME - Vidéos Ministories »](https://drive.google.com/file/d/1ogRm--JHuWYplUxxKkOPM_0gFDPGgDBn/view) (`qme_ministory_06b-saintelyon.mp4`, id `1ogRm--JHuWYplUxxKkOPM_0gFDPGgDBn`) |
 | Master image muet + couverture | `rendu/master-image.mp4`, `rendu/master-image-couverture.png` |
 | Script, découpage, storyboard (aperçu 16 instants) | `script.md`, `decoupage.md`, `storyboard.png` |
 | Sous-titres | `qme_ministory_06b-saintelyon.srt` (incrustés aussi) |
@@ -49,3 +49,7 @@ Voix seule : -16,1 LUFS, crête -2,0 dB (cible -15,5 : 0,6 dB en dessous).
 - Une seule génération ElevenLabs (366 crédits), prise non retouchée.
 - Frontale et faisceau petits à l'écran (échelle de la mascotte) ; le clignotement se lit surtout par le texte.
 - Données des captures fictives ; aucune distance citée ; aucune promesse de performance ni de santé ; aucun logo.
+
+## Correction du 27/11/2026
+
+Frontale agrandie à la demande de Quentin (boîtier 68×50, lentille Ø 36, double faisceau) et débordement du dessin autorisé (`overflow:visible`), le faisceau étant auparavant coupé par le cadre du personnage. Son inchangé. Nouvelle version Drive `1ogRm--JHuWYplUxxKkOPM_0gFDPGgDBn` (2 745 687 o) ; ancienne `1RWPABgsIXVHVE4vxVBGGxUpBlWI8r8ul` à la corbeille.

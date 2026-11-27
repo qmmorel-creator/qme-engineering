@@ -47,14 +47,14 @@ const recaler = (t) => { const M = T.montage; if (!M) return t; for (let i = 1; 
 function course(svg, {num = '36', lampe = true, incl = 0} = {}) {
   const P = PALETTE;
   const acc = `<g transform="rotate(${incl} 160 150)">
-   ${lampe ? `<path d="M156 30 L60 -50 L252 -50 Z" fill="#FFF6C8" opacity=".55"/>` : ''}
+   ${lampe ? `<path d="M156 26 L-30 -190 L342 -190 Z" fill="#FFF6C8" opacity=".5"/><path d="M156 26 L70 -190 L242 -190 Z" fill="#FFFBE3" opacity=".75"/>` : ''}
    <rect x="52" y="26" width="208" height="14" fill="${P.bleu}" stroke="${P.encre}" stroke-width="5"/>
-   ${lampe ? `<rect x="138" y="16" width="36" height="30" rx="6" fill="${P.encre}"/><circle cx="156" cy="31" r="9" fill="${P.jaune}"/>` : ''}
+   ${lampe ? `<rect x="122" y="4" width="68" height="50" rx="10" fill="${P.encre}"/><circle cx="156" cy="29" r="18" fill="#fff"/><circle cx="156" cy="29" r="13" fill="${P.jaune}"/>` : ''}
    <g transform="translate(156 262)"><rect x="-66" y="-30" width="132" height="78" fill="#fff" stroke="${P.encre}" stroke-width="6"/>
     <rect x="-66" y="-30" width="132" height="22" fill="${P.bleu}"/><text y="-13" font-family="Outfit" font-weight="800" font-size="15" fill="#fff" text-anchor="middle" letter-spacing="2">SAINTÉLYON</text>
     <text y="36" font-family="Outfit" font-weight="800" font-size="40" fill="${P.encre}" text-anchor="middle">${num}</text>
     ${[-54, 54].map((x) => `<circle cx="${x}" cy="0" r="4" fill="${P.encre}"/>`).join('')}</g></g>`;
-  return svg.replace('</svg>', acc + '</svg>');
+  return svg.replace('<svg ', '<svg style="overflow:visible" ').replace('</svg>', acc + '</svg>');
 }
 function mascotte({x, y, s = 1, expr = 'neutre', bras = 'bas', rot = 0, ecrase = 1, tenue = null}) {
   // Module officiel docs/templates/communication/formats-test/mascotte/carreau.js (copié sans « export » dans carreau.js)
