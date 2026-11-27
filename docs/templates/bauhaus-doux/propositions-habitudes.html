@@ -1,0 +1,200 @@
+<title>Bauhaus doux · Habitudes</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap">
+<style>
+/* Mise en page : sélecteur de variante en tête, puis la même maquette « Aujourd'hui + Mois » rendue dans la variante choisie. */
+:root{
+  --papier:#FBF7F1;--surface:#FFFFFF;--encre:#24221F;--texte-2:#5A554D;--discret:#7A746A;--trait:#E7DFD2;
+  --c1:#B84A34;--c2:#E8B93A;--c3:#2E5A88;--c4:#2E7D4F;--doux1:#F6E3DC;--doux2:#FBF0D6;--doux3:#E0E8F1;--doux4:#DDEDE2;
+  --r-carte:0px;--r-btn:0px;--r-case:0px;--ombre:none;--bord:1px solid var(--trait);
+  --police:Outfit,system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--papier:#1C1B19;--surface:#262522;--encre:#F2EDE4;--texte-2:#C9C2B6;--discret:#9C958A;--trait:#3A3833;--doux1:#3B2A25;--doux2:#3A321F;--doux3:#243040;--doux4:#22352A;color-scheme:dark}}
+:root[data-theme="dark"]{--papier:#1C1B19;--surface:#262522;--encre:#F2EDE4;--texte-2:#C9C2B6;--discret:#9C958A;--trait:#3A3833;--doux1:#3B2A25;--doux2:#3A321F;--doux3:#243040;--doux4:#22352A;color-scheme:dark}
+
+/* ---- Variantes ---- */
+/* A · Sable : couleurs désaturées, coins 14 px, aucune icône */
+[data-v="sable"]{--c1:#C47A62;--c2:#D9AE5F;--c3:#6F8AA6;--c4:#7FA084;--r-carte:14px;--r-btn:10px;--r-case:50%;--ombre:0 1px 2px rgba(60,45,30,.06)}
+/* B · Trait fin : icônes au trait 1,5 px arrondies, coins 8 px */
+[data-v="trait"]{--c1:#B8654E;--c2:#D4A443;--c3:#4F7397;--c4:#5E8C68;--r-carte:8px;--r-btn:8px;--r-case:6px}
+/* C · Galets : pilules, aplats pastel, ombres très légères */
+[data-v="galets"]{--c1:#D08A74;--c2:#E2BC6E;--c3:#7E9BB8;--c4:#8DB096;--r-carte:22px;--r-btn:999px;--r-case:50%;--ombre:0 6px 18px rgba(60,45,30,.07);--bord:1px solid transparent}
+/* D · Papier : coins 4 px, formes Bauhaus en filigrane, marqueurs géométriques minuscules */
+[data-v="papier"]{--c1:#B85E48;--c2:#DCA94A;--c3:#3F6A94;--c4:#4E8A5E;--r-carte:4px;--r-btn:4px;--r-case:3px}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--papier);color:var(--encre);font:400 16px/1.5 var(--police);font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+.page{max-width:1100px;margin:0 auto;padding-block:28px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:24px}
+h1,h2,h3,p{margin:0}
+h1{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-.02em;text-wrap:balance}
+.intro p{color:var(--texte-2);max-width:64ch;margin-top:8px}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--c3);outline-offset:2px}
+
+.choix{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.choix button{border:1px solid var(--trait);background:var(--surface);padding:12px 14px;text-align:left;border-radius:10px;display:flex;flex-direction:column;gap:2px}
+.choix button b{font-size:16px}.choix button span{font-size:13px;color:var(--discret)}
+.choix button[aria-pressed="true"]{border-color:var(--encre);box-shadow:inset 0 0 0 1px var(--encre)}
+.note{font-size:14px;color:var(--texte-2);background:var(--surface);border:1px solid var(--trait);border-radius:10px;padding:12px 14px}
+.note b{color:var(--encre)}
+
+/* ---- Maquette ---- */
+.app{position:relative;overflow:hidden;background:var(--papier);border:1px solid var(--trait);border-radius:16px}
+.barre{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:12px 18px;border-bottom:var(--bord);background:var(--papier);position:relative;z-index:1}
+[data-v="galets"] .barre{border-bottom-color:var(--trait)}
+.marque{font-weight:800;font-size:22px;letter-spacing:-.02em}.marque .m{color:var(--c3)}.marque .e{color:var(--c2)}
+.produit{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--discret);border-left:1px solid var(--trait);padding-left:12px}
+.onglets{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+.onglet{display:flex;align-items:center;gap:8px;min-height:40px;padding:0 12px;border:0;background:none;font-weight:600;font-size:15px;color:var(--texte-2);border-radius:var(--r-btn)}
+.onglet[aria-current="page"]{color:var(--encre)}
+[data-v="sable"] .onglet[aria-current="page"]{background:var(--doux2)}
+[data-v="trait"] .onglet[aria-current="page"]{box-shadow:inset 0 -2px 0 var(--c1)}
+[data-v="galets"] .onglet[aria-current="page"]{background:var(--surface);box-shadow:var(--ombre)}
+[data-v="papier"] .onglet[aria-current="page"]{box-shadow:inset 0 -2px 0 var(--encre)}
+.ic{width:18px;height:18px;flex:none}
+.mk{width:9px;height:9px;flex:none}
+
+.corps{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:18px;padding:22px 18px}
+.carte{background:var(--surface);border:var(--bord);border-radius:var(--r-carte);box-shadow:var(--ombre);padding:18px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.tete{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.surtitre{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--discret)}
+h2{font-size:26px;font-weight:700;letter-spacing:-.02em}
+[data-v="galets"] h2,[data-v="sable"] h2{font-weight:600}
+.score{font-size:14px;color:var(--texte-2)}
+.score b{font-size:20px;color:var(--encre)}
+.jauge{height:8px;background:var(--trait);border-radius:var(--r-btn);overflow:hidden}
+.jauge i{display:block;height:100%;width:62%;background:var(--c4);border-radius:inherit}
+.theme{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--discret);display:flex;align-items:center;gap:8px;margin-top:4px}
+.liste{display:flex;flex-direction:column;gap:8px;margin:0;padding:0;list-style:none}
+.ligne{display:flex;align-items:center;gap:12px;min-height:52px;padding:8px 12px;border:1px solid var(--trait);border-radius:var(--r-btn);background:var(--papier)}
+[data-v="galets"] .ligne{border-color:transparent;border-radius:18px}
+.ligne.ok{background:var(--fond)}
+.pastille{width:26px;height:26px;flex:none;border-radius:var(--r-case);border:2px solid var(--teinte);display:grid;place-items:center}
+.ok .pastille{background:var(--teinte)}
+.pastille svg{width:15px;height:15px}
+[data-v="galets"] .pastille{border:0;background:var(--trait)}[data-v="galets"] .ok .pastille{background:var(--teinte)}
+.nom{flex:1;min-width:0;font-weight:600}
+.nom small{display:block;font-weight:400;color:var(--discret);font-size:13px}
+.etat{font-size:13px;color:var(--discret)}
+.compteur{display:flex;align-items:center;gap:6px}
+.compteur button{width:34px;height:34px;border:1px solid var(--trait);background:var(--surface);border-radius:var(--r-btn);font-size:18px;line-height:1;display:grid;place-items:center}
+.compteur b{min-width:48px;text-align:center;font-size:14px}
+
+.mois{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.mois span{aspect-ratio:1;max-width:100%;border-radius:var(--r-case);background:var(--trait)}
+[data-v="sable"] .mois span,[data-v="trait"] .mois span{border-radius:6px}
+.mois .n1{background:var(--doux4)}.mois .n2{background:color-mix(in srgb,var(--c4) 55%,var(--surface))}.mois .n3{background:var(--c4)}
+.mois .vide{background:none}
+.legende{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--discret)}
+.legende span{display:flex;align-items:center;gap:6px}.legende i{width:12px;height:12px;border-radius:var(--r-case);display:inline-block}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+.btn{min-height:44px;padding:0 16px;border:1px solid var(--trait);background:var(--surface);font-weight:600;border-radius:var(--r-btn)}
+.btn.p{background:var(--encre);color:var(--papier);border-color:var(--encre)}
+[data-v="galets"] .btn.p{background:var(--c3);border-color:var(--c3);color:#fff}
+[data-v="sable"] .btn.p{background:var(--c1);border-color:var(--c1);color:#fff}
+
+/* filigrane variante Papier */
+.filigrane{position:absolute;inset:0;pointer-events:none;z-index:0;display:none}
+[data-v="papier"] .filigrane,[data-v="galets"] .filigrane{display:block}
+.filigrane i{position:absolute;opacity:.10}
+[data-v="galets"] .filigrane i{opacity:.07;filter:blur(2px)}
+.f1{width:340px;height:340px;border-radius:50%;background:var(--c2);right:-90px;top:-120px}
+.f2{width:220px;height:220px;background:var(--c3);left:-70px;bottom:-80px;border-top-right-radius:100%}
+.f3{width:0;height:0;border-left:90px solid transparent;border-right:90px solid transparent;border-bottom:150px solid var(--c1);right:22%;bottom:-40px}
+
+.grille-vars{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.grille-vars article{background:var(--surface);border:1px solid var(--trait);border-radius:10px;padding:14px;font-size:14px;color:var(--texte-2)}
+.grille-vars h3{font-size:16px;color:var(--encre);margin-bottom:4px}
+@media (max-width:760px){.corps{grid-template-columns:1fr}.choix{grid-template-columns:repeat(2,minmax(0,1fr))}.grille-vars{grid-template-columns:1fr}.onglet span{display:none}.onglet{padding:0 10px}[data-v="sable"] .onglet span,[data-v="galets"] .onglet span{display:inline}}
+@media (prefers-reduced-motion:no-preference){.app *{transition:background-color .2s,border-radius .2s,color .2s}}
+</style>
+
+<div class="page">
+  <header class="intro">
+    <h1>Bauhaus doux : 4 variantes pour Habitudes</h1>
+    <p>Même écran (Aujourd'hui + aperçu du mois), même structure et mêmes couleurs de base que le template actuel. Seuls changent les icônes, les angles, la saturation et la densité des formes. Clique une variante pour la voir.</p>
+  </header>
+
+  <div class="choix" role="group" aria-label="Variante">
+    <button data-v="sable" aria-pressed="true"><b>A · Sable</b><span>Sans icônes, coins doux</span></button>
+    <button data-v="trait"><b>B · Trait fin</b><span>Icônes au trait léger</span></button>
+    <button data-v="galets"><b>C · Galets</b><span>Pilules, aplats pastel</span></button>
+    <button data-v="papier"><b>D · Papier</b><span>Formes en filigrane</span></button>
+  </div>
+
+  <p class="note" id="note"></p>
+
+  <section class="app" id="app" data-v="sable" aria-label="Maquette">
+    <div class="filigrane" aria-hidden="true"><i class="f1"></i><i class="f2"></i><i class="f3"></i></div>
+    <div class="barre">
+      <span class="marque">Q<span class="m">M</span><span class="e">E</span></span>
+      <span class="produit">Suivi<br>d'habitudes</span>
+      <nav class="onglets" id="onglets"></nav>
+    </div>
+    <div class="corps">
+      <div class="carte">
+        <div class="tete"><div><p class="surtitre">Vendredi 27 novembre</p><h2>Aujourd'hui</h2></div><p class="score"><b>5</b> / 8 tenues</p></div>
+        <div class="jauge"><i></i></div>
+        <p class="theme" data-t="c4">Santé</p>
+        <ul class="liste">
+          <li class="ligne ok" style="--teinte:var(--c4);--fond:var(--doux4)"><span class="pastille" data-coche></span><span class="nom">Marcher 30 min<small>Série de 6 jours</small></span><span class="etat">Fait</span></li>
+          <li class="ligne" style="--teinte:var(--c4)"><span class="pastille"></span><span class="nom">Boire 1,5 L<small>Objectif quotidien</small></span><span class="compteur"><button aria-label="Retirer">−</button><b>1 L</b><button aria-label="Ajouter">+</button></span></li>
+        </ul>
+        <p class="theme" data-t="c3">Esprit</p>
+        <ul class="liste">
+          <li class="ligne ok" style="--teinte:var(--c3);--fond:var(--doux3)"><span class="pastille" data-coche></span><span class="nom">Lire 20 pages<small>Série de 12 jours</small></span><span class="etat">Fait</span></li>
+          <li class="ligne" style="--teinte:var(--c3)"><span class="pastille"></span><span class="nom">Méditer 10 min<small>4 fois cette semaine</small></span><span class="etat">À faire</span></li>
+        </ul>
+        <p class="theme" data-t="c1">Écrans</p>
+        <ul class="liste">
+          <li class="ligne ok" style="--teinte:var(--c1);--fond:var(--doux1)"><span class="pastille" data-coche></span><span class="nom">Pas d'écran après 22 h<small>Série de 3 jours</small></span><span class="etat">Fait</span></li>
+        </ul>
+      </div>
+      <div class="carte">
+        <div class="tete"><div><p class="surtitre">Novembre 2026</p><h2>Mois</h2></div><p class="score"><b>74 %</b> tenu</p></div>
+        <div class="mois" id="mois"></div>
+        <div class="legende"><span><i style="background:var(--trait)"></i>Rien</span><span><i style="background:var(--doux4)"></i>Un peu</span><span><i style="background:var(--c4)"></i>Tout</span></div>
+        <div class="btns"><button class="btn p">Ajouter une habitude</button><button class="btn">Base de 50 habitudes</button></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="grille-vars">
+    <article><h3>A · Sable</h3>Onglets en texte seul, onglet actif en pastille ocre pâle. Coches rondes. Couleurs primaires désaturées vers terracotta, ocre, ardoise, sauge. Le plus calme, le plus simple à appliquer à tous les templates.</article>
+    <article><h3>B · Trait fin</h3>Garde des icônes mais au trait 1,5 px arrondi, sans aplat ni superposition de couleurs. Formes Bauhaus (cercle, carré, triangle) lisibles mais légères. Pour qui veut garder un repère visuel dans la navigation.</article>
+    <article><h3>C · Galets</h3>Tout en courbes : pilules, cartes à 22 px, ombres très diffuses, formes floues en fond. Le plus doux, mais il s'éloigne le plus de l'angle droit Bauhaus.</article>
+    <article><h3>D · Papier</h3>Garde l'angle presque droit (4 px) et la rigueur actuelle. Les icônes deviennent de petits marqueurs géométriques de 9 px ; les grandes formes Bauhaus passent en filigrane à 10 %. Le plus proche de l'identité actuelle.</article>
+  </div>
+</div>
+
+<script>
+const notes={
+  sable:'<b>A · Sable.</b> Aucune icône : le texte et une pastille de fond suffisent. Coins de 10 à 14 px.',
+  trait:'<b>B · Trait fin.</b> Icônes conservées mais au trait fin arrondi, monochromes. Coins de 8 px.',
+  galets:'<b>C · Galets.</b> Boutons en pilule, cases rondes, ombres diffuses, formes floues en arrière-plan.',
+  papier:'<b>D · Papier.</b> Petits marqueurs géométriques colorés à la place des icônes, grandes formes en filigrane.'
+};
+const S=(d)=>`<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+const trait={aujourdhui:S('<circle cx="12" cy="12" r="8"/><path d="m8.5 12.3 2.4 2.4 4.6-4.9"/>'),mois:S('<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>'),bilan:S('<path d="M5 19V13M12 19V8M19 19V5"/>'),habitudes:S('<path d="M12 4.5 20 19H4Z"/>')};
+const M=(f)=>`<svg class="mk" viewBox="0 0 10 10" aria-hidden="true">${f}</svg>`;
+const marq={aujourdhui:M('<circle cx="5" cy="5" r="5" fill="var(--c1)"/>'),mois:M('<rect width="10" height="10" fill="var(--c3)"/>'),bilan:M('<rect x="0" y="5" width="10" height="5" fill="var(--c4)"/><rect x="5" y="0" width="5" height="5" fill="var(--c4)"/>'),habitudes:M('<path d="M5 0 10 10H0Z" fill="var(--c2)"/>')};
+const ong=[['aujourdhui',"Aujourd'hui"],['mois','Mois'],['bilan','Bilan'],['habitudes','Habitudes']];
+const coche='<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5.5 12.5 4 4 9-9"/></svg>';
+const app=document.getElementById('app');
+// mois : 30 jours, 1er novembre 2026 = dimanche
+const niv=[3,2,3,3,1,0,3,3,2,3,1,3,3,0,2,3,3,3,2,1,3,3,2,3,3,3,3,0,0,0];
+document.getElementById('mois').innerHTML='<span class="vide"></span>'.repeat(6)+niv.map((n,i)=>`<span class="${i<27?'n'+n:''}" title="${i+1} nov."></span>`).join('');
+document.querySelectorAll('[data-coche]').forEach(e=>e.innerHTML=coche);
+function rendre(v){
+  app.dataset.v=v;
+  document.getElementById('note').innerHTML=notes[v];
+  document.querySelectorAll('.choix button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===v));
+  const ic=v==='trait'?trait:v==='papier'?marq:{};
+  document.getElementById('onglets').innerHTML=ong.map(([id,nom],i)=>`<button class="onglet"${i===0?' aria-current="page"':''}>${ic[id]||''}<span>${nom}</span></button>`).join('');
+  document.querySelectorAll('.theme').forEach(t=>{t.querySelector('svg')?.remove();if(v==='papier')t.insertAdjacentHTML('afterbegin',M(`<rect width="10" height="10" fill="var(--${t.dataset.t})"/>`));});
+  try{localStorage.setItem('variante',v)}catch(e){}
+}
+document.querySelectorAll('.choix button').forEach(b=>b.addEventListener('click',()=>rendre(b.dataset.v)));
+let v0='sable';try{v0=localStorage.getItem('variante')||'sable'}catch(e){}
+rendre(notes[v0]?v0:'sable');
+</script>
