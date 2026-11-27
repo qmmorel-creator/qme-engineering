@@ -566,3 +566,24 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 @media (max-width:1020px){.barre .titre-produit{display:none}.onglet span{display:inline}.onglet{padding:0 8px;gap:6px;font-size:14px}}
 @media (max-width:720px){.onglet span{display:block}.onglet{font-size:11px;gap:5px}.onglet .marqueur{width:12px;height:12px}
   #racine::before{width:260px;height:260px;right:-110px;top:-90px}#racine::after{width:170px;height:170px;left:-70px;bottom:calc(var(--nav-h) - 60px)}}
+/* Papier · partout : tous les arrondis Pastel ramenés à 4 px, onglets soulignés, illustration de connexion adoucie */
+.modale,.toast,.tuile,.carte,.examen-carte,.vide-etat,.formulaire-acces,.alerte,.etiquette,.aide,.infobulle,.carte-theme,
+.repartition,.grille-mois,.graphique,.tableau,.type,.choix-theme,.tuto li,.modale-tete button,.etapes-points span,.col-tend,mark{border-radius:var(--r-doux)}
+input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]),select,textarea{border-radius:var(--r-doux)}
+.tuto li::before{border-radius:3px}
+.onglet,.onglet:hover,.onglet[aria-current="page"]{border-radius:0;background:none}
+.onglet[aria-current="page"]{border-bottom-color:var(--encre);color:var(--encre)}
+.onglet{color:var(--texte-2)}
+.modale::backdrop{background:rgba(36,34,31,.35)}
+[fill="#D9302A"]{fill:var(--rouge)}[fill="#F5B400"]{fill:var(--jaune)}[fill="#1D4E89"]{fill:var(--bleu)}
+.marque rect[fill="#D9302A"]{fill:#D9302A}
+.composition .formes rect{opacity:.55}
+.composition .formes circle{opacity:.8}
+.composition [fill="#141414"]{fill:var(--bleu)}
+.composition [stroke="#141414"]{stroke:var(--papier)}
+@media (max-width:720px){
+  .onglet,.onglet:hover,.onglet[aria-current="page"]{border-radius:0}
+  .onglet{border-bottom:0;border-top:2px solid transparent}
+  .onglet[aria-current="page"]{border-top-color:var(--encre)}
+  .modale{border-radius:var(--r-doux) var(--r-doux) 0 0}
+}
