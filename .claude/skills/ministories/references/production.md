@@ -35,7 +35,7 @@ while IFS=$'\t' read id rate pitch txt; do
 done < sources/repliques.tsv
 ```
 
-**Voix ElevenLabs (cas nominal)** : garder la prise d'un seul tenant (meilleure interprétation). Convertir en WAV
+**Voix ElevenLabs (cas nominal : connecteur ElevenLabs, voix « Caroline - Warm, Sweet and Soft »)** : garder la prise d'un seul tenant (meilleure interprétation). Convertir en WAV
 48 kHz mono, relever début et fin de chaque réplique (`silencedetect=noise=-40dB:d=0.18` + transcription Vosk), écrire
 `voix` et `voix_source` ({fichier, decalage}) dans `timeline.json`. Si la durée diffère du premier montage, ajouter
 `montage` : liste de paires [temps vidéo, temps du montage de référence] (interpolation linéaire) qui recale les

@@ -51,12 +51,19 @@ qui dit ce que l'image montre.
 fiche de continuité (expressions de Carreau par plan, formes et couleurs fixes des accessoires), plan audio, plan de
 sous-titres. Tous les temps vivent dans **`sources/timeline.json`** (scènes, voix, bruitages) : c'est la source unique.
 
-## 4. Voix
+## 4. Voix : ElevenLabs, voix « Caroline » (décision de Quentin du 27/11/2026)
 
-Une réplique = un fichier `audio/voix/vNN.wav` (48 kHz mono). Outil disponible ici : edge-tts (voir
-`references/production.md` § Voix ; **provisoire**, droits commerciaux non établis). Voix définitive : ElevenLabs, générée
-par Quentin à partir du texte continu du script. Mesurer chaque durée réelle, puis caler `timeline.json` sur ces durées
-(le montage suit la voix).
+Voix définitive générée par le **connecteur ElevenLabs** (outils `mcp__*elevenlabs*__*`, à charger par ToolSearch
+« elevenlabs ») avec la voix **« Caroline - Warm, Sweet and Soft »** (celle du pilote), en français. Générer le **texte
+continu** du script en une seule prise (meilleure interprétation), récupérer le MP3, puis le recaler comme le pilote
+(`references/production.md` § Voix ElevenLabs : `voix_source`, répliques relevées par silences et transcription,
+`montage` si la durée change). Copie du MP3 dans `audio/elevenlabs/`. Consomme les crédits ElevenLabs de Quentin : une
+seule génération par épisode, sauf défaut audible ou transcription en échec.
+
+**Si le connecteur ne répond pas** : voix provisoire edge-tts (`references/production.md` § Voix) et, à côté de la vidéo
+dans le Drive, un fichier `qme_ministory_NN-<slug>_elevenlabs.txt` contenant le texte à coller dans ElevenLabs. Dès que
+la version avec la voix Caroline existe (connecteur revenu ou MP3 fourni par Quentin) : déposer le MP4 final, puis
+**supprimer du Drive le MP4 provisoire et le fichier texte** ; seul reste le MP4 avec la bonne voix (même nom de fichier).
 
 ## 5. Image
 
