@@ -28,9 +28,11 @@ Site de QME (Quentin Morel Engineering) et templates vendus sur Gumroad. Lire `R
 
 ## Floriane Jolliot en copie de tous les mails de Quentin (décision du 27/11/2026)
 
-- **Tout e-mail rédigé ou envoyé pour Quentin** (brouillon Gmail, envoi, réponse, prospection, affiliation, client)
-  met `floriane.jolliot@qm-engineering.fr` en **copie (Cc), jamais en copie cachée**. Son adresse personnelle
-  (Gmail) n'est plus utilisée nulle part. Les mails automatiques du site (OVH) ne sont pas concernés.
+- **Tout e-mail personnalisé rédigé ou envoyé pour Quentin** (brouillon Gmail, réponse à un prospect, client,
+  influenceur ou partenaire, relance individuelle) met `floriane.jolliot@qm-engineering.fr` en **copie (Cc), jamais
+  en copie cachée**. **Jamais dans les mails de masse** (campagnes de prospection, file OVH `/api/prospection`,
+  premiers mails et relances de campagne, vagues d'affiliation, mails automatiques du site). Son adresse personnelle
+  (Gmail) n'est plus utilisée nulle part.
 
 ## Copie cachée des e-mails automatiques (décision du 24/11/2026)
 

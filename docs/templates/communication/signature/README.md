@@ -34,5 +34,5 @@ adresse · site »).
 
 ## Copie à Floriane (décision du 27/11/2026)
 
-Tout brouillon ou envoi pour Quentin met `floriane.jolliot@qm-engineering.fr` en **Cc** (pas en Cci). Ne plus utiliser
+Tout brouillon ou envoi **personnalisé** pour Quentin met `floriane.jolliot@qm-engineering.fr` en **Cc** (pas en Cci). Jamais dans les mails de masse (campagnes, file OVH, vagues d'affiliation). Ne plus utiliser
 son adresse Gmail personnelle.
