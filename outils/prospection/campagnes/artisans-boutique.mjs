@@ -28,9 +28,13 @@ const page = (p) => `${campagne.concept}?utm_campaign=${ref(p)}`;
 const pack = (p) => `${SITE}/packs/commercant-artisan/?utm_campaign=${ref(p)}`;
 const fait = (p) => String(p.fait || '').trim().replace(/[.;\s]+$/, '');
 
-// « le site de La Maison… », « d'Atelier… », « du Grenier… » (Le), « des Fleurs… » (Les).
-const de = (nom) => {
+// « le site de La Maison… », « d'Atelier… », « du Grenier… » (Le), « des Fleurs… » (Les),
+// « de la Brasserie Thiriez », « de la Maison Alaryk », « de la boutique Au Jardin… ».
+const LIEU = { fleuriste: 'la boutique', brasserie: 'la brasserie', atelier: 'l\'atelier' };
+const de = (nom, profil) => {
   const n = String(nom).trim();
+  if (/^(Brasserie|Maison|Fabrique|Boutique|Ferme|Savonnerie|Maroquinerie|Poterie|Faïencerie|Manufacture)\s/i.test(n)) return `de la ${n}`;
+  if (/^(Au|Aux|À la|A la)\s/.test(n)) return `de ${LIEU[profil] || 'la maison'} ${n}`;
   if (/^Le\s/.test(n)) return `du ${n.slice(3)}`;
   if (/^Les\s/.test(n)) return `des ${n.slice(4)}`;
   return /^[aeiouyhàâäéèêëîïôöùûü]/i.test(n) ? `d'${n}` : `de ${n}`;
@@ -78,7 +82,7 @@ export const texte = (p) => {
 
 Je suis Quentin Morel, ingénieur : je conçois des outils de gestion pour les petites entreprises (QME).
 
-J'ai consulté le site ${de(p.nom)}, ${a(p.ville)}${fait(p) ? ` : ${fait(p)}` : ''}. ${e.probleme}
+J'ai consulté le site ${de(p.nom, p.profil)}, ${a(p.ville)}${fait(p) ? ` : ${fait(p)}` : ''}. ${e.probleme}
 
 J'ai réuni cinq outils prêts à l'emploi dans un pack « Commerçant et artisan », en ligne, sur ordinateur comme sur téléphone :
 - Stocks et inventaire : ${e.stock} ;
