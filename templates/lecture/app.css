@@ -419,6 +419,11 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
 .apercu:empty{display:none}
 .apercu>p:not(.cd-alerte){background:var(--sable);border-radius:10px;padding:8px 10px}
 .choix-statut.quatre{grid-template-columns:repeat(4,minmax(0,1fr))}
+.choix-statut.cinq{grid-template-columns:repeat(5,minmax(0,1fr))}
+.choix-statut.cinq span{font-size:13px;line-height:1.15}
+.etiquette.media{background:transparent;border:1px solid var(--encre);color:var(--encre)}
+.filtres-media{margin:4px 0 14px;flex-wrap:wrap}
+.recherche-oeuvre:empty{display:none}
 .choix-statut.trois{grid-template-columns:repeat(3,minmax(0,1fr))}
 .choix-statut.deux{grid-template-columns:repeat(2,minmax(0,1fr))}
 .rang{display:flex;flex-wrap:wrap;gap:8px}
@@ -464,6 +469,7 @@ mark{background:var(--beurre);border-radius:10px;padding:0 8px}
   .filtres{display:flex;flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin;max-width:100%}
   .filtre{flex:none;padding:0 12px;font-size:13px}
   .choix-statut.quatre{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .choix-statut.cinq{grid-template-columns:repeat(3,minmax(0,1fr))}
   .choix-statut.trois{grid-template-columns:1fr}
   .alertes-liste li{grid-template-columns:auto minmax(0,1fr)}
   .alertes-liste li .etiquette{grid-column:2;justify-self:start}

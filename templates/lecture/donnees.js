@@ -1,14 +1,18 @@
-// Base intégrée du suivi de lecture : genres proposés (liste modifiable dans les Réglages), formats,
-// statuts, priorités de la liste « à lire », couleurs, conseils. Aucune donnée datée, aucune œuvre réelle,
-// aucune couverture, aucun service de livres en ligne : tout se saisit à la main.
+// Base intégrée du suivi culturel (anciennement « Suivi de lecture », code PGS) : nom affiché, genres proposés
+// (liste modifiable dans les Réglages), formats, statuts, priorités de la liste « à découvrir », couleurs, conseils.
+// Aucune donnée datée, aucune œuvre réelle. La recherche en ligne (Open Library, TMDB, iTunes) ne fait que
+// préremplir une fiche ; tout reste saisissable à la main.
 window.BASE = {
-  version: '2026-11-14',
+  version: '2026-11-27',
+  // Nom du produit, affiché partout dans l'application (un seul endroit à changer).
+  nom: 'Suivi culturel',
 
   // Genres proposés au premier lancement (l'utilisateur les renomme, en ajoute ou en retire).
   genres: [
     'Roman', 'Policier et thriller', 'Science-fiction', 'Fantasy', 'Classique', 'Historique',
     'Biographie et mémoires', 'Essai', 'Histoire', 'Sciences et nature', 'Développement personnel',
     'Bande dessinée et manga', 'Poésie', 'Théâtre', 'Jeunesse', 'Voyage', 'Pratique et loisirs',
+    'Comédie', 'Drame', 'Documentaire', 'Animation', 'Société et actualité',
   ],
 
   formats: [
@@ -46,9 +50,9 @@ window.BASE = {
   ],
 
   conseils: [
-    ['Ajoute tes livres', 'Titre, auteur, genre, format et nombre de pages (ou durée pour un livre audio). Ceux que tu veux lire vont dans la liste « à lire », classés par priorité.'],
-    ['Note tes sessions', 'Après chaque lecture : les pages lues, ou la page où tu es arrivé. La progression, ton rythme et la date de fin estimée se calculent seuls.'],
-    ['Fixe ton objectif', 'Un nombre de livres et, si tu veux, de pages pour l\'année : tu vois au jour près si tu es en avance ou en retard.'],
-    ['Garde une trace', 'Une note sur 5, ton avis et les citations qui t\'ont marqué, avec leur page. Les statistiques font le reste.'],
+    ['Ajoute tes œuvres', 'Livres, livres audio, films, séries et podcasts : cherche le titre (ou saisis-le à la main), la longueur se remplit. Ce que tu veux découvrir va dans ta liste, classé par priorité.'],
+    ['Note où tu en es', 'La page atteinte, les minutes écoutées, l\'épisode vu : la progression, ton rythme et la date de fin estimée se calculent seuls.'],
+    ['Fixe tes objectifs', 'Des livres, des pages, des films, des séries ou des épisodes pour l\'année : tu vois au jour près si tu es en avance ou en retard.'],
+    ['Garde une trace', 'Une note sur 5, ton avis et les citations qui t\'ont marqué. Les statistiques font le reste, média par média.'],
   ],
 };
