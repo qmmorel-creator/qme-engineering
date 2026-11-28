@@ -6,7 +6,7 @@
   lien + lien en bio pendant 7 jours. Accepté par Quentin le 24/11 à 16:26 (mail envoyé). Contact : Eva Pellat, Yuzu Agency,
   contact@agency-yuzu.com ; Odélia n'est plus en copie depuis le 22/11 ; Floriane Jolliot toujours en Cci.
 - **Offert à Odélia** (mail du 22/11) : accès gratuit à vie aux 12 outils études et budget (Planning de révision,
-  Notes et moyennes, Planner horaire, Suivi d'habitudes, Suivi de lecture, Candidatures, Planning de mémoire, Mon
+  Notes et moyennes, Planner horaire, Suivi d'habitudes, Suivi culturel (ex-Suivi de lecture, renommé le 28/11/2026), Candidatures, Planning de mémoire, Mon
   Budget, Suivi des abonnements, Dépenses communes, Objectif d'épargne, Repas et liste de courses). **Codes pas encore
   créés.**
 - **Lien de la story et de la bio** : `qm-engineering.fr/odelia`, en ligne depuis le 22/11 (PR #206, `netlify.toml`),
