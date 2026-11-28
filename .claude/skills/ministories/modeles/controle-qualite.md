@@ -9,7 +9,7 @@
 | 5 | Voix présente, dominante | corrélation + rapport voix/fond par réplique | |
 | 6 | Intelligibilité | transcription Vosk horodatée | |
 | 7 | Visionnage complet | images toutes les 0,5 s en planches | |
-| 8 | Continuité Carreau / accessoires | planches | |
+| 8 | Continuité Grillon / accessoires | planches | |
 | 9 | Zones sûres, lisibilité mobile | planches | |
 | 10 | Sous-titres : texte, accents, synchro, 2 lignes | SRT + planches | |
 | 11 | Carton exact, non déformé, 4 s, sans surimpression | planches | |

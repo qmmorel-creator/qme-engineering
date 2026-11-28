@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Le Carnet de hotte · concept pour le dégraissage des cuisines professionnelles · QME</title>
+<meta name="description" content="Concept d'outil sur mesure pour les entreprises de dégraissage de hottes et conduits de cuisines professionnelles : tournées de nuit, fiche installation, photos avant / après, certificats. Données fictives.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
+<style>
+:root{--ink:#1b1f23;--flam:#e3601b;--flam2:#ff8a3d;--paper:#eef1f3;--muted:#5d6670;--line:#dde2e7;--inox:#c9cfd5}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.6 "Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:"Barlow Condensed",system-ui,sans-serif;text-transform:uppercase;letter-spacing:.005em}
+img{max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.btn{display:inline-flex;align-items:center;gap:9px;background:var(--flam);color:#fff;text-decoration:none;font:700 17px "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.06em;padding:14px 22px;border-radius:6px;border:2px solid var(--flam);transition:transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
+.btn.line{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn:focus-visible{outline:3px solid var(--flam2);outline-offset:3px}
+
+.bar{position:absolute;left:0;right:0;top:0;z-index:5}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:20px;padding-bottom:20px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:700;letter-spacing:.04em}
+.brand small{display:block;font-weight:500;letter-spacing:0;color:#a9b1b9;font-size:13px;line-height:1.2}
+.bar a.pdf{color:#fff;font:600 15px "Barlow";text-decoration:none;border-bottom:1px solid rgba(255,255,255,.4)}
+
+.hero{position:relative;overflow:hidden;background:radial-gradient(90% 120% at 85% 0%,#4b2a17 0%,#1b1f23 45%,#121518 100%);color:#fff;padding:124px 0 0}
+.hero .ducts{position:absolute;right:-40px;top:70px;width:520px;opacity:.13;pointer-events:none}
+.eb{font:800 14px "Barlow Condensed",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--flam2);margin:0 0 16px}
+.hero h1{font-size:clamp(40px,6vw,76px);line-height:.98;margin:0;font-weight:800;max-width:16ch}
+.hero h1 span{color:var(--flam2)}
+.hero .lede{font-size:clamp(17px,1.6vw,20px);color:#cdd3d9;max-width:60ch;margin:22px 0 30px}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
+.hero .note{margin:18px 0 0;font-size:14px;color:#98a1aa}
+.stage{position:relative;margin-top:56px;padding-bottom:70px}
+.browser{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.55);width:86%}
+.browser .tb{height:34px;background:#e4e8ec;display:flex;align-items:center;gap:7px;padding:0 14px}
+.browser .tb i{width:11px;height:11px;border-radius:50%;background:#c3cad1}
+.browser .tb span{margin-left:14px;background:#fff;border-radius:6px;font-size:12px;color:#6b747d;padding:3px 12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.browser img{display:block;width:100%;height:auto}
+.phone{position:absolute;right:0;bottom:30px;width:23%;min-width:150px;background:#0b0d0f;border-radius:34px;padding:9px;box-shadow:0 30px 70px rgba(0,0,0,.6)}
+.phone img{display:block;width:100%;height:auto;border-radius:26px;aspect-ratio:688/1282;object-fit:cover;object-position:top}
+.strip{height:14px;background:repeating-linear-gradient(90deg,var(--ink) 0 40px,var(--flam) 40px 52px)}
+
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-bottom:1px solid var(--line);background:#fff}
+.facts div{padding:30px 28px;border-right:1px solid var(--line)}
+.facts div:last-child{border-right:0}
+.facts b{display:block;font:800 17px "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.08em;color:var(--flam);margin-bottom:6px}
+.facts p{margin:0;color:#3d444b;font-size:16px}
+
+.chiffre{display:grid;grid-template-columns:auto minmax(0,1fr);gap:34px;align-items:center;margin-top:84px;background:#fff;border:1px solid var(--line);border-left:10px solid var(--flam);padding:30px 34px;border-radius:6px}
+.chiffre b{font:800 clamp(64px,9vw,120px)/.85 "Barlow Condensed";color:var(--ink)}
+.chiffre h2{font-size:clamp(24px,2.8vw,34px);margin:0 0 6px;line-height:1.05}
+.chiffre p{margin:0;color:#3d444b}
+
+section.mod{padding:96px 0 0}
+.mod .head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:end;margin-bottom:34px}
+.num{font:800 16px "Barlow Condensed",sans-serif;color:var(--flam);letter-spacing:.1em}
+.mod h2{font-size:clamp(30px,3.6vw,46px);line-height:1.02;margin:10px 0 0;font-weight:800}
+.mod .head p{margin:0;color:#3d444b;font-size:18px}
+.mod ul{margin:14px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.mod li{display:flex;gap:10px;font-size:16px;color:#3d444b}
+.mod li::before{content:"";width:9px;height:9px;background:var(--flam);margin-top:9px;flex:none}
+.shot{border-radius:10px;overflow:hidden;box-shadow:0 24px 60px rgba(20,30,40,.16);border:1px solid var(--line);background:#fff}
+.shot img{display:block;width:100%;height:auto}
+.duo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px}
+.phones{display:flex;justify-content:center;gap:34px;flex-wrap:wrap;background:linear-gradient(180deg,#1b1f23,#121518);border-radius:12px;padding:46px 20px}
+.phones .phone{position:static;width:300px;min-width:0}
+.phones .cap{color:#aab3bc;font-size:15px;text-align:center;max-width:300px;margin:14px auto 0}
+
+.flow{margin-top:96px;background:var(--ink);color:#fff;border-radius:12px;padding:52px 44px}
+.flow h2{font-size:clamp(28px,3.2vw,42px);margin:8px 0 10px;font-weight:800}
+.flow>p{color:#bcc4cb;max-width:64ch;margin:0 0 36px}
+.fg{display:grid;grid-template-columns:minmax(0,1fr) 64px minmax(0,1.1fr) 64px minmax(0,1fr);align-items:center}
+.col{display:flex;flex-direction:column;gap:10px}
+.col .it{background:#252a30;border:1px solid #323942;border-radius:8px;padding:12px 14px;font-size:15px}
+.col .it b{display:block;font:700 17px "Barlow Condensed";text-transform:uppercase;letter-spacing:.03em}
+.col .it span{color:#a3acb5;font-size:14px}
+.core{background:var(--flam);border-radius:10px;padding:28px 24px;text-align:center}
+.core b{display:block;font:800 26px/1.05 "Barlow Condensed",sans-serif;text-transform:uppercase}
+.core span{display:block;margin-top:8px;font-size:15px;color:#ffe6d6}
+.arr{height:2px;background:repeating-linear-gradient(90deg,#69737d 0 6px,transparent 6px 11px);position:relative;margin:0 8px}
+.arr::after{content:"";position:absolute;right:-2px;top:-5px;border:6px solid transparent;border-left-color:#8a949e}
+.lbl{font:800 13px "Barlow Condensed";letter-spacing:.14em;text-transform:uppercase;color:#8a949e;margin-bottom:4px}
+
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:30px}
+.steps div{background:#fff;border:1px solid var(--line);border-top:4px solid var(--ink);border-radius:6px;padding:22px}
+.steps b{font:800 38px/1 "Barlow Condensed";color:var(--flam)}
+.steps h3{font-size:21px;margin:8px 0 6px}
+.steps p{margin:0;font-size:15.5px;color:#444b52}
+.end{margin:96px 0 0;background:#fff;border:1px solid var(--line);border-radius:12px;padding:44px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:30px;align-items:center}
+.end h2{font-size:clamp(26px,3vw,38px);margin:0 0 10px;font-weight:800}
+.end p{margin:0;color:#3d444b}
+.end .ctas{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+footer{padding:40px 0 50px;color:var(--muted);font-size:15px}
+footer a{color:var(--ink)}
+
+.est{position:relative;margin:8px 0 40px;background:#fff;border-radius:6px;box-shadow:0 10px 30px rgba(20,30,40,.10);padding:28px 30px 24px 40px;overflow:hidden}
+.est::before{content:"";position:absolute;left:0;top:0;bottom:0;width:10px;background:var(--flam)}
+.est::after{content:"";position:absolute;left:0;bottom:0;width:10px;height:70px;background:var(--ink)}
+.est .eb{font-size:13px;letter-spacing:.1em;color:var(--muted);margin:0 0 6px}
+.est .eb b{color:var(--flam)}
+.est h2{font-size:clamp(26px,3.2vw,36px);line-height:1.05;margin:0 0 10px;font-weight:800}
+.est .intro{color:#3b4249;max-width:72ch;margin:0 0 20px}
+.est table{width:100%;border-collapse:collapse;font-size:15.5px}
+.est th{text-align:left;font:700 13px "Barlow Condensed";text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding:8px;border-bottom:2px solid var(--ink)}
+.est td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+.est th.n,.est td.n{text-align:right;white-space:nowrap}
+.est input{width:84px;font:inherit;font-weight:600;text-align:right;padding:6px 8px;border:1px solid var(--line);border-radius:4px;background:var(--paper);color:var(--ink)}
+.est input:focus{outline:2px solid var(--flam);outline-offset:1px;background:#fff}
+.est .u{display:block;font-size:12.5px;color:var(--muted)}
+.est td.s{font-weight:700;color:var(--flam)}
+.est .tot{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:20px}
+.est .tot div{background:var(--paper);border-radius:4px;padding:14px 16px;border-top:4px solid var(--ink)}
+.est .tot b{display:block;font:800 36px/1.05 "Barlow Condensed"}
+.est .tot div.main{background:var(--flam);color:#fff}
+.est .tot span{font-size:14.5px;color:#535b63}
+.est .tot div.main span{color:#ffe6d6}
+.est .rate{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px;font-size:15.5px;font-weight:500}
+.est .foot{color:var(--muted);font-size:14px;margin:14px 0 0;max-width:82ch}
+.est .reset{background:none;border:0;color:var(--ink);font:inherit;font-size:14.5px;cursor:pointer;padding:0;text-decoration:underline;text-decoration-color:var(--flam);text-underline-offset:3px;margin-left:auto}
+@media (max-width:720px){.est{padding:20px 14px 18px 24px}.est .tot{grid-template-columns:minmax(0,1fr)}.est table,.est tbody,.est tr,.est td{display:block}.est thead{display:none}
+ .est tr{border-bottom:1px solid var(--line);padding:8px 0}.est td{border:0;padding:4px 0}.est td.n{text-align:left;display:flex;justify-content:space-between;align-items:center}
+ .est td.n::before{content:attr(data-l);color:var(--muted);font-size:13.5px}}
+
+@media (max-width:860px){
+  .hero{padding-top:96px}.hero .ducts{display:none}
+  .browser{width:100%}
+  .hero .phone{display:none}
+  .facts{grid-template-columns:minmax(0,1fr)}.facts div{border-right:0;border-bottom:1px solid var(--line)}
+  .chiffre{grid-template-columns:minmax(0,1fr);gap:8px;padding:24px 20px}
+  .mod .head,.duo,.end{grid-template-columns:minmax(0,1fr);gap:18px}
+  section.mod{padding-top:64px}
+  .flow{padding:34px 20px}
+  .fg{grid-template-columns:minmax(0,1fr);gap:14px}.arr{width:2px;height:28px;margin:0 auto;background:repeating-linear-gradient(180deg,#69737d 0 6px,transparent 6px 11px)}.arr::after{display:none}
+  .steps{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .end{padding:28px 20px}
+  .bar a.pdf{display:none}
+}
+@media (max-width:480px){.wrap{padding:0 16px}.steps{grid-template-columns:minmax(0,1fr)}.phones{padding:30px 12px}.phones .phone{width:100%;max-width:300px}}
+</style>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+  <a class="brand" href="/" aria-label="Accueil QME">
+    <svg viewBox="0 0 80 80" width="34" height="34" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#fff"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#141414"/></svg>
+    <span>QME<small>Quentin Morel Engineering</small></span>
+  </a>
+  <a class="pdf" href="QME-concept-Carnet-de-hotte.pdf" download data-goatcounter-click="concept-degraissage-hottes-pdf" data-goatcounter-title="Concept dégraissage des hottes (PDF)">Télécharger le PDF (6 pages)</a>
+</div></header>
+
+<main>
+<section class="hero">
+  <svg class="ducts" viewBox="0 0 520 420" aria-hidden="true"><g fill="none" stroke="#fff" stroke-width="26"><path d="M40 420V250q0-40 40-40h300q40 0 40-40V0"/><path d="M200 420V320q0-30 30-30h250"/></g><path d="M300 150h160v40H300z" fill="#fff"/></svg>
+  <div class="wrap">
+    <p class="eb">Concept · dégraissage des cuisines professionnelles</p>
+    <h1>Chaque hotte suivie, <span>de la tournée de nuit au certificat.</span></h1>
+    <p class="lede">Le Carnet de hotte : un outil sur mesure pour les entreprises qui dégraissent hottes, conduits et tourelles. Les échéances de chaque contrat, la tournée de la nuit, le circuit d'extraction élément par élément, les photos avant / après et un certificat que le restaurateur retrouve quand il veut.</p>
+    <div class="ctas">
+      <a class="btn" href="demo/" data-goatcounter-click="concept-degraissage-hottes-demo" data-goatcounter-title="Concept dégraissage des hottes (démonstration)">Ouvrir la démonstration interactive</a>
+      <a class="btn ghost" href="QME-concept-Carnet-de-hotte.pdf" download data-goatcounter-click="concept-degraissage-hottes-pdf" data-goatcounter-title="Concept dégraissage des hottes (PDF)">Télécharger le PDF</a>
+    </div>
+    <p class="note">Concept réalisé à partir du fonctionnement habituel du métier. Toutes les données affichées sont fictives.</p>
+    <div class="stage">
+      <div class="browser"><div class="tb"><i></i><i></i><i></i><span>carnet-de-hotte · cette semaine</span></div><img src="s-semaine.webp" width="1600" height="1000" alt="Écran « Cette semaine » : 11 cuisines à dégraisser, 286 cuisines à jour sur 312, données fictives"></div>
+      <div class="phone"><img src="m-nuit.webp" width="688" height="1282" alt="Check-list d'intervention du technicien sur téléphone, données fictives"></div>
+    </div>
+  </div>
+</section>
+<div class="strip" aria-hidden="true"></div>
+
+<div class="facts"><div class="wrap" style="display:contents">
+  <div><b>Ce que l'on voit dans le métier</b><p>Des interventions de nuit, après le service, chez des dizaines ou des centaines de clients, chacun avec sa fréquence prévue au contrat.</p></div>
+  <div><b>Ce que demande ce métier</b><p>Ne laisser passer aucune échéance, préparer la tournée, prouver le travail fait (photos, certificat) pour la commission de sécurité et l'assureur du client.</p></div>
+  <div><b>Ce que propose le concept</b><p>Un carnet par installation, rempli sur le téléphone pendant l'intervention, qui produit le certificat et relance au bon moment.</p></div>
+</div></div>
+
+<div class="wrap">
+  <div class="chiffre">
+    <b>11</b>
+    <div><h2>cuisines à dégraisser cette semaine, dont 4 cette nuit</h2><p>Le Carnet de hotte ouvre sur ce qui compte : ce qu'il faut faire cette nuit, les cuisines hors délai, les clapets coupe-feu et les trappes de visite à signaler au client.</p></div>
+  </div>
+
+  <section class="mod" id="semaine">
+    <div class="head">
+      <div><div class="num">01 · ÉCHÉANCES</div><h2>Aucun contrat ne sort de sa fréquence</h2></div>
+      <div><p>Chaque cuisine sous contrat a sa fréquence de dégraissage. Le carnet calcule les échéances et montre le chemin, de la cuisine sous contrat au certificat remis.</p>
+        <ul><li>Les cuisines hors délai en tête de liste, avec le client à relancer</li><li>Le créneau proposé au restaurateur, validé par lui en un geste</li><li>Les anomalies de la semaine : clapets coupe-feu, trappes de visite manquantes</li></ul></div>
+    </div>
+    <div class="duo"><div class="shot"><img src="s-semaine.webp" width="1600" height="1000" alt="Cette semaine : échéances et parcours jusqu'au certificat, données fictives" loading="lazy"></div><div class="shot"><img src="s-semaine-bas.webp" width="1600" height="1000" alt="Cette nuit et ce qu'il faut traiter le matin, données fictives" loading="lazy"></div></div>
+  </section>
+
+  <section class="mod" id="tournee">
+    <div class="head">
+      <div><div class="num">02 · TOURNÉE DE NUIT</div><h2>La nuit préparée avant de monter dans le camion</h2></div>
+      <div><p>L'ordre de passage, la durée prévue pour chaque cuisine, les accès (boîte à code, veilleur, clé récupérée la veille) et le matériel à charger.</p>
+        <ul><li>Une carte de la tournée, cuisine par cuisine</li><li>Les consignes d'accès et de sécurité : toiture, consignation, sol glissant</li><li>La liste de chargement : dégraissant, bâches, brosse rotative, harnais</li></ul></div>
+    </div>
+    <div class="shot"><img src="s-tournee.webp" width="1600" height="1000" alt="Carte de la tournée de nuit et ordre de passage, données fictives" loading="lazy"></div>
+  </section>
+
+  <section class="mod" id="installation">
+    <div class="head">
+      <div><div class="num">03 · FICHE INSTALLATION</div><h2>Le circuit d'extraction, élément par élément</h2></div>
+      <div><p>Hotte, filtres à graisse, plénum, conduit, trappes de visite, clapet coupe-feu, tourelle : chaque élément garde son état, ses photos et ses remarques, passage après passage.</p>
+        <ul><li>Le schéma du circuit, cliquable, avec l'encrassement constaté</li><li>Les photos avant / après rangées par élément</li><li>L'historique des passages et ce qui n'a pas pu être fait (pluie, accès)</li></ul></div>
+    </div>
+    <div class="shot"><img src="s-installation.webp" width="1600" height="1000" alt="Fiche installation : schéma du circuit d'extraction et photos avant / après, données fictives" loading="lazy"></div>
+  </section>
+
+  <section class="mod" id="terrain">
+    <div class="head">
+      <div><div class="num">04 · SUR LE TÉLÉPHONE</div><h2>Le technicien coche, le certificat s'écrit</h2></div>
+      <div><p>La check-list suit l'intervention réelle : bâchage, consignation, dépose des filtres, hotte et plénum, conduit par les trappes, tourelle, remise en route. Le restaurateur retrouve tout de son côté.</p>
+        <ul><li>Une étape cochée = une ligne du certificat</li><li>Les photos prises dans l'application, rangées toutes seules</li><li>La signature du chef de cuisine sur le téléphone</li></ul></div>
+    </div>
+    <div class="phones">
+      <div><div class="phone"><img src="m-nuit.webp" width="688" height="1282" alt="Check-list d'intervention du technicien, données fictives" loading="lazy"></div><p class="cap">Le technicien, en pleine nuit</p></div>
+      <div><div class="phone"><img src="m-client.webp" width="688" height="1282" alt="Espace du restaurateur : dernier passage et certificats, données fictives" loading="lazy"></div><p class="cap">Le restaurateur, le lendemain matin</p></div>
+    </div>
+  </section>
+
+  <section class="mod" id="certificats">
+    <div class="head">
+      <div><div class="num">05 · CERTIFICATS</div><h2>Un certificat prêt pour la commission de sécurité</h2></div>
+      <div><p>Chaque passage produit son certificat de dégraissage, avec les éléments traités, les réserves et les photos. Il part au client et se range dans son registre.</p>
+        <ul><li>Les certificats à faire signer, ceux déjà remis</li><li>Les réserves écrites noir sur blanc (section non accessible, trappe à poser)</li><li>Un registre que le client présente à la commission de sécurité ou à son assureur</li></ul></div>
+    </div>
+    <div class="shot"><img src="s-certificats.webp" width="1600" height="1000" alt="Certificats de dégraissage du mois et aperçu d'un certificat, données fictives" loading="lazy"></div>
+  </section>
+
+  <section class="flow">
+    <p class="eb" style="margin:0">Comment ça se branche</p>
+    <h2>Vos outils restent en place. Le carnet les relie.</h2>
+    <p>Rien n'est à ressaisir : le carnet se branche sur ce qui existe déjà (tableur des contrats, agenda, logiciel de facturation) et supprime les doubles saisies. Le détail se vérifie ensemble, outil par outil.</p>
+    <div class="fg">
+      <div class="col"><div class="lbl">Ce qui existe</div>
+        <div class="it"><b>Contrats et fréquences</b><span>tableur ou logiciel de gestion</span></div>
+        <div class="it"><b>Planning</b><span>agenda partagé, tableau blanc</span></div>
+        <div class="it"><b>Photos</b><span>téléphones des techniciens</span></div>
+        <div class="it"><b>Facturation</b><span>logiciel actuel</span></div></div>
+      <div class="arr"></div>
+      <div class="core"><b>Le Carnet de hotte</b><span>une installation = un carnet, à jour après chaque nuit</span></div>
+      <div class="arr"></div>
+      <div class="col"><div class="lbl">Ce que vous obtenez</div>
+        <div class="it"><b>Échéances</b><span>aucun contrat oublié</span></div>
+        <div class="it"><b>Tournées</b><span>préparées, accès compris</span></div>
+        <div class="it"><b>Certificats</b><span>écrits pendant l'intervention</span></div>
+        <div class="it"><b>Espace client</b><span>certificats et prochain passage</span></div></div>
+    </div>
+  </section>
+
+  <section class="est" id="est" style="margin-top:96px" aria-live="polite"></section>
+  <script>
+(function(){
+  var C = {"rate": 35, "rateLabel": "Coût d'une heure de bureau (charges comprises)", "period": "mois", "rows": [["Rédiger un certificat et assembler le rapport photo", "certificats", 60, 20, 3], ["Préparer la tournée de nuit (ordre, accès, matériel)", "tournées", 16, 40, 10], ["Repérer les contrats arrivés à échéance et proposer un créneau", "cuisines", 60, 8, 1], ["Renvoyer un certificat ou une photo demandés par un client", "demandes", 20, 10, 0.5], ["Relancer une signature ou un devis de trappe de visite", "relances", 25, 6, 1]], "foot": "Les volumes sont des hypothèses pour une entreprise qui suit environ trois cents cuisines : remplacez-les par les vôtres. Les minutes concernent une tâche faite une fois (un certificat, une tournée, une relance). Ces hypothèses seront affinées ensemble lors de notre échange."}, el = document.getElementById('est');
+  var fmt = function(n, d){ return n.toLocaleString('fr-FR', {maximumFractionDigits: d || 0}); };
+  var rows = C.rows.map(function(r, i){
+    return '<tr><td>' + r[0] + '</td>' +
+      '<td class="n" data-l="Combien par ' + C.period + '"><span><input type="number" min="0" step="1" data-k="v" data-i="' + i + '" value="' + r[2] + '"><span class="u">' + r[1] + '</span></span></td>' +
+      '<td class="n" data-l="Minutes aujourd\'hui"><input type="number" min="0" step="0.5" data-k="b" data-i="' + i + '" value="' + r[3] + '"></td>' +
+      '<td class="n" data-l="Minutes avec l\'outil"><input type="number" min="0" step="0.5" data-k="a" data-i="' + i + '" value="' + r[4] + '"></td>' +
+      '<td class="n s" data-l="Heures gagnées" id="s' + i + '"></td></tr>';
+  }).join('');
+  el.innerHTML = '<p class="eb"><b>QME</b> · Estimation</p><h2>Estimation du temps gagné</h2><p class="intro">Un ordre de grandeur, pas une promesse. Les volumes et les durées ci-dessous sont des hypothèses de départ : remplacez-les par les vôtres, le total se met à jour.</p>' +
+    '<table><thead><tr><th>Tâche</th><th class="n">Combien par ' + C.period + '</th><th class="n">Minutes aujourd\'hui</th><th class="n">Minutes avec l\'outil</th><th class="n">Heures gagnées</th></tr></thead><tbody>' + rows + '</tbody></table>' +
+    '<div class="rate"><label for="estRate">' + C.rateLabel + '</label><span><input id="estRate" type="number" min="0" step="1" value="' + C.rate + '"> €</span><button type="button" class="reset" id="estReset">Revenir aux hypothèses de départ</button></div>' +
+    '<div class="tot"><div class="main"><b id="estH"></b><span>heures gagnées par ' + C.period + '</span></div><div><b id="estD"></b><span>journées de 7 h</span></div><div><b id="estV"></b><span id="estVL"></span></div></div>' +
+    '<p class="foot">' + C.foot + '</p>';
+  function calc(){
+    var tot = 0;
+    C.rows.forEach(function(r, i){
+      var g = function(k){ var v = parseFloat(el.querySelector('input[data-k="' + k + '"][data-i="' + i + '"]').value); return isNaN(v) ? 0 : v; };
+      var h = Math.max(0, g('v') * (g('b') - g('a'))) / 60; tot += h;
+      document.getElementById('s' + i).textContent = fmt(h, h < 10 ? 1 : 0) + ' h';
+    });
+    var rate = parseFloat(document.getElementById('estRate').value) || 0;
+    document.getElementById('estH').textContent = fmt(Math.round(tot)) + ' h';
+    document.getElementById('estD').textContent = fmt(tot / 7, 0);
+    document.getElementById('estVL').textContent = 'valeur du temps gagné par ' + C.period + ', à ' + fmt(rate) + ' € de l\'heure';
+    document.getElementById('estV').textContent = fmt(Math.round(tot * rate / 10) * 10) + ' €';
+  }
+  el.addEventListener('input', calc);
+  document.getElementById('estReset').addEventListener('click', function(){
+    C.rows.forEach(function(r, i){ ['v','b','a'].forEach(function(k, j){ el.querySelector('input[data-k="' + k + '"][data-i="' + i + '"]').value = r[2 + j]; }); });
+    document.getElementById('estRate').value = C.rate; calc();
+  });
+  calc();
+})();
+</script>
+
+  <section style="margin-top:96px">
+    <div class="num">CONSTRUIT PAR MODULES</div>
+    <h2 style="font-size:clamp(28px,3.2vw,42px);margin:10px 0 0;font-weight:800">On commence par ce qui vous fait gagner le plus de temps</h2>
+    <div class="steps">
+      <div><b>1</b><h3>Le carnet</h3><p>Toutes vos cuisines, leur circuit et leur fréquence, repris de vos fichiers actuels.</p></div>
+      <div><b>2</b><h3>Le certificat</h3><p>La check-list sur téléphone, les photos et le certificat produit sans ressaisie.</p></div>
+      <div><b>3</b><h3>Les tournées</h3><p>Échéances, créneaux proposés au client, ordre de passage et accès.</p></div>
+      <div><b>4</b><h3>L'espace client</h3><p>Certificats, photos et prochain passage, pour moins d'appels et de mails.</p></div>
+    </div>
+  </section>
+
+  <section class="end">
+    <div><h2>Un outil construit autour de votre façon de travailler</h2><p>Ce concept est un point de départ : chaque écran s'adapte à votre organisation, à vos contrats et à vos outils, et se teste en conditions réelles avant d'aller plus loin.</p></div>
+    <div class="ctas">
+      <a class="btn" href="demo/" data-goatcounter-click="concept-degraissage-hottes-demo" data-goatcounter-title="Concept dégraissage des hottes (démonstration)">Ouvrir la démonstration</a>
+      <a class="btn line" href="QME-concept-Carnet-de-hotte.pdf" download data-goatcounter-click="concept-degraissage-hottes-pdf" data-goatcounter-title="Concept dégraissage des hottes (PDF)">Télécharger le PDF (6 pages)</a>
+      <a class="btn line" href="/sur-mesure/#parler" data-goatcounter-click="concept-degraissage-hottes-contact" data-goatcounter-title="Concept dégraissage des hottes (contact)">Prendre 30 minutes pour en parler</a>
+    </div>
+  </section>
+</div>
+</main>
+<footer><div class="wrap">Quentin Morel · QME · Quentin Morel Engineering · quentin.morel@qm-engineering.fr · <a href="/">qm-engineering.fr</a></div></footer>
+<script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+À : contact@charpentes-obiou.example
+Objet : Re: Planning des équipes de pose et remontée des heures
+(brouillon dans le fil, expéditeur quentin.morel@qm-engineering.fr — EXEMPLE FICTIF, non créé dans Gmail)
+
+Bonjour Marc,
+
+Merci pour votre retour. Plutôt qu'une liste de promesses, j'ai préparé un petit concept à partir de ce que vous m'avez décrit : vos quatre équipes de pose, le planning tenu sur Excel, les appels du soir et les heures qui remontent sur papier le vendredi.
+
+Vous pouvez le voir ici, avec un PDF à télécharger (toutes les données sont fictives) :
+https://qm-engineering.fr/concepts/charpentes-obiou/
+
+Vos trois questions, dans l'ordre :
+
+1. Sur le téléphone des gars, sur le chantier ? Oui. L'outil s'ouvre dans le navigateur du téléphone, sans application à installer. Chaque chef d'équipe voit sa journée (chantier, heure, équipe, matériel, plan à jour) et saisit le soir les heures, l'avancement, des photos et une remarque. La page 2 du PDF montre ces deux écrans.
+
+2. Récupérer vos devis sans tout ressaisir ? Très probablement, oui. La plupart des logiciels de chiffrage savent exporter un devis (Excel, CSV ou PDF structuré). C'est le premier point que je regarderais avec vous : à partir de cet export, les lots, les montants et les heures prévues arrivent dans la fiche du chantier, et l'avancement saisi par les équipes sert ensuite à préparer les situations de travaux.
+
+3. Le budget ? Pour vous donner un ordre de grandeur : le planning partagé avec la vue téléphone des chefs d'équipe, qui règle les appels du soir, se situe en général entre 4 000 et 7 000 € HT. L'import des devis et le suivi des heures par chantier ajoutent 2 000 à 4 000 € HT, selon ce que permet l'export de votre logiciel. Je vous ferai une proposition précise, module par module, après notre échange.
+
+Ce que montre le concept :
+
+1. Le planning de la semaine. Quatre équipes et le camion-grue sur une seule grille ; les conflits (grue demandée deux fois) et le vent annoncé pour un levage sont signalés.
+
+2. La journée et les heures sur le téléphone. Chaque chef d'équipe reçoit son lendemain à 17 h et renvoie ses heures le soir, en deux minutes.
+
+3. La fiche chantier reliée au devis. Lots, avancement, heures par lot, matériaux à commander et situation de travaux calculée sans ressaisie.
+
+4. Le tableau de bord du gérant. Les chantiers avec leur budget d'heures, les devis à relancer et la charge des équipes sur quatre semaines : un dépassement se voit le jour même, pas le vendredi.
+
+Ce concept n'est qu'un point de départ. Construire des outils sur mesure autour de la façon dont une équipe travaille vraiment, c'est mon point fort : rien ici n'est un produit figé. Tout se conçoit autour de vos besoins, de votre vocabulaire et de vos outils actuels (votre logiciel de chiffrage, Excel), que je connecte plutôt que de les remplacer, pour supprimer les doubles saisies.
+
+Cela peut aussi se construire par modules : on commence par celui qui vous fait perdre le plus de temps, sans doute le planning partagé, on le teste avec une équipe pendant quelques semaines, puis on ajoute les autres à votre rythme et selon votre budget.
+
+Si cela vous parle, je vous propose un échange de 30 minutes, en visio ou au téléphone, pour vous montrer le concept et comprendre comment se passent vraiment vos semaines.
+
+Bien cordialement,
+
+Quentin Morel
+QME · Quentin Morel Engineering
+quentin.morel@qm-engineering.fr · qm-engineering.fr

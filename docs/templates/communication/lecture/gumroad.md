@@ -1,4 +1,4 @@
-# Fiche Gumroad · Suivi de lecture
+# Fiche Gumroad · Suivi culturel
 
 Texte à reporter dans la fiche Gumroad (outils `mcp__Gumroad__*`), au format de `../gumroad-a-creer.json`
 dans `gumroad.json` (description HTML identique). Prix prévu dans `IDEES.md` (12 €) : **nom et prix à confirmer
@@ -14,7 +14,7 @@ Gumroad (Content → Insert → License key, sans multi-postes), puis l'identifi
 
 ## Nom
 
-Suivi de lecture
+Suivi culturel
 
 ## Prix
 

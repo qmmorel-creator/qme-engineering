@@ -1,0 +1,32 @@
+1
+00:00:00,300 --> 00:00:02,480
+Vingt-deux heures. Il veut juste un thé.
+
+2
+00:00:03,030 --> 00:00:04,770
+Carton un : des chaussettes.
+
+3
+00:00:05,180 --> 00:00:07,350
+Carton douze : encore des chaussettes.
+
+4
+00:00:07,760 --> 00:00:09,520
+Carton trente : un cactus ?
+
+5
+00:00:09,950 --> 00:00:12,340
+Quarante-six cartons. Toujours pas de bouilloire.
+
+6
+00:00:12,950 --> 00:00:17,710
+Avec Déménagement, de QME, chaque carton a son numéro et son contenu.
+
+7
+00:00:18,210 --> 00:00:21,190
+Une recherche : bouilloire. Carton quarante-sept.
+
+8
+00:00:21,460 --> 00:00:23,120
+Le dernier. Évidemment.
+
