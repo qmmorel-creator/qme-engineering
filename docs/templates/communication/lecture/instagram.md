@@ -112,3 +112,39 @@ Démo libre avec un lecteur fictif : lien en bio.
 Et vous, combien de livres visez-vous cette année ?
 
 #Lecture #Livres #ObjectifLecture #Organisation
+
+---
+
+## Version v3 (28/11/2026) · IG-84 · Suivi de lecture → Suivi culturel
+
+Le template s'appelle désormais **« Suivi culturel »** (PR #357, en ligne le 28/11/2026) : livres papier, numériques et
+audio, films, séries, podcasts, recherche des titres (Open Library, Wikidata, recherche d'Apple). Prix 12 €, même code
+PGS, même fiche Gumroad (`suivi-lecture`), même lien `qm-engineering.fr/catalogue/lecture/`. IG-84 (programmé le
+04/04/2027, 19:00) refait le 28/11/2026, sans changer ni date, ni heure, ni statut.
+
+- Source : `instagram/carrousel-culturel.html` (même maquette que `carrousel.html`, vue 5 « essai gratuit »), rendue par
+  `node docs/templates/communication/instagram/rendre.mjs ../lecture/instagram/carrousel-culturel.html` ; PNG dans
+  `instagram/IG-84-culturel-1.png` … `-5-essai.png`, regardés en planche le 28/11/2026.
+- Captures : `assets/templates-lecture-tel.webp` (un livre et une série en cours) et `templates-lecture-objectif.webp`
+  (objectifs livres, pages, films, épisodes), régénérées sur la nouvelle démo par la PR #357 ; titres inventés.
+- Drive (dossier Images) : `IG-84-culturel-1.png` 14IB765m9CGC9NePvJoPeJWcFd9topr4S, `-2` 15I1Houv67JNEvunxR7TNpkWSYsZuVb6f,
+  `-3` 1hwMs_92jIhm0IgrObWh-KSaFP0GpNBNv, `-4` 1eVRW8djD5Wc9JFAEFi3d46uSIJvKhlSw, `-5-essai` 1ZHRWBioC-ISwllWurU0kYzmlIsasBWDc ;
+  diaporama TikTok `IG-84-culturel-tiktok.mp4` 1uhdGdUlPUjvnEJNNsk1YDOv_CHFcW4n1 (`docs/videos/diaporama.mjs`,
+  1080 × 1920, 21,8 s, AAC sur toute la durée, 2,79 Mo). Anciens `IG-84-lecture-*` gardés.
+- Légende : Doc https://docs.google.com/document/d/1IAK09ywdD8qdtpPWn0IiFOpYjpHfLbH07sBgyo7K8T0/edit (ancien
+  1pMRQHv1gB5ZxTeNByZQTWfLkB9LJik_y3_mZjpS28qQ). « Rien n'est cherché en ligne » retiré : la recherche des titres
+  interroge les sources (seuls les mots tapés sont envoyés).
+
+Ce livre, cette série : vous les finirez quand, au juste ?
+
+Un objectif fixé en janvier ne dit rien au jour le jour. Ce qui aide, c'est de savoir, au jour près, si l'on est en avance ou en retard, et le rythme qu'il faut pour tenir.
+
+Le Suivi culturel réunit vos livres papier, numériques et audio, vos films, vos séries saison par saison et vos podcasts. Tapez le titre, la fiche se remplit. Chaque session (la page atteinte, « 1 épisode », « Vu en entier ») devient une progression, un rythme et une date de fin estimée, et vos objectifs de l'année se comparent à ce que vous avez lu, vu ou écouté. Pas de profil public, rien n'est partagé. 12 €, en achat unique.
+
+Besoin de plus ? Vos règles, vos utilisateurs, vos outils : je construis la version sur mesure.
+
+14 jours d'essai gratuit, sans carte bancaire : lien en bio.
+
+Et vous, combien de livres, de films ou de séries visez-vous cette année ?
+
+#Lecture #Livres #Series #Films #Organisation

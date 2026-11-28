@@ -62,3 +62,12 @@ Les sources `production/IG-159.html` et `IG-160.html` (et leurs vues 6, 2 et 6) 
 - **20/11/2026** : légendes réécrites avec les nouvelles accroches pour IG-156, IG-155, IG-131, IG-56, IG-149, IG-50, IG-46, LI-153 et LI-158 (nouveaux Google Docs, colonnes G et H des plannings mises à jour, anciens Docs renommés « ANCIEN accroche · … ») ; titres et premières lignes des descriptions YouTube réécrits pour YT-44, YT-43, YT-17, YT-27, YT-38, YT-22, YT-33.
 - **20/11/2026 · semaine du 07 au 11/12 produite** : IG-158 (Reel Gantt « Une date bouge sur le chantier… », démo 021, 13 tâches recalées lues dans l'application, YT-45), IG-159 (carrousel 6 vues « comment marche un outil QME », faits vérifiés sur le site), IG-160 (carrousel 6 vues « partager à deux : 4 règles »), IG-161 (Reel sur mesure « Je vous avais laissé le chargeur », YT-46) ; tous au statut Programmé, légendes créées, diaporamas TikTok des carrousels déposés. Référence vidéo du 20/11 appliquée.
 - **20/11/2026 · IG-162 et IG-163 produits** : IG-162 (carrousel 7 vues « 5 chiffres qu'on découvre trop tard », 15/12 19:00, chiffres sourcés : barème 2025, seuils 2026 de donnees.js, art. L441-10), IG-163 (Reel « Un essai gratuit… puis 179,88 € par an », démo 022, 16/12 12:30, YT-47) ; statut Programmé, légendes créées, diaporama TikTok d'IG-162 déposé.
+- **28/11/2026 · Suivi de lecture → Suivi culturel (décision de Quentin, transmise par le GOD)** : recensement des
+  publications programmées des 4 plannings (colonnes des Sheets, Docs des lignes liées, recherche plein texte Drive
+  « Suivi de lecture », « lecture », « Reading tracker », « Pack Étudiant ») : deux lignes concernées, IG-84 (carrousel,
+  04/04/2027 ; TikTok suit) et LI-129 (image, 21/03/2027) ; aucune sur YouTube ni sur X. IG-84 : légende v3 (Doc
+  1IAK09ywdD8qdtpPWn0IiFOpYjpHfLbH07sBgyo7K8T0), 5 vues refaites avec des captures de la nouvelle démo
+  (`lecture/instagram/carrousel-culturel.html`), diaporama TikTok `IG-84-culturel-tiktok.mp4` ; LI-129 : texte v4 (Doc
+  1OAM4FyKFyKQOLoE5bDxB5ZaynL9ed9BPCcrXyiHSUhU), image `LI-129-culturel.png`. Colonnes F, G, H, I, J, M (et P pour
+  Instagram) mises à jour ; dates, heures et statuts inchangés ; anciens Docs et fichiers gardés. Détail :
+  `lecture/instagram.md` § v3, `lecture/linkedin.md` § v4.

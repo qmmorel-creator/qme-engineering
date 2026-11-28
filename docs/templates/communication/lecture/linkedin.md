@@ -132,3 +132,38 @@ Il sera bientôt en vente. La démo, avec la bibliothèque d'un lecteur fictif, 
 Si vous connaissez quelqu'un qui tient sa liste de lectures dans un carnet, n'hésitez pas à lui transmettre.
 
 #Lecture #Livres #ObjectifLecture #Organisation
+
+---
+
+## Version v4 (28/11/2026) · LI-129 · Suivi de lecture → Suivi culturel
+
+Nouveau nom et nouveau périmètre (PR #357 : livres, livres audio, films, séries, podcasts, recherche des titres) ;
+LI-129 (programmé le 21/03/2027, 12:15) refait le 28/11/2026, sans changer ni date, ni heure, ni statut. Doc :
+https://docs.google.com/document/d/1OAM4FyKFyKQOLoE5bDxB5ZaynL9ed9BPCcrXyiHSUhU/edit (ancien
+1bTy1aNP9A7MVc53luGLwfuz8_pw2Z0LW8a5JpAxekNs). Image : `lecture/LI-129-culturel.png` (1280 × 720, Drive
+1PTMVgdjMAoTl28pG70XkyTstsKmS2GnC), couverture au gabarit de `outils/templates/couvertures-gumroad.cjs` avec les
+captures de la nouvelle démo (`templates-lecture-encours.webp`, `templates-lecture-tel.webp`) ; la couverture Gumroad
+`assets/templates-lecture-couverture.png` n'est pas touchée (référent : agent Gumroad).
+
+En janvier, on se fixe 24 livres et une série à finir. En novembre, on compte sur ses doigts.
+
+Entre les deux, il y a un marque-page dans le roman en cours, une série arrêtée à l'épisode 6 de la saison 2, des podcasts « à écouter » dans un coin du téléphone, et une question qui reste sans réponse : est-ce que je suis en avance ou en retard, et de combien ?
+
+Le suivi tient souvent dans un carnet, un tableur, ou une application par média qui demande un profil public. J'ai voulu autre chose : un seul suivi culturel qui compte à votre place.
+
+▪ Livres papier, numériques et audio, films, séries saison par saison et podcasts, au même endroit. Tapez le titre, la fiche se remplit : auteur ou réalisation, année, pages, durée, saisons et épisodes.
+
+▪ Chaque session, la page atteinte, les minutes écoutées, « 1 épisode » ou « Vu en entier », devient une progression, un rythme et une date de fin estimée.
+
+▪ Les objectifs de l'année, en livres, pages, films, séries, podcasts ou épisodes, sont comparés à ce qui est lu, vu ou écouté, au jour près : avance ou retard en jours, projection au 31 décembre, rythme pour tenir.
+
+Les statistiques suivent, par média, avec les notes, les avis et les citations. Rien n'est public : pas de profil, pas de réseau, pas de publicité. Les livres viennent d'Open Library, les films et séries de Wikidata, les livres audio et podcasts de la recherche d'Apple : seuls les mots tapés sont envoyés.
+
+14 jours d'essai gratuit, sans carte bancaire : lien en commentaire. Ensuite 12 €, en achat unique. La démo, avec la bibliothèque d'un profil fictif, est ouverte à tous : https://qm-engineering.fr/templates/lecture/?demo
+
+Si vous connaissez quelqu'un qui tient ses lectures et ses séries dans un carnet, n'hésitez pas à lui transmettre.
+
+#Lecture #Livres #Séries #ObjectifLecture #Organisation
+
+Premier commentaire : essai `https://qm-engineering.fr/essai/?t=lecture&utm_source=linkedin&utm_medium=social&utm_campaign=li-129`,
+achat `https://qmengineering.gumroad.com/l/suivi-lecture?utm_source=linkedin&utm_medium=commentaire&utm_campaign=li-129`.
