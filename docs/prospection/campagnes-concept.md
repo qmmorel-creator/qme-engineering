@@ -8,12 +8,28 @@ fichier sert à éviter les doublons de thèmes et à garder les écartés et le
 
 | Date | Thème | Page(s) | Vague Nexora | Envoyés | Réponses |
 |---|---|---|---|---|---|
+| 28/11/2026 | Concept métier n° 1 : désamiantage, « Le Journal de zone » (sur mesure, à partir de 1 500 € HT) | `/concepts/desamiantage/` (plaquette PDF de 4 pages) | `metier-desamiantage` | en attente de validation | — |
 | 27/11/2026 | Le Carnet de hotte : dégraissage des hottes et conduits de cuisines professionnelles | `/concepts/degraissage-hottes/` (générique sur mesure, démo interactive, PDF) | `concept-degraissage-hottes` | 10 | à suivre |
 | 25/11/2026 | Registre des fluides frigorigènes (frigoristes et climaticiens) | `/concepts/frigoristes/` (générique) | `concept-frigoristes` | 10 | à suivre |
 | 24/11/2026 | Registres de contrôle d'équipements (DAE, lignes de vie, escalade, aires de jeux, sport, parcours aventure, échafaudages, foudre, incendie, désenfumage, rayonnages, levage, portes, quais, radeaux, nacelles, chariots, ascenseurs, élévateurs PMR, hottes de laboratoire, élévateurs de véhicules, sprinklers, hayons, air comprimé) | 35 pages par entreprise `/concepts/<entreprise>/` | `registres` (lots 1 à 4) | 31 mails + 4 formulaires à envoyer par Quentin | à suivre |
 
 Pour les campagnes suivantes : **une page générique par thème** (`/concepts/<thème>/`), plus de page par entreprise.
 Détail des cibles « registres » : `cibles-registres-controle.md`.
+
+## 28/11/2026 · Concept métier n° 1 : le désamiantage (« Le Journal de zone »)
+
+- Premier métier de la mission « Concept métier » (skill `concept-metier`), lancé à la demande de Quentin le samedi 28/11.
+- Justification : besoin très réglementé et propre au métier (vacations de 2 h 30 au plus et 6 h par jour, art.
+  R4412-119 ; fiche d'exposition par opérateur, art. R4412-120 ; niveaux d'empoussièrement, art. R4412-98 ; plan de
+  retrait déposé sur DEMAT@MIANTE 30 jours avant les travaux, art. R4412-133 et R4412-137 ; mesures de laboratoire,
+  BSDA, dossier de restitution) ; aucun template QME ne le couvre ; entreprises certifiées SS3 de 5 à 50 salariés,
+  habituées à des chantiers chiffrés en dizaines de milliers d'euros ; adresses génériques publiques fréquentes.
+- Livrables : plaquette PDF de 4 pages (chantiers du plan de retrait à la restitution ; vacations pointées au sas avec
+  vue téléphone ; fiches d'exposition ; dossier de restitution, outils reliés, « à partir de 1 500 € HT »), page
+  `/concepts/desamiantage/`, modèle de mail `outils/prospection/campagnes/desamiantage.mjs`. Données fictives.
+- Articles du code du travail cités vérifiés sur code.travail.gouv.fr le 28/11.
+- Lot 1 : 48 entreprises dans une quarantaine de départements (`docs/prospection/lots/desamiantage-lot1.json`, écartés et réserves dans `desamiantage-lot1-ecartes.md`). Contrôles : `doublons` 0, Nexora 0, Gmail 0 (témoins OK), opposition 0.
+- Statut : en attente de validation de Quentin (via le GOD). Rien n'est mis en file avant.
 
 ## 27/11/2026 · Le Carnet de hotte (dégraissage des cuisines professionnelles)
 
