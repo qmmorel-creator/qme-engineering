@@ -126,6 +126,14 @@ une conversation qui ne parle que de lui.
    dédiée quand elle revient. Il n'archive ni ne supprime aucune conversation : c'est Quentin qui le fait.
 5. **Sortie du tunnel** (signature et mise en service, refus, opposition) : la conversation dédiée écrit un bilan final
    dans l'État global et au Master ; le registre passe la ligne en « clos ».
+   **Signature** (décision de Quentin du 27/11/2026) : dès qu'un devis est signé, le Master transmet le dossier complet
+   au **[MASTER] Production** (`session_0183EW5525j63azBGK8khUzi`) par `send_message` : client et conversation dédiée,
+   concept (URL, PDF), devis signé (numéro `QME-AAAA-NNN`, montant, périmètre), besoins et décisions des réunions,
+   dossier Drive, identifiants Nexora (prospect, client, projet). Le tunnel garde la relation commerciale jusqu'à la
+   signature ; Production prend la réalisation, la recette, la mise en service et les licences ; la facturation
+   (acompte, échéances, solde) reste à la conversation dédiée du tunnel. Même chemin pour un acheteur Gumroad qui demande
+   une modification payante : devis dans le tunnel, puis passation à Production. Procédure de Production :
+   `docs/production/README.md`.
 6. Les conversations dédiées ne créent, ne modifient ni ne lancent aucune tâche planifiée, n'envoient rien sans la
    validation de Quentin et respectent les interdits du § 12.
 
