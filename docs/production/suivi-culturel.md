@@ -52,21 +52,27 @@ TMDB est abandonné : ses conditions interdisent l'usage commercial sans accord 
 Aucune clé, aucune variable Netlify (`TMDB_JETON` et `TMDB_API_KEY` ne sont plus lues ; ne pas les créer).
 
 - **Source** : point SPARQL `https://query.wikidata.org/sparql`, une requête par recherche (POST, délai 5 s). Recherche
-  plein texte de Wikidata (service `Search` : par mots, accents ignorés, article initial non requis), filtre film
+  plein texte de Wikidata (service `Search` : par mots, accents ignorés, article initial non requis ; le service
+  `EntitySearch` cherche par début de libellé et ne trouvait pas « bureau des légendes », dont le libellé commence par
+  « Le »), filtre film
   `Q11424` ou série télévisée `Q5398426` (sous-classes comprises), puis titre français (anglais à défaut), année la plus
   ancienne (P577 ou P580), réalisation P57 (film) ou création P170 (série), durée P2047 normalisée (film), nombre de
   saisons P2437 et d'épisodes P1113 (série). `hint:optimizer "None"` : sans lui, plus de 10 s ; avec, 0,5 à 1 s.
 - **Séries** : épisodes par saison (items « saison » liés par P179, rang P1545) repris seulement si toutes les saisons
-  sont renseignées ; sinon la fiche garde le total d'épisodes (« Épisodes par saison » accepte un nombre total).
+  sont renseignées ; sinon la fiche garde « N épisodes au total », modifiable (le champ « Épisodes par saison » accepte
+  un nombre total ou la liste par saison).
 - **Faute de frappe** : même repli que les livres (`intouchabls` → `intouch*`), puis tri par ressemblance.
-- **User-Agent** : `QME-SuiviCulturel/1.0 (https://qm-engineering.fr)` (politique Wikimedia : nom, version, site de
-  contact ; aucune adresse personnelle).
+- **User-Agent** : `QME-SuiviCulturel/1.0 (https://qm-engineering.fr/contact/; bot)` (politique Wikimedia : nom,
+  version, page de contact, « bot » ; aucune adresse personnelle). Constante unique `UA` de `netlify/lib/oeuvres.mjs` :
+  un e-mail s'y ajoute en une ligne si Quentin le souhaite.
 - **Limites de débit** (mediawiki.org « Wikimedia APIs/Rate limits », 2026) : client non identifié 10 requêtes/min,
   client identifié 200/min ; SPARQL : 60 s de calcul par minute et 5 requêtes parallèles par IP. Les IP partagées
   (conteneur de test, Netlify) peuvent recevoir des 429 : le proxy répond alors « indisponible » (saisie à la main), ne
-  garde rien en cache, et le cache de 7 jours plus l'index partagé limitent les appels.
-- **Licence** : CC0, usage commercial permis, aucune attribution obligatoire ; mention « Données : Wikidata (CC0) »
-  affichée dans les résultats, Réglages › Sources et À propos.
+  garde rien en cache et suspend tout appel à Wikidata pendant la durée `Retry-After` (60 s par défaut, 1 h au plus,
+  clé `pause/wikidata` du store, commune à toutes les instances). Réponses Wikidata gardées 30 jours (7 pour Open
+  Library et iTunes), plus l'index partagé.
+- **Licence** : CC0, usage commercial permis, aucune attribution obligatoire ; mention « Films et séries : Wikidata
+  (CC0) » affichée dans les résultats, Réglages › Sources et À propos.
 - **Vérifié en réel le 28/11/2026** : « Intouchables » (2011, Éric Toledano et Olivier Nakache, 112 min),
   « intouchabls » (faute) → Intouchables, « bureau des legendes » → Le Bureau des légendes (2015, Éric Rochant,
   5 saisons, 50 épisodes ; épisodes par saison connus pour les saisons 1 et 2 seulement).

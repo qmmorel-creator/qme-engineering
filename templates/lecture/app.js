@@ -65,7 +65,8 @@
   const MED = R.MEDIAS;
   const dansMedia = (l) => !filtre.media || l.media === filtre.media;
   // Longueur d'une œuvre : « 320 pages », « 1 h 52 », « 2 saisons, 18 épisodes ».
-  const longueurTexte = (l) => (l.media === 'serie' && l.saisons?.length ? `${pluriel(l.saisons.length, 'saison')}, ${pluriel(l.total, 'épisode')}` : l.total ? qte(l.total, R.unite(l)) : '');
+  // Une série sans répartition par saison (Wikidata ne la donne pas toujours) : « 50 épisodes au total ».
+  const longueurTexte = (l) => (l.media === 'serie' && l.saisons?.length ? `${pluriel(l.saisons.length, 'saison')}, ${pluriel(l.total, 'épisode')}` : l.media === 'serie' && l.total ? `${pluriel(l.total, 'épisode')} au total` : l.total ? qte(l.total, R.unite(l)) : '');
   // Position dans une œuvre après `n` pages, minutes ou épisodes : « la page 152 », « 1 h 05 », « S2 · É3 ».
   function positionTexte(l, n) {
     const u = R.unite(l);
@@ -1035,7 +1036,7 @@
   // proxy du site /api/oeuvres. Les œuvres déjà dans la bibliothèque qui ressemblent sont signalées (tolérance aux
   // fautes, règles locales). Hors ligne, source saturée ou limite de la démo atteinte : un message, et la saisie à la main.
   const SOURCES_NOMS = { ol: 'Open Library', wd: 'Wikidata', itunes: 'Apple Podcasts et Livres' };
-  const MENTION_WIKIDATA = 'Données : Wikidata (CC0)';
+  const MENTION_WIKIDATA = 'Films et séries : Wikidata (CC0)';
   async function appelOeuvres(chemin, options = {}) {
     const r = await fetch(`/api/oeuvres/${chemin}`, { ...options, headers: { 'content-type': 'application/json', ...(session.jeton ? { 'x-code': session.jeton } : {}) } });
     let corps = null;
@@ -1097,7 +1098,10 @@
       val('total', f.saisons ? saisonsTexte(f.saisons) : !f.total ? '' : MED[f.media].unite === 'minutes' ? dureeSaisie(f.total) : f.total);
       val('source', `${f.source.s}:${f.source.id}`);
       liste.innerHTML = '';
-      etat.textContent = `Fiche préremplie depuis ${SOURCES_NOMS[f.source.s]} : vérifie et complète${f.media === 'film' && !f.total ? ' (durée inconnue de la source : ajoute-la si tu veux suivre ta progression)' : ''}.${f.source.s === 'wd' ? ` ${MENTION_WIKIDATA}.` : ''}`;
+      const manque = f.media === 'film' && !f.total ? ' La durée est inconnue de la source : ajoute-la pour suivre ta progression.'
+        : f.media === 'serie' && !f.saisons && f.total ? ` ${pluriel(f.total, 'épisode')} au total (répartition par saison inconnue de la source) : tu peux écrire le nombre d'épisodes de chaque saison à la place, par exemple 10, 10, 10.`
+          : f.media === 'serie' && !f.total ? ' Nombre d\'épisodes inconnu de la source : ajoute-le pour suivre ta progression.' : '';
+      etat.textContent = `Fiche préremplie depuis ${SOURCES_NOMS[f.source.s]} : vérifie et complète.${manque}${f.source.s === 'wd' ? ` ${MENTION_WIKIDATA}.` : ''}`;
       d.querySelector('[name=titre]').focus();
     });
     // Un titre modifié à la main ne garde pas la référence de la source.
@@ -1111,7 +1115,7 @@
   async function afficherSources() {
     const z = modale().querySelector('[data-zone=sources]');
     if (!z) return;
-    z.innerHTML = `<p class="mention">Livres : Open Library (Internet Archive). Films et séries : ${MENTION_WIKIDATA.replace('Données : ', '')}. Livres audio et podcasts : recherche iTunes d'Apple (noms et années). Seuls les mots tapés sont envoyés ; tu peux toujours remplir une fiche à la main.</p>`;
+    z.innerHTML = `<p class="mention">Livres : Open Library (Internet Archive). ${MENTION_WIKIDATA}. Livres audio et podcasts : recherche iTunes d'Apple (noms et années). Seuls les mots tapés sont envoyés ; tu peux toujours remplir une fiche à la main.</p>`;
   }
 
   // Fiche d'une œuvre : progression, rythme, dates, note, avis, citations, sessions.
@@ -1304,7 +1308,7 @@
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>Données personnelles</h3><p class="mention">Ta bibliothèque est enregistrée en ligne, liée à ta clé, et n'est ni lue ni partagée par QME. Tes avis et citations restent privés : il n'y a ni profil public ni partage.</p></div>
       <div class="groupe"><h3>Sources de la recherche</h3><div data-zone="sources"></div></div>
-      <div class="groupe"><h3>À propos</h3><p class="mention">${esc(NOM)}${NOM === 'Suivi de lecture' ? '' : ' (anciennement Suivi de lecture)'}, version ${B.version}. Genres proposés modifiables. La recherche n'envoie que les mots tapés, jamais ta bibliothèque ; pas de couverture téléchargée, aucun lien avec une liseuse, une plateforme ou une librairie. Calculs faits sur cet appareil : rythme sur les 14 derniers jours, objectifs répartis uniformément sur les jours de l'année. ${MENTION_WIKIDATA} pour les films et séries ; Open Library pour les livres ; recherche iTunes pour les livres audio et podcasts.</p></div>`;
+      <div class="groupe"><h3>À propos</h3><p class="mention">${esc(NOM)}${NOM === 'Suivi de lecture' ? '' : ' (anciennement Suivi de lecture)'}, version ${B.version}. Genres proposés modifiables. La recherche n'envoie que les mots tapés, jamais ta bibliothèque ; pas de couverture téléchargée, aucun lien avec une liseuse, une plateforme ou une librairie. Calculs faits sur cet appareil : rythme sur les 14 derniers jours, objectifs répartis uniformément sur les jours de l'année. ${MENTION_WIKIDATA}. Livres : Open Library. Livres audio et podcasts : recherche iTunes d'Apple.</p></div>`;
     ouvrirModale('Réglages', corps, '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button>', (fd) => {
       const champs = [...modale().querySelectorAll('.liste-genres input')];
       const vus = new Set();

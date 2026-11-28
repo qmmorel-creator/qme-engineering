@@ -1,7 +1,7 @@
 // Recherche d'œuvres du Suivi culturel (template PGS) : proxy vers Open Library (livres), Wikidata (films, séries ;
 // CC0, usage commercial permis, sans clé) et l'API de recherche iTunes (livres audio, podcasts ; noms et années
-// seulement), avec un cache partagé qui grandit avec l'usage. TMDB, interdit en usage commercial sans accord, a été
-// retiré le 28/11/2026 (décision de Quentin).
+// seulement), avec un cache partagé qui grandit avec l'usage. Films et séries par Wikidata depuis le 28/11/2026
+// (décision de Quentin : source libre, utilisable dans un produit vendu).
 // Sans dépendance à Netlify : stockage et fetch injectés (Netlify Blobs en production, mémoire en test).
 //
 // Routes (GET sauf mention) :
@@ -14,19 +14,27 @@
 // Confidentialité : seuls les mots cherchés partent vers les sources ; la bibliothèque des utilisateurs n'est jamais
 // envoyée ni stockée ici. Le cache ne contient que des fiches lues par le serveur lui-même chez la source (une fiche
 // envoyée par un navigateur n'y entre jamais).
-// Aucune clé, aucune variable Netlify. Wikidata : User-Agent identifiable (politique Wikimedia : nom, version, site de
-// contact), requête SPARQL unique par recherche, délai court ; un refus (429) répond { indisponible: true }.
+// Aucune clé, aucune variable Netlify. Wikidata : User-Agent identifiable (politique Wikimedia : nom, version, page de
+// contact, « bot »), requête SPARQL unique par recherche, délai court, réponses gardées 30 jours ; un refus (429)
+// répond { indisponible: true } et suspend les appels à Wikidata pendant la durée indiquée par Retry-After.
 import { createHash } from 'node:crypto';
 import { verifierCode, verifierCodeEssai } from './templates-acces.mjs';
 
 export const MEDIAS = ['livre', 'livreaudio', 'film', 'serie', 'podcast'];
-export const DUREE_CACHE = 7 * 86400000; // réponses d'une recherche : 7 jours
+export const DUREE_CACHE = 7 * 86400000; // réponses d'une recherche : 7 jours (Open Library, iTunes)
+export const DUREE_CACHE_WIKIDATA = 30 * 86400000; // Wikidata : 30 jours (ménager la limite de débit)
+const dureeCache = (media) => (media === 'film' || media === 'serie' ? DUREE_CACHE_WIKIDATA : DUREE_CACHE);
+// Pause après un 429 de Wikidata : Retry-After en secondes (60 s si absent, 1 h au plus), commune à toutes les instances.
+export const CLE_PAUSE = 'pause/wikidata';
+export const pauseRetry = (valeur) => { const n = Number(valeur); return Math.min(3600, Math.max(5, Number.isFinite(n) && n > 0 ? n : 60)) * 1000; };
 // Version du format du cache (recherches, fiches vues, index) : à incrémenter quand la lecture des sources change ;
 // les anciennes entrées sont alors ignorées. Le store est commun aux aperçus et à la production.
-export const VERSION_CACHE = 3; // 3 : Wikidata remplace TMDB (28/11/2026)
+export const VERSION_CACHE = 3; // 3 : films et séries par Wikidata (28/11/2026)
 export const MAX_INDEX = 5000; // fiches gardées par média dans l'index partagé
 export const LIMITE_DEMO = 60; // appels par jour et par IP sans jeton
-const UA = 'QME-SuiviCulturel/1.0 (https://qm-engineering.fr)';
+// User-Agent de toutes les sources, conforme à la politique User-Agent de Wikimedia (nom/version, contact, « bot ») :
+// un e-mail de contact s'ajoute ici, en une ligne, si Quentin le souhaite.
+export const UA = 'QME-SuiviCulturel/1.0 (https://qm-engineering.fr/contact/; bot)';
 const DELAI = 5000;
 
 const json = (statut, corps) => new Response(JSON.stringify(corps), { status: statut, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' } });
@@ -134,6 +142,7 @@ async function sparql(fetchImpl, requete) {
     body: new URLSearchParams({ query: requete }).toString(),
     signal: AbortSignal.timeout(DELAI),
   });
+  if (r.status === 429) { const e = new Error('source 429'); e.pause = pauseRetry(r.headers.get('retry-after')); throw e; }
   if (!r.ok) throw new Error(`source ${r.status}`);
   return ((await r.json()).results?.bindings || []).map((b) => Object.fromEntries(Object.entries(b).map(([k, v]) => [k, v.value])));
 }
@@ -255,10 +264,12 @@ export async function traiterOeuvres(requete, { secret, revoques = [], stockage,
       const q = txt(url.searchParams.get('q'), 80);
       if (q.length < 2) return json(400, { erreur: 'Tape au moins 2 caractères.' });
       const locaux = await chercherIndex(stockage, media, q);
+      const wikidata = media === 'film' || media === 'serie';
       const cleQ = `q${VERSION_CACHE}/${media}/${hache(mots(q).join(' '))}`;
       const c = await stockage.get(cleQ);
       let distants;
-      if (c && maintenant() - c.t < DUREE_CACHE) distants = c.r;
+      if (c && maintenant() - c.t < dureeCache(media)) distants = c.r;
+      else if (wikidata && ((await stockage.get(CLE_PAUSE)) || 0) > maintenant()) return json(200, { resultats: locaux, indisponible: true });
       else {
         try {
           distants = await chercherTolerant(media, q, dep);
@@ -267,7 +278,8 @@ export async function traiterOeuvres(requete, { secret, revoques = [], stockage,
           // Chaque fiche lue chez la source est mémorisée : c'est elle (jamais une fiche envoyée par un navigateur)
           // qui entrera dans l'index si un utilisateur ajoute l'œuvre.
           await Promise.all(distants.map((f) => stockage.set(cleVu(f.media, f.source.s, f.source.id), f)));
-        } catch {
+        } catch (x) {
+          if (x?.pause) await stockage.set(CLE_PAUSE, maintenant() + x.pause);
           return json(200, { resultats: locaux, indisponible: true });
         }
       }
@@ -281,11 +293,15 @@ export async function traiterOeuvres(requete, { secret, revoques = [], stockage,
       if (!MEDIAS.includes(m) || !SOURCES.includes(src) || !idOk(id)) return json(400, { erreur: 'Œuvre inconnue.' });
       // Fiche lue par le serveur lors d'une recherche ; pour une série Wikidata, complétée des épisodes par saison.
       let f = await stockage.get(cleVu(m, src, id));
-      if (f && src === 'wd' && m === 'serie' && !f.detail) {
-        const saisons = await saisonsWikidata(id, f.nbSaisons, dep).catch(() => null);
-        f = { ...f, detail: true };
-        if (saisons) { f.saisons = saisons; f.total = saisons.reduce((x, y) => x + y.episodes, 0); }
-        await stockage.set(cleVu(m, src, id), f);
+      if (f && src === 'wd' && m === 'serie' && !f.detail && ((await stockage.get(CLE_PAUSE)) || 0) <= maintenant()) {
+        // Échec (429, délai) : la fiche de recherche est rendue telle quelle et le détail sera retenté plus tard.
+        let echec = false;
+        const saisons = await saisonsWikidata(id, f.nbSaisons, dep).catch(async (x) => { echec = true; if (x?.pause) await stockage.set(CLE_PAUSE, maintenant() + x.pause); return null; });
+        if (!echec) {
+          f = { ...f, detail: true };
+          if (saisons) { f.saisons = saisons; f.total = saisons.reduce((x, y) => x + y.episodes, 0); }
+          await stockage.set(cleVu(m, src, id), f);
+        }
       }
       const propre = f ? (({ detail, nbSaisons, ...x }) => x)(f) : null;
       if (route === 'ajout') { if (propre) await indexer(stockage, propre); return json(200, { ok: !!propre }); }

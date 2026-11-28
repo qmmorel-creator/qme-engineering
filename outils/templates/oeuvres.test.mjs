@@ -2,13 +2,14 @@
 // Films et séries : Wikidata (SPARQL), depuis le 28/11/2026 (TMDB retiré : usage commercial interdit sans accord).
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { traiterOeuvres, LIMITE_DEMO, scoreRecherche, requeteRepli, VERSION_CACHE, termeWikidata, requeteWikidata, WIKIDATA } from '../../netlify/lib/oeuvres.mjs';
+import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { traiterOeuvres, LIMITE_DEMO, scoreRecherche, requeteRepli, VERSION_CACHE, termeWikidata, requeteWikidata, WIKIDATA, CLE_PAUSE, UA as UA_PROXY, DUREE_CACHE_WIKIDATA } from '../../netlify/lib/oeuvres.mjs';
 import { genererCode } from '../../netlify/lib/templates-acces.mjs';
 
 const SECRET = 'secret-de-test-oeuvres-0123456789abcdef';
 const CODE = genererCode(SECRET, 'PGS');
 const AUTRE = genererCode(SECRET, 'REV');
-const UA = 'QME-SuiviCulturel/1.0 (https://qm-engineering.fr)';
+const UA = 'QME-SuiviCulturel/1.0 (https://qm-engineering.fr/contact/; bot)';
 
 function memoire() {
   const m = new Map();
@@ -151,18 +152,64 @@ test('accès : code PGS ou démo limitée ; code d\'un autre template refusé ; 
   assert.ok(![...st.m.keys()].some((k) => k.includes('1.2.3.4')));
 });
 
-test('Wikidata saturé (429) : message « indisponible », les autres sources répondent', async () => {
+test('Wikidata saturé (429) : « indisponible », Retry-After respecté, les autres sources répondent', async () => {
   const st = memoire();
   const { f } = sources();
-  const sature = async (url, init) => (String(url).startsWith(WIKIDATA) ? new Response('Too many requests', { status: 429 }) : f(url, init));
-  const opts = { stockage: st, fetchImpl: sature };
+  let t = 1_000_000_000_000, appelsWd = 0;
+  const sature = async (url, init) => { if (String(url).startsWith(WIKIDATA)) { appelsWd++; return new Response('Too many requests', { status: 429, headers: { 'retry-after': '120' } }); } return f(url, init); };
+  const opts = { stockage: st, fetchImpl: sature, maintenant: () => t };
   const r = await appeler(req('recherche?media=film&q=intouchables'), opts);
   assert.equal(r.statut, 200);
   assert.deepEqual(r.corps, { resultats: [], indisponible: true });
+  assert.equal(appelsWd, 1);
+  assert.equal(await st.get(CLE_PAUSE), t + 120_000, 'pause de 120 s (Retry-After)');
+  // Pendant la pause, aucun appel à Wikidata, même pour une autre recherche ou une série.
+  t += 60_000;
+  assert.deepEqual((await appeler(req('recherche?media=serie&q=bureau'), opts)).corps, { resultats: [], indisponible: true });
+  assert.equal(appelsWd, 1);
+  // Open Library et iTunes ne sont pas touchés par la pause.
   assert.equal((await appeler(req('recherche?media=livre&q=miserables'), opts)).corps.resultats.length, 1);
   assert.equal((await appeler(req('recherche?media=podcast&q=questions'), opts)).corps.resultats.length, 1);
-  // Rien de vide ni d'erroné n'est gardé en cache : la recherche refonctionne dès que Wikidata répond.
-  assert.equal((await appeler(req('recherche?media=film&q=intouchables'), { stockage: st, fetchImpl: f })).corps.resultats[0].titre, 'Intouchables');
+  // Pause finie, Wikidata répond : la recherche refonctionne (rien d'erroné n'avait été gardé en cache).
+  t += 61_000;
+  assert.equal((await appeler(req('recherche?media=film&q=intouchables'), { ...opts, fetchImpl: f })).corps.resultats[0].titre, 'Intouchables');
+});
+
+test('Wikidata : réponses gardées 30 jours ; détail des saisons retenté après un échec', async () => {
+  const st = memoire();
+  const { f, appels } = sources();
+  let t = 1_000_000_000_000;
+  await appeler(req('recherche?media=film&q=intouchables'), { stockage: st, fetchImpl: f, maintenant: () => t });
+  t += 20 * 86400000;
+  await appeler(req('recherche?media=film&q=intouchables'), { stockage: st, fetchImpl: f, maintenant: () => t });
+  assert.equal(appels.length, 1, 'encore en cache après 20 jours');
+  assert.equal(DUREE_CACHE_WIKIDATA, 30 * 86400000);
+  // Saisons : un 429 au détail ne fige pas la fiche ; le détail est refait ensuite.
+  const st2 = memoire();
+  await appeler(req('recherche?media=serie&q=bureau'), { stockage: st2, fetchImpl: f, maintenant: () => t });
+  const echoue = async (url, init) => (new URLSearchParams(init?.body || '').get('query')?.includes('ps:P179') ? new Response('', { status: 429, headers: { 'retry-after': '5' } }) : f(url, init));
+  const d1 = await appeler(req('detail?media=serie&s=wd&id=Q19593743'), { stockage: st2, fetchImpl: echoue, maintenant: () => t });
+  assert.equal(d1.corps.fiche.total, 50);
+  t += 10_000;
+  const complet = sources({ saisons: [1, 2, 3, 4, 5].map((n) => ({ n, episodes: 10 })) });
+  const d2 = await appeler(req('detail?media=serie&s=wd&id=Q19593743'), { stockage: st2, fetchImpl: complet.f, maintenant: () => t });
+  assert.equal(d2.corps.fiche.saisons.length, 5);
+});
+
+test('aucune trace de TMDB dans le template, le proxy, le catalogue et le serveur local', () => {
+  assert.equal(UA_PROXY, UA);
+  const racine = new URL('../../', import.meta.url);
+  const fichiers = [];
+  const parcourir = (chemin) => {
+    for (const n of readdirSync(new URL(chemin, racine))) {
+      const c = `${chemin}${n}`;
+      if (statSync(new URL(c, racine)).isDirectory()) parcourir(`${c}/`); else fichiers.push(c);
+    }
+  };
+  ['templates/lecture/', 'netlify/', 'catalogue/lecture/'].forEach(parcourir);
+  fichiers.push('outils/templates/serveur-local.mjs', 'outils/templates/lecture.test.mjs', 'netlify.toml');
+  const traces = fichiers.filter((c) => !/\.(png|webp|ico)$/.test(c) && /tmdb|themoviedb/i.test(readFileSync(new URL(c, racine), 'utf8')));
+  assert.deepEqual(traces, []);
 });
 
 test('cache : une réponse vide n\'est pas gardée, les clés portent la version du format', async () => {
