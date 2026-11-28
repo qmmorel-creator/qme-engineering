@@ -1,4 +1,4 @@
-// Suivi de lecture QME (code PGS ; nouveau nom proposé « Suivi culturel ») : livres, livres audio, films, séries (saisons et
+// Suivi culturel QME (code PGS, anciennement « Suivi de lecture », renommé le 28/11/2026) : livres, livres audio, films, séries (saisons et
 // épisodes) et podcasts ; statuts, sessions qui donnent la progression, le rythme et la date de fin estimée, note,
 // avis et citations, objectifs annuels par média avec l'avance ou le retard au jour près, statistiques (mois, médias,
 // genres, créateurs, séries de jours) et liste « à découvrir » par priorité.

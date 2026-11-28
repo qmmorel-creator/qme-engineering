@@ -1,4 +1,4 @@
-// Tests des règles métier du suivi de lecture (templates/lecture/regles.js et donnees.js).
+// Tests des règles métier du suivi culturel, anciennement suivi de lecture (templates/lecture/regles.js et donnees.js).
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';

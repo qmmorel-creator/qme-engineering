@@ -1,4 +1,4 @@
-// Suivi de lecture QME (code PGS ; nouveau nom proposé « Suivi culturel ») · règles métier pures (aucun accès au DOM ni au
+// Suivi culturel QME (code PGS, anciennement « Suivi de lecture », renommé le 28/11/2026) · règles métier pures (aucun accès au DOM ni au
 // stockage). Chargé tel quel par le navigateur (window.PGS) et par les tests Node (outils/templates/lecture.test.mjs).
 // Dates locales « AAAA-MM-JJ ». Cinq médias : livre (pages), livre audio (minutes), film (minutes), série (épisodes,
 // répartis en saisons) et podcast (épisodes). Les œuvres restent dans le tableau `livres` (nom historique, gardé pour

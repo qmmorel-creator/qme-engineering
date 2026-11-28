@@ -98,9 +98,8 @@ export const PRODUITS = {
   STR: { nom: 'Conformité des sous-traitants', url: '/templates/sous-traitants/', gumroad: '6skYhUNcKgwFwua1a56TVw==' },
   ENP: { nom: 'Entretiens annuels et professionnels', url: '/templates/entretiens-annuels/', gumroad: 'iOZ0cB8ONCrvvkxMdbL7BQ==' },
   GRD: { nom: 'Garde-manger et dates de péremption', url: '/templates/garde-manger/', gumroad: 'NgehMPonwFhDQl_wIgF8XA==' },
-  // Suivi de lecture étendu aux livres audio, films, séries et podcasts le 27/11/2026 (même code, même fiche Gumroad,
-  // même URL : les licences et les données des acheteurs restent valables). Nouveau nom proposé : « Suivi culturel »,
-  // gardé en attente du choix de Quentin (docs/production/suivi-culturel.md).
+  // Suivi culturel : Suivi de lecture étendu aux livres audio, films, séries et podcasts le 27/11/2026, renommé le
+  // 28/11/2026 (décision de Quentin). Même code, même fiche Gumroad, même URL : licences et données des acheteurs valables.
   PGS: { nom: 'Suivi culturel', url: '/templates/lecture/', gumroad: 'cfXnYcVohgvMwrn0ONglsQ==' },
   NTS: { nom: 'Notes et moyennes', url: '/templates/notes/', gumroad: 'mfJW49fm4F0bQ7rUSdY8Kw==' },
   ETD: { nom: 'État des lieux d’entrée et de sortie', url: '/templates/etat-des-lieux/', gumroad: 'eo2d-2oYp7KgqGwQQ_v4OA==' },

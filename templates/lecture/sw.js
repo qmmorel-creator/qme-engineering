@@ -1,4 +1,4 @@
-// Service worker du suivi de lecture : garde l'interface disponible hors ligne.
+// Service worker du suivi culturel (anciennement suivi de lecture) : garde l'interface disponible hors ligne.
 // Les appels à l'API ne sont jamais mis en cache (données personnelles, toujours fraîches).
 // Seuls les anciens caches de CE template sont supprimés : d'autres templates partagent le domaine.
 const VERSION = 'lecture-20261127b';
