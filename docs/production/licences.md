@@ -90,3 +90,15 @@ livraison (correctif, évolution) ajoute une ligne de version.
 2. `RVX_GUMROAD_ID` = `Bxld7Q6KTUy5ValRUfIvMA==` : confirmé par Quentin le 27/11/2026.
 3. Écarts de nom (domaine de l'agent Gumroad, sans effet sur les licences) : fiche CRM nommée « CRM freelance » sur
    Gumroad contre « CRM et prospection » sur le site.
+
+## 7. Annonces de version
+
+| Date | Produit | Annonce | Destinataires externes | Suite |
+|---|---|---|---|---|
+| 28/11/2026 | PGS « Suivi culturel » (#357, en ligne le 28/11) | textes validés par Quentin (`annonce-suivi-culturel.md`) | **0** | aucun envoi, aucun développement de `/api/compte/annonce` |
+
+Recomptage du 28/11/2026, après la mise en ligne de #357 : acheteurs PGS 0 et acheteurs PET 0 (Gumroad `list_sales` et
+achats du site) ; testeurs du template lecture inscrits aux nouveautés 0 (un seul essai lecture, sans la case cochée) ;
+registre des préférences : 1 ligne PGS « abonné », celle de Floriane Jolliot (adresse personnelle, exclue par
+CLAUDE.md ; personne interne). Opposition : sans objet (aucune adresse à vérifier). À recompter à la prochaine vente
+PGS ou PET, ou à la prochaine inscription d'un testeur aux nouveautés.
