@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Le tableur des vacances · Mini-story QME</title>
+<!-- Projet d'animation de l'épisode. Rendu : node docs/videos/rendu.mjs <ce fichier> 18.6 --muet --taille-max 14
+     Toute l'image est fonction du temps : window.placer(ms) dessine l'image exacte de l'instant ms (rendu déterministe).
+     Données : timeline.js (généré depuis timeline.json, voix réelles mesurées). -->
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../assets/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../assets/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1EFF,U+20A0-20AB,U+20AD-20C4;}
+:root{--creme:#F1EEE6;--noir:#141414;--jaune:#FFBE00;--jaune-pale:#FBEBC2;--bleu:#23528B;--rouge:#DE2D27;--moutarde:#EDB43A;--vert:#2E7D50}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:var(--creme);font-family:'Outfit',sans-serif;color:var(--noir)}
+#scene{position:absolute;inset:0}
+#st{position:absolute;left:60px;right:130px;top:1350px;display:flex;justify-content:center;text-align:center}
+#st span{display:inline;background:var(--jaune-pale);box-decoration-break:clone;-webkit-box-decoration-break:clone;padding:6px 22px;border-radius:18px;font-weight:800;font-size:56px;line-height:1.45;letter-spacing:-.5px}
+#carton{position:absolute;inset:0;background:#141414;display:none}
+#carton img{position:absolute;left:0;width:1080px;top:50%;transform:translateY(-50%)}
+.pre{position:absolute;opacity:0;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="scene"></div>
+<div id="st"></div>
+<div id="carton"><img src="../assets/qme-carton-final-9x16-official.png" alt=""></div>
+<img class="pre" src="../assets/templates-voyage-comptes.webp" alt="">
+<script src="timeline.js"></script>
+<script src="carreau.js"></script>
+<script>
+const C = {creme:'#F1EEE6', noir:'#141414', jaune:'#FFBE00', pale:'#FBEBC2', bleu:'#23528B', rouge:'#DE2D27', moutarde:'#EDB43A', vert:'#2E7D50', blanc:'#FFFFFF'};
+const PAS_POSE = 1000 / 12;              // poses tenues 2 images à 24 i/s : rendu « stop-motion » de la charte MiniStories
+const pose = (ms) => Math.floor(ms / PAS_POSE) * PAS_POSE;
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const sortie = (x) => 1 - Math.pow(1 - x, 3);
+const rebond = (x) => { const c = 1.70158 * 1.4; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const hash = (n) => { const s = Math.sin(n * 127.1) * 43758.5453; return s - Math.floor(s); };
+const euros = (v) => v.toLocaleString('fr-FR').replace(/\u202f|\s/g, '\u2009') + '\u00a0€';
+const T = window.TL;
+
+// ---------- Mascotte : post-it jaune « A1 » (référence qme-mascot-original-reference.jpeg) ----------
+// Une seule fonction pour tout l'épisode : mêmes proportions, couleurs et traits d'un plan à l'autre.
+function mascotte({x, y, s = 1, expr = 'neutre', bras = 'bas', rot = 0, ecrase = 1}) {
+  // Module officiel docs/templates/communication/formats-test/mascotte/carreau.js (copié sans « export » dans carreau.js)
+  const expression = {joie: 'soulage', blase: 'neutre', inquiet: 'inquiet', choc: 'inquiet', panique: 'panique', fier: 'fier', neutre: 'neutre'}[expr];
+  const p = {montrer: 'montre', pouce: 'montre', haut: 'court', tete: 'court'}[bras] || 'debout';
+  return `<g transform="translate(${x} ${y}) rotate(${rot}) scale(${s} ${s * ecrase}) translate(-160 -350)">${carreau({expression, pose: p, taille: 320})}</g>`;
+}
+
+// ---------- Décor Bauhaus (formes de la charte) ----------
+function decor(t, variante = 0) {
+  const d = Math.sin(pose(t) / 900) * 6;
+  const v = [
+    `<circle cx="${-40 + d}" cy="220" r="260" fill="${C.rouge}"/><circle cx="930" cy="420" r="90" fill="${C.noir}"/><rect x="820" y="1100" width="200" height="200" fill="${C.noir}"/><rect x="800" y="1080" width="200" height="200" fill="${C.bleu}" stroke="${C.noir}" stroke-width="10"/>`,
+    `<path d="M1080 0 v380 a380 380 0 0 1 -380 -380z" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/><circle cx="120" cy="${1180 + d}" r="70" fill="${C.rouge}"/><path d="M0 1330 h260 l-130 -190z" fill="${C.noir}" opacity=".9"/>`,
+    `<circle cx="1000" cy="250" r="200" fill="${C.bleu}"/><rect x="40" y="200" width="120" height="120" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/>`,
+  ][variante];
+  return `<rect width="1080" height="1920" fill="${C.creme}"/>${v}`;
+}
+const sol = (y = 1300) => `<rect x="0" y="${y}" width="1080" height="12" fill="${C.noir}"/>`;
+
+// ---------- Accessoires (forme et couleur fixes dans tout l'épisode) ----------
+const etiquette = (x, y, txt, fond = C.noir, coul = '#fff', taille = 40) => { const w = txt.length * taille * .64 + 40; return `<g transform="translate(${x} ${y})"><rect x="${-w / 2}" y="${-taille * .8}" width="${w}" height="${taille * 1.3}" fill="${fond}"/><text y="${taille * .3}" font-size="${taille}" font-weight="800" letter-spacing="2" text-anchor="middle" fill="${coul}">${txt}</text></g>`; };
+// Les trois amis : disques de couleur sans visage, prénom dessous (Grillon est le quatrième ; une seule mascotte à l'écran)
+const AMIS = {Camille: {x: 210, y: 690, c: C.rouge}, Sam: {x: 870, y: 690, c: C.bleu}, Alex: {x: 540, y: 420, c: C.vert}};
+const GR = {x: 540, y: 1010};            // point d'attache des flèches sur Grillon
+function ami(nom, s = 1, dy = 0) { const a = AMIS[nom]; return `<g transform="translate(${a.x} ${a.y + dy}) scale(${s})"><circle r="92" fill="${C.noir}" transform="translate(10 10)"/><circle r="92" fill="${a.c}" stroke="${C.noir}" stroke-width="10"/>${etiquette(0, 150, nom.toUpperCase(), C.noir, '#fff', 38)}</g>`; }
+// Ticket de parking : papier blanc, bandeau bleu « P »
+const ticket = (x, y, s = 1, r = 0) => `<g transform="translate(${x} ${y}) rotate(${r}) scale(${s})"><rect x="-110" y="-150" width="220" height="300" fill="${C.noir}" transform="translate(10 10)"/><rect x="-110" y="-150" width="220" height="300" fill="#fff" stroke="${C.noir}" stroke-width="8"/><rect x="-110" y="-150" width="220" height="90" fill="${C.bleu}" stroke="${C.noir}" stroke-width="8"/><text y="-78" font-size="80" font-weight="800" text-anchor="middle" fill="#fff">P</text><text y="-10" font-size="30" font-weight="800" text-anchor="middle" letter-spacing="2">PARKING</text><path d="M-70 40 h140 M-70 75 h100 M-70 110 h120" stroke="${C.noir}" stroke-width="8"/></g>`;
+// Glace : cornet kraft, boule rose, goutte qui coule (fonte réglable)
+const glace = (x, y, s = 1, r = 0, fonte = 0) => `<g transform="translate(${x} ${y}) rotate(${r}) scale(${s})"><path d="M-70 -10 L0 190 L70 -10z" fill="#D9A35B" stroke="${C.noir}" stroke-width="8" stroke-linejoin="round"/><path d="M-45 20 l70 60 M-25 -5 l80 70 M45 20 l-70 60" stroke="${C.noir}" stroke-width="5"/><circle cy="-60" r="82" fill="#F2A7B8" stroke="${C.noir}" stroke-width="8"/><path d="M-40 -2 q0 ${30 + fonte * 90} 14 ${30 + fonte * 90} q14 0 14 -${30 + fonte * 90}" fill="#F2A7B8" stroke="${C.noir}" stroke-width="7"/><circle cx="30" cy="-95" r="14" fill="#fff" opacity=".8"/></g>`;
+// Flèche courbe de a vers b, tracée progressivement (p de 0 à 1)
+function fleche(a, b, courbe, p, coul = C.noir, ep = 9) {
+  const mx = (a.x + b.x) / 2 - (b.y - a.y) * courbe, my = (a.y + b.y) / 2 + (b.x - a.x) * courbe;
+  const L = Math.hypot(b.x - a.x, b.y - a.y) * (1 + Math.abs(courbe));
+  const fin = p >= 1 ? (() => { const ang = Math.atan2(b.y - my, b.x - mx) * 180 / Math.PI; return `<path transform="translate(${b.x} ${b.y}) rotate(${ang})" d="M0 0 l-34 -18 v36z" fill="${coul}"/>`; })() : '';
+  return `<path d="M${a.x} ${a.y} Q${mx} ${my} ${b.x} ${b.y}" fill="none" stroke="${coul}" stroke-width="${ep}" stroke-linecap="round" stroke-dasharray="${L}" stroke-dashoffset="${L * (1 - p)}"/>${fin}`;
+}
+// Raccourcit le segment a->b de d à chaque bout (les flèches partent du bord des disques)
+const bord = (a, b, d1 = 110, d2 = 125) => { const L = Math.hypot(b.x - a.x, b.y - a.y), ux = (b.x - a.x) / L, uy = (b.y - a.y) / L; return [{x: a.x + ux * d1, y: a.y + uy * d1}, {x: b.x - ux * d2, y: b.y - uy * d2}]; };
+const P = (n) => n === 'G' ? GR : AMIS[n];
+const FLECHES = [ // [de, vers, courbure, instant d'apparition] : de plus en plus nombreuses et tordues
+  ['Camille', 'Sam', .18, 4.15], ['Sam', 'Alex', .2, 5.2], ['Alex', 'G', .15, 6.25], ['G', 'Camille', .25, 6.6],
+  ['Sam', 'G', -.3, 6.9], ['Alex', 'Camille', -.35, 7.1], ['Camille', 'G', -.45, 7.3], ['G', 'Sam', .5, 7.45],
+  ['Sam', 'Camille', -.5, 7.6], ['Alex', 'Sam', .55, 7.75],
+];
+// Pelote : le nœud des flèches (courbes pseudo-aléatoires fixes)
+function pelote(cx, cy, R, n, rot) {
+  let d = '';
+  for (let i = 0; i < n; i++) { const a0 = hash(i + 1) * 6.28, a1 = a0 + 2 + hash(i + 9) * 2.5, r0 = R * (.35 + hash(i + 3) * .65), r1 = R * (.35 + hash(i + 5) * .65);
+    d += `<path d="M${cx + Math.cos(a0 + rot) * r0} ${cy + Math.sin(a0 + rot) * r0} Q${cx + Math.cos(a0 + 1 + rot) * R * 1.3} ${cy + Math.sin(a0 + 1 + rot) * R * 1.3} ${cx + Math.cos(a1 + rot) * r1} ${cy + Math.sin(a1 + rot) * r1}" fill="none" stroke="${[C.noir, C.rouge, C.bleu, C.vert][i % 4]}" stroke-width="10" stroke-linecap="round"/>`; }
+  return d;
+}
+
+// ---------- Scènes ----------
+const S = {};
+S.S1 = (t, l) => {                       // Accroche : le ticket de parking avancé
+  let g = decor(t, 2) + sol();
+  g += ami('Camille', .9, 120);
+  const p = rebond(prog(pose(l), 500, 900));
+  if (p > 0) g += ticket(560, 820 - p * 120, .95 * p, -8 + Math.sin(pose(l) / 200) * 3);
+  g += mascotte({x: 800, y: 1300, s: .72, expr: 'neutre', bras: l > 900 ? 'montrer' : 'bas'});
+  if (l > 1100) g += fleche(...bord({x: 730, y: 1040}, {x: 210, y: 810}, 20, 110), .12, prog(pose(l), 1100, 1600), C.noir, 10);
+  return g;
+};
+S.S2 = (t, l) => {                       // La glace : la flèche repart dans l'autre sens
+  let g = `<rect width="1080" height="1920" fill="${C.jaune}"/><circle cx="540" cy="760" r="430" fill="${C.creme}" stroke="${C.noir}" stroke-width="10"/>` + sol();
+  g += ami('Sam', .9, 120);
+  const p = rebond(prog(pose(l), 50, 400));
+  g += glace(500, 820 - p * 60, .95 * Math.max(.01, p), Math.sin(pose(l) / 160) * 6);
+  g += mascotte({x: 230, y: 1300, s: .72, expr: 'inquiet', bras: 'bas'});
+  if (l > 500) g += fleche(...bord({x: 870, y: 810}, {x: 300, y: 1020}, 110, 20), -.15, prog(pose(l), 500, 1000), C.noir, 10);
+  return g;
+};
+S.S3 = (t, l) => {                       // Qui doit à qui : les flèches se multiplient
+  let g = `<rect width="1080" height="1920" fill="${C.creme}"/>` + sol();
+  for (const [a, b, c, t0] of FLECHES) { const p = prog(pose(t * 1000), t0 * 1000, t0 * 1000 + 450); if (p > 0) g += fleche(...bord(P(a), P(b)), c, sortie(p), C.noir, 9); }
+  for (const n of ['Alex', 'Camille', 'Sam']) g += ami(n, .85);
+  const n = FLECHES.filter((f) => t >= f[3]).length;
+  if (n >= 4) g += etiquette(540, 1045, `${n} FLÈCHES`, C.rouge, '#fff', 44);
+  const tremble = t > 7 ? (hash(pose(l)) - .5) * 14 : 0;
+  g += mascotte({x: 540 + tremble, y: 1320, s: .62, expr: t < 5.2 ? 'neutre' : t < 7 ? 'inquiet' : 'panique', bras: t < 7 ? 'bas' : 'tete'});
+  return g;
+};
+S.S4 = (t, l) => {                       // Le nœud : toutes les flèches en pelote
+  const p = sortie(prog(pose(l), 0, 900));
+  const tremble = (hash(pose(l)) - .5) * 20;
+  let g = `<rect width="1080" height="1920" fill="${Math.floor(l / 330) % 2 && l > 1000 ? '#F6D7D0' : C.creme}"/>` + sol();
+  for (const n of ['Alex', 'Camille', 'Sam']) g += `<g opacity="${1 - p * .6}">${ami(n, .85)}</g>`;
+  g += pelote(540 + tremble * .4, 720, 140 + p * 120, 26, pose(l) / 900);
+  if (l > 1100) g += etiquette(540, 1045, 'UN VRAI NŒUD', C.noir, '#fff', 54);
+  g += mascotte({x: 540 + tremble, y: 1320, s: .62, expr: 'panique', bras: 'tete'});
+  return g;
+};
+// Vraie capture du Planificateur de voyage (onglet Budget › Qui doit quoi, démo, voyageurs fictifs), recadrée et agrandie
+function capture(x, y, s) {
+  const W = 940;
+  const ent = `<svg x="0" y="0" width="${W * 250 / 474}" height="${W * 40 / 474}" viewBox="222 12 250 40"><image href="../assets/templates-voyage-comptes.webp" width="1600" height="1000"/></svg>`;
+  const rmb = `<svg x="0" y="110" width="${W}" height="${W * 226 / 474}" viewBox="226 282 474 226"><image href="../assets/templates-voyage-comptes.webp" width="1600" height="1000"/></svg>`;
+  const H = 110 + W * 226 / 474 + 20;
+  return `<g transform="translate(${x} ${y}) scale(${s}) translate(${-W / 2} ${-H / 2})"><rect x="-30" y="-30" width="${W + 60}" height="${H + 60}" rx="36" fill="${C.noir}" transform="translate(14 14)"/><rect x="-30" y="-30" width="${W + 60}" height="${H + 60}" rx="36" fill="#FAF7F0" stroke="${C.noir}" stroke-width="10"/>${ent}<rect x="0" y="96" width="${W}" height="4" fill="#E6E0D4"/>${rmb}</g>`;
+}
+S.S5 = (t, l) => {                       // Produit : trois virements, la pelote se défait
+  let g = `<rect width="1080" height="1920" fill="${C.creme}"/><circle cx="1000" cy="300" r="220" fill="${C.jaune}"/><rect x="0" y="1150" width="220" height="220" fill="${C.bleu}"/>`;
+  const fond = 1 - prog(pose(l), 0, 350);
+  if (fond > 0) g += `<g opacity="${fond}">${pelote(540, 720, 260 * fond, 26, 0)}</g>`;
+  const ap = rebond(prog(pose(l), 100, 500));
+  if (ap > 0) g += capture(540, 690, .98 * ap);
+  if (l > 900) { const q = rebond(prog(pose(l), 900, 1200)); g += `<g transform="translate(540 1110) scale(${q})">${etiquette(0, 0, '3 VIREMENTS', C.vert, '#fff', 60)}</g>`; }
+  g += mascotte({x: 840, y: 1320, s: .52, expr: l < 300 ? 'inquiet' : 'fier', bras: l < 300 ? 'bas' : 'montrer'});
+  return g;
+};
+S.S6 = (t, l) => {                       // Chute : la glace revient (boucle sur S2)
+  let g = `<rect width="1080" height="1920" fill="${C.jaune}"/><circle cx="540" cy="760" r="430" fill="${C.creme}" stroke="${C.noir}" stroke-width="10"/>` + sol();
+  const p = rebond(prog(pose(l), 0, 350));
+  g += glace(540, 760, 1.15 * Math.max(.01, p), Math.sin(pose(l) / 160) * 6, prog(pose(l), 300, 2000));
+  if (l > 600) g += etiquette(540, 300, 'ET LA GLACE ?', C.noir, '#fff', 60);
+  if (l > 900) g += etiquette(540, 1110, 'ELLE COMPTE AUSSI', C.rouge, '#fff', 46);
+  g += mascotte({x: 810, y: 1320, s: .6, expr: l < 800 ? 'inquiet' : 'soulage', bras: l < 800 ? 'bas' : 'montrer'});
+  return g;
+};
+
+const scene = document.getElementById('scene'), st = document.getElementById('st'), carton = document.getElementById('carton');
+// Sous-titres : une réplique = un sous-titre, calé sur la voix réelle (début, fin + 0,12 s), deux lignes au plus.
+const COUPES = { v03: 'Donc Camille doit à Sam…<br>qui doit à Alex ?', v04: 'Les flèches s’emmêlent.<br>Un vrai nœud.', v05: 'Trois virements.<br>Pas un de plus.', v06: 'Et la glace ?<br>Elle compte aussi.' };
+// Accroche v2 : texte à l'écran dès la première image, lisible sans le son
+const ACCROCHE = (tv) => tv < 2.35 ? `<g><rect x="60" y="132" width="960" height="330" fill="${C.noir}" transform="translate(14 14)"/><rect x="60" y="132" width="960" height="330" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/><rect x="96" y="160" width="150" height="60" fill="${C.noir}"/><text x="171" y="206" font-size="44" font-weight="800" text-anchor="middle" fill="#fff" letter-spacing="3">POV</text><text x="540" y="300" font-size="64" font-weight="800" text-anchor="middle" fill="${C.noir}">4 amis. 10 jours de vacances.</text><text x="540" y="410" font-size="80" font-weight="800" text-anchor="middle" fill="${C.rouge}">Zéro compte fait.</text></g>` : '';
+window.placer = (ms) => {
+  const tv = ms / 1000; const t = tv; window.__t = ms;
+  const fin = tv >= T.carton.debut;
+  carton.style.display = fin ? 'block' : 'none';
+  if (fin) { scene.innerHTML = ''; st.innerHTML = ''; return; }
+  const sc = T.scenes.find((s) => t >= s.debut && t < s.fin) || T.scenes[0];
+  scene.innerHTML = `<svg width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">${S[sc.id](t, ms - sc.debut * 1000)}${ACCROCHE(tv)}</svg>`;
+  const v = T.voix.find((r) => tv >= r.t - .05 && tv < Math.min(r.fin + .12, T.carton.debut));
+  const cp = v && COUPES[v.id]; st.innerHTML = v ? `<span>${typeof cp === 'function' ? cp(tv) : cp || v.texte.replace(/'/g, '’')}</span>` : '';
+};
+window.placer(0);
+</script>
+</body>
+</html>
