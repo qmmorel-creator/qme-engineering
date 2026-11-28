@@ -1,8 +1,9 @@
 # Modèles de mail « mise à jour de vos applications » (brouillon à valider par Quentin)
 
-Procédure : `licences.md` § 8. Envoi groupé hebdomadaire, un mail par destinataire. Vouvoiement. Variables :
-`{{prenom_virgule}}`, `{{liste}}` (une ligne par template : nom, résumé, lien), `{{email}}`. Signature « Bandeau » en
-HTML (`SIGNATURE_HTML`), signature texte en version texte. Pas de Floriane ; copie cachée : voir § 8.
+Procédure : `licences.md` § 8. **Envoi seulement sur ordre de Quentin** (via le GOD), jamais automatique ; un mail par
+destinataire, file OVH `/api/prospection` (signature, mention de désinscription et copie cachée vers Quentin ajoutées
+par le serveur). Vouvoiement. Variables :
+`{{prenom_virgule}}`, `{{liste}}` (une ligne par template : nom, résumé, lien), `{{email}}`. Pas de Floriane en copie.
 
 ## Acheteurs (et codes offerts)
 
@@ -12,7 +13,7 @@ HTML (`SIGNATURE_HTML`), signature texte en version texte. Pas de Floriane ; cop
 ```
 Bonjour{{prenom_virgule}}
 
-Cette semaine, j'ai amélioré des applications que vous utilisez :
+J'ai amélioré des applications que vous utilisez :
 
 {{liste}}
    (ex. : - Suivi d'habitudes et routines : nouvelle présentation, plus lisible, sur ordinateur comme sur téléphone.
@@ -53,6 +54,6 @@ Vous recevez cet e-mail parce que vous avez demandé à recevoir les nouveautés
 Ne plus recevoir les informations : https://qm-engineering.fr/ne-plus-recevoir/?email={{email}}
 ```
 
-## Résumé type de la vague « Bauhaus adouci »
+## Résumé type d'un changement de présentation (exemple : Habitudes, 28/11/2026)
 
 `nouvelle présentation, plus lisible et plus douce, sur ordinateur comme sur téléphone ; mêmes fonctions, mêmes données.`

@@ -103,59 +103,41 @@ registre des préférences : 1 ligne PGS « abonné », celle de Floriane Jollio
 CLAUDE.md ; personne interne). Opposition : sans objet (aucune adresse à vérifier). À recompter à la prochaine vente
 PGS ou PET, ou à la prochaine inscription d'un testeur aux nouveautés.
 
-Recomptage du 28/11/2026 pour **Habitudes (HBT)**, thème « Bauhaus adouci » (#326, en ligne le 27/11, changement
-visuel seul : formes, couleurs, onglets ; fonctions et données inchangées) : **0 destinataire externe**, aucun mail
-n'a été envoyé. Acheteurs HBT et packs qui le contiennent (PPR, PET, PFM ; PBD retiré) : 0 (Gumroad `list_sales`,
-2 ventes au total depuis l'ouverture, aucune de ces fiches ; achats du site : 1, TCH). Testeurs : 0 essai Habitudes, 0
-inscrit aux nouveautés ; le registre des préférences n'a aucune ligne HBT. Codes actifs : 1 (`QK5AC4M8`, Floriane
-Jolliot, interne). Opposition : sans objet.
+**Habitudes (HBT)**, thème « Bauhaus adouci » (#326, en ligne le 27/11, changement visuel seul : formes, couleurs,
+onglets ; fonctions et données inchangées ; `app.css` et `app.js` servis identiques à `main`, vérifié le 28/11).
+Ordre de Quentin du 28/11 (via le GOD) : informer les acheteurs et les testeurs, **Floriane comprise** (le comptage de
+13 h 11 l'avait exclue à tort comme interne). Comptage complet :
 
-## 8. Information des utilisateurs après une mise à jour (procédure proposée le 28/11/2026, à valider)
+| Source | Résultat |
+|---|---|
+| Gumroad HBT et packs qui le contiennent (PPR, PET, PFM ; PBD retiré) | 0 vente (2 ventes au total depuis l'ouverture : TCH, CRA) |
+| Achats du site | 0 HBT (1 achat : TCH) |
+| Essais Habitudes, tous statuts (essais ouverts depuis le 18/11) | 0 |
+| Registre des préférences, ligne HBT | 0 |
+| Codes gratuits HBT actifs (`codes-gratuits.md`) | 1 : Floriane Jolliot (`QK5AC4M8`, 13/11/2026) |
+| Utilisateurs du serveur de données ayant des données Habitudes | non vérifiable ici : la liste exige le code administrateur |
+| **Destinataires après dédoublonnage et opposition** | **1 : Floriane, à son adresse professionnelle (CLAUDE.md)** |
 
-**Déclencheur** : toute fusion dans `main` qui change ce qu'un utilisateur voit ou fait dans un template (fonction,
-présentation, données, nom). Pas pour une correction invisible (texte de page catalogue, test, documentation).
+Envoi : 1 message mis en file OVH le 28/11 à 15 h 11 (campagne `info-maj-habitudes-2026-11`), modèle « acheteurs » de `annonce-mises-a-jour.md` ; résultat ci-dessous.
 
-**Déclaration** : la PR qui change le template ajoute une ligne au registre des mises à jour (fichier versionné, par
-exemple `netlify/lib/mises-a-jour.mjs` : `{ produit, date, titre, resume }`, résumé en une phrase pour l'utilisateur).
-La mise à jour est ainsi déclarée par la fusion elle-même, sans appel manuel.
+## 8. Information des utilisateurs après une mise à jour (règle de Quentin du 28/11/2026)
 
-**Destinataires**, par mise à jour :
-- acheteurs du produit, packs inclus (comptes du site dont une clé `achat` ouvre ce produit, via `produitsAccessibles`) ;
-- titulaires d'un code offert actif pour ce produit (`codes-gratuits.md`) : le site ne connaît pas leur adresse ; s'ils
-  sont externes, brouillon individuel préparé par Licences (règles des mails personnalisés : signature, Floriane en
-  Cc), sinon rien ;
-- testeurs seulement s'ils ont coché « recevoir les nouveautés » pour ce template (`contact/…`) ;
-- exclus : liste d'opposition (adresse et domaine), comptes `sansAnnonces`, adresses internes (Quentin, Floriane),
-  adresse déjà servie pour cette mise à jour.
+**Aucune annonce automatique.** C'est Quentin qui décide, au cas par cas, qu'une mise à jour justifie d'informer les
+acheteurs ou les testeurs ; sa consigne arrive par le GOD. Pas d'annonce pour la vague « Bauhaus adouci », pas
+d'envoi hebdomadaire automatique, pas de développement de `/api/compte/annonce` pour cela.
 
-**Regroupement** : un seul envoi par semaine (lundi), un mail par destinataire qui liste tous ses templates mis à jour
-depuis le dernier envoi. Pendant la vague « Bauhaus adouci » (environ 95 templates sur 19 jours), un acheteur reçoit
-donc au plus 3 mails, jamais 19.
+**Sur ordre de Quentin**, pour un template donné, Licences :
+1. vérifie que la version annoncée est réellement en production (fichiers servis identiques à `main`) ;
+2. compte toutes les sources : ventes Gumroad du produit et des packs qui le contiennent, achats du site, essais (tous
+   statuts), registre des préférences, codes gratuits actifs (`codes-gratuits.md`), et, si l'accès administrateur est
+   disponible, les utilisateurs du serveur de données ; une personne interne qui utilise le template est une
+   destinataire ;
+3. dédoublonne (acheteur et testeur : la version acheteur), relit l'opposition (adresse et domaine) et prend l'adresse
+   professionnelle des personnes de QME (CLAUDE.md) ;
+4. envoie par OVH via le site : file `/api/prospection` (campagne dédiée `info-maj-<produit>-<date>`, un message par
+   personne) ; le serveur ajoute la signature « Bandeau », la mention « Ne plus recevoir les informations » et la
+   copie cachée vers Quentin, et relit l'opposition avant chaque envoi ;
+5. consigne au § 7 : sources, destinataires (prénom et source, sans adresse), envois, échecs, texte.
 
-**Canal** : OVH via le site, version texte et HTML, signature « Bandeau », mention « Ne plus recevoir les
-informations » avec lien personnel, sans Floriane. **Copie cachée** : CLAUDE.md (« Copie cachée des e-mails
-automatiques », 24/11/2026) classe les annonces en nombre parmi les exceptions **sans** copie cachée. Proposition :
-pas de copie cachée par destinataire, mais un récapitulatif hebdomadaire à Quentin (nombre d'envois par template, une
-copie du mail type). À trancher par Quentin.
-
-**Textes** : deux modèles (acheteurs et codes / testeurs inscrits), validés une fois par Quentin, puis envoi
-automatique : brouillon dans `docs/production/annonce-mises-a-jour.md`. Le résumé de chaque mise à jour, écrit dans la
-PR, est la seule partie variable ; une mise à jour qui change les données ou le prix repasse par Quentin.
-
-**Outil** : `POST /api/compte/annonce` existe déjà (`netlify/lib/comptes.mjs` : simulation, test, lots, anti-doublon,
-opposition), mais il est figé sur l'annonce du 22/11 et écrit à tous. À développer (PR non fusionnée, estimation :
-une demi-journée à une journée, tests compris) :
-1. le registre des mises à jour (ci-dessus) ;
-2. le ciblage par produit (acheteurs, packs inclus, testeurs inscrits) et le regroupement par destinataire ;
-3. le contenu à partir des deux modèles validés ;
-4. une fonction planifiée Netlify hebdomadaire (comme `essais-quotidien.mjs`), avec marque `maj/<produit>/<date>/<empreinte>` ;
-5. une route administrateur de simulation (nombres par template, sans adresses) et d'envoi de test.
-
-Tant que l'outil n'existe pas, Licences recompte à chaque mise en production signalée par le master et consigne le
-résultat au § 7.
-
-**28/11/2026, 13 h 11 · consigne de Quentin via le GOD** (« envoie les mails d'info template aux acheteurs et testeurs de
-habitudes ») : version #326 vérifiée en production (`app.css` et `app.js` servis identiques à `main`). Nouveau
-comptage : acheteurs Habitudes (Gumroad, packs inclus, achats du site) 0 ; testeurs Habitudes 0 (tous statuts ;
-essais ouverts depuis le 18/11, couverts par la fenêtre de 90 jours) ; registre : aucune ligne HBT. **0 envoi, 0
-échec.** À refaire à la prochaine vente ou au prochain essai Habitudes.
+**Textes** : modèles de `docs/production/annonce-mises-a-jour.md`, toujours utilisables ; le résumé de la mise à jour
+est adapté à chaque ordre.
