@@ -8,9 +8,8 @@
 body{font-family:Outfit,sans-serif;color:var(--encre);background:var(--papier);-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .page{width:210mm;height:297mm;padding:13mm 14mm 11mm;position:relative;overflow:hidden;page-break-after:always;display:flex;flex-direction:column}
 .page:last-child{page-break-after:auto}
-.formes{position:absolute;right:-6mm;top:-6mm;width:62mm;height:34mm}
-.marque{font-weight:800;font-size:14px;letter-spacing:-.02em}.marque .m{color:var(--bleu)}.marque .e{color:var(--jaune)}
-.marque small{font-size:8px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--disc);margin-left:6px}
+.marque{display:flex;align-items:center;gap:2.5mm;font-weight:800;font-size:10pt}
+.marque svg{width:8mm;height:8mm}
 .sur{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--bleu);margin:9mm 0 2mm}
 h1{font-size:28px;font-weight:800;letter-spacing:-.03em;line-height:1.05}
 h1 mark{background:var(--beurre);border-radius:8px;padding:0 6px}
@@ -35,8 +34,7 @@ ul{font-size:9.5px;line-height:1.5;color:var(--t2);padding-left:4mm}
 .acc b{color:var(--jaune)}
 </style></head><body>
 <section class="page">
-<svg class="formes" viewBox="0 0 62 34"><circle cx="14" cy="17" r="12" fill="#2E5A88"/><rect x="28" y="5" width="24" height="24" fill="#B84A34"/><path d="M52 29 L62 5 L62 29 Z" fill="#E8B93A"/></svg>
-<div class="marque"><span class="m">QM</span><span class="e">E</span><small>QM Engineering</small></div>
+<div class="marque"><svg aria-hidden="true" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="QME">  <path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/>  <rect x="40" y="40" width="40" height="40" fill="#D9302A"/>  <circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg><span>QME · Quentin Morel Engineering</span></div>
 <p class="sur">Synthèse · 28 novembre 2026</p>
 <h1>Révisions QME <mark>X Laurine</mark></h1>
 <p class="intro">Ce que la version privée du planning de révision intègre, point par point, à partir du compte rendu de la visio du 26 novembre 2026 avec Laurine Mebs (Optimind Formation). Le template vendu « Planning de révision » reste inchangé : cette version est une copie dédiée, ouverte par clé de licence.</p>
@@ -55,7 +53,7 @@ ul{font-size:9.5px;line-height:1.5;color:var(--t2);padding-left:4mm}
 <div class="pied"><span>QME · qm-engineering.fr</span><span>1 / 2</span></div>
 </section>
 <section class="page">
-<div class="marque"><span class="m">QM</span><span class="e">E</span><small>QM Engineering</small></div>
+<div class="marque"><svg aria-hidden="true" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="QME">  <path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/>  <rect x="40" y="40" width="40" height="40" fill="#D9302A"/>  <circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg><span>QME · Quentin Morel Engineering</span></div>
 <h2 style="margin-top:7mm">Suite du tableau</h2>
 <table><thead><tr><th>Point du compte rendu</th><th>Demande</th><th>Ce qui est fait</th><th>Statut</th></tr></thead><tbody>
 <tr><td>6. Vidéo et tutoriel</td><td>Faciliter la prise en main.</td><td>Tutoriel de 5 écrans au premier lancement, repassable depuis « ? » ou les réglages. Vidéo de démonstration à produire ensuite.</td><td><span class="s pa">Tutoriel fait</span></td></tr>
