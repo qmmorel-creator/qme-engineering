@@ -1,0 +1,85 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>QME · Révisions QME X Laurine · Synthèse</title>
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin.woff2') format('woff2')}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../../../../../assets/fonts/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1EFF,U+2020,U+2113}
+@page{size:A4;margin:0}
+:root{--papier:#FBF7F1;--encre:#24221F;--t2:#514C44;--disc:#6E685F;--trait:#E4DCCE;--rouge:#B84A34;--jaune:#E8B93A;--bleu:#2E5A88;--vert:#2E7D4F;--beurre:#FBEBC2;--ciel:#D8E4F0;--sable:#F3EDE3}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Outfit,sans-serif;color:var(--encre);background:var(--papier);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{width:210mm;height:297mm;padding:13mm 14mm 11mm;position:relative;overflow:hidden;page-break-after:always;display:flex;flex-direction:column}
+.page:last-child{page-break-after:auto}
+.formes{position:absolute;right:-6mm;top:-6mm;width:62mm;height:34mm}
+.marque{font-weight:800;font-size:14px;letter-spacing:-.02em}.marque .m{color:var(--bleu)}.marque .e{color:var(--jaune)}
+.marque small{font-size:8px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--disc);margin-left:6px}
+.sur{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--bleu);margin:9mm 0 2mm}
+h1{font-size:28px;font-weight:800;letter-spacing:-.03em;line-height:1.05}
+h1 mark{background:var(--beurre);border-radius:8px;padding:0 6px}
+.intro{font-size:11px;color:var(--t2);line-height:1.45;margin:3mm 0 6mm;max-width:165mm}
+h2{font-size:13px;font-weight:800;margin:5mm 0 2.5mm;display:flex;align-items:center;gap:8px}
+h2::before{content:"";width:12px;height:12px;background:var(--rouge)}
+h2.b::before{background:var(--bleu);border-radius:50%}h2.j::before{background:var(--jaune);transform:rotate(45deg)}
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:9px;line-height:1.32;background:#fff;border:1px solid var(--trait);border-radius:10px;overflow:hidden}
+th,td{padding:1.7mm 2.4mm;border-bottom:1px solid var(--trait);text-align:left;vertical-align:top}
+tr:last-child td{border-bottom:0}
+thead th{background:var(--encre);color:var(--papier);font-size:9px}
+td:first-child{font-weight:700;width:36mm}td:nth-child(2){width:52mm;color:var(--t2)}td:last-child{width:22mm}
+.s{display:inline-block;font-weight:700;font-size:8px;padding:.6mm 2mm;border-radius:20px;white-space:nowrap}
+.ok{background:#DDEFE3;color:var(--vert)}.pa{background:var(--beurre);color:#7A5A0E}.no{background:var(--sable);color:var(--disc)}
+.cartes{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3mm}
+.carte{background:#fff;border:1px solid var(--trait);border-radius:10px;padding:3mm;font-size:9px;line-height:1.4;color:var(--t2)}
+.carte b{display:block;color:var(--encre);font-size:10px;margin-bottom:1mm}
+.carte.r{border-top:4px solid var(--rouge)}.carte.bl{border-top:4px solid var(--bleu)}.carte.ja{border-top:4px solid var(--jaune)}
+ul{font-size:9.5px;line-height:1.5;color:var(--t2);padding-left:4mm}
+.pied{margin-top:auto;display:flex;justify-content:space-between;font-size:8px;color:var(--disc);border-top:1px solid var(--trait);padding-top:2mm}
+.acc{background:var(--encre);color:var(--papier);border-radius:10px;padding:4mm 5mm;font-size:11px;line-height:1.4}
+.acc b{color:var(--jaune)}
+</style></head><body>
+<section class="page">
+<svg class="formes" viewBox="0 0 62 34"><circle cx="14" cy="17" r="12" fill="#2E5A88"/><rect x="28" y="5" width="24" height="24" fill="#B84A34"/><path d="M52 29 L62 5 L62 29 Z" fill="#E8B93A"/></svg>
+<div class="marque"><span class="m">QM</span><span class="e">E</span><small>QM Engineering</small></div>
+<p class="sur">Synthèse · 28 novembre 2026</p>
+<h1>Révisions QME <mark>X Laurine</mark></h1>
+<p class="intro">Ce que la version privée du planning de révision intègre, point par point, à partir du compte rendu de la visio du 26 novembre 2026 avec Laurine Mebs (Optimind Formation). Le template vendu « Planning de révision » reste inchangé : cette version est une copie dédiée, ouverte par clé de licence.</p>
+<div class="acc">Orientation retenue : une expérience de révision <b>personnalisable et guidée</b>. L'application suggère une organisation, l'étudiant reste libre de la modifier.</div>
+<h2>Retours de la visio et réponse apportée</h2>
+<table><thead><tr><th>Point du compte rendu</th><th>Demande</th><th>Ce qui est fait</th><th>Statut</th></tr></thead><tbody>
+<tr><td>1. Pomodoro</td><td>Deux formules imposées : permettre des modèles personnels.</td><td>Modèles créés par l'étudiant : nom, travail, pause courte, pause longue, cycles. Un modèle par défaut ; les trois anciens minuteurs deviennent des modèles modifiables.</td><td><span class="s ok">Fait</span></td></tr>
+<tr><td>2. Suggérer sans imposer</td><td>Ordre prédéfini des matières dans un même J, regroupement de cours dans un même J+.</td><td>Ordre suggéré, réordonnable par glisser-déposer ou au clavier ; bouton « Revenir à la suggestion ». Une révision se déplace à ±3 jours (sans dépasser l'examen) et peut y regrouper les cours de la même matière.</td><td><span class="s ok">Fait</span></td></tr>
+<tr><td>2. Horaires de révision</td><td>Horaires personnalisables.</td><td>Plages par jour de la semaine, affichées dans « Aujourd'hui », les notifications et l'export agenda. Elles ne modifient pas encore le calcul des dates de révision.</td><td><span class="s pa">Partiel</span></td></tr>
+<tr><td>2. Clair / sombre</td><td>Mode clair et mode sombre.</td><td>Thème clair, sombre ou automatique, mémorisé et appliqué sans flash à l'ouverture. Contraste vérifié dans les deux thèmes.</td><td><span class="s ok">Fait</span></td></tr>
+<tr><td>3. Niveau d'énergie</td><td>Périodes de forte et faible énergie, énergie requise par matière, suggestions adaptées.</td><td>Créneaux forte / moyenne / faible énergie définis par l'étudiant ; énergie requise par matière, modifiable par cours ; cours du jour triés selon le créneau en cours.</td><td><span class="s ok">Fait</span></td></tr>
+<tr><td>4. Ressources</td><td>Liens Drive ou Notion par matière puis par cours.</td><td>Plusieurs liens par matière et par cours, ouverts dans un nouvel onglet.</td><td><span class="s ok">Fait</span></td></tr>
+<tr><td>4. Lecteur PDF</td><td>À étudier.</td><td>Écarté pour cette version : un lien Drive ouvre déjà un aperçu PDF.</td><td><span class="s no">Écarté</span></td></tr>
+<tr><td>5. Mots-clés</td><td>Peu utiles, sauf pour suggérer la feuille blanche.</td><td>Rangés dans un volet replié ; une carte propose une session « feuille blanche » sur les cours au souvenir le plus faible.</td><td><span class="s ok">Fait</span></td></tr>
+</tbody></table>
+<div class="pied"><span>QME · qm-engineering.fr</span><span>1 / 2</span></div>
+</section>
+<section class="page">
+<div class="marque"><span class="m">QM</span><span class="e">E</span><small>QM Engineering</small></div>
+<h2 style="margin-top:7mm">Suite du tableau</h2>
+<table><thead><tr><th>Point du compte rendu</th><th>Demande</th><th>Ce qui est fait</th><th>Statut</th></tr></thead><tbody>
+<tr><td>6. Vidéo et tutoriel</td><td>Faciliter la prise en main.</td><td>Tutoriel de 5 écrans au premier lancement, repassable depuis « ? » ou les réglages. Vidéo de démonstration à produire ensuite.</td><td><span class="s pa">Tutoriel fait</span></td></tr>
+<tr><td>6. Notifications</td><td>Système de notifications et tableau centralisé.</td><td>Centre de notifications dans l'application (révisions dues, retards, série) avec pastille des non lues. Pas de notifications push sur le téléphone dans cette version.</td><td><span class="s pa">Interne</span></td></tr>
+<tr><td>6. Gamification, auto-évaluation</td><td>Encourager la régularité.</td><td>Note de 1 à 5 après chaque séance ; série de jours, paliers, objectifs du jour et de la semaine (l'objectif hebdomadaire peut légèrement surestimer).</td><td><span class="s ok">Fait</span></td></tr>
+<tr><td>6. Heatmap</td><td>Visualiser l'assiduité.</td><td>Calendrier de régularité dans le Bilan.</td><td><span class="s ok">Fait</span></td></tr>
+<tr><td>7. Import des matières</td><td>Modèle CSV, import automatique, prompt PDF vers CSV.</td><td>Import d'un fichier ou d'un texte collé, aperçu avec erreurs ligne par ligne, modèle CSV téléchargeable, prompt « PDF vers CSV » à copier.</td><td><span class="s ok">Fait</span></td></tr>
+<tr><td>8. Cible</td><td>Peu de potentiel au lycée ; version privée partagée.</td><td>Données de démonstration PASS médecine et classe prépa PCSI, études supérieures uniquement. Version privée, non indexée, absente du site.</td><td><span class="s ok">Fait</span></td></tr>
+<tr><td>9. Calendrier commercial</td><td>Second semestre, « Dernière ligne droite de l'année ».</td><td>Accroche présente sur l'écran d'accès, au premier lancement et dans le tutoriel. Fenêtres visées : fin janvier / début février, août / début septembre.</td><td><span class="s ok">Fait</span></td></tr>
+</tbody></table>
+<h2 class="b">Accès et bêta-test</h2>
+<div class="cartes">
+<div class="carte bl"><b>Parcours d'achat réel</b>Accès par clé de licence Gumroad, comme les templates en vente : achat, mail avec le lien privé, clé à coller. Produit bêta non listé, 14,90 €.</div>
+<div class="carte r"><b>Démo à l'ouverture</b>L'accès de Laurine s'ouvre sur la démo PASS médecine, celui de Quentin sur la démo PCSI. Bouton « Réinitialiser la démo ».</div>
+<div class="carte ja"><b>Écoles bêta-testeuses</b>Chaque étudiant suit le même parcours et démarre sur un compte vide. Ses données restent séparées du template vendu.</div>
+</div>
+<h2 class="j">Prochaines étapes</h2>
+<ul>
+<li>Retours de Laurine sur la version privée, puis priorisation des ajustements.</li>
+<li>Faire peser les horaires de révision dans le calcul du planning.</li>
+<li>Vidéo de démonstration courte pour la prise en main.</li>
+<li>Étudier les notifications push et le lecteur PDF intégré si les bêta-testeurs les demandent.</li>
+<li>Préparer le lancement « Dernière ligne droite de l'année » pour fin janvier.</li>
+</ul>
+<p class="intro" style="margin-top:6mm">Version privée : <b>qm-engineering.fr/prive/revisions-laurine/</b></p>
+<div class="pied"><span>QME · qm-engineering.fr</span><span>2 / 2</span></div>
+</section></body></html>
