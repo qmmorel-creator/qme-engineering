@@ -1,6 +1,6 @@
-Suivi de lecture
+Suivi culturel
 Lis, on compte.
 Rythme · date de fin · objectif au jour près
 
 Ligne de la table T de outils/templates/couvertures-gumroad.cjs (à ajouter par l'orchestrateur) :
-  'lecture': ["Suivi de lecture", "Lis, on compte.", "Rythme · date de fin · objectif au jour près"],
+  'lecture': ["Suivi culturel", "Lis, on compte.", "Rythme · date de fin · objectif au jour près"],
