@@ -118,7 +118,7 @@ Ordre de Quentin du 28/11 (via le GOD) : informer les acheteurs et les testeurs,
 | Utilisateurs du serveur de données ayant des données Habitudes | non vérifiable ici : la liste exige le code administrateur |
 | **Destinataires après dédoublonnage et opposition** | **1 : Floriane, à son adresse professionnelle (CLAUDE.md)** |
 
-Envoi : 1 message mis en file OVH le 28/11 à 15 h 11 (campagne `info-maj-habitudes-2026-11`), modèle « acheteurs » de `annonce-mises-a-jour.md` ; résultat ci-dessous.
+Envoi : 1 message mis en file OVH le 28/11 à 15 h 11 (campagne `info-maj-habitudes-2026-11`), modèle « acheteurs » de `annonce-mises-a-jour.md`. **Envoyé le 28/11/2026 à 15 h 12 (Paris), 1 envoi, 0 échec**, copie cachée vers Quentin ; campagne remise en pause.
 
 ## 8. Information des utilisateurs après une mise à jour (règle de Quentin du 28/11/2026)
 
