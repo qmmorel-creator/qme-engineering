@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Concept pour les coworkings et centres d'affaires · QME</title>
+<meta name="description" content="Pack Moyens généraux : dix outils prêts à l'emploi pour exploiter un lieu de travail partagé (salles et bureaux, vérifications du bâtiment, maintenance, contrats fournisseurs, achats, parc informatique, événements). Adaptable sur mesure. Données fictives.">
+<link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
+<link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
+<style>
+:root{--ink:#141414;--red:#D9302A;--yel:#F5B400;--blue:#1F4E9C;--paper:#F0EDE6;--muted:#5d5a55;--line:#d8d3c9}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 "Outfit",system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+a{color:inherit}
+header{padding:20px 0;border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;letter-spacing:.04em}
+.brand small{display:block;font-weight:500;letter-spacing:0;color:var(--muted);font-size:13px;line-height:1.2}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;text-decoration:none;font-weight:600;padding:12px 20px;border-radius:999px;border:2px solid var(--red)}
+.btn.line{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.hero{padding:44px 0 30px}
+.eb{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--red);margin:0 0 12px}
+h1{font-size:clamp(30px,4.6vw,52px);line-height:1.05;margin:0 0 16px;font-weight:700;max-width:20ch;letter-spacing:-.01em}
+.lede{max-width:66ch;color:var(--muted);font-size:clamp(16px,1.6vw,18px);margin:0 0 24px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.fict{font-size:13.5px;color:var(--muted);margin:16px 0 0}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:18px 0 56px}
+.trio div{background:#fff;border-radius:6px;padding:20px;border-top:6px solid var(--ink)}
+.trio div:nth-child(2){border-color:var(--yel)}.trio div:nth-child(3){border-color:var(--red)}
+.trio h2{font-size:14px;text-transform:uppercase;letter-spacing:.07em;margin:0 0 8px}
+.trio p{margin:0}
+.sec{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:36px;align-items:center;margin:0 0 64px}
+.sec>div{min-width:0}
+.sec:nth-of-type(even){grid-template-columns:minmax(0,8fr) minmax(0,4fr)}
+.sec:nth-of-type(even) .txt{order:2}
+.num{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--red);margin:0 0 8px}
+.sec h2{font-size:clamp(24px,3vw,34px);line-height:1.1;margin:0 0 12px}
+.sec p{color:var(--muted);margin:0 0 14px}
+.sec ul{list-style:none;margin:0;padding:0}
+.sec li{position:relative;padding:6px 0 6px 22px;border-bottom:1px solid var(--line)}
+.sec li::before{content:"";position:absolute;left:0;top:14px;width:10px;height:10px;background:var(--red)}
+.cap{margin:0;background:#fff;border-radius:10px;box-shadow:0 14px 40px rgba(20,20,20,.14);overflow:hidden}
+.cap .barre{display:flex;align-items:center;gap:6px;background:var(--ink);color:#fff;padding:9px 12px;font-size:13px}
+.cap .barre i{width:9px;height:9px;border-radius:50%;background:#555}.cap .barre i:first-child{background:var(--red)}.cap .barre i:nth-child(2){background:var(--yel)}
+.cap .barre span{margin-left:8px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cap img{display:block;width:100%;height:auto}
+h2.t{font-size:clamp(24px,3vw,34px);margin:0 0 8px}.sous{color:var(--muted);margin:0 0 20px;max-width:64ch}
+.deux{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 60px}
+.deux>div{background:#fff;border-radius:8px;padding:24px;border-top:8px solid var(--blue)}
+.deux>div:last-child{border-color:var(--red)}
+.deux h3{margin:0 0 6px;font-size:21px}.deux .prix{font-weight:700;margin:0 0 12px}
+.deux ul{list-style:none;margin:0 0 18px;padding:0}.deux li{padding:7px 0 7px 20px;border-bottom:1px solid var(--line);position:relative}
+.deux li::before{content:"";position:absolute;left:0;top:15px;width:9px;height:9px;background:var(--yel)}
+.note{font-size:14px;color:var(--muted);background:#fff;border-left:4px solid var(--yel);padding:12px 16px;margin:0 0 50px;max-width:80ch}
+.fin{background:var(--ink);color:#fff;border-radius:10px;padding:34px;margin:0 0 50px}
+.fin h2{margin:0 0 10px;font-size:clamp(22px,2.8vw,30px)}.fin p{color:#d8d3c9;margin:0 0 20px;max-width:64ch}
+.fin .btn.line{color:#fff;border-color:rgba(255,255,255,.5)}
+footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--muted);font-size:14px;overflow-wrap:anywhere}
+@media (max-width:860px){.trio,.deux{grid-template-columns:1fr}.sec,.sec:nth-of-type(even){grid-template-columns:minmax(0,1fr);gap:18px}.sec:nth-of-type(even) .txt{order:0}}
+@media (max-width:560px){.fin{padding:24px}.btn{padding:11px 16px}}
+.sec .lien{display:inline-block;margin-top:14px;font-weight:600}
+.etapes{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 40px;padding:0;list-style:none}
+.etapes li{background:#fff;border-radius:999px;padding:6px 14px;font-size:14px;font-weight:600}
+.etapes li span{color:var(--red);margin-right:6px}
+</style>
+<style>
+.autres{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:0 0 60px}
+.autres a{display:block;background:#fff;border-radius:6px;padding:18px;text-decoration:none;border-left:6px solid var(--blue)}
+.autres b{display:block;margin:0 0 4px}.autres span{color:var(--muted);font-size:15px}
+@media (max-width:860px){.autres{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="/" aria-label="Accueil QME">
+    <svg viewBox="0 0 80 80" width="34" height="34" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg>
+    <span>QME<small>Quentin Morel Engineering</small></span>
+  </a>
+  <a class="btn line" href="/packs/moyens-generaux/" data-goatcounter-click="concept-coworking-pack-haut" data-goatcounter-title="Concept coworking : pack (haut)">Voir le pack</a>
+</div></header>
+<main class="wrap">
+  <section class="hero">
+    <p class="eb">Concept pour les coworkings et centres d'affaires · pack prêt à l'emploi</p>
+    <h1>L'exploitation d'un lieu de travail partagé, au même endroit.</h1>
+    <p class="lede">Des outils en ligne, déjà prêts, conçus par un ingénieur pour ce qui se passe derrière l'accueil : les salles et les bureaux, les vérifications du bâtiment, la maintenance, les contrats de ménage, d'internet et de sécurité, les achats, le matériel et les événements. Chacun s'ouvre tout de suite en démo, sans inscription, et l'ensemble peut être adapté sur mesure à votre lieu.</p>
+    <div class="ctas">
+      <a class="btn" href="/templates/verifications/?demo" data-goatcounter-click="concept-coworking-demo" data-goatcounter-title="Concept coworking : démo vérifications">Essayer la démo des vérifications</a>
+      <a class="btn line" href="mailto:quentin.morel@qm-engineering.fr?subject=Concept%20coworking%20%C2%B7%20%C3%A9change%20de%2030%20minutes" data-goatcounter-click="concept-coworking-contact" data-goatcounter-title="Concept coworking : contact">Parler de mon besoin</a>
+    </div>
+    <p class="fict">Chaque démo ouvre un exemple fictif (lieux, prestataires, personnes inventés), sans inscription. Elle reste dans votre navigateur et n'envoie rien. Toutes les données affichées sur cette page sont fictives.</p>
+  </section>
+
+  <div class="trio">
+    <div><h2>Le quotidien</h2><p>Les rapports de contrôle dans un classeur, l'entretien de la climatisation dans un agenda, les contrats dans la messagerie, les achats sur des post-it. Rien ne prévient quand une échéance arrive.</p></div>
+    <div><h2>Ce que cela coûte</h2><p>Un extincteur ou une installation électrique hors délai découvert le jour de la commission de sécurité, un contrat de ménage reconduit un an de plus faute d'avoir résilié à temps, une panne qui vide une salle louée.</p></div>
+    <div><h2>Ce que fait le pack</h2><p>Il tient chaque registre avec ses échéances, met les retards en tête de liste, prépare les relances et les documents à imprimer.</p></div>
+  </div>
+
+  <h2 class="t">L'exploitation du lieu, en sept outils</h2>
+  <p class="sous">Les outils du pack qui servent le plus dans un coworking ou un centre d'affaires. Chaque capture vient de la démo réelle de l'outil.</p>
+  <ol class="etapes">
+    <li><span>01</span>Salles et bureaux</li><li><span>02</span>Vérifications</li><li><span>03</span>Maintenance</li><li><span>04</span>Contrats</li><li><span>05</span>Achats</li><li><span>06</span>Parc informatique</li><li><span>07</span>Événements</li>
+  </ol>
+
+  <section class="sec">
+    <div class="txt"><p class="num">01 · Les espaces</p><h2>Les salles et les bureaux, sans doublon</h2><p>Salles de réunion, bureaux, cabines téléphoniques et équipements prêtés : qui occupe quoi, et ce qui est libre maintenant.</p>
+      <ul><li>Vue « libre maintenant », vue du jour et de la semaine</li><li>Une réservation qui chevauche une autre est refusée</li><li>Taux d’occupation par salle et par bureau, sur la semaine ou douze semaines</li></ul>
+      <a class="lien" href="/templates/salles/?demo" data-goatcounter-click="concept-coworking-demo-salles" data-goatcounter-title="Concept coworking : démo Réservation de salles et bureaux">Ouvrir la démo · Réservation de salles et bureaux →</a></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Réservation de salles et bureaux · démo</span></div><img src="salles.webp" width="1600" height="813" alt="Vue « Maintenant » : salles et bureaux libres ou occupés, réservations du jour et taux d’occupation"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">02 · Le bâtiment</p><h2>Les vérifications d’un lieu qui reçoit du public</h2><p>Chaque contrôle du bâtiment à sa périodicité, l’échéance qui approche signalée, le rapport et ses observations suivis jusqu’à la levée.</p>
+      <ul><li>Électricité, extincteurs, éclairage de sécurité, désenfumage, portes automatiques, ascenseur</li><li>Périodicités sourcées (brochure INRS ED 828), ERP de 5e catégorie compris</li><li>Registre imprimable, site par site, pour la commission de sécurité</li></ul>
+      <a class="lien" href="/templates/verifications/?demo" data-goatcounter-click="concept-coworking-demo-verifications" data-goatcounter-title="Concept coworking : démo Vérifications réglementaires">Ouvrir la démo · Vérifications réglementaires →</a></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Vérifications réglementaires · démo</span></div><img src="verifications.webp" width="1600" height="813" alt="Tableau de bord des vérifications : contrôles en retard, à prévoir, observations à lever et état par site" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">03 · Le bâtiment</p><h2>La maintenance planifiée, pas subie</h2><p>Climatisation, chaudière, VMC, machines à café, imprimantes : chaque équipement avec son entretien, à la date ou au compteur.</p>
+      <ul><li>Opérations en retard et à venir en tête de liste</li><li>Pannes signalées et bons d’intervention</li><li>Coût de la maintenance sur douze mois, préventif et correctif</li></ul>
+      <a class="lien" href="/templates/maintenance/?demo" data-goatcounter-click="concept-coworking-demo-maintenance" data-goatcounter-title="Concept coworking : démo Maintenance préventive">Ouvrir la démo · Maintenance préventive →</a></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Maintenance préventive · démo</span></div><img src="maintenance.webp" width="1600" height="813" alt="Tableau de bord de maintenance : opérations en retard, à venir, taux de réalisation du préventif et coût sur douze mois" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">04 · Les prestataires</p><h2>Ménage, internet, sécurité : les contrats sous contrôle</h2><p>Chaque contrat fournisseur avec sa date limite de résiliation calculée, pour décider avant la tacite reconduction.</p>
+      <ul><li>Préavis dépassés, à traiter, à anticiper</li><li>Coût annuel par catégorie de contrat</li><li>Lettre de résiliation préparée et calendrier des échéances</li></ul>
+      <a class="lien" href="/templates/contrats/?demo" data-goatcounter-click="concept-coworking-demo-contrats" data-goatcounter-title="Concept coworking : démo Contrats fournisseurs">Ouvrir la démo · Contrats fournisseurs →</a></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Contrats fournisseurs · démo</span></div><img src="contrats.webp" width="1600" height="813" alt="Tableau de bord des contrats : préavis dépassés, à traiter, à anticiper et coût annuel par catégorie" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">05 · Les achats</p><h2>Les achats du lieu, demandés, validés, regroupés</h2><p>Café, fournitures, consommables, petit mobilier : les demandes arrivent au même endroit, se valident et partent en une commande par fournisseur.</p>
+      <ul><li>Seuil de validation automatique, demandes à valider en tête</li><li>Commandes regroupées par fournisseur et bon imprimable</li><li>Budget annuel suivi, dépassement signalé</li></ul>
+      <a class="lien" href="/templates/achats/?demo" data-goatcounter-click="concept-coworking-demo-achats" data-goatcounter-title="Concept coworking : démo Demandes d’achat">Ouvrir la démo · Demandes d’achat →</a></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Demandes d’achat · démo</span></div><img src="achats.webp" width="1600" height="813" alt="Demandes d’achat : à valider, à commander, en livraison, budget consommé et alerte de dépassement" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">06 · Le parc</p><h2>Imprimantes, réseau, écrans : le matériel inventorié</h2><p>Le matériel du lieu, ce qui est prêté et à qui, les licences et les fins de garantie, au même endroit.</p>
+      <ul><li>Alertes : garantie qui se termine, matériel non restitué, licences en trop</li><li>Fiche et historique de chaque appareil</li><li>Matériel en stock, en place ou en réparation</li></ul>
+      <a class="lien" href="/templates/parc-informatique/?demo" data-goatcounter-click="concept-coworking-demo-parc-informatique" data-goatcounter-title="Concept coworking : démo Parc informatique">Ouvrir la démo · Parc informatique →</a></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Parc informatique · démo</span></div><img src="parc.webp" width="1600" height="813" alt="Alertes du parc informatique : matériel non restitué, garanties, licences et matériel en réparation" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">07 · La vie du lieu</p><h2>Afterworks, ateliers, petits-déjeuners : les événements préparés</h2><p>Chaque événement avec son rétroplanning, son budget, ses invités et le déroulé du jour J.</p>
+      <ul><li>Tâches en retard et paiements à suivre</li><li>Réponses des invités et nombre de confirmés</li><li>Budget prévu, engagé et payé, poste par poste</li></ul>
+      <a class="lien" href="/templates/evenementiel/?demo" data-goatcounter-click="concept-coworking-demo-evenementiel" data-goatcounter-title="Concept coworking : démo Organisateur d’événement">Ouvrir la démo · Organisateur d’événement →</a></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Organisateur d’événement · démo</span></div><img src="evenements.webp" width="1600" height="813" alt="Tableau de bord des événements : événements à venir, tâches en retard, paiements à suivre et confirmés" loading="lazy"></figure></div>
+  </section>
+
+  <h2 class="t">Les trois autres outils du pack</h2>
+  <p class="sous">Inclus dans le pack, utiles selon votre organisation.</p>
+  <div class="autres">
+    <a href="/templates/flotte/?demo" data-goatcounter-click="concept-coworking-demo-flotte" data-goatcounter-title="Concept coworking : démo Gestion de flotte"><b>Gestion de flotte</b><span>Réservations, entretiens et coût de chaque véhicule.</span></a>
+    <a href="/templates/onboarding/?demo" data-goatcounter-click="concept-coworking-demo-onboarding" data-goatcounter-title="Concept coworking : démo Onboarding"><b>Onboarding et offboarding</b><span>Le matériel remis et récupéré à chaque arrivée et chaque départ.</span></a>
+    <a href="/templates/bascule/?demo" data-goatcounter-click="concept-coworking-demo-bascule" data-goatcounter-title="Concept coworking : démo Pilotage d'une journée de bascule"><b>Pilotage d'une journée de bascule</b><span>Un déménagement ou une migration réseau, heure par heure.</span></a>
+  </div>
+
+  <h2 class="t">Prêt à l'emploi, ou sur mesure</h2>
+  <p class="sous">Les outils sont prêts : ils s'ouvrent en ligne, sur ordinateur comme sur téléphone, et les données sont synchronisées. Si votre lieu demande autre chose, je le construis pour vous.</p>
+  <div class="deux">
+    <div>
+      <h3>Le pack prêt à l'emploi</h3>
+      <p class="prix">223 € au lieu de 298 €, les dix outils</p>
+      <ul><li>Achat unique, sans abonnement ni renouvellement</li><li>Chaque outil aussi vendu seul, de 19 € à 39 €</li><li>14 jours d'essai gratuit avec vos données, sans carte bancaire</li></ul>
+      <div class="ctas"><a class="btn" href="/packs/moyens-generaux/" data-goatcounter-click="concept-coworking-achat" data-goatcounter-title="Concept coworking : fiche du pack">Voir le pack · 223 €</a><a class="btn line" href="/templates/salles/?demo" data-goatcounter-click="concept-coworking-demo-offre" data-goatcounter-title="Concept coworking : démo (offre)">Essayer une démo</a></div>
+    </div>
+    <div>
+      <h3>La version sur mesure</h3>
+      <p class="prix">Adaptée à votre lieu</p>
+      <ul><li>Plusieurs sites ou plusieurs étages, vos propres grilles de contrôle</li><li>Vos prestataires, vos catégories d'achats, vos budgets</li><li>Vos documents, vos exports, vos indicateurs</li></ul>
+      <a class="btn line" href="mailto:quentin.morel@qm-engineering.fr?subject=Coworking%20%C2%B7%20version%20sur%20mesure" data-goatcounter-click="concept-coworking-sur-mesure" data-goatcounter-title="Concept coworking : sur mesure">Décrire mon besoin</a>
+    </div>
+  </div>
+
+  <p class="note">Les outils servent à l'exploitation du lieu par votre équipe ; ils ne remplacent pas un portail de réservation pour vos membres. Ils peuvent contenir les coordonnées professionnelles de vos prestataires : il vous appartient d'en informer les personnes concernées. Les données des démos sont fictives et ne quittent pas votre navigateur.</p>
+
+  <section class="fin">
+    <h2>Trente minutes pour voir ce qui vous ferait gagner le plus de temps</h2>
+    <p>Ouvrez une démo, puis dites-moi comment vous suivez aujourd'hui les contrôles, la maintenance et les contrats de votre lieu : je vous dis franchement si les outils prêts à l'emploi suffisent, ou ce qu'une version sur mesure changerait.</p>
+    <div class="ctas"><a class="btn" href="mailto:quentin.morel@qm-engineering.fr?subject=Concept%20coworking%20%C2%B7%20%C3%A9change%20de%2030%20minutes" data-goatcounter-click="concept-coworking-contact-bas" data-goatcounter-title="Concept coworking : contact (bas)">Échanger 30 minutes</a><a class="btn line" href="/packs/moyens-generaux/" data-goatcounter-click="concept-coworking-pack-bas" data-goatcounter-title="Concept coworking : pack (bas)">Voir le pack</a></div>
+  </section>
+</main>
+<footer><div class="wrap">Quentin Morel · QME · Quentin Morel Engineering · quentin.morel@qm-engineering.fr · <a href="/">qm-engineering.fr</a></div></footer>
+<script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

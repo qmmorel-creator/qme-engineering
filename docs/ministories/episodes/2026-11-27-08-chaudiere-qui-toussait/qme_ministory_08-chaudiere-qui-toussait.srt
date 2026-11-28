@@ -1,0 +1,48 @@
+1
+00:00:00,200 --> 00:00:00,870
+Janvier.
+
+2
+00:00:01,270 --> 00:00:02,280
+Moins deux dehors.
+
+3
+00:00:02,720 --> 00:00:03,850
+La chaudière tousse.
+
+4
+00:00:04,140 --> 00:00:04,960
+Elle crache.
+
+5
+00:00:05,300 --> 00:00:05,950
+Elle s'éteint.
+
+6
+00:00:07,430 --> 00:00:09,360
+Carreau grelotte sous trois couvertures.
+
+7
+00:00:11,920 --> 00:00:15,730
+Avec Entretien de la maison, de QME, vous cochez vos équipements.
+
+8
+00:00:16,030 --> 00:00:18,190
+Le calendrier d'entretien se calcule seul.
+
+9
+00:00:18,600 --> 00:00:19,730
+La révision de la chaudière ?
+
+10
+00:00:20,110 --> 00:00:21,170
+Elle tombait en octobre.
+
+11
+00:00:21,510 --> 00:00:23,290
+Octobre prochain, c'est noté.
+
+12
+00:00:23,670 --> 00:00:25,600
+Cette fois, c'est Carreau qui tousse.
+

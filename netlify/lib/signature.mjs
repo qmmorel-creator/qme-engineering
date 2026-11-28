@@ -17,14 +17,16 @@ export const RESEAUX = [
 
 const icone = ([cle, nom, url]) => `<td style="padding-left:8px"><a href="${url}" title="${nom}" style="text-decoration:none"><img src="${IMG}/${cle}.png" width="20" height="20" alt="${nom}" style="display:block;border:0"></a></td>`;
 
-export const SIGNATURE_HTML = `<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;${F};width:380px;max-width:100%">
+// Fluide (28/11/2026) : aucune largeur fixe en CSS, sinon certaines messageries mobiles (Gmail) font défiler le mail
+// horizontalement sous 380 px. Les attributs width="380" restent pour Outlook, qui ignore max-width.
+export const SIGNATURE_HTML = `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;${F};width:100%;max-width:380px">
 <tr>
 <td style="padding:0 0 10px;vertical-align:middle"><div style="font-size:16px;font-weight:bold;color:#141414">Quentin Morel</div><div style="font-size:13px;color:#45413A;margin-top:2px">Outils sur mesure · templates</div></td>
 <td style="padding:0 0 10px;vertical-align:middle;text-align:right"><a href="${SITE}" style="text-decoration:none"><img src="${IMG}/qme-logo.png" width="48" height="48" alt="QME" style="display:inline-block;border:0"></a></td>
 </tr>
-<tr><td colspan="2" style="padding:0;line-height:4px;font-size:0"><img src="${IMG}/filet.png" width="380" height="4" alt="" style="display:block;width:100%;max-width:380px;height:4px;border:0"></td></tr>
+<tr><td colspan="2" style="padding:0;line-height:4px;font-size:0"><img src="${IMG}/filet.png" width="380" height="4" alt="" style="display:block;width:100%;max-width:380px;height:auto;border:0"></td></tr>
 <tr>
 <td style="padding:10px 0 0;font-size:13px;vertical-align:middle"><a href="${SITE}" style="color:#141414;font-weight:bold;text-decoration:none">qm-engineering.fr</a></td>
-<td style="padding:10px 0 0;vertical-align:middle" align="right"><table cellpadding="0" cellspacing="0" border="0" align="right"><tr>${RESEAUX.map(icone).join('')}</tr></table></td>
+<td style="padding:10px 0 0;vertical-align:middle" align="right"><table role="presentation" cellpadding="0" cellspacing="0" border="0" align="right"><tr>${RESEAUX.map(icone).join('')}</tr></table></td>
 </tr>
 </table>`;

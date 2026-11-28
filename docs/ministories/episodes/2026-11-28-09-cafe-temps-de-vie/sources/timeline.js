@@ -1,0 +1,126 @@
+window.TL = {
+  "episode": "09-cafe-temps-de-vie",
+  "duree": 19.7,
+  "carton": {
+    "debut": 15.7,
+    "fin": 19.7
+  },
+  "accroche": "3,50 € par jour. Tu as fait le calcul ?",
+  "scenes": [
+    {
+      "id": "S1",
+      "debut": 0,
+      "fin": 2.6,
+      "nom": "Le café du matin"
+    },
+    {
+      "id": "S2",
+      "debut": 2.6,
+      "fin": 5.17,
+      "nom": "Lundi, mardi"
+    },
+    {
+      "id": "S3",
+      "debut": 5.17,
+      "fin": 8.4,
+      "nom": "Jeudi… dimanche : les gobelets s'empilent"
+    },
+    {
+      "id": "S4",
+      "debut": 8.4,
+      "fin": 10.42,
+      "nom": "365 matins plus tard : le gobelet géant"
+    },
+    {
+      "id": "S5",
+      "debut": 10.42,
+      "fin": 12.48,
+      "nom": "Temps de vie : 54,6 h"
+    },
+    {
+      "id": "S6",
+      "debut": 12.48,
+      "fin": 15.7,
+      "nom": "Retour au comptoir : 9 minutes"
+    }
+  ],
+  "voix": [
+    {
+      "id": "v01",
+      "t": 0.33,
+      "fin": 2.58,
+      "texte": "Trois euros cinquante. C'est rien, un café."
+    },
+    {
+      "id": "v02",
+      "t": 2.64,
+      "fin": 3.87,
+      "texte": "Lundi : un café."
+    },
+    {
+      "id": "v03",
+      "t": 3.9,
+      "fin": 5.16,
+      "texte": "Mardi : un café."
+    },
+    {
+      "id": "v04",
+      "t": 5.19,
+      "fin": 8.37,
+      "texte": "Jeudi, vendredi, samedi, dimanche…"
+    },
+    {
+      "id": "v05",
+      "t": 8.43,
+      "fin": 10.35,
+      "texte": "Trois cent soixante-cinq matins plus tard…"
+    },
+    {
+      "id": "v06",
+      "t": 10.47,
+      "fin": 12.45,
+      "texte": "Un an : cinquante-quatre heures de travail."
+    },
+    {
+      "id": "v07",
+      "t": 12.51,
+      "fin": 15.39,
+      "texte": "Bon. C'est rien, un café… Neuf minutes."
+    }
+  ],
+  "bruitages": [
+    {
+      "son": "pose",
+      "t": 0.12
+    },
+    {
+      "son": "pop",
+      "t": 2.59
+    },
+    {
+      "son": "pop",
+      "t": 3.875
+    },
+    {
+      "son": "whoosh",
+      "t": 8.36
+    },
+    {
+      "son": "ding",
+      "t": 10.37
+    },
+    {
+      "son": "pose",
+      "t": 12.46
+    },
+    {
+      "son": "kaching",
+      "t": 15.42
+    }
+  ],
+  "voix_source": {
+    "fichier": "audio/elevenlabs/voix-elevenlabs.wav",
+    "decalage": 0.3,
+    "origine": "ElevenLabs, voix « Caroline - Warm, Sweet and Soft » (eleven_v4), une génération le 28/11/2026 (flow 679ibHex66w2m4Vt4iuu, 269 crédits) ; silences resserrés et tempo ×1,07 (ffmpeg atempo), sans regénération"
+  }
+};
