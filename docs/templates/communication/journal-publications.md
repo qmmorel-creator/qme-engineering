@@ -71,3 +71,5 @@ Les sources `production/IG-159.html` et `IG-160.html` (et leurs vues 6, 2 et 6) 
   1OAM4FyKFyKQOLoE5bDxB5ZaynL9ed9BPCcrXyiHSUhU), image `LI-129-culturel.png`. Colonnes F, G, H, I, J, M (et P pour
   Instagram) mises à jour ; dates, heures et statuts inchangés ; anciens Docs et fichiers gardés. Détail :
   `lecture/instagram.md` § v3, `lecture/linkedin.md` § v4.
+
+- **28/11/2026 (demande de Quentin)** : IG-84 (T17 · Suivi culturel, carrousel) avancé au lundi 30/11/2026 19:00. IG-131 (Reel abonnements, 30/11 12:30) et son Short YT-17 passent au 30/12/2026 (12:30 et 12:00 : seul jour de décembre libre à la fois sur Instagram et YouTube, IG-59 du 30/12 étant annulé, après déplacement d'IG-171). Le quiz IG-171 (30/12 21:00) prend la place libérée d'IG-84 : 04/04/2027 21:00. IG-209 (papiers de fin d'année) non touché car saisonnier. Mini-story IG-230 du 30/11 inchangée (hors règle).
