@@ -1,12 +1,12 @@
 <!doctype html>
-<!-- IG-224 · Test formats F11 « Carreau, épisode 1 · Décembre : −254 € dans le tableur » (vague 2).
+<!-- IG-224 · Test formats F11 « Grillon, épisode 1 · Décembre : −254 € dans le tableur » (mascotte renommée Grillon, anciennement Carreau, par Quentin le 27/11/2026 ; vidéo refaite le 28/11/2026) (vague 2).
      Instagram 14/12/2026 19:00, YouTube YT-77 14/12/2026 20:00. Couleur dominante : bleu. 1080 × 1920, 30 i/s, 26 s.
      Version motion design du 24/11/2026 (demande de Quentin) : écrasement / étirement, anticipation, dépassement,
      traînée, règle de trois (deux vérifications ✓, la troisième dérape), pause d'une demi-seconde avant la chute,
      gonflement en panique, cellules en dominos, onglets qui s'envolent, chiffres qui claquent sur les temps
-     (musique choisie par rendu.mjs pour « IG-224-carreau-1 » : professional-momentum, 118 BPM, début sur un temps),
-     chute finale : un #REF! tente de revenir, Carreau le chasse d'un coup de bras.
-     Mascotte : Carreau (formats-test/mascotte/carreau.js, importé via motion-carreau.js, jamais redessiné).
+     (musique choisie par rendu.mjs pour la clé « IG-224-carreau-1 », conservée au rendu Grillon du 28/11/2026 : professional-momentum, 118 BPM, début sur un temps),
+     chute finale : un #REF! tente de revenir, Grillon le chasse d'un coup de bras.
+     Mascotte : Grillon (formats-test/mascotte/carreau.js, importé via motion-grillon.js, jamais redessiné).
      Avant : tableur FICTIF fabriqué ici avec les trois dépenses de fêtes saisies dans la démo.
      Après : captures réelles de la démo Mon Budget (captures/captures.mjs, horloge du navigateur au 14/12/2026,
      ?demo&reinit, foyer fictif « Camille et Sami ») : enveloppe Cadeaux et fêtes = 80 € + report 335 € = 415 € ;
@@ -14,7 +14,7 @@
      Le tableur compare 334 € au seul budget du mois (80 €) : écart −254 €.
      Rendu, depuis la racine du dépôt, la page servie en HTTP (module ES) :
        python3 -m http.server 8767 --bind 127.0.0.1
-       node docs/videos/rendu.mjs http://127.0.0.1:8767/docs/templates/communication/formats-test/IG-224/IG-224.html 26 2400 --sortie docs/videos/sortie/IG-224-carreau-1.mp4
+       node docs/videos/rendu.mjs http://127.0.0.1:8767/docs/templates/communication/formats-test/IG-224/IG-224.html 26 2400 --sortie docs/videos/sortie/IG-224-grillon-1.mp4  (le 28/11/2026, rendu par rendrePage avec musique = choisirMusique("IG-224-carreau-1", 26) pour garder le calage sur les temps)
      Zones sûres : rien d'important dans les 250 px du haut ni les 340 px du bas. -->
 <html lang="fr">
 <head>
@@ -68,7 +68,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 12px;white-space:nowra
 .signe svg{width:56px;height:56px}
 #puce{position:absolute;left:0;top:0;z-index:85;background:var(--rouge);color:#fff;font-weight:800;font-size:40px;padding:8px 16px;border:5px solid var(--encre);box-shadow:6px 6px 0 var(--encre);display:none}
 
-/* Bulle de Carreau */
+/* Bulle de Grillon */
 .bulle{position:absolute;z-index:90;background:#fff;border:6px solid var(--encre);font-weight:800;font-size:46px;line-height:1.12;letter-spacing:-.015em;padding:20px 28px;max-width:640px;transform-origin:50% 120%;box-shadow:10px 10px 0 var(--encre)}
 .bulle::after,.bulle::before{content:'';position:absolute;left:var(--px,70px);width:0;height:0}
 .bulle::after{bottom:-40px;border-right:44px solid transparent;border-top:40px solid var(--encre)}
@@ -78,7 +78,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 12px;white-space:nowra
 </style>
 </head>
 <body>
-<div id="serie">Carreau · épisode&nbsp;1</div>
+<div id="serie">Grillon · épisode&nbsp;1</div>
 
 <!-- Scène 1 : le tableur (visible dès la première image, sans animation d'entrée ; seules les formes bougent) -->
 <div class="s" id="s1" style="animation:sortie 300ms 7000ms">
@@ -124,16 +124,16 @@ mark{background:var(--jaune);color:var(--encre);padding:0 12px;white-space:nowra
   <p class="x" style="top:404px;font-size:72px;line-height:1.08" data-claque="20847,.2">Le report de chaque enveloppe, recalculé à chaque dépense.</p>
   <div class="f" style="left:84px;top:690px;width:912px;height:8px;background:var(--jaune);transform-origin:left;animation:largeur 500ms 21300ms"></div>
   <div class="bouton" style="top:720px" data-claque="21864,.18">14 jours d'essai gratuit, sans carte&nbsp;: lien en bio.</div>
-  <div class="signe" style="top:1430px;animation:monte 400ms 22400ms"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#F0EDE6"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#1D4E89"/></svg><span>Carreau · QME</span></div>
+  <div class="signe" style="top:1430px;animation:monte 400ms 22400ms"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#F0EDE6"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#1D4E89"/></svg><span>Grillon · QME</span></div>
   <p class="note" style="top:1500px;color:var(--surface);animation:monte 400ms 22500ms">Données fictives</p>
 </div>
 
-<div id="scene-carreau"></div>
+<div id="scene-grillon"></div>
 <div id="puce">#REF!</div>
 <div class="bulle" id="bulle"></div>
 
 <script type="module">
-import { creerCarreau, creerBulles, temps, claque, pulse, chute, envol, COURBES } from './motion-carreau.js';
+import { creerGrillon, creerBulles, temps, claque, pulse, chute, envol, COURBES } from './motion-grillon.js';
 
 // Chiffres lus dans la démo (captures/chiffres.json, 14/12/2026) et contrôles : la page échoue s'ils ne tiennent pas.
 const DEPENSES = [['Cadeaux des enfants', 160], ['Cadeaux de la famille', 135], ['Sapin et décoration', 39]];
@@ -165,8 +165,8 @@ poser(an, RE, 26);
 // « 1 660 € » dans la capture du tableau de bord (capture 860 px de large, affichée sur 600 − 12 px de bord).
 const k = 588 / 860; Object.assign(document.getElementById('cible').style, { left: 426 + 190 * k + 'px', top: 546 + 310 * k + 'px', width: 230 * k + 'px', height: 80 * k + 'px' });
 
-// Carreau
-const placerCarreau = creerCarreau(document.getElementById('scene-carreau'), {
+// Grillon
+const placerGrillon = creerGrillon(document.getElementById('scene-grillon'), {
   taille: 300,
   cles: [
     { t: 0, x: 740, y: 1080 }, { t: 5600, x: 740, y: 1080 },
@@ -226,7 +226,7 @@ window.placer = (ms) => {
   const ca = claque(ms, T(4), 0.9); an.style.opacity = ca.o; an.style.transform = `scale(${ca.s})`;
   // Le gros chiffre claque sur les temps pendant la panique (visible et entier dès l'image 0).
   gros.style.transform = `scale(${pulse(ms, T(4), T(11), T(1), 0.07)}) translateX(${ms >= T(4) && ms < 5600 ? Math.sin(ms / 23) * 4 : 0}px)`;
-  // Dominos et envol des onglets au départ de Carreau.
+  // Dominos et envol des onglets au départ de Grillon.
   lignes.forEach((l, i) => { l.style.transform = chute(ms, 5950 + (lignes.length - 1 - i) * 70, i % 2 ? 1 : 0.5); });
   onglets.forEach((o, i) => { o.style.transform = envol(ms, 6050 + i * 60, i); });
   ok1.style.visibility = ok2.style.visibility = an.style.visibility = ms > 5950 ? 'hidden' : 'visible';
@@ -234,13 +234,13 @@ window.placer = (ms) => {
   document.getElementById('rond').style.transform = `scale(${ms < T(15) ? 0 : claque(ms, T(15), 0.6).s})`;
   for (const c of claques) { const q = claque(ms, c.t, c.f); c.el.style.opacity = q.o; c.el.style.transform = `scale(${q.s})`; }
   cible.style.transform = `scale(${pulse(ms, T(34), 20400, T(2), 0.12)})`; cible.style.opacity = ms > T(34) ? 1 : 0;
-  // Chute finale : un #REF! tente de revenir, Carreau le chasse d'un coup de bras.
+  // Chute finale : un #REF! tente de revenir, Grillon le chasse d'un coup de bras.
   if (ms >= 23800) {
     let x = 1100 - 210 * COURBES.sortie(Math.min(1, (ms - 23800) / 450)), y = 1150, r = 0;
     if (ms >= 24700) { const dt = (ms - 24700) / 1000; x += 1400 * dt; y += -1700 * dt + 1400 * dt * dt; r = 900 * dt; }
     Object.assign(puce.style, { display: 'block', transform: `translate(${x}px, ${y}px) rotate(${r}deg)` });
   } else puce.style.display = 'none';
-  placerCarreau(ms);
+  placerGrillon(ms);
   placerBulle(ms);
 };
 window.placer(0);

@@ -52,7 +52,7 @@ jamais les reprendre) :
 ## Vague 2 (à partir du 10/12, après le relevé du 07/12)
 
 - Répétition des formats qui ressortent de la vague 1.
-- **F11 · Mascotte Carreau** (fiche validée par Quentin le 24/11/2026, `mascotte/`) : IG-224 le 14/12 19:00 (YT-77 20:00) et IG-225 le 18/12 19:00 (YT-78 20:00).
+- **F11 · Mascotte Grillon** (anciennement Carreau, renommée par Quentin le 27/11/2026 ; même dessin, fiche validée par Quentin le 24/11/2026, `mascotte/`) : IG-224 le 14/12 19:00 (YT-77 20:00) et IG-225 le 18/12 19:00 (YT-78 20:00), refaits le 28/11/2026 sous le nom Grillon (`IG-224-grillon-1.mp4`, `IG-225-grillon-2.mp4`, musique d'origine conservée).
 - **F12 · Voix de Quentin** (ElevenLabs, sa propre voix) : 2 Reels sur le même sujet, avec et sans voix (A/B).
   Préalables : voix clonée par Quentin, offre ElevenLabs autorisant l'usage commercial, clé saisie dans le formulaire
   sécurisé de l'environnement, évolution de `docs/videos/rendu.mjs` pour mixer une voix.

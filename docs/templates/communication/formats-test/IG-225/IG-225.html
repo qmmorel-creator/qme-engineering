@@ -1,12 +1,12 @@
 <!doctype html>
-<!-- IG-225 · Test formats F11 « Carreau, épisode 2 · Semaine de Noël : 2 absents à l'atelier, pour 1 au plus » (vague 2).
+<!-- IG-225 · Test formats F11 « Grillon, épisode 2 · Semaine de Noël : 2 absents à l'atelier, pour 1 au plus » (mascotte renommée Grillon, anciennement Carreau, par Quentin le 27/11/2026 ; vidéo refaite le 28/11/2026) (vague 2).
      Instagram 18/12/2026 19:00, YouTube YT-78 18/12/2026 20:00. Couleur dominante : rouge. 1080 × 1920, 30 i/s, 27 s.
      Version motion design du 24/11/2026 (demande de Quentin) : écrasement / étirement, anticipation, dépassement,
      traînée, règle de trois (« 1 », « 1 », puis l'onglet « Demandes » s'ouvre), pause d'une demi-seconde avant la
      chute, gonflement en panique, cellules en dominos, onglets qui tombent, chiffres qui claquent sur les temps
-     (musique choisie par rendu.mjs pour « IG-225-carreau-2 » : product-launch, 120 BPM, début sur un temps),
-     chute finale : Carreau s'effondre de soulagement.
-     Mascotte : Carreau (formats-test/mascotte/carreau.js, importé via motion-carreau.js, jamais redessiné).
+     (musique choisie par rendu.mjs pour la clé « IG-225-carreau-2 », conservée au rendu Grillon du 28/11/2026 : product-launch, 120 BPM, début sur un temps),
+     chute finale : Grillon s'effondre de soulagement.
+     Mascotte : Grillon (formats-test/mascotte/carreau.js, importé via motion-grillon.js, jamais redessiné).
      Avant : tableur FICTIF fabriqué ici reprenant l'équipe Atelier de la démo : Camille Martin en congés payés
      validés du 21 au 24 déc., la demande d'Inès Petit (21 → 25 déc.) restée dans l'onglet « Demandes ».
      Après : captures réelles de la démo Suivi des congés et absences (captures/captures.mjs, ?demo&reinit du
@@ -15,7 +15,7 @@
      de décembre, ligne « Absents » à 2 en rouge du 21 au 24 ; tableau de bord : 3 chevauchements dans les 60 jours.
      Rendu, depuis la racine du dépôt, la page servie en HTTP (module ES) :
        python3 -m http.server 8767 --bind 127.0.0.1
-       node docs/videos/rendu.mjs http://127.0.0.1:8767/docs/templates/communication/formats-test/IG-225/IG-225.html 27 2600 --sortie docs/videos/sortie/IG-225-carreau-2.mp4
+       node docs/videos/rendu.mjs http://127.0.0.1:8767/docs/templates/communication/formats-test/IG-225/IG-225.html 27 2600 --sortie docs/videos/sortie/IG-225-grillon-2.mp4  (le 28/11/2026, rendu par rendrePage avec musique = choisirMusique("IG-225-carreau-2", 27) pour garder le calage sur les temps)
      Zones sûres : rien d'important dans les 250 px du haut ni les 340 px du bas. -->
 <html lang="fr">
 <head>
@@ -69,7 +69,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 12px;white-space:nowra
 .signe{position:absolute;left:84px;display:flex;align-items:center;gap:18px;font-weight:800;font-size:40px;letter-spacing:-.01em}
 .signe svg{width:56px;height:56px}
 
-/* Bulle de Carreau */
+/* Bulle de Grillon */
 .bulle{position:absolute;z-index:90;background:#fff;border:6px solid var(--encre);font-weight:800;font-size:46px;line-height:1.12;letter-spacing:-.015em;padding:20px 28px;max-width:640px;transform-origin:50% 120%;box-shadow:10px 10px 0 var(--encre)}
 .bulle::after,.bulle::before{content:'';position:absolute;left:var(--px,70px);width:0;height:0}
 .bulle::after{bottom:-40px;border-right:44px solid transparent;border-top:40px solid var(--encre)}
@@ -79,7 +79,7 @@ mark{background:var(--jaune);color:var(--encre);padding:0 12px;white-space:nowra
 </style>
 </head>
 <body>
-<div id="serie">Carreau · épisode&nbsp;2</div>
+<div id="serie">Grillon · épisode&nbsp;2</div>
 
 <!-- Scène 1 : le tableur (visible dès la première image, sans animation d'entrée ; seules les formes bougent) -->
 <div class="s" id="s1" style="animation:sortie 300ms 7000ms">
@@ -132,15 +132,15 @@ mark{background:var(--jaune);color:var(--encre);padding:0 12px;white-space:nowra
   <p class="x" style="top:404px;font-size:72px;line-height:1.08" data-claque="23000,.2">Qui part la même semaine, vu dès la demande.</p>
   <div class="f" style="left:84px;top:600px;width:912px;height:8px;background:var(--jaune);transform-origin:left;animation:largeur 500ms 23300ms"></div>
   <div class="bouton" style="top:650px" data-claque="24000,.18">14 jours d'essai gratuit, sans carte&nbsp;: lien en bio.</div>
-  <div class="signe" style="top:1430px;animation:monte 400ms 24400ms"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#F0EDE6"/><rect x="40" y="40" width="40" height="40" fill="#141414"/><circle cx="40" cy="40" r="15" fill="#D9302A"/></svg><span>Carreau · QME</span></div>
+  <div class="signe" style="top:1430px;animation:monte 400ms 24400ms"><svg viewBox="0 0 80 80"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#F0EDE6"/><rect x="40" y="40" width="40" height="40" fill="#141414"/><circle cx="40" cy="40" r="15" fill="#D9302A"/></svg><span>Grillon · QME</span></div>
   <p class="note" style="top:1500px;color:var(--surface);animation:monte 400ms 24500ms">Données fictives</p>
 </div>
 
-<div id="scene-carreau"></div>
+<div id="scene-grillon"></div>
 <div class="bulle" id="bulle"></div>
 
 <script type="module">
-import { creerCarreau, creerBulles, temps, claque, pulse, chute, envol } from './motion-carreau.js';
+import { creerGrillon, creerBulles, temps, claque, pulse, chute, envol } from './motion-grillon.js';
 
 // Données lues dans la démo (captures/chiffres.json) : Atelier 3 salariés, 1 absent au plus ; Camille Martin en CP
 // validés du lundi 21 au jeudi 24 déc. ; Inès Petit demande du 21 au 25 déc. (25 = Noël, férié chômé) ; Lucas Bernard présent.
@@ -169,7 +169,7 @@ const cadre = (id, x, y, w, h) => { const k = 688 / 860; Object.assign(document.
 const cibles = [[cadre('cible1', 66, 335, 744, 126), T(25), 15000], [cadre('cible2', 212, 404, 252, 66), T(32), 19000], [cadre('cible3', 20, 266, 404, 244), T(40), 22400]];
 
 const J = '#F5B400';
-const placerCarreau = creerCarreau(document.getElementById('scene-carreau'), {
+const placerGrillon = creerGrillon(document.getElementById('scene-grillon'), {
   taille: 300,
   cles: [
     { t: 0, x: 730, y: 1080 }, { t: 5600, x: 730, y: 1080 },
@@ -239,7 +239,7 @@ window.placer = (ms) => {
   document.getElementById('carre').style.transform = `scale(${ms < T(15) ? 0 : claque(ms, T(15), 0.6).s}) rotate(${ms < T(15) ? 0 : (ms - T(15)) / 40}deg)`;
   for (const c of claques) { const q = claque(ms, c.t, c.f); c.el.style.opacity = q.o; c.el.style.transform = `scale(${q.s})`; }
   for (const [el, t, fin] of cibles) { el.style.opacity = ms >= t && ms < fin ? 1 : 0; el.style.transform = `scale(${pulse(ms, t, fin, T(2), 0.08)})`; }
-  placerCarreau(ms);
+  placerGrillon(ms);
   placerBulle(ms);
 };
 window.placer(0);

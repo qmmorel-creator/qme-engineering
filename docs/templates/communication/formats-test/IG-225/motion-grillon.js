@@ -1,4 +1,4 @@
-// Motion design de Carreau (F11) : le dessin vient TOUJOURS de ../mascotte/carreau.js ; ce module ne fait que le
+// Motion design de Grillon (F11) : le dessin vient TOUJOURS de ../mascotte/carreau.js ; ce module ne fait que le
 // placer, le déformer et l'animer image par image (temps virtuel, appelé depuis window.placer(ms)).
 // Écrasement et étirement (échelles X/Y opposées, pied au sol comme pivot), anticipation et dépassement (courbes des
 // positions clés), rebonds, secousses, gonflement, effondrement, coups de bras, clignements, traînée de fantômes.
@@ -29,10 +29,10 @@ export function piste(cles) {
   };
 }
 
-// Crée Carreau dans `parent`. Options : taille, cles, etats [[t, expression, pose, couleur?]], cligne [[de, a]],
+// Crée Grillon dans `parent`. Options : taille, cles, etats [[t, expression, pose, couleur?]], cligne [[de, a]],
 // evenements [{ t, type, f, d, fin }] : ecrase (atterrissage), etire (démarrage), gonfle (jusqu'à fin), tremble
 // (jusqu'à fin), effondre (reste écrasé), coup (coup de bras : rotation sèche), hop (petit saut sur place).
-export function creerCarreau(parent, { taille = 300, cles, etats, cligne = [], evenements = [], fantomes = 3 }) {
+export function creerGrillon(parent, { taille = 300, cles, etats, cligne = [], evenements = [], fantomes = 3 }) {
   const H = taille * 380 / 320; // hauteur du dessin
   const ox = taille / 2, oy = H * 0.915; // pivot : entre les pieds
   const mk = (z, op) => { const d = document.createElement('div'); Object.assign(d.style, { position: 'absolute', left: 0, top: 0, zIndex: z, transformOrigin: `${ox}px ${oy}px`, opacity: op, willChange: 'transform' }); parent.appendChild(d); return d; };
@@ -73,7 +73,7 @@ export function creerCarreau(parent, { taille = 300, cles, etats, cligne = [], e
     if (cligne.some(([a, b]) => ms >= a && ms < b) && expr !== 'panique') expr = 'soulage';
     dessiner(el, expr, pose, couleur);
     const p = transforme(ms, el, expr, pose);
-    // Traînée : copies aux positions passées quand Carreau file vite.
+    // Traînée : copies aux positions passées quand Grillon file vite.
     const q = pos(ms - 50); const v = Math.hypot(p.x - q.x, p.y - q.y);
     traine.forEach((d, i) => {
       if (v > 14) { dessiner(d, expr, pose, couleur); transforme(ms - 45 * (i + 1), d, expr, pose); d.style.opacity = String([0.38, 0.22, 0.1][i] ?? 0.08); }
