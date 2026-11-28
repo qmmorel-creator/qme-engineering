@@ -1,7 +1,7 @@
 # Référentiel de marque QME pour les mini-stories (audit du 27/11/2026)
 
 Sources examinées : site (`index.html`, `catalogue/`, `assets/`), police `assets/fonts/` (Outfit), logo
-`assets/logo-qme.png` et Drive « QME - Assets MiniStories » (logo, carton 9:16, bannière, référence typo, plaquette
+`assets/logo-qme-bauhaus.png` (logo Bauhaus, Q stylisé ; l'ancien logo bleu est supprimé) et Drive « QME - Assets MiniStories » (logo, carton 9:16, bannière, référence typo, plaquette
 partenariat), module et fiche de la mascotte (`docs/templates/communication/formats-test/mascotte/`), plaquette
 partenariat (`docs/templates/communication/affiliation/plaquette/`), règles de contenu
 (`docs/templates/communication/REGLES-CONTENU.md`), skill claude.ai `qme-ministories`, une mini-histoire antérieure

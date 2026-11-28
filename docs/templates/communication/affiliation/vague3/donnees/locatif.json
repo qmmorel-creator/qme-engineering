@@ -1,0 +1,52 @@
+[
+ {
+  "nom": "Yann Jarno",
+  "compte": "Booste ton gîte (podcast) · gîte La Maison Kidour",
+  "plateforme": "TikTok / podcast",
+  "url": "https://yannjarno.com",
+  "abonnes": "+35 000 abonnés TikTok (chiffre affiché sur son site, lu le 27/11/2026)",
+  "abonnesSource": "https://yannjarno.com",
+  "email": "hello@yannjarno.com",
+  "emailSource": "https://yannjarno.com/mentions-legales (aussi contact@boostetongite.com dans le flux RSS du podcast https://feed.ausha.co/bP9GXfGq9YY1)",
+  "niche": "Location, copropriété",
+  "produits": [
+   "location-saisonniere",
+   "pack-proprietaire",
+   "gestion-locative"
+  ],
+  "demo": "location-saisonniere",
+  "accroche": "Dans l'épisode « Nouvelles règles Airbnb : mon débrief à chaud du webinaire du 20 novembre » (20/11/2026) de Booste ton gîte, il commente les nouvelles règles Airbnb pour les propriétaires de gîtes.",
+  "pourquoi": "Son audience de propriétaires de gîtes et chambres d'hôtes doit suivre réservations, ménages, revenus et échéances, ce que fait le template location saisonnière.",
+  "derniere": "27/11/2026 (épisode « Réseaux sociaux : raconter la vie de son gîte sans s'épuiser »)",
+  "aVerifier": "vend de l'accompagnement marketing, des ateliers BTG et des sites internet pour gîtes (pas d'outil de gestion vu) ; chiffre TikTok lu sur son site, pas sur TikTok",
+  "controles": "nexora ok · gmail ok · opposition ok",
+  "ouverture": "Votre épisode du 20/11 de Booste ton gîte, votre débrief du webinaire sur les nouvelles règles Airbnb, parle à des propriétaires qui suivent réservations, ménages et échéances.",
+  "nomObjet": "Booste ton gîte",
+  "benefice": "gérer votre gîte"
+ },
+ {
+  "nom": "Anne",
+  "compte": "Anne_Jg",
+  "plateforme": "YouTube",
+  "url": "https://www.youtube.com/@anne__jg",
+  "abonnes": "13 k YouTube (lu le 27/11/2026)",
+  "abonnesSource": "https://www.youtube.com/@anne__jg/about",
+  "email": "annejg@outlook.fr",
+  "emailSource": "https://www.youtube.com/@anne__jg/about (description de la chaîne)",
+  "niche": "Location, copropriété",
+  "produits": [
+   "location-saisonniere",
+   "pack-proprietaire",
+   "entretien"
+  ],
+  "demo": "location-saisonniere",
+  "accroche": "Dans « La vie dont j'ai toujours rêvé finalement | quotidien, airbnb & déco » (25/11/2026), elle raconte la fin de son salariat et consacre un chapitre à son activité Airbnb.",
+  "pourquoi": "Elle partage son quotidien d'hôte Airbnb : un suivi des réservations, ménages et revenus parle directement à elle et à ses abonnés qui louent.",
+  "derniere": "25/11/2026",
+  "aVerifier": "chaîne lifestyle (déco, bons plans) où l'Airbnb n'est qu'un des sujets ; évoque aussi « immo et épargne » en papotage, pas un profil finance",
+  "controles": "nexora ok · gmail ok · opposition ok",
+  "ouverture": "Votre vidéo du 25/11, « La vie dont j'ai toujours rêvé finalement », consacre un chapitre à votre activité Airbnb, avec des réservations, des ménages et des revenus à suivre.",
+  "nomObjet": "Anne",
+  "benefice": "gérer votre location saisonnière"
+ }
+]

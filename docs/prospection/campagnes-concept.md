@@ -8,11 +8,51 @@ fichier sert à éviter les doublons de thèmes et à garder les écartés et le
 
 | Date | Thème | Page(s) | Vague Nexora | Envoyés | Réponses |
 |---|---|---|---|---|---|
+| 28/11/2026 | Concept métier n° 1 : désamiantage, « Le Journal de zone » (sur mesure, à partir de 1 500 € HT) | `/concepts/desamiantage/` (plaquette PDF de 4 pages) | `metier-desamiantage` | en attente de validation | — |
+| 27/11/2026 | Le Carnet de hotte : dégraissage des hottes et conduits de cuisines professionnelles | `/concepts/degraissage-hottes/` (générique sur mesure, démo interactive, PDF) | `concept-degraissage-hottes` | 10 | à suivre |
 | 25/11/2026 | Registre des fluides frigorigènes (frigoristes et climaticiens) | `/concepts/frigoristes/` (générique) | `concept-frigoristes` | 10 | à suivre |
 | 24/11/2026 | Registres de contrôle d'équipements (DAE, lignes de vie, escalade, aires de jeux, sport, parcours aventure, échafaudages, foudre, incendie, désenfumage, rayonnages, levage, portes, quais, radeaux, nacelles, chariots, ascenseurs, élévateurs PMR, hottes de laboratoire, élévateurs de véhicules, sprinklers, hayons, air comprimé) | 35 pages par entreprise `/concepts/<entreprise>/` | `registres` (lots 1 à 4) | 31 mails + 4 formulaires à envoyer par Quentin | à suivre |
 
 Pour les campagnes suivantes : **une page générique par thème** (`/concepts/<thème>/`), plus de page par entreprise.
 Détail des cibles « registres » : `cibles-registres-controle.md`.
+
+## 28/11/2026 · Concept métier n° 1 : le désamiantage (« Le Journal de zone »)
+
+- Premier métier de la mission « Concept métier » (skill `concept-metier`), lancé à la demande de Quentin le samedi 28/11.
+- Justification : besoin très réglementé et propre au métier (vacations de 2 h 30 au plus et 6 h par jour, art.
+  R4412-119 ; fiche d'exposition par opérateur, art. R4412-120 ; niveaux d'empoussièrement, art. R4412-98 ; plan de
+  retrait déposé sur DEMAT@MIANTE 30 jours avant les travaux, art. R4412-133 et R4412-137 ; mesures de laboratoire,
+  BSDA, dossier de restitution) ; aucun template QME ne le couvre ; entreprises certifiées SS3 de 5 à 50 salariés,
+  habituées à des chantiers chiffrés en dizaines de milliers d'euros ; adresses génériques publiques fréquentes.
+- Livrables : plaquette PDF de 4 pages (chantiers du plan de retrait à la restitution ; vacations pointées au sas avec
+  vue téléphone ; fiches d'exposition ; dossier de restitution, outils reliés, « à partir de 1 500 € HT »), page
+  `/concepts/desamiantage/`, modèle de mail `outils/prospection/campagnes/desamiantage.mjs`. Données fictives.
+- Articles du code du travail cités vérifiés sur code.travail.gouv.fr le 28/11.
+- Lot 1 : 48 entreprises dans une quarantaine de départements (`docs/prospection/lots/desamiantage-lot1.json`, écartés et réserves dans `desamiantage-lot1-ecartes.md`). Contrôles : `doublons` 0, Nexora 0, Gmail 0 (témoins OK), opposition 0.
+- Statut : en attente de validation de Quentin (via le GOD). Rien n'est mis en file avant.
+
+## 27/11/2026 · Le Carnet de hotte (dégraissage des cuisines professionnelles)
+
+- Campagne du 26/11 non faite : le déclenchement de la veille est arrivé en même temps que celui du jour ; une seule
+  campagne lancée le 27/11.
+- Premier concept fait selon `CONCEPTS-SUR-MESURE.md` (décision du 27/11) : démonstration interactive
+  `/concepts/degraissage-hottes/demo/` (semaine, tournée de nuit, fiche installation avec schéma du circuit, certificats,
+  téléphone du technicien, espace restaurateur), page écrite sur mesure, PDF de 6 pages. PR #342.
+- Aucune périodicité réglementaire affirmée : les sources publiques (article GC 21 du règlement ERP, guides) divergent ;
+  la démo parle de la « fréquence prévue au contrat ».
+- Prospects (10) : Colas Cuisine (Cugnaux, 31), STERM (Mauguio, 34), Hotte Solution (La Rochelle, 17), MD Nettoyage
+  Hottes (Saint-Priest, 69), Hot Clean (Thônes, 74), Hotte-direct.pro (Saint-Laurent-Blangy, 62), La Clinique de la Hotte
+  (Perpignan, 66), HSTAC (Durtal, 49), RP-Ouest (L'Herbergement, 85), Proxigiene (Pau, 64). Adresses et faits cités
+  revérifiés par curl ; opposition vérifiée par l'API (aucune) ; aucun contact antérieur (Gmail, Nexora).
+- Réserves : HSTAC écrit depuis une adresse SFR ; Colas Cuisine utilise un autre domaine que celui du site ; pas de
+  mentions légales chez Hotte Solution, Hot Clean et Hotte-direct.pro (SIREN non vérifié) ; Proxigiene et La Clinique de la
+  Hotte sont probablement de très petites structures.
+- Écartées après sourcing : Sirius Nettoyage (Gmail), Kleaneos (un fondateur), Actoclean (dates incohérentes), Zone Cleaner
+  (société de 2024) ; franchises et réseaux (HYGIS, France Hygiène Ventilation, Groupe SDI, Elis, Aprolliance, Technoram),
+  espace client (Chefneux), pas d'adresse générique en clair (une quinzaine), activité secondaire.
+- Nexora : `cpt-degraissage-hottes` (envoyé), fiches `p-degr-*` (contacté, relance le 04/12). Plus de tâche de relance
+  (décision du 25/11).
+- Suivi : aucune réponse aux campagnes précédentes ; Safriclim attend toujours le clic de validation Mailinblack de Quentin.
 
 ## 25/11/2026 · Registre des fluides frigorigènes
 

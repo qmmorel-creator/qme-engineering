@@ -1,0 +1,92 @@
+[
+ {
+  "nom": "CaroNola",
+  "url": "https://www.youtube.com/@Caronola",
+  "motif": "doublon : domaine beyondmedia.fr déjà dans Nexora (créatrice a-262, Aline Dessine, contactée le 27/11/2026)"
+ },
+ {
+  "nom": "Patate & Cornichon",
+  "url": "https://www.youtube.com/@patateetcornichon",
+  "motif": "concurrent : fondatrice de l'appli de recettes et menus « Patate & Cornichon »"
+ },
+ {
+  "nom": "Mûre et Noisettes",
+  "url": "https://www.youtube.com/@mureetnoisettes",
+  "motif": "contenu devenu finance personnelle (patrimoine, épargne) : critère finance"
+ },
+ {
+  "nom": "Cuisine Ophélie",
+  "url": "https://www.youtube.com/@CuisineOphelie",
+  "motif": "diététicienne (programmes probables) : non retenue ; pas d'adresse YouTube, seule une adresse de cabinet dans les mentions légales"
+ },
+ {
+  "nom": "Holy mood, sandra maman et tellement plus, Amandine Poggioli, LYDIE, Monsieur Budget, Miss Suzette, Lovely Lou, Noémie Nutrition, Miss Lily, FamilyCoste, Charley et Charlotte, La Famille PB, Le Quotidien De Laeti, Le Journal du Budget, Nanou petits prix, Ticia&JérémyFamily, Cooking by Nissou, FAMILY FOREVER, Daphné Blt, Gaelle dl, Fanny E, MYF, Anibellie, nessi",
+  "url": "",
+  "motif": "doublons : déjà dans Nexora (adresse ou nom)"
+ },
+ {
+  "nom": "Le Comptoir Durable, So It's Me, Mme Céline, Anne_Jg, By Kls Mom, Ana Mina, Le Renard et les Raisins, Camille Pascaud, Mama Jumeauxx, mamie vitamine, Leïla, Junila, Vlog Molie, Passion Maman Cuisine, Les bonheurs de Camille, Fatima, lailou family, Elo famille, Pama_Luve, Sady Vlogs & Cuisine",
+  "url": "",
+  "motif": "doublons : déjà dans maison.json ou autre lot de la vague 3"
+ },
+ {
+  "nom": "Nicook",
+  "url": "https://www.youtube.com/@Nicook",
+  "motif": "dernière vidéo cuisine ancienne, contenu récent voyage/famille (dernière 19/06/2026)"
+ },
+ {
+  "nom": "CELINEMOMIX",
+  "url": "https://www.youtube.com/@celinemomix433",
+  "motif": "inactive (une vidéo en 2026) ; conseillère Vorwerk"
+ },
+ {
+  "nom": "Ange14",
+  "url": "https://www.youtube.com/@ange14-",
+  "motif": "dernière vidéo le 22/06/2026, peu de contenu menus récent"
+ },
+ {
+  "nom": "Home Life Kitchen",
+  "url": "https://www.youtube.com/@HomeLifeKitchen",
+  "motif": "contenu récent hors niche (immobilier au Maroc, tenues)"
+ },
+ {
+  "nom": "Louna B, Need Familyy, celine et ses petites combines, rose poudrée, les Vlogs de Linda, Shopping&Co By Nadia, Ppiout, CE RÊVE BLEU, BlabladeVaVa",
+  "url": "",
+  "motif": "hors niche : hauls et arrivages magasins, cuisine marginale"
+ },
+ {
+  "nom": "Le Strict Minimum",
+  "url": "https://www.youtube.com/@lestrictminimum",
+  "motif": "minimalisme et objectif FIRE (finance)"
+ },
+ {
+  "nom": "Un Zeste de Marion, Chocmiel, Quand Margot pâtisse",
+  "url": "",
+  "motif": "pâtisserie uniquement ; Un Zeste de Marion a une boutique"
+ },
+ {
+  "nom": "Little Béné, Cel_in_off, Sara Mom Lifestyle, menus pas chers, En cuisine avec Blandine, Mes Recettes Rapides, La Cuisine Facile, Loubna Cuisine, La cuisine de Bernard",
+  "url": "",
+  "motif": "pas d'adresse e-mail publique trouvée (YouTube, sites liés)"
+ },
+ {
+  "nom": "Mams'elle Hibou",
+  "url": "https://www.youtube.com/channel/UCLvmQZ9OwdJNbCauLlxg-pQ",
+  "motif": "vlog famille nombreuse, cuisine non vérifiée (adresse trouvée sur son site wix)"
+ },
+ {
+  "nom": "Grandes chaînes et médias (FastGoodCuisine, 750g, Webedia, Jamie Oliver, Pick Up Limes…)",
+  "url": "",
+  "motif": "marques, médias ou non francophones"
+ },
+ {
+  "nom": "Christie (Christie en toute simplicité)",
+  "url": "https://www.youtube.com/@christieentoutesimplicite1148",
+  "motif": "utilise régulièrement Jow (appli de menus concurrente) : écartée au contrôle"
+ },
+ {
+  "nom": "Deli Cuisine",
+  "url": "https://www.youtube.com/@DeliCuisineNabz",
+  "motif": "marque d'ustensiles et ebook : concurrence possible, écartée par prudence"
+ }
+]

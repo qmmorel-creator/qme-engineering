@@ -1,0 +1,62 @@
+[
+ {
+  "nom": "Made in (Foll-ow)",
+  "url": "https://www.agencemadein.fr/",
+  "motif": "déjà contactée (Nexora a-59)"
+ },
+ {
+  "nom": "L'Agence Osmose",
+  "url": "https://lagence-osmose.com/",
+  "motif": "déjà contactée (Nexora a-164)"
+ },
+ {
+  "nom": "L'Agence Amen",
+  "url": "https://amenagence.com/",
+  "motif": "domaine déjà contacté (Nexora a-179, laulevy@amenagence.com)"
+ },
+ {
+  "nom": "Midnight Agency (Lyon)",
+  "url": "https://agencemidnight.fr/",
+  "motif": "adresse seulement dans les données structurées du site, pas affichée (formulaire)"
+ },
+ {
+  "nom": "18h08",
+  "url": "https://18h08.fr/",
+  "motif": "site inaccessible (403), adresse non vérifiée"
+ },
+ {
+  "nom": "Colorz",
+  "url": "https://www.colorz.fr/",
+  "motif": "adresse masquée, non lue"
+ },
+ {
+  "nom": "Nano'influence",
+  "url": "https://www.nanoinfluence.fr/",
+  "motif": "aucune adresse e-mail affichée"
+ },
+ {
+  "nom": "Addictus",
+  "url": "https://www.addictus.fr/",
+  "motif": "aucune adresse e-mail trouvée"
+ },
+ {
+  "nom": "Influence4You",
+  "url": "https://www.influence4you.com/",
+  "motif": "plateforme, aucune adresse e-mail affichée"
+ },
+ {
+  "nom": "Les Causantes",
+  "url": "https://lescausantes.com/",
+  "motif": "aucune adresse e-mail affichée"
+ },
+ {
+  "nom": "My Sport Agency",
+  "url": "https://www.mysportagency.fr/",
+  "motif": "agence de production ; adresse seulement dans les données structurées"
+ },
+ {
+  "nom": "We Are Era",
+  "url": "https://www.weareera.com/",
+  "motif": "déjà contactée (Nexora a-213) ; grosse agence"
+ }
+]
