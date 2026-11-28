@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Concept pour les artisans qui fabriquent et vendent · QME</title>
+<meta name="description" content="Pack prêt à l'emploi pour fleuristes, micro-brasseries et ateliers-boutiques : stocks de matières et de produits finis avec seuils d'alerte, devis, trésorerie sur douze mois, TVA, livre des recettes pour les micro-entrepreneurs. Achat unique, adaptable sur mesure. Données fictives.">
+<link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
+<link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
+<style>
+:root{--ink:#141414;--red:#D9302A;--yel:#F5B400;--blue:#1F4E9C;--paper:#F0EDE6;--muted:#5d5a55;--line:#d8d3c9}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 "Outfit",system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+a{color:inherit}
+header{padding:20px 0;border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;letter-spacing:.04em}
+.brand small{display:block;font-weight:500;letter-spacing:0;color:var(--muted);font-size:13px;line-height:1.2}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;text-decoration:none;font-weight:600;padding:12px 20px;border-radius:999px;border:2px solid var(--red)}
+.btn.line{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.hero{padding:44px 0 30px}
+.eb{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--red);margin:0 0 12px}
+h1{font-size:clamp(30px,4.6vw,52px);line-height:1.05;margin:0 0 16px;font-weight:700;max-width:20ch;letter-spacing:-.01em}
+.lede{max-width:66ch;color:var(--muted);font-size:clamp(16px,1.6vw,18px);margin:0 0 24px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.fict{font-size:13.5px;color:var(--muted);margin:16px 0 0}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:18px 0 56px}
+.trio div{background:#fff;border-radius:6px;padding:20px;border-top:6px solid var(--ink)}
+.trio div:nth-child(2){border-color:var(--yel)}.trio div:nth-child(3){border-color:var(--red)}
+.trio h2{font-size:14px;text-transform:uppercase;letter-spacing:.07em;margin:0 0 8px}
+.trio p{margin:0}
+.sec{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:36px;align-items:center;margin:0 0 64px}
+.sec>div{min-width:0}
+.sec:nth-of-type(even){grid-template-columns:minmax(0,8fr) minmax(0,4fr)}
+.sec:nth-of-type(even) .txt{order:2}
+.num{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--red);margin:0 0 8px}
+.sec h2{font-size:clamp(24px,3vw,34px);line-height:1.1;margin:0 0 12px}
+.sec p{color:var(--muted);margin:0 0 14px}
+.sec ul{list-style:none;margin:0;padding:0}
+.sec li{position:relative;padding:6px 0 6px 22px;border-bottom:1px solid var(--line)}
+.sec li::before{content:"";position:absolute;left:0;top:14px;width:10px;height:10px;background:var(--red)}
+.cap{margin:0;background:#fff;border-radius:10px;box-shadow:0 14px 40px rgba(20,20,20,.14);overflow:hidden}
+.cap .barre{display:flex;align-items:center;gap:6px;background:var(--ink);color:#fff;padding:9px 12px;font-size:13px}
+.cap .barre i{width:9px;height:9px;border-radius:50%;background:#555}.cap .barre i:first-child{background:var(--red)}.cap .barre i:nth-child(2){background:var(--yel)}
+.cap .barre span{margin-left:8px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cap img{display:block;width:100%;height:auto}
+h2.t{font-size:clamp(24px,3vw,34px);margin:0 0 8px}.sous{color:var(--muted);margin:0 0 20px;max-width:64ch}
+.deux{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 60px}
+.deux>div{background:#fff;border-radius:8px;padding:24px;border-top:8px solid var(--blue)}
+.deux>div:last-child{border-color:var(--red)}
+.deux h3{margin:0 0 6px;font-size:21px}.deux .prix{font-weight:700;margin:0 0 12px}
+.deux ul{list-style:none;margin:0 0 18px;padding:0}.deux li{padding:7px 0 7px 20px;border-bottom:1px solid var(--line);position:relative}
+.deux li::before{content:"";position:absolute;left:0;top:15px;width:9px;height:9px;background:var(--yel)}
+.note{font-size:14px;color:var(--muted);background:#fff;border-left:4px solid var(--yel);padding:12px 16px;margin:0 0 50px;max-width:80ch}
+.fin{background:var(--ink);color:#fff;border-radius:10px;padding:34px;margin:0 0 50px}
+.fin h2{margin:0 0 10px;font-size:clamp(22px,2.8vw,30px)}.fin p{color:#d8d3c9;margin:0 0 20px;max-width:64ch}
+.fin .btn.line{color:#fff;border-color:rgba(255,255,255,.5)}
+footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--muted);font-size:14px;overflow-wrap:anywhere}
+@media (max-width:860px){.trio,.deux{grid-template-columns:1fr}.sec,.sec:nth-of-type(even){grid-template-columns:minmax(0,1fr);gap:18px}.sec:nth-of-type(even) .txt{order:0}}
+@media (max-width:560px){.fin{padding:24px}.btn{padding:11px 16px}}
+.trio div{min-width:0}
+.prixl li{display:flex;justify-content:space-between;gap:12px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="/" aria-label="Accueil QME">
+    <svg viewBox="0 0 80 80" width="34" height="34" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg>
+    <span>QME<small>Quentin Morel Engineering</small></span>
+  </a>
+  <a class="btn line" href="/templates/stocks/?demo" data-goatcounter-click="concept-artisans-boutique-demo-haut" data-goatcounter-title="Concept artisans-boutique : démo (haut)">Ouvrir la démo</a>
+</div></header>
+<main class="wrap">
+  <section class="hero">
+    <p class="eb">Concept pour les artisans qui fabriquent et vendent · fleuristes, micro-brasseries, ateliers-boutiques</p>
+    <h1>Le stock, les devis et la caisse, enfin d'accord.</h1>
+    <p class="lede">Cinq outils en ligne déjà prêts pour l'artisan qui fabrique et vend lui-même : le stock des matières et des produits finis avec ses seuils d'alerte, les devis des mariages, des événements et des commandes de professionnels, la trésorerie des douze prochains mois et la TVA. Ils s'utilisent tels quels dès le premier jour, chacun s'achète aussi seul, et je peux les adapter sur mesure à votre atelier.</p>
+    <div class="ctas">
+      <a class="btn" href="/templates/stocks/?demo" data-goatcounter-click="concept-artisans-boutique-demo" data-goatcounter-title="Concept artisans-boutique : démo">Essayer la démo</a>
+      <a class="btn line" href="/packs/commercant-artisan/" data-goatcounter-click="concept-artisans-boutique-pack-haut" data-goatcounter-title="Concept artisans-boutique : pack (haut)">Voir le pack · 95 €</a>
+    </div>
+    <p class="fict">Chaque démo ouvre une activité fictive, sans inscription : un atelier de bougies pour le stock et la trésorerie, un atelier de céramique pour le livre des recettes, une menuiserie pour la TVA et un artisan du bâtiment pour les devis (vos prestations et vos produits s'y saisissent de la même façon). Elle reste dans votre navigateur et n'envoie rien. Toutes les données affichées sur cette page sont fictives.</p>
+  </section>
+
+  <div class="trio">
+    <div><h2>Fleuristes</h2><p>Des fleurs qui ne se gardent que quelques jours, des devis de mariage et de deuil à faire vite et juste, des commandes d'entreprises à suivre : il faut savoir ce qui reste, ce qui part et ce qui est déjà promis.</p></div>
+    <div><h2>Micro-brasseries</h2><p>Malt, houblon, levures, bouteilles et fûts : les matières premières et le conditionnement se suivent au seuil d'alerte, et la TVA des ventes aux bars, aux cavistes et en boutique se déclare à date.</p></div>
+    <div><h2>Ateliers-boutiques</h2><p>Céramistes, savonniers, ébénistes, maroquiniers : l'argile, les huiles, le bois ou le cuir d'un côté, les pièces finies en boutique de l'autre, et des commandes sur mesure à chiffrer avant de les lancer.</p></div>
+  </div>
+
+  <section class="sec">
+    <div class="txt"><p class="num">01 · Stocks</p><h2>Matières et produits finis, au bon niveau</h2><p>Le stock de chaque article est calculé par ses entrées, ses ventes et sa fabrication. Le tableau de bord dit ce qui manque, ce qui dort et ce que vaut le stock.</p>
+      <ul><li>Un seuil d'alerte par article : rupture et stock bas en tête</li><li>Valeur du stock au coût moyen, par catégorie</li><li>Stock dormant repéré, inventaire avec écarts corrigés d'un clic</li></ul></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Stocks et inventaire · démo</span></div><img src="stocks.webp" width="1600" height="813" alt="Tableau de bord du stock d'un atelier fictif : valeur du stock, alertes, montant à commander, stock dormant, valeur par catégorie"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">02 · À commander</p><h2>La commande prête, fournisseur par fournisseur</h2><p>Tout article au seuil ou dessous rejoint la liste à commander, avec la quantité proposée et le coût estimé au dernier prix.</p>
+      <ul><li>Regroupement par fournisseur</li><li>« Copier la commande » : un texte à coller dans votre messagerie</li><li>« Réception » enregistre l'entrée et met le coût moyen à jour</li></ul></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>À commander · démo</span></div><img src="commander.webp" width="1600" height="813" alt="Liste à commander regroupée par fournisseur : articles sous le seuil, quantités proposées et coût estimé" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">03 · Devis</p><h2>Un devis juste au centime, en quelques minutes</h2><p>Mariage, cérémonie, événement, commande d'un restaurant ou d'une boutique revendeuse : vos prestations et vos produits viennent du catalogue, les totaux se calculent seuls.</p>
+      <ul><li>TVA par taux, remise, acompte et mentions obligatoires</li><li>Aperçu A4 à imprimer ou enregistrer en PDF</li><li>Chaque devis suivi : en attente, accepté, refusé, validité dépassée</li></ul></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Générateur de devis · démo</span></div><img src="devis.webp" width="1600" height="813" alt="Liste des devis d'un artisan fictif : en attente, acceptés, taux d'acceptation, validité dépassée" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">04 · Trésorerie</p><h2>Le creux vu avant qu'il n'arrive</h2><p>Les encaissements et les décaissements prévus sur douze mois, puis le solde de fin de mois comparé à votre seuil d'alerte : utile avant une grosse commande de matières ou une saison chargée.</p>
+      <ul><li>Trois scénarios : prudent, central, optimiste</li><li>Pointage du réalisé, mois par mois</li><li>Plan de trésorerie exportable pour la banque</li></ul></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Trésorerie prévisionnelle · démo</span></div><img src="tresorerie.webp" width="1600" height="813" alt="Synthèse de trésorerie d'un atelier fictif : passage sous le seuil annoncé, point bas et solde de fin de mois sur douze mois" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">05 · TVA</p><h2>La TVA de chaque période, sans échéance ratée</h2><p>Pour les entreprises qui facturent la TVA (régime réel de TVA) : chaque vente et chaque achat saisis au centime, la TVA collectée et déductible de la période, l'échéancier des déclarations et les points à contrôler.</p>
+      <ul><li>Collectée, déductible, crédit reporté</li><li>Échéances signalées avant la date</li><li>Contrôles avant de déclarer, export pour l'expert-comptable</li></ul></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Suivi de TVA · démo</span></div><img src="tva.webp" width="1600" height="813" alt="Synthèse TVA d'une menuiserie fictive : TVA de la période, échéance en retard, crédit reporté, contrôles et graphique sur douze périodes" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">06 · Livre des recettes</p><h2>Pour les micro-entrepreneurs seulement</h2><p>Le livre des recettes et des dépenses de la micro-entreprise, avec les cotisations estimées et les seuils surveillés. Si votre atelier est en société ou hors du régime micro, il ne vous sert pas : prenez les autres outils seuls.</p>
+      <ul><li>Recettes datées avec leur pièce justificative</li><li>Cotisations, impôt et formation estimés</li><li>Seuils de chiffre d'affaires et de franchise de TVA surveillés</li></ul></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Livre recettes-dépenses · démo</span></div><img src="livre.webp" width="1600" height="813" alt="Livre des recettes d'un atelier de céramique fictif : chiffre d'affaires, cotisations estimées, seuil à surveiller et liste des recettes" loading="lazy"></figure></div>
+  </section>
+
+  <h2 class="t">Prêt à l'emploi, ou sur mesure</h2>
+  <p class="sous">Les outils sont prêts : ils s'ouvrent en ligne, sur ordinateur, tablette ou téléphone, et vos données sont synchronisées. Ils ne se connectent à aucune caisse ni à aucune banque : vous saisissez, ils calculent. Si votre atelier demande autre chose, je le construis pour vous.</p>
+  <div class="deux">
+    <div>
+      <h3>Le pack Commerçant et artisan</h3>
+      <p class="prix">95 € au lieu de 127 €, achat unique, sans abonnement ni renouvellement</p>
+      <ul class="prixl"><li><span>Stocks et inventaire</span><span>25 €</span></li><li><span>Générateur de devis</span><span>29 €</span></li><li><span>Trésorerie prévisionnelle</span><span>29 €</span></li><li><span>Suivi de TVA (entreprises qui facturent la TVA)</span><span>19 €</span></li><li><span>Livre recettes-dépenses (micro-entreprise)</span><span>25 €</span></li></ul>
+      <p>Chaque outil s'achète aussi seul, et chacun s'essaie 14 jours gratuitement avec vos propres données, sans carte bancaire.</p>
+      <div class="ctas"><a class="btn" href="/packs/commercant-artisan/" data-goatcounter-click="concept-artisans-boutique-pack" data-goatcounter-title="Concept artisans-boutique : page du pack">Voir le pack · 95 €</a><a class="btn line" href="/templates/stocks/?demo" data-goatcounter-click="concept-artisans-boutique-demo-offre" data-goatcounter-title="Concept artisans-boutique : démo (offre)">Essayer la démo</a></div>
+    </div>
+    <div>
+      <h3>La version sur mesure</h3>
+      <p class="prix">Adaptée à votre atelier</p>
+      <ul><li>Vos recettes de fabrication : matières consommées à chaque brassin, fournée ou bouquet</li><li>Vos fûts et leurs retours, vos dates limites, vos lots</li><li>Vos devis types (mariage, deuil, événement) et vos tarifs professionnels</li></ul>
+      <a class="btn line" href="mailto:quentin.morel@qm-engineering.fr?subject=Atelier%20%C2%B7%20version%20sur%20mesure" data-goatcounter-click="concept-artisans-boutique-sur-mesure" data-goatcounter-title="Concept artisans-boutique : sur mesure">Décrire mon besoin</a>
+    </div>
+  </div>
+
+  <p class="note">Ce sont des outils de gestion, pas un logiciel comptable ni un logiciel de caisse. Les taux et les échéances de TVA et de cotisations sont datés et sourcés dans chaque outil ; ils ne remplacent pas le conseil de votre expert-comptable. Le générateur fait des devis, pas des factures. Les données de la démo sont fictives et ne quittent pas votre navigateur.</p>
+
+  <section class="fin">
+    <h2>Trente minutes pour voir ce qui vous ferait gagner le plus de temps</h2>
+    <p>Ouvrez la démo, puis dites-moi comment vous suivez aujourd'hui votre stock, vos devis et votre trésorerie : je vous dis franchement si les outils prêts à l'emploi suffisent, lesquels vous servent vraiment, ou ce qu'une version sur mesure changerait.</p>
+    <div class="ctas"><a class="btn" href="mailto:quentin.morel@qm-engineering.fr?subject=Concept%20artisans%20%C2%B7%20%C3%A9change%20de%2030%20minutes" data-goatcounter-click="concept-artisans-boutique-contact-bas" data-goatcounter-title="Concept artisans-boutique : contact (bas)">Échanger 30 minutes</a><a class="btn line" href="/packs/commercant-artisan/" data-goatcounter-click="concept-artisans-boutique-pack-bas" data-goatcounter-title="Concept artisans-boutique : pack (bas)">Voir le pack</a></div>
+  </section>
+</main>
+<footer><div class="wrap">Quentin Morel · QME · Quentin Morel Engineering · quentin.morel@qm-engineering.fr · <a href="/">qm-engineering.fr</a></div></footer>
+<script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
