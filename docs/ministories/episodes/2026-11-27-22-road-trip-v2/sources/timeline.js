@@ -1,0 +1,206 @@
+window.TL = {
+  "episode": "22-road-trip",
+  "duree": 21.6,
+  "carton": {
+    "debut": 17.6,
+    "fin": 21.6
+  },
+  "scenes": [
+    {
+      "id": "S1",
+      "debut": 0,
+      "fin": 4.9,
+      "nom": "Road trip improvisé, étapes en rafale, la carte s'envole"
+    },
+    {
+      "id": "S2",
+      "debut": 4.9,
+      "fin": 8.6,
+      "nom": "Détour de 200 km pour un « plus beau village »"
+    },
+    {
+      "id": "S3",
+      "debut": 8.6,
+      "fin": 10.0,
+      "nom": "La jauge d'essence fond"
+    },
+    {
+      "id": "S4",
+      "debut": 10.0,
+      "fin": 12.3,
+      "nom": "23 h, complet : Carreau dort dans le van"
+    },
+    {
+      "id": "S5",
+      "debut": 12.3,
+      "fin": 16.6,
+      "nom": "Version 2 : Planificateur de voyage (téléphone, jour par jour)"
+    },
+    {
+      "id": "S6",
+      "debut": 16.6,
+      "fin": 19.1,
+      "nom": "Étapes et nuits (itinéraire)"
+    },
+    {
+      "id": "S7",
+      "debut": 19.1,
+      "fin": 21.1,
+      "nom": "Nuit sans toit signalée"
+    },
+    {
+      "id": "S8",
+      "debut": 21.1,
+      "fin": 23.2,
+      "nom": "Budget prévu et réel"
+    },
+    {
+      "id": "S9",
+      "debut": 23.2,
+      "fin": 26.0,
+      "nom": "Payoff : même route, une étape prévue et un lit"
+    },
+    {
+      "id": "S10",
+      "debut": 26.0,
+      "fin": 30.0,
+      "nom": "Carton final officiel"
+    }
+  ],
+  "voix": [
+    {
+      "id": "v01",
+      "t": 0.15,
+      "texte": "Un van. Aucun plan. Qu'est-ce qui peut rater ?",
+      "fin": 2.95
+    },
+    {
+      "id": "v02",
+      "t": 3.25,
+      "texte": "Détour : deux cents kilomètres. Pour un « plus beau village ».",
+      "fin": 7.3
+    },
+    {
+      "id": "v03",
+      "t": 7.6,
+      "texte": "L'essence fond.",
+      "fin": 8.34
+    },
+    {
+      "id": "v04",
+      "t": 8.64,
+      "texte": "Vingt-trois heures : complet. Nuit dans le van.",
+      "fin": 11.44
+    },
+    {
+      "id": "v05",
+      "t": 11.74,
+      "texte": "L'appli l'avait signalé : nuit sans toit.",
+      "fin": 14.06
+    },
+    {
+      "id": "v06",
+      "t": 14.36,
+      "texte": "Prochain road trip : même van. Avec un lit.",
+      "fin": 17.34
+    }
+  ],
+  "bruitages": [
+    {
+      "son": "whoosh",
+      "t": 3.02
+    },
+    {
+      "son": "pose",
+      "t": 7.4
+    },
+    {
+      "son": "zap",
+      "t": 8.4
+    },
+    {
+      "son": "whoosh",
+      "t": 11.5
+    },
+    {
+      "son": "ding",
+      "t": 14.1
+    },
+    {
+      "son": "kaching",
+      "t": 17.4
+    }
+  ],
+  "voix_source": {
+    "fichier": "audio/elevenlabs/voix-elevenlabs.wav",
+    "decalage": 0.15,
+    "origine": "ElevenLabs, voix « Caroline - Warm, Sweet and Soft » (kwhMCf63M8O3rCfnQ3oQ), eleven_v4, générée le 27/11/2026, format v2 (flow 7uVfOTDaGEJAlB6ZYmOG, 259 crédits, une génération, prise brute 18,16 s) ; cinq silences entre répliques ramenés à 0,30 s (prise montée 17,27 s)"
+  },
+  "montage": [
+    [
+      0,
+      0
+    ],
+    [
+      2.95,
+      4.0
+    ],
+    [
+      3.25,
+      4.9
+    ],
+    [
+      3.3,
+      5.16
+    ],
+    [
+      4.6,
+      7.4
+    ],
+    [
+      7.3,
+      8.5
+    ],
+    [
+      7.31,
+      8.6
+    ],
+    [
+      8.5,
+      10.0
+    ],
+    [
+      9.7,
+      10.6
+    ],
+    [
+      10.5,
+      11.2
+    ],
+    [
+      11.6,
+      12.29
+    ],
+    [
+      11.61,
+      19.1
+    ],
+    [
+      12.3,
+      19.6
+    ],
+    [
+      14.2,
+      21.09
+    ],
+    [
+      14.21,
+      23.2
+    ],
+    [
+      17.6,
+      26.0
+    ]
+  ],
+  "accroche": "200 km de détour. Et toujours pas de lit."
+};

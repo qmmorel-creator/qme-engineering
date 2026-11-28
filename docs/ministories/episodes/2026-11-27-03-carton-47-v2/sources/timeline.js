@@ -1,0 +1,218 @@
+window.TL = {
+  "episode": "03-carton-47",
+  "duree": 21.7,
+  "carton": {
+    "debut": 17.7,
+    "fin": 21.7
+  },
+  "scenes": [
+    {
+      "id": "S1",
+      "debut": 0,
+      "fin": 3.0,
+      "nom": "22 h, pas de thé"
+    },
+    {
+      "id": "S2",
+      "debut": 3.0,
+      "fin": 8.3,
+      "nom": "Carton 1, 12, 30"
+    },
+    {
+      "id": "S3",
+      "debut": 8.3,
+      "fin": 12.6,
+      "nom": "46 cartons : panique"
+    },
+    {
+      "id": "S4",
+      "debut": 12.6,
+      "fin": 20.45,
+      "nom": "Déménagement : la recherche"
+    },
+    {
+      "id": "S5",
+      "debut": 20.45,
+      "fin": 30.0,
+      "nom": "Le carton 47"
+    },
+    {
+      "id": "S6",
+      "debut": 30.0,
+      "fin": 34.0,
+      "nom": "Carton final officiel"
+    }
+  ],
+  "voix": [
+    {
+      "id": "v01",
+      "t": 0.3,
+      "texte": "Il veut juste un thé. Où est la bouilloire ?",
+      "fin": 2.44
+    },
+    {
+      "id": "v02",
+      "t": 3.02,
+      "texte": "Carton un : des chaussettes.",
+      "fin": 4.82
+    },
+    {
+      "id": "v03",
+      "t": 5.27,
+      "texte": "Carton douze : encore des chaussettes.",
+      "fin": 7.48
+    },
+    {
+      "id": "v04",
+      "t": 7.92,
+      "texte": "Carton trente : un cactus ?",
+      "fin": 9.72
+    },
+    {
+      "id": "v05",
+      "t": 10.16,
+      "texte": "Quarante-six. Rien.",
+      "fin": 11.56
+    },
+    {
+      "id": "v06",
+      "t": 12.02,
+      "texte": "Une recherche : carton quarante-sept.",
+      "fin": 14.07
+    },
+    {
+      "id": "v07",
+      "t": 14.43,
+      "texte": "Le dernier. Évidemment.",
+      "fin": 15.89
+    },
+    {
+      "id": "v08",
+      "t": 16.34,
+      "texte": "Enfin, son thé.",
+      "fin": 17.53
+    }
+  ],
+  "bruitages": [
+    {
+      "son": "pop",
+      "t": 2.95
+    },
+    {
+      "son": "pop",
+      "t": 5.0
+    },
+    {
+      "son": "pop",
+      "t": 7.6
+    },
+    {
+      "son": "zap",
+      "t": 9.8
+    },
+    {
+      "son": "whoosh",
+      "t": 11.6
+    },
+    {
+      "son": "ding",
+      "t": 14.1
+    },
+    {
+      "son": "pop",
+      "t": 15.9
+    },
+    {
+      "son": "kaching",
+      "t": 17.55
+    }
+  ],
+  "voix_source": {
+    "fichier": "audio/elevenlabs/voix-elevenlabs.wav",
+    "decalage": 0.3,
+    "origine": "ElevenLabs, voix « Caroline - Warm, Sweet and Soft » (eleven_v4), générée le 27/11/2026, format v2"
+  },
+  "montage": [
+    [
+      0,
+      0
+    ],
+    [
+      0.3,
+      0.3
+    ],
+    [
+      2.6,
+      2.9
+    ],
+    [
+      3.02,
+      3.0
+    ],
+    [
+      5.27,
+      4.6
+    ],
+    [
+      7.92,
+      6.45
+    ],
+    [
+      10.16,
+      8.3
+    ],
+    [
+      10.9,
+      11.0
+    ],
+    [
+      11.56,
+      11.6
+    ],
+    [
+      12.02,
+      12.6
+    ],
+    [
+      12.5,
+      13.1
+    ],
+    [
+      12.55,
+      17.3
+    ],
+    [
+      13.0,
+      18.4
+    ],
+    [
+      13.4,
+      18.75
+    ],
+    [
+      14.3,
+      20.2
+    ],
+    [
+      14.43,
+      20.45
+    ],
+    [
+      15.4,
+      23.0
+    ],
+    [
+      16.34,
+      23.35
+    ],
+    [
+      17.7,
+      24.7
+    ],
+    [
+      21.7,
+      28.7
+    ]
+  ],
+  "accroche": "46 cartons ouverts. Toujours pas de bouilloire."
+};

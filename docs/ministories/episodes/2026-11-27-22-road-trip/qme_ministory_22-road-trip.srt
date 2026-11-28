@@ -1,0 +1,40 @@
+1
+00:00:00,150 --> 00:00:01,500
+Road trip improvisé.
+
+2
+00:00:01,840 --> 00:00:04,690
+Une étape. Puis une autre. Puis une autre.
+
+3
+00:00:05,160 --> 00:00:08,450
+Détour de deux cents kilomètres pour un « plus beau village ».
+
+4
+00:00:08,850 --> 00:00:09,650
+L'essence fond.
+
+5
+00:00:10,110 --> 00:00:11,910
+Vingt-trois heures. Pas de lit.
+
+6
+00:00:12,400 --> 00:00:16,380
+Version deux : le Planificateur de voyage, de QME.
+
+7
+00:00:16,820 --> 00:00:18,740
+Étapes et nuits, jour par jour.
+
+8
+00:00:19,300 --> 00:00:20,840
+Une nuit sans toit est signalée.
+
+9
+00:00:21,210 --> 00:00:22,920
+Budget prévu, et réel.
+
+10
+00:00:23,330 --> 00:00:26,000
+Même route. Ce soir : un lit.
+

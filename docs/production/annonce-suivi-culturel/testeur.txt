@@ -1,0 +1,24 @@
+Objet : Le Suivi de lecture que vous avez essayé devient le Suivi culturel
+
+Bonjour{{prenom_virgule}}
+
+Vous avez essayé le Suivi de lecture QME. Il s’enrichit :
+
+- Films et séries : saisons et épisodes compris, avec votre note et votre avis.
+- Podcasts et livres audio : suivis en minutes ou en épisodes, comme vos livres en pages.
+- Recherche intégrée : tapez quelques lettres, l’œuvre est retrouvée, même avec une faute de frappe. La saisie à la main reste possible.
+- Objectifs et statistiques par média : livres, films, séries et podcasts, votre année en un coup d’œil.
+
+Votre essai est encore ouvert ? Tout ce que vous y avez saisi est repris si vous l’achetez. Achat unique, 12 €, sans abonnement.
+
+Rouvrir mon essai : https://qm-engineering.fr/essai/?t=lecture&utm_source=email&utm_medium=annonce&utm_campaign=suivi-culturel-2026-12
+L’acheter (12 €) : https://qmengineering.gumroad.com/l/suivi-lecture
+
+Une idée, un réglage qui vous manque ? Répondez simplement à cet e-mail : c'est moi qui le lis.
+
+Quentin Morel
+QM Engineering · qm-engineering.fr
+
+—
+Vous recevez cet e-mail parce que vous avez essayé le Suivi de lecture QME.
+Ne plus recevoir les informations : https://qm-engineering.fr/ne-plus-recevoir/?email={{email}}
