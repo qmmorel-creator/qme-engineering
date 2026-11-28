@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Concept pour les clubs qui organisent leur compétition · QME</title>
+<meta name="description" content="La saison d'un club sportif qui organise sa compétition annuelle, de l'inscription des adhérents au podium : inscrits et dossards, vagues, classement en direct, bénévoles du jour J, subvention, assemblée générale et trésorerie. Pack prêt à l'emploi, adaptable sur mesure. Données fictives.">
+<link rel="stylesheet" href="/assets/fonts/outfit.css?v=20261113">
+<link rel="icon" type="image/svg+xml" href="/assets/qme-symbole.svg?v=20261026">
+<style>
+:root{--ink:#141414;--red:#D9302A;--yel:#F5B400;--blue:#1F4E9C;--paper:#F0EDE6;--muted:#5d5a55;--line:#d8d3c9}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 "Outfit",system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+a{color:inherit}
+header{padding:20px 0;border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;letter-spacing:.04em}
+.brand small{display:block;font-weight:500;letter-spacing:0;color:var(--muted);font-size:13px;line-height:1.2}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;text-decoration:none;font-weight:600;padding:12px 20px;border-radius:999px;border:2px solid var(--red)}
+.btn.line{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.hero{padding:44px 0 30px}
+.eb{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--red);margin:0 0 12px}
+h1{font-size:clamp(30px,4.6vw,52px);line-height:1.05;margin:0 0 16px;font-weight:700;max-width:20ch;letter-spacing:-.01em}
+.lede{max-width:66ch;color:var(--muted);font-size:clamp(16px,1.6vw,18px);margin:0 0 24px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.fict{font-size:13.5px;color:var(--muted);margin:16px 0 0}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:18px 0 56px}
+.trio div{background:#fff;border-radius:6px;padding:20px;border-top:6px solid var(--ink)}
+.trio div:nth-child(2){border-color:var(--yel)}.trio div:nth-child(3){border-color:var(--red)}
+.trio h2{font-size:14px;text-transform:uppercase;letter-spacing:.07em;margin:0 0 8px}
+.trio p{margin:0}
+.sec{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:36px;align-items:center;margin:0 0 64px}
+.sec>div{min-width:0}
+.sec:nth-of-type(even){grid-template-columns:minmax(0,8fr) minmax(0,4fr)}
+.sec:nth-of-type(even) .txt{order:2}
+.num{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--red);margin:0 0 8px}
+.sec h2{font-size:clamp(24px,3vw,34px);line-height:1.1;margin:0 0 12px}
+.sec p{color:var(--muted);margin:0 0 14px}
+.sec ul{list-style:none;margin:0;padding:0}
+.sec li{position:relative;padding:6px 0 6px 22px;border-bottom:1px solid var(--line)}
+.sec li::before{content:"";position:absolute;left:0;top:14px;width:10px;height:10px;background:var(--red)}
+.cap{margin:0;background:#fff;border-radius:10px;box-shadow:0 14px 40px rgba(20,20,20,.14);overflow:hidden}
+.cap .barre{display:flex;align-items:center;gap:6px;background:var(--ink);color:#fff;padding:9px 12px;font-size:13px}
+.cap .barre i{width:9px;height:9px;border-radius:50%;background:#555}.cap .barre i:first-child{background:var(--red)}.cap .barre i:nth-child(2){background:var(--yel)}
+.cap .barre span{margin-left:8px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cap img{display:block;width:100%;height:auto}
+h2.t{font-size:clamp(24px,3vw,34px);margin:0 0 8px}.sous{color:var(--muted);margin:0 0 20px;max-width:64ch}
+.deux{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 60px}
+.deux>div{background:#fff;border-radius:8px;padding:24px;border-top:8px solid var(--blue)}
+.deux>div:last-child{border-color:var(--red)}
+.outils{list-style:none;margin:0 0 18px;padding:0}.deux .outils li{display:flex;justify-content:space-between;gap:12px}.outils li span:last-child{white-space:nowrap;font-weight:600}
+.sec .txt a{font-weight:600}
+.deux h3{margin:0 0 6px;font-size:21px}.deux .prix{font-weight:700;margin:0 0 12px}
+.deux ul{list-style:none;margin:0 0 18px;padding:0}.deux li{padding:7px 0 7px 20px;border-bottom:1px solid var(--line);position:relative}
+.deux li::before{content:"";position:absolute;left:0;top:15px;width:9px;height:9px;background:var(--yel)}
+.note{font-size:14px;color:var(--muted);background:#fff;border-left:4px solid var(--yel);padding:12px 16px;margin:0 0 50px;max-width:80ch}
+.fin{background:var(--ink);color:#fff;border-radius:10px;padding:34px;margin:0 0 50px}
+.fin h2{margin:0 0 10px;font-size:clamp(22px,2.8vw,30px)}.fin p{color:#d8d3c9;margin:0 0 20px;max-width:64ch}
+.fin .btn.line{color:#fff;border-color:rgba(255,255,255,.5)}
+footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--muted);font-size:14px;overflow-wrap:anywhere}
+@media (max-width:860px){.trio,.deux{grid-template-columns:1fr}.sec,.sec:nth-of-type(even){grid-template-columns:minmax(0,1fr);gap:18px}.sec:nth-of-type(even) .txt{order:0}}
+@media (max-width:560px){.fin{padding:24px}.btn{padding:11px 16px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="/" aria-label="Accueil QME">
+    <svg viewBox="0 0 80 80" width="34" height="34" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="#141414"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg>
+    <span>QME<small>Quentin Morel Engineering</small></span>
+  </a>
+  <a class="btn line" href="/templates/competition/?demo" data-goatcounter-click="concept-clubs-competition-demo-haut" data-goatcounter-title="Concept clubs compétition : démo (haut)">Ouvrir la démo</a>
+</div></header>
+<main class="wrap">
+  <section class="hero">
+    <p class="eb">Concept pour les clubs et associations sportives qui organisent une compétition · pack prêt à l'emploi</p>
+    <h1>De l'inscription des adhérents au podium, une saison tenue.</h1>
+    <p class="lede">Judo, gymnastique, escalade, trail, triathlon, natation : un club qui organise sa compétition annuelle gère en réalité toute une saison. Les inscriptions de la rentrée, la préparation de l'épreuve, les inscrits et leurs dossards, les vagues, le classement que tout le monde attend, les bénévoles du jour J, le dossier de subvention, l'assemblée générale et la caisse du club. Sept outils en ligne, déjà prêts, réunis dans un pack et adaptables sur mesure.</p>
+    <div class="ctas">
+      <a class="btn" href="/templates/competition/?demo" data-goatcounter-click="concept-clubs-competition-demo" data-goatcounter-title="Concept clubs compétition : démo">Essayer la démo de la compétition</a>
+      <a class="btn line" href="/packs/associations/" data-goatcounter-click="concept-clubs-competition-pack" data-goatcounter-title="Concept clubs compétition : pack">Voir le pack · 156 €</a>
+    </div>
+    <p class="fict">Chaque démo ouvre une association fictive, sans inscription. Elle reste dans votre navigateur et n'envoie rien. Toutes les données affichées sur cette page sont fictives.</p>
+  </section>
+
+  <div class="trio">
+    <div><h2>Le quotidien</h2><p>Un tableur pour les adhérents, un autre pour les inscrits de la compétition, les vagues sur un tableau blanc, les bénévoles dans une conversation de groupe, le dossier de subvention dans un classeur.</p></div>
+    <div><h2>Ce que cela coûte</h2><p>Des soirées de bénévoles à recopier des listes, un classement attendu pendant que les juges additionnent, un poste vide à la buvette, une échéance de subvention ratée, une AG préparée la veille.</p></div>
+    <div><h2>Ce que fait le pack</h2><p>Chaque étape de la saison a son outil : les calculs (places, horaires, classement, quorum, solde) sont faits pour vous, et le bureau partage la même clé.</p></div>
+  </div>
+
+  <section class="sec">
+    <div class="txt"><p class="num">01 · Rentrée</p><h2>Les adhérents inscrits, les créneaux remplis</h2><p>Septembre : chaque activité avec ses créneaux, sa capacité et sa liste d'attente, chaque famille avec ce qu'elle a payé et ce qu'elle doit encore.</p>
+      <ul><li>Places prises sur capacité, liste d'attente par créneau</li><li>Tarifs par tranche, paiement en plusieurs fois, impayés en retard</li><li>Listes d'appel prêtes pour les entraîneurs</li></ul><p style="margin:14px 0 0"><a href="/templates/inscriptions/?demo" data-goatcounter-click="concept-clubs-competition-demo-adherents" data-goatcounter-title="Concept clubs compétition : démo Rentrée">Ouvrir cette démo</a></p></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Inscriptions associatives · activités · démo</span></div><img src="adherents.webp" width="1600" height="813" alt="Activités d'une association fictive : créneaux, places prises sur capacité, tarifs par tranche"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">02 · Préparation</p><h2>La compétition préparée à rebours</h2><p>Salle, arbitres, récompenses, buvette, communication : chaque tâche datée depuis le jour de la compétition, avec son responsable, et le budget prévu, engagé et payé.</p>
+      <ul><li>Échéances calculées depuis la date : changer la date décale tout</li><li>Tâches en retard signalées, responsable par tâche</li><li>Budget, prestataires et acomptes suivis au même endroit</li></ul><p style="margin:14px 0 0"><a href="/templates/evenementiel/?demo" data-goatcounter-click="concept-clubs-competition-demo-retroplanning" data-goatcounter-title="Concept clubs compétition : démo Préparation">Ouvrir cette démo</a></p></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Organisateur d'événement · rétroplanning · démo</span></div><img src="retroplanning.webp" width="1600" height="813" alt="Rétroplanning d'un événement fictif de la démo : tâches datées à rebours, tâche en retard signalée" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">03 · Inscriptions</p><h2>Les inscrits et leurs dossards</h2><p>Athlètes ou équipes, catégorie, club, statut inscrit, confirmé ou forfait, paiement et pièces vérifiées. Une liste collée depuis un formulaire suffit à tout importer.</p>
+      <ul><li>Dossard attribué automatiquement</li><li>Filtres par catégorie et par statut, recherche</li><li>Export CSV, avec ou sans coordonnées</li></ul><p style="margin:14px 0 0"><a href="/templates/competition/?demo" data-goatcounter-click="concept-clubs-competition-demo-dossards" data-goatcounter-title="Concept clubs compétition : démo Inscriptions">Ouvrir cette démo</a></p></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Gestion de compétition · inscrits · démo</span></div><img src="dossards.webp" width="1600" height="813" alt="Liste des inscrits d'une compétition fictive : dossards, catégories, filtres par statut" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">04 · Programme</p><h2>Les vagues et leurs horaires calculés</h2><p>Chaque épreuve dans l'ordre du programme, les vagues générées par catégorie selon le nombre de couloirs, et l'horaire de chaque vague calculé.</p>
+      <ul><li>Vagues équilibrées, ordre par dossard, tirage ou classement inversé</li><li>Repos insuffisant entre deux vagues signalé</li><li>Feuilles de juge imprimables, une vague par page</li></ul></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Gestion de compétition · épreuves et vagues · démo</span></div><img src="vagues.webp" width="1600" height="813" alt="Épreuves d'une compétition fictive avec leurs vagues générées et leurs horaires" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">05 · Jour J</p><h2>Les bénévoles à leur poste, sans trou ni doublon</h2><p>Accueil, buvette, chronométrage, montage : qui tient quel poste à quelle heure, et ce qui reste à pourvoir, bien avant le matin de la compétition.</p>
+      <ul><li>Créneaux à pourvoir visibles d'un coup d'œil</li><li>La même personne à deux endroits en même temps : signalée</li><li>Planning imprimable par poste ou par personne</li></ul><p style="margin:14px 0 0"><a href="/templates/benevoles/?demo" data-goatcounter-click="concept-clubs-competition-demo-benevoles" data-goatcounter-title="Concept clubs compétition : démo Jour J">Ouvrir cette démo</a></p></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Bénévoles et créneaux · planning · démo</span></div><img src="benevoles.webp" width="1600" height="813" alt="Planning des bénévoles d'un événement fictif : créneaux par poste, places à pourvoir, conflits signalés" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">06 · Résultats</p><h2>Le classement en direct, affiché au bord du plateau</h2><p>Les scores saisis au téléphone par les juges, le classement recalculé à chaque saisie, et l'affichage sur grand écran ou sur le téléphone des spectateurs.</p>
+      <ul><li>Classement par catégorie, aux règles que vous choisissez</li><li>Mode écran et lien spectateurs en lecture seule</li><li>Aucune coordonnée publiée</li></ul></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Gestion de compétition · classement · démo</span></div><img src="classement.webp" width="1600" height="813" alt="Classement d'une catégorie d'une compétition fictive, rang et points par épreuve" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">07 · Financement</p><h2>Le dossier de subvention déposé à temps</h2><p>Un dossier par financeur (commune, département, région, fondation, mécène), les pièces à joindre cochées, une alerte avant chaque échéance et le bilan préparé pendant la saison.</p>
+      <ul><li>Montants demandés, accordés et reste à percevoir</li><li>Échéances de dépôt et de bilan rappelées</li><li>Justificatifs rangés au fil de l'eau</li></ul><p style="margin:14px 0 0"><a href="/templates/subventions/?demo" data-goatcounter-click="concept-clubs-competition-demo-subvention" data-goatcounter-title="Concept clubs compétition : démo Financement">Ouvrir cette démo</a></p></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Subventions · dossiers · démo</span></div><img src="subvention.webp" width="1600" height="813" alt="Dossiers de subvention d'une association fictive, par financeur et par statut" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">08 · Fin de saison</p><h2>L'assemblée générale en règle</h2><p>Le rétroplanning daté depuis le délai de convocation de vos statuts, la convocation prête, la feuille de présence et les pouvoirs, le quorum et les votes calculés, puis le procès-verbal.</p>
+      <ul><li>Délais, quorum et majorités saisis d'après vos statuts</li><li>Mandats du bureau suivis jusqu'au renouvellement</li><li>Procès-verbal imprimable</li></ul><p style="margin:14px 0 0"><a href="/templates/assemblee-generale/?demo" data-goatcounter-click="concept-clubs-competition-demo-ag" data-goatcounter-title="Concept clubs compétition : démo Fin de saison">Ouvrir cette démo</a></p></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Assemblée générale · aperçu · démo</span></div><img src="ag.webp" width="1600" height="813" alt="Aperçu de la préparation d'une assemblée générale fictive : J-6, votants, mandats à renouveler" loading="lazy"></figure></div>
+  </section>
+
+  <section class="sec">
+    <div class="txt"><p class="num">09 · Trésorerie</p><h2>La caisse du club, douze mois devant vous</h2><p>Cotisations, engagements, buvette et subventions d'un côté ; salle, arbitrage, récompenses et licences de l'autre : le solde de chaque fin de mois, avant que le creux n'arrive.</p>
+      <ul><li>Seuil d'alerte et mois sous le seuil signalés</li><li>Scénarios prudent, central et optimiste</li><li>Pointage du réalisé et export CSV</li></ul><p style="margin:14px 0 0"><a href="/templates/tresorerie/?demo" data-goatcounter-click="concept-clubs-competition-demo-tresorerie" data-goatcounter-title="Concept clubs compétition : démo Trésorerie">Ouvrir cette démo</a></p></div>
+    <div><figure class="cap"><div class="barre"><i></i><i></i><i></i><span>Trésorerie prévisionnelle · synthèse · démo</span></div><img src="tresorerie.webp" width="1600" height="813" alt="Synthèse d'une trésorerie fictive : solde de fin de mois sur douze mois, seuil et scénarios" loading="lazy"></figure></div>
+  </section>
+
+  <h2 class="t">Prêt à l'emploi, ou sur mesure</h2>
+  <p class="sous">Les sept outils sont prêts : ils s'ouvrent en ligne, sur ordinateur, tablette ou téléphone, avec une seule clé partagée entre les membres du bureau, et vos données sont synchronisées. Si votre club demande autre chose, je le construis pour vous.</p>
+  <div class="deux">
+    <div>
+      <h3>Le pack Associations et clubs</h3>
+      <p class="prix">156 € au lieu de 209 €, achat unique, sans abonnement ni renouvellement</p>
+      <ul class="outils"><li><span>Inscriptions associatives</span><span>29 €</span></li><li><span>Organisateur d'événement</span><span>39 €</span></li><li><span>Trésorerie prévisionnelle</span><span>29 €</span></li><li><span>Gestion de compétition sportive</span><span>49 €</span></li><li><span>Subventions</span><span>25 €</span></li><li><span>Bénévoles et planning des créneaux</span><span>19 €</span></li><li><span>Assemblée générale</span><span>19 €</span></li></ul>
+      <p class="sous" style="font-size:14.5px">Chaque outil s'achète aussi seul et s'essaie 14 jours gratuitement, sans carte bancaire.</p>
+      <div class="ctas"><a class="btn" href="/packs/associations/" data-goatcounter-click="concept-clubs-competition-achat" data-goatcounter-title="Concept clubs compétition : page du pack">Voir le pack · 156 €</a><a class="btn line" href="/templates/competition/?demo" data-goatcounter-click="concept-clubs-competition-demo-offre" data-goatcounter-title="Concept clubs compétition : démo (offre)">Essayer la démo</a></div>
+    </div>
+    <div>
+      <h3>La version sur mesure</h3>
+      <p class="prix">Adaptée à votre club et à votre discipline</p>
+      <ul><li>Votre barème et vos règles de classement, vos catégories d'âge ou de poids</li><li>Les inscriptions ouvertes en ligne aux participants extérieurs</li><li>Vos documents : licences vérifiées, attestations, résultats à publier</li></ul>
+      <a class="btn line" href="mailto:quentin.morel@qm-engineering.fr?subject=Club%20%C2%B7%20version%20sur%20mesure" data-goatcounter-click="concept-clubs-competition-sur-mesure" data-goatcounter-title="Concept clubs compétition : sur mesure">Décrire mon besoin</a>
+    </div>
+  </div>
+
+  <p class="note">La gestion de compétition est un outil d'organisation, pas un logiciel fédéral homologué : les règles de classement sont celles que vous choisissez. Les délais, quorums et majorités de l'assemblée générale se saisissent d'après vos statuts. L'exemple du rétroplanning est un événement de la démo : vous y créez votre compétition. Les données de la démo sont fictives et ne quittent pas votre navigateur.</p>
+
+  <section class="fin">
+    <h2>Trente minutes pour voir ce qui ferait gagner le plus de temps au bureau</h2>
+    <p>Ouvrez la démo, puis dites-moi comment votre club organise sa compétition aujourd'hui : je vous dis franchement si le pack prêt à l'emploi suffit, ou ce qu'une version sur mesure changerait.</p>
+    <div class="ctas"><a class="btn" href="mailto:quentin.morel@qm-engineering.fr?subject=Concept%20clubs%20%C2%B7%20%C3%A9change%20de%2030%20minutes" data-goatcounter-click="concept-clubs-competition-contact-bas" data-goatcounter-title="Concept clubs compétition : contact (bas)">Échanger 30 minutes</a><a class="btn line" href="/packs/associations/" data-goatcounter-click="concept-clubs-competition-pack-bas" data-goatcounter-title="Concept clubs compétition : pack (bas)">Voir le pack</a></div>
+  </section>
+</main>
+<footer><div class="wrap">Quentin Morel · QME · Quentin Morel Engineering · quentin.morel@qm-engineering.fr · <a href="/">qm-engineering.fr</a></div></footer>
+<script data-goatcounter="https://qme-engineering.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

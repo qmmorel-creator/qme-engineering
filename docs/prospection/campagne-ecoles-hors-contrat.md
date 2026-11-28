@@ -70,5 +70,6 @@ officiel (Avicenne, Yunus Emre, Saint-Dominique, Saint-Bernard, Collège Louis e
 
 | Date | Partis | Réponses | Oppositions | Notes |
 |---|---|---|---|---|
+| 2026-11-28 | 0 | 0 | 0 | Feu vert de Quentin (« go 8 campagnes », 28/11 12:55, vérifié dans la session Audit) : PR #332 fusionnée (squash 7d54b71), page en production (200, noindex, 83 €) ; campagne `ecoles-hors-contrat` créée sans parJour, 160 mails en file (doublons relancé : 0 écarté ; opposition : 0), 160 fiches Nexora `ehc-*` (`a-contacter`), concept `en-ligne` ; pause levée à 14:08 ; tâche planifiée de pilotage lun–sam 18:57 (trig_016NWzdHjzHdLM393bxtDXyh) |
 | 2026-11-27 | 0 | 0 | 0 | Mail et page passés à 83 € (décision de Quentin, PR #347 à fusionner avant) ; brouillon Gmail de validation refait |
 | 2026-11-27 | 0 | 0 | 0 | Page (PR #332), captures, modèle de mail, brouillon Gmail de validation ; lot 1 : 160 adresses contrôlées ; rien en file, campagne non créée |
