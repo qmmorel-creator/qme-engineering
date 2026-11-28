@@ -36,6 +36,7 @@ const de = (p) => {
   if (/^[aeiouyhàâäéèêëîïôöùûü]/i.test(n)) return `de l'${n}`;
   if (MASC.test(n)) return `du ${n}`;
   if (FEM.test(n)) return `de la ${n}`;
+  if (/\bClub\b/.test(n)) return `du ${n}`;
   return `du club ${n}`;
 };
 const a = (ville) => {
