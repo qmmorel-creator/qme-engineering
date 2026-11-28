@@ -1,6 +1,6 @@
 // Base intégrée du suivi culturel (anciennement « Suivi de lecture », code PGS) : nom affiché, genres proposés
 // (liste modifiable dans les Réglages), formats, statuts, priorités de la liste « à découvrir », couleurs, conseils.
-// Aucune donnée datée, aucune œuvre réelle. La recherche en ligne (Open Library, TMDB, iTunes) ne fait que
+// Aucune donnée datée, aucune œuvre réelle. La recherche en ligne (Open Library, Wikidata, iTunes) ne fait que
 // préremplir une fiche ; tout reste saisissable à la main.
 window.BASE = {
   version: '2026-11-27',

@@ -9,7 +9,7 @@ sont validés par Quentin (via le GOD) avant toute fusion.
 | Sujet | Avant | Après |
 |---|---|---|
 | Médias | livres (papier, numérique, audio) | livres, livres audio, films, séries (saisons, épisodes), podcasts |
-| Saisie | tout à la main | recherche au fil de la frappe (Open Library, TMDB, iTunes), tolérante aux accents et aux fautes ; saisie à la main toujours possible |
+| Saisie | tout à la main | recherche au fil de la frappe (Open Library, Wikidata, iTunes), tolérante aux accents et aux fautes ; saisie à la main toujours possible |
 | Objectifs | livres, pages | livres (audio compris), pages, films, séries, podcasts, épisodes |
 | Nom | Suivi de lecture | **Suivi culturel** (retenu le 28/11/2026) |
 | Code, fiche Gumroad, URL, prix | PGS, `cfXnYcVohgvMwrn0ONglsQ==`, `/templates/lecture/`, 12 € | **inchangés** (licences et données des acheteurs valables), reste dans le Pack Étudiant |
@@ -46,27 +46,38 @@ s'écrit dans `templates/lecture/donnees.js` (`nom`), `netlify/lib/templates-acc
 - Serveur local : `/api/oeuvres` répond avec des sources simulées (titres inventés) ; `QME_OEUVRES_RESEAU=1` pour
   interroger les vraies sources.
 
-## 4. Clé TMDB : consigne pour Quentin
+## 4. Films et séries : Wikidata (décision de Quentin du 28/11/2026)
 
-Variable Netlify **`TMDB_JETON`** = « jeton d'accès en lecture à l'API » (API Read Access Token, v4). Il passe dans
-l'en-tête `Authorization: Bearer`, jamais dans une URL ni dans le navigateur. (`TMDB_API_KEY`, clé v3, est accepté en
-secours.) Sans variable : films et séries en saisie manuelle, tout le reste fonctionne.
+TMDB est abandonné : ses conditions interdisent l'usage commercial sans accord écrit, et le template est vendu.
+Aucune clé, aucune variable Netlify (`TMDB_JETON` et `TMDB_API_KEY` ne sont plus lues ; ne pas les créer).
 
-1. themoviedb.org › « Rejoindre TMDB » : créer le compte, valider l'e-mail.
-2. Avatar › Paramètres › API › « Créer » (ou « Demander une clé d'API ») › type **Developer**. Usage : application web
-   personnelle de suivi de films et séries ; URL `https://qm-engineering.fr` ; accepter les conditions.
-3. Sur la page API, copier le **Jeton d'accès en lecture à l'API** (longue chaîne commençant par `eyJ`), pas la clé v3.
-4. Netlify › site qm-engineering › Site configuration › Environment variables › Add a variable : `TMDB_JETON`, portée
-   Functions, toutes les branches de déploiement. Redéploiement nécessaire pour la prise en compte.
+- **Source** : point SPARQL `https://query.wikidata.org/sparql`, une requête par recherche (POST, délai 5 s). Recherche
+  plein texte de Wikidata (service `Search` : par mots, accents ignorés, article initial non requis), filtre film
+  `Q11424` ou série télévisée `Q5398426` (sous-classes comprises), puis titre français (anglais à défaut), année la plus
+  ancienne (P577 ou P580), réalisation P57 (film) ou création P170 (série), durée P2047 normalisée (film), nombre de
+  saisons P2437 et d'épisodes P1113 (série). `hint:optimizer "None"` : sans lui, plus de 10 s ; avec, 0,5 à 1 s.
+- **Séries** : épisodes par saison (items « saison » liés par P179, rang P1545) repris seulement si toutes les saisons
+  sont renseignées ; sinon la fiche garde le total d'épisodes (« Épisodes par saison » accepte un nombre total).
+- **Faute de frappe** : même repli que les livres (`intouchabls` → `intouch*`), puis tri par ressemblance.
+- **User-Agent** : `QME-SuiviCulturel/1.0 (https://qm-engineering.fr)` (politique Wikimedia : nom, version, site de
+  contact ; aucune adresse personnelle).
+- **Limites de débit** (mediawiki.org « Wikimedia APIs/Rate limits », 2026) : client non identifié 10 requêtes/min,
+  client identifié 200/min ; SPARQL : 60 s de calcul par minute et 5 requêtes parallèles par IP. Les IP partagées
+  (conteneur de test, Netlify) peuvent recevoir des 429 : le proxy répond alors « indisponible » (saisie à la main), ne
+  garde rien en cache, et le cache de 7 jours plus l'index partagé limitent les appels.
+- **Licence** : CC0, usage commercial permis, aucune attribution obligatoire ; mention « Données : Wikidata (CC0) »
+  affichée dans les résultats, Réglages › Sources et À propos.
+- **Vérifié en réel le 28/11/2026** : « Intouchables » (2011, Éric Toledano et Olivier Nakache, 112 min),
+  « intouchabls » (faute) → Intouchables, « bureau des legendes » → Le Bureau des légendes (2015, Éric Rochant,
+  5 saisons, 50 épisodes ; épisodes par saison connus pour les saisons 1 et 2 seulement).
+- **Ce qui manque par rapport à TMDB** : épisodes par saison souvent incomplets (total seulement) ; durée et
+  réalisation parfois absentes pour les œuvres récentes ou confidentielles (l'utilisateur les complète) ; pas de tri par
+  popularité ; nouveautés ajoutées avec quelques jours ou semaines de retard ; risque de 429 aux heures chargées.
 
 ## 5. Points ouverts
 
-- **Logo TMDB** : fait. Logo officiel « blue_short » téléchargé le 27/11/2026 depuis themoviedb.org (page « Logos &
-  Attribution »), rangé dans `templates/lecture/tmdb-logo.svg` (SVG d'origine, sans script), affiché sans déformation
-  à 70 px de large à côté de la mention « This product uses the TMDB API but is not endorsed or certified by TMDB. »
-  (résultats de recherche, fiche préremplie, Réglages › Sources).
-- **iTunes Search API** : gratuite et sans clé, environ 20 appels par minute ; ses conditions visent la promotion des
-  contenus Apple. Seuls titre, créateur et année sont utilisés. À valider par Quentin.
+- **iTunes Search API** : gratuite et sans clé, environ 20 appels par minute ; acceptée par Quentin le 28/11/2026 (noms
+  et années seulement).
 - **Pages anglaises** (`en/templates/`, `en/english-version/`) : texte « Reading tracker » non modifié.
 - **Communication** (cartes d'accueil, publications) : hors de cette PR.
 
@@ -78,7 +89,7 @@ secours.) Sans variable : films et séries en saisie manuelle, tout le reste fon
   remplit ; note ta page ou ton épisode en deux secondes ; ton rythme, la date où tu finiras, tes objectifs de l'année
   au jour près et tes statistiques. »
 - Description, ajouts à la fiche actuelle (`docs/templates/communication/lecture/gumroad.json`) : remplacer « Tout se
-  saisit à la main : aucun livre n'est cherché en ligne… » par « Recherche des titres (Open Library, TMDB, Apple) : seuls
+  saisit à la main : aucun livre n'est cherché en ligne… » par « Recherche des titres (Open Library, Wikidata, Apple) : seuls
   les mots tapés sont envoyés, jamais ta bibliothèque ; saisie à la main toujours possible. » ; ajouter les puces films
   (minutes, « Vu en entier »), séries (saison et épisode, « 1 épisode »), podcasts (épisodes), objectifs par média ;
   phrase « Tu as acheté le Suivi de lecture ? Cette version est incluse, ta clé l'ouvre. »

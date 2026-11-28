@@ -136,8 +136,8 @@
   const normaliserSaisons = (v) => (Array.isArray(v) ? v : [])
     .map((s, i) => ({ n: ent(s?.n, 0, 999, i + 1), episodes: ent(s?.episodes, 0, 5000, 0) }))
     .filter((s) => s.episodes > 0).slice(0, 200);
-  // Référence d'une œuvre trouvée en ligne : base (ol, tmdb, itunes) et identifiant. Jamais d'URL stockée.
-  const SOURCES = ['ol', 'tmdb', 'itunes'];
+  // Référence d'une œuvre trouvée en ligne : base (ol Open Library, wd Wikidata, itunes) et identifiant. Jamais d'URL stockée.
+  const SOURCES = ['ol', 'wd', 'itunes'];
   function normaliserSource(v) {
     if (!v || !SOURCES.includes(v.s)) return null;
     const id = String(v.id ?? '').trim();

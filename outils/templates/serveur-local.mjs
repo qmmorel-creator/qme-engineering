@@ -19,18 +19,23 @@ const SECRET = process.env.TEMPLATES_SECRET || 'secret-de-developpement-local-un
 const PORT = Number(process.env.PORT || 8888);
 const memoire = new Map();
 const oeuvres = new Map();
-// Réponses simulées d'Open Library, TMDB et iTunes (titres inventés), pour tester la recherche hors ligne.
-async function sourcesSimulees(adresse) {
+// Réponses simulées d'Open Library, Wikidata et iTunes (titres inventés), pour tester la recherche hors ligne.
+const ligneWd = (o) => Object.fromEntries(Object.entries(o).map(([k, v]) => [k, { value: String(v) }]));
+async function sourcesSimulees(adresse, init = {}) {
   const u = new URL(adresse);
   const r = (o) => new Response(JSON.stringify(o), { status: 200 });
   const q = (u.searchParams.get('q') || u.searchParams.get('query') || u.searchParams.get('term') || '').toLowerCase();
   if (u.hostname === 'openlibrary.org') return r({ docs: [{ key: '/works/OL1W', title: 'Le Phare des brumes', author_name: ['Lise Arnavel'], first_publish_year: 2019, number_of_pages_median: 312 }, { key: '/works/OL2W', title: 'Les Lanternes du port', author_name: ['Lise Arnavel'], first_publish_year: 2022, number_of_pages_median: 384 }].filter((x) => !q || x.title.toLowerCase().includes(q.slice(0, 3))) });
   if (u.hostname === 'itunes.apple.com') return r({ results: [{ collectionId: 42, collectionName: 'Les Petites Questions', artistName: 'Studio Mélisse', releaseDate: '2021-03-01' }] });
-  if (u.pathname === '/3/search/movie') return r({ results: [{ id: 603, title: 'Le Grand Départ', release_date: '2024-05-02' }, { id: 604, title: 'Le Grand Retour', release_date: '2025-02-12' }] });
-  if (u.pathname === '/3/search/tv') return r({ results: [{ id: 77, name: 'Les Gardiens du phare', first_air_date: '2024-01-10' }] });
-  if (u.pathname === '/3/movie/603') return r({ id: 603, title: 'Le Grand Départ', release_date: '2024-05-02', runtime: 112, credits: { crew: [{ job: 'Director', name: 'Réa Lisatrice' }] } });
-  if (u.pathname === '/3/movie/604') return r({ id: 604, title: 'Le Grand Retour', release_date: '2025-02-12', runtime: 98, credits: { crew: [] } });
-  if (u.pathname === '/3/tv/77') return r({ id: 77, name: 'Les Gardiens du phare', first_air_date: '2024-01-10', created_by: [{ name: 'Clara Mendès' }], seasons: [{ season_number: 1, episode_count: 8 }, { season_number: 2, episode_count: 10 }] });
+  if (u.hostname === 'query.wikidata.org') {
+    const requete = new URLSearchParams(init.body || '').get('query') || '';
+    const lignes = requete.includes('wdt:P1113 ?e }\n} GROUP BY ?n')
+      ? [{ n: 1, episodes: 8 }, { n: 2, episodes: 10 }]
+      : requete.includes('wd:Q11424')
+        ? [{ o: 'http://www.wikidata.org/entity/Q900001', titreFr: 'Le Grand Départ', annee: 2024, createurs: 'Réa Lisatrice', secondes: 6720 }, { o: 'http://www.wikidata.org/entity/Q900002', titreFr: 'Le Grand Retour', annee: 2025 }]
+        : [{ o: 'http://www.wikidata.org/entity/Q900003', titreFr: 'Les Gardiens du phare', annee: 2024, createurs: 'Clara Mendès', saisons: 2, episodes: 18 }];
+    return r({ results: { bindings: lignes.map(ligneWd) } });
+  }
   return new Response('{}', { status: 404 });
 }
 const clics = new Map();
@@ -68,8 +73,7 @@ createServer(async (req, res) => {
     res.writeHead(reponse.status, Object.fromEntries(reponse.headers));
     return res.end(await reponse.text());
   }
-  // Recherche d'œuvres du Suivi culturel : sources simulées (aucun appel réseau) sauf QME_OEUVRES_RESEAU=1, avec
-  // TMDB_JETON ou TMDB_API_KEY dans l'environnement pour les films et séries.
+  // Recherche d'œuvres du Suivi culturel : sources simulées (aucun appel réseau) sauf QME_OEUVRES_RESEAU=1.
   if (url.pathname.startsWith('/api/oeuvres/')) {
     const morceaux = [];
     for await (const m of req) morceaux.push(m);
@@ -77,7 +81,7 @@ createServer(async (req, res) => {
     const reseau = process.env.QME_OEUVRES_RESEAU === '1';
     const reponse = await traiterOeuvres(new Request(url, { method: req.method, headers: req.headers, body: corps }), {
       secret: SECRET, stockage: { get: async (k) => oeuvres.get(k) ?? null, set: async (k, v) => { oeuvres.set(k, v); } },
-      fetchImpl: reseau ? fetch : sourcesSimulees, tmdbJeton: reseau ? process.env.TMDB_JETON || '' : 'simule', tmdbCle: process.env.TMDB_API_KEY || '',
+      fetchImpl: reseau ? fetch : sourcesSimulees,
     });
     res.writeHead(reponse.status, Object.fromEntries(reponse.headers));
     return res.end(await reponse.text());

@@ -3,7 +3,7 @@
 // avis et citations, objectifs annuels par média avec l'avance ou le retard au jour près, statistiques (mois, médias,
 // genres, créateurs, séries de jours) et liste « à découvrir » par priorité.
 // Données synchronisées par clé de licence ou code d'accès. La recherche en ligne passe par /api/oeuvres (proxy du
-// site : Open Library, TMDB, iTunes) et ne fait que préremplir une fiche ; rien de la bibliothèque n'y est envoyé.
+// site : Open Library, Wikidata, iTunes) et ne fait que préremplir une fiche ; rien de la bibliothèque n'y est envoyé.
 (() => {
   'use strict';
   const B = window.BASE;
@@ -941,7 +941,7 @@
     livre: ['Nombre de pages', 'facultatif, mais nécessaire pour la progression', 'numeric'],
     livreaudio: ['Durée', 'par exemple 9h30 ou 570 (minutes)', 'text'],
     film: ['Durée', 'par exemple 1h52 ou 112 (minutes)', 'text'],
-    serie: ['Épisodes par saison', 'par exemple 8, 10, 6 pour trois saisons', 'text'],
+    serie: ['Épisodes par saison', 'par exemple 8, 10, 6 pour trois saisons, ou le nombre total d\'épisodes', 'text'],
     podcast: ['Nombre d\'épisodes', 'facultatif : un podcast continue souvent', 'numeric'],
   };
   const valeurTotal = (l) => (l.media === 'serie' ? saisonsTexte(l.saisons) || (l.total ? String(l.total) : '') : !l.total ? '' : R.unite(l) === 'minutes' ? dureeSaisie(l.total) : String(l.total));
@@ -985,7 +985,12 @@
       const u = MED[media].unite;
       const brut = fd.get('total');
       let total, saisons = [];
-      if (media === 'serie') { saisons = lireSaisons(brut); if (saisons === null) return 'Écris le nombre d\'épisodes de chaque saison, séparés par des virgules : par exemple 8, 10, 6.'; total = R.totalSaisons(saisons); }
+      if (media === 'serie') {
+        saisons = lireSaisons(brut);
+        if (saisons === null) return 'Écris le nombre d\'épisodes de chaque saison, séparés par des virgules (par exemple 8, 10, 6), ou le nombre total d\'épisodes.';
+        // Un seul nombre : le total d'épisodes, sans détail des saisons (cas des séries dont Wikidata ne donne que le total).
+        if (saisons.length === 1) { total = saisons[0].episodes; saisons = []; } else total = R.totalSaisons(saisons);
+      }
       else total = u === 'minutes' ? lireDuree(brut) : entier(brut);
       if (total === null) return u === 'minutes' ? 'Durée illisible : écris par exemple 1h52 ou 112.' : 'Indique un nombre entier positif, par exemple 320.';
       const annee = entier(fd.get('annee'));
@@ -1028,11 +1033,9 @@
   // ---------- Recherche en ligne (préremplissage d'une fiche) ----------
   // Au fil de la frappe (300 ms après la dernière touche, requête précédente annulée), dans le média choisi, par le
   // proxy du site /api/oeuvres. Les œuvres déjà dans la bibliothèque qui ressemblent sont signalées (tolérance aux
-  // fautes, règles locales). Hors ligne, sans clé TMDB ou à la limite de la démo : un message, et la saisie à la main.
-  const SOURCES_NOMS = { ol: 'Open Library', tmdb: 'TMDB', itunes: 'Apple Podcasts et Livres' };
-  const MENTION_TMDB = 'Films et séries : données de TMDB. This product uses the TMDB API but is not endorsed or certified by TMDB.';
-  // Logo officiel de TMDB (themoviedb.org, « Logos & Attribution »), sans déformation, plus discret que la marque QME.
-  const LOGO_TMDB = '<img class="logo-tmdb" src="tmdb-logo.svg" width="70" height="9" alt="TMDB">';
+  // fautes, règles locales). Hors ligne, source saturée ou limite de la démo atteinte : un message, et la saisie à la main.
+  const SOURCES_NOMS = { ol: 'Open Library', wd: 'Wikidata', itunes: 'Apple Podcasts et Livres' };
+  const MENTION_WIKIDATA = 'Données : Wikidata (CC0)';
   async function appelOeuvres(chemin, options = {}) {
     const r = await fetch(`/api/oeuvres/${chemin}`, { ...options, headers: { 'content-type': 'application/json', ...(session.jeton ? { 'x-code': session.jeton } : {}) } });
     let corps = null;
@@ -1047,7 +1050,7 @@
     const champ = zone.querySelector('[name=q-oeuvre]'), liste = zone.querySelector('.resultats-oeuvres'), etat = zone.querySelector('.etat-recherche');
     let minuterie = null, ctrl = null, resultats = [];
     const media = () => d.querySelector('[name=media]:checked').value;
-    const ligne = (f, i, deja) => `<li><button type="button" class="resultat-oeuvre" data-i="${i}" ${deja ? 'disabled' : ''}><b>${esc(f.titre)}</b><span>${esc([f.auteur, f.annee, f.saisons ? pluriel(f.saisons.length, 'saison') : f.total ? qte(f.total, MED[f.media].unite) : '', deja ? 'déjà dans ta bibliothèque' : ''].filter(Boolean).join(' · '))}</span></button></li>`;
+    const ligne = (f, i, deja) => `<li><button type="button" class="resultat-oeuvre" data-i="${i}" ${deja ? 'disabled' : ''}><b>${esc(f.titre)}</b><span>${esc([f.auteur, f.annee, f.saisons ? pluriel(f.saisons.length, 'saison') : f.nbSaisons ? pluriel(f.nbSaisons, 'saison') : '', f.total ? qte(f.total, MED[f.media].unite) : '', deja ? 'déjà dans ta bibliothèque' : ''].filter(Boolean).join(' · '))}</span></button></li>`;
     const lancer = async () => {
       const q = champ.value.trim(), m = media();
       ctrl?.abort();
@@ -1067,9 +1070,8 @@
         if (locaux.length) msg.push(`Déjà chez toi : ${locaux.map((l) => `« ${l.titre} »`).join(', ')}.`);
         if (corps.indisponible) msg.push(m === 'film' || m === 'serie' ? 'Recherche de films et séries indisponible pour l\'instant : remplis la fiche à la main.' : 'Source injoignable : remplis la fiche à la main.');
         else if (!resultats.length) msg.push('Rien trouvé : vérifie l\'orthographe, ou remplis la fiche à la main.');
-        const tmdb = resultats.some((f) => f.source.s === 'tmdb');
-        if (tmdb) msg.push(MENTION_TMDB);
-        etat.innerHTML = `${esc(msg.join(' '))}${tmdb ? ` ${LOGO_TMDB}` : ''}`;
+        if (resultats.some((f) => f.source.s === 'wd')) msg.push(`${MENTION_WIKIDATA}.`);
+        etat.textContent = msg.join(' ');
       } catch (x) {
         if (x.name === 'AbortError') return;
         liste.innerHTML = '';
@@ -1083,8 +1085,8 @@
       const b = e.target.closest('.resultat-oeuvre');
       if (!b) return;
       let f = resultats[Number(b.dataset.i)];
-      // Films et séries : durée, réalisation et saisons viennent du détail.
-      if (f.source.s === 'tmdb') {
+      // Série Wikidata : les épisodes par saison viennent du détail (quand Wikidata les donne tous).
+      if (f.source.s === 'wd' && f.media === 'serie') {
         etat.textContent = 'Chargement de la fiche…';
         try { const { corps } = await appelOeuvres(`detail?media=${f.media}&s=${f.source.s}&id=${encodeURIComponent(f.source.id)}`); if (corps?.fiche) f = corps.fiche; } catch { /* fiche de recherche gardée */ }
       }
@@ -1095,7 +1097,7 @@
       val('total', f.saisons ? saisonsTexte(f.saisons) : !f.total ? '' : MED[f.media].unite === 'minutes' ? dureeSaisie(f.total) : f.total);
       val('source', `${f.source.s}:${f.source.id}`);
       liste.innerHTML = '';
-      etat.innerHTML = `${esc(`Fiche préremplie depuis ${SOURCES_NOMS[f.source.s]} : vérifie et complète.${f.source.s === 'tmdb' ? ` ${MENTION_TMDB}` : ''}`)}${f.source.s === 'tmdb' ? ` ${LOGO_TMDB}` : ''}`;
+      etat.textContent = `Fiche préremplie depuis ${SOURCES_NOMS[f.source.s]} : vérifie et complète${f.media === 'film' && !f.total ? ' (durée inconnue de la source : ajoute-la si tu veux suivre ta progression)' : ''}.${f.source.s === 'wd' ? ` ${MENTION_WIKIDATA}.` : ''}`;
       d.querySelector('[name=titre]').focus();
     });
     // Un titre modifié à la main ne garde pas la référence de la source.
@@ -1109,9 +1111,7 @@
   async function afficherSources() {
     const z = modale().querySelector('[data-zone=sources]');
     if (!z) return;
-    let tmdb = null;
-    try { tmdb = (await appelOeuvres('sources')).corps?.tmdb ?? null; } catch { /* hors ligne */ }
-    z.innerHTML = `<p class="mention">Livres : Open Library (Internet Archive). Livres audio et podcasts : recherche iTunes d'Apple. Films et séries : TMDB${tmdb === false ? ' (pas encore activé : saisie à la main)' : ''}. Seuls les mots tapés sont envoyés ; tu peux toujours remplir une fiche à la main.</p><p class="mention mention-tmdb">${LOGO_TMDB} ${MENTION_TMDB}</p>`;
+    z.innerHTML = `<p class="mention">Livres : Open Library (Internet Archive). Films et séries : ${MENTION_WIKIDATA.replace('Données : ', '')}. Livres audio et podcasts : recherche iTunes d'Apple (noms et années). Seuls les mots tapés sont envoyés ; tu peux toujours remplir une fiche à la main.</p>`;
   }
 
   // Fiche d'une œuvre : progression, rythme, dates, note, avis, citations, sessions.
@@ -1304,7 +1304,7 @@
         <div class="rang"><button class="btn petit" type="button" data-action="ecran-accueil">Voir comment faire</button></div></div>
       <div class="groupe"><h3>Données personnelles</h3><p class="mention">Ta bibliothèque est enregistrée en ligne, liée à ta clé, et n'est ni lue ni partagée par QME. Tes avis et citations restent privés : il n'y a ni profil public ni partage.</p></div>
       <div class="groupe"><h3>Sources de la recherche</h3><div data-zone="sources"></div></div>
-      <div class="groupe"><h3>À propos</h3><p class="mention">${esc(NOM)}${NOM === 'Suivi de lecture' ? '' : ' (anciennement Suivi de lecture)'}, version ${B.version}. Genres proposés modifiables. La recherche n'envoie que les mots tapés, jamais ta bibliothèque ; pas de couverture téléchargée, aucun lien avec une liseuse, une plateforme ou une librairie. Calculs faits sur cet appareil : rythme sur les 14 derniers jours, objectifs répartis uniformément sur les jours de l'année.</p></div>`;
+      <div class="groupe"><h3>À propos</h3><p class="mention">${esc(NOM)}${NOM === 'Suivi de lecture' ? '' : ' (anciennement Suivi de lecture)'}, version ${B.version}. Genres proposés modifiables. La recherche n'envoie que les mots tapés, jamais ta bibliothèque ; pas de couverture téléchargée, aucun lien avec une liseuse, une plateforme ou une librairie. Calculs faits sur cet appareil : rythme sur les 14 derniers jours, objectifs répartis uniformément sur les jours de l'année. ${MENTION_WIKIDATA} pour les films et séries ; Open Library pour les livres ; recherche iTunes pour les livres audio et podcasts.</p></div>`;
     ouvrirModale('Réglages', corps, '<button class="btn primaire" value="ok">Enregistrer</button><button class="btn" value="annuler">Annuler</button>', (fd) => {
       const champs = [...modale().querySelectorAll('.liste-genres input')];
       const vus = new Set();

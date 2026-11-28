@@ -313,13 +313,13 @@ test('migration v1 → v2 sans perte : livres, sessions, citations, avis, object
 
 test('médias : unités, libellés de statut accordés, champs propres à chaque média', () => {
   const e = R.normaliser({ livres: [
-    { id: 'f', media: 'film', titre: 'Le Grand Départ', auteur: 'Réa Lisatrice', total: 112, annee: 2024, source: { s: 'tmdb', id: '603' }, format: 'papier' },
+    { id: 'f', media: 'film', titre: 'Le Grand Départ', auteur: 'Réa Lisatrice', total: 112, annee: 2024, source: { s: 'wd', id: 'Q595' }, format: 'papier' },
     { id: 's', media: 'serie', titre: 'Les Phares', saisons: [{ n: 1, episodes: 8 }, { n: 2, episodes: 10 }, { n: 3, episodes: 0 }], total: 3 },
     { id: 'p', media: 'podcast', titre: 'Midi Science', source: { s: 'itunes', id: 'javascript:alert(1)' } },
     { id: 'x', media: 'vinyle', titre: 'Inconnu', format: 'audio' },
   ] }, B);
   const [f, s, p, x] = e.livres;
-  assert.deepEqual([f.media, f.format, R.unite(f), f.annee, f.source.s], ['film', '', 'minutes', 2024, 'tmdb']);
+  assert.deepEqual([f.media, f.format, R.unite(f), f.annee, f.source.s], ['film', '', 'minutes', 2024, 'wd']);
   assert.deepEqual([s.media, R.unite(s), s.total, s.saisons.length], ['serie', 'episodes', 18, 2], 'total = somme des saisons');
   assert.equal(p.source, undefined, 'identifiant de source suspect écarté');
   assert.equal(x.media, 'livreaudio', 'média inconnu : déduit du format');
