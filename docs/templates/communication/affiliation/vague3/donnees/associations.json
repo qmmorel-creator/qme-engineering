@@ -1,0 +1,54 @@
+[
+ {
+  "nom": "UNIFOOT TV",
+  "compte": "@unifoottv",
+  "plateforme": "YouTube",
+  "url": "https://www.youtube.com/@unifoottv",
+  "abonnes": "18,1 k YouTube (lu le 27/11/2026) ; le site affiche « 220 K » abonnés cumulés sur les réseaux",
+  "abonnesSource": "https://www.youtube.com/@unifoottv/about ; https://unifoottv.fr",
+  "email": "contact@unifoottv.fr",
+  "emailSource": "https://unifoottv.fr/contact (et mentions légales)",
+  "niche": "Vie associative, clubs",
+  "produits": [
+   "benevoles",
+   "assemblee-generale",
+   "subventions",
+   "pack-associations"
+  ],
+  "demo": "benevoles",
+  "accroche": "Dans le short « Service civique : interdit d'encadrer » (27/11/2026), extrait de votre quiz sur la gestion d'un club amateur, Sofiane rappelle ce qu'un volontaire en service civique a le droit de faire ou non.",
+  "pourquoi": "Média indépendant du foot amateur avec des rubriques Bénévoles et Vie des clubs : les dirigeants bénévoles qui le suivent organisent AG, planning des bénévoles et dossiers de subvention.",
+  "derniere": "27/11/2026 (YouTube)",
+  "aVerifier": "média (équipe, pas une personne nommée) ; audience surtout joueurs/éducateurs, la part de dirigeants est une déduction",
+  "controles": "nexora ok · gmail ok · opposition ok",
+  "ouverture": "Le short du 27/11 d'UNIFOOT TV, « Service civique : interdit d'encadrer », rappelle aux dirigeants de clubs amateurs qui fait quoi, au moment d'organiser bénévoles et volontaires.",
+  "nomObjet": "UNIFOOT TV",
+  "benefice": "gérer les bénévoles des clubs"
+ },
+ {
+  "nom": "Carenews",
+  "compte": "Carenews, « le média des acteurs de l'engagement »",
+  "plateforme": "Site / média en ligne",
+  "url": "https://www.carenews.com",
+  "abonnes": "30 000 visiteurs uniques par mois, 10 000 followers Twitter, 8 000 fans Facebook (chiffres affichés, non datés par le site ; lus le 27/11/2026)",
+  "abonnesSource": "https://www.carenews.com/qui-sommes-nous",
+  "email": "bonjour@carenews.com",
+  "emailSource": "https://www.carenews.com/contact",
+  "niche": "Vie associative, clubs",
+  "produits": [
+   "subventions",
+   "benevoles",
+   "assemblee-generale",
+   "pack-associations"
+  ],
+  "demo": "subventions",
+  "accroche": "Carenews a publié le 24/11/2026 « Au Salon des maires, les missions locales alertent sur la baisse de leurs financements », sur la baisse des financements publics des structures associatives.",
+  "pourquoi": "Son lectorat d'associations et d'acteurs de l'ESS gère des demandes de subvention, des bénévoles et des AG, ce que couvrent les outils du Pack Associations.",
+  "derniere": "26/11/2026 (article)",
+  "aVerifier": "média ESS / mécénat / RSE plus large que la gestion d'asso ; chiffres d'audience non datés ; propose un kit média et des offres partenaires (pas d'outil concurrent vu)",
+  "controles": "nexora ok · gmail ok · opposition ok",
+  "ouverture": "L'article de Carenews du 24/11 sur les financements des missions locales, au Salon des maires, touche un sujet que vos lecteurs associatifs vivent avec chaque dossier de subvention.",
+  "nomObjet": "Carenews",
+  "benefice": "suivre les subventions des associations"
+ }
+]

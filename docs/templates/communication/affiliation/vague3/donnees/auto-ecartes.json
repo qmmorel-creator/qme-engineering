@@ -1,0 +1,142 @@
+[
+ {
+  "nom": "TCQR (Dave)",
+  "url": "https://www.youtube.com/@tcqr",
+  "motif": "doublon : déjà dans Nexora (a-281) et dans un autre lot"
+ },
+ {
+  "nom": "Bricoleur Du Dimanche",
+  "url": "https://www.youtube.com/@Bricoleur.DuDimanche",
+  "motif": "doublon : déjà dans Nexora"
+ },
+ {
+  "nom": "Ju LRA",
+  "url": "https://www.youtube.com/@larestaurationautomobile1532",
+  "motif": "doublon : déjà dans Nexora"
+ },
+ {
+  "nom": "Auto occasion live",
+  "url": "https://www.youtube.com/@Auto_Occasion_Live",
+  "motif": "doublon : déjà dans Nexora"
+ },
+ {
+  "nom": "Bon Plan Auto",
+  "url": "https://www.youtube.com/@Used-car-prices",
+  "motif": "doublon : déjà dans Nexora"
+ },
+ {
+  "nom": "La Chaine EV",
+  "url": "https://www.youtube.com/@LaChaineEV",
+  "motif": "doublon : déjà dans Nexora ; média EV"
+ },
+ {
+  "nom": "Thomas Auto / Ecki / United Driver / Le Designer Auto / OH BORDEL",
+  "url": "",
+  "motif": "doublon domaine : agence expandia.io déjà dans Nexora"
+ },
+ {
+  "nom": "Astuces Privées",
+  "url": "",
+  "motif": "doublon domaine : lumera.social déjà dans Nexora"
+ },
+ {
+  "nom": "DIY avec POLO",
+  "url": "",
+  "motif": "doublon : déjà dans Nexora"
+ },
+ {
+  "nom": "Bricolage c'est cool (contact@bricolagecestcool.com)",
+  "url": "https://www.youtube.com/@Bricolagecestcool",
+  "motif": "doublon : adresse déjà dans un autre lot (fichiers vague3)"
+ },
+ {
+  "nom": "Manureva / Les epicurieux",
+  "url": "",
+  "motif": "doublon : adresses déjà dans un autre lot (van-voyage)"
+ },
+ {
+  "nom": "Matt Hugdel l'Autodidacte",
+  "url": "https://www.youtube.com/@MisterGintonic",
+  "motif": "concurrent : renvoie vers Mecaconnect (carnet d'entretien en ligne avec alertes de maintenance)"
+ },
+ {
+  "nom": "Diag Tech Automobile",
+  "url": "https://www.youtube.com/@diagtechautomobile",
+  "motif": "professionnel (technicien indépendant pour garages)"
+ },
+ {
+  "nom": "CDS Motors",
+  "url": "https://www.youtube.com/@CDSMotors",
+  "motif": "professionnel (préparation)"
+ },
+ {
+  "nom": "Garage 2CV Etienne Musslin",
+  "url": "https://www.youtube.com/@garage2cv",
+  "motif": "garage professionnel"
+ },
+ {
+  "nom": "Sébastien Bonneville (Maxopieces)",
+  "url": "",
+  "motif": "enseigne (vendeur de pièces)"
+ },
+ {
+  "nom": "Turbo Flow",
+  "url": "https://www.youtube.com/@Turboflowfr",
+  "motif": "garage professionnel (garage-autoflow.fr)"
+ },
+ {
+  "nom": "Automoto, Moto Journal, Turbo, Auto Plus, Moto Magazine, Petites Observations Automobiles, The Choucroute Garage, Mécanique Sportive",
+  "url": "",
+  "motif": "médias auto / essais de voitures neuves"
+ },
+ {
+  "nom": "Oscaro, auto-doc.fr, Dafy, Motoblouz, Kia, Autobacs, Mecatechnic",
+  "url": "",
+  "motif": "marques / enseignes"
+ },
+ {
+  "nom": "Ma Clé de 12, Garage Bagnoles et Rock'n Roll, Tuto's Tommy, Tintin Bidouille, Karl, BigDan méca DIY, Heritage Of Elders, Vintage Mecanic",
+  "url": "",
+  "motif": "pas d'adresse e-mail publique trouvée (description, flux, site)"
+ },
+ {
+  "nom": "MinistereAuto, Y A K A R Z, AH Bromotors, Papa et Lili, 100% MOTOS, CDAVID, Axis Biker, HuGo Pro, auto-TuRing, Car Lover, William Commercial, Authentiquesautos",
+  "url": "",
+  "motif": "hors niche (défis, drift, essais motos neuves, compilations, reportages) : pas d'entretien par soi-même"
+ },
+ {
+  "nom": "Guerseco",
+  "url": "https://www.youtube.com/@Guerseco",
+  "motif": "hors niche (pêche ; une seule vidéo garage)"
+ },
+ {
+  "nom": "MagicVan",
+  "url": "https://www.youtube.com/@MagicVan",
+  "motif": "activité faible (1 vidéo depuis 2023) et adresse d'apparence commerciale"
+ },
+ {
+  "nom": "Antoine (Scoot2Street), Jonathan (weridedirt)",
+  "url": "",
+  "motif": "homonyme du prénom dans Nexora et hors niche"
+ },
+ {
+  "nom": "Lars (DIAG AUTO LARS)",
+  "url": "https://www.youtube.com/@LARSDIAGAUTO",
+  "motif": "profil probablement professionnel (garage, diagnostic ou detailing) : écarté (critère particuliers)"
+ },
+ {
+  "nom": "Hervé (RV-19)",
+  "url": "https://www.youtube.com/@RV-19",
+  "motif": "profil probablement professionnel (garage, diagnostic ou detailing) : écarté (critère particuliers)"
+ },
+ {
+  "nom": "Brice (R.@.38)",
+  "url": "https://www.youtube.com/@r.a.38",
+  "motif": "profil probablement professionnel (garage, diagnostic ou detailing) : écarté (critère particuliers)"
+ },
+ {
+  "nom": "Le TRANSPORTEUR",
+  "url": "https://www.youtube.com/@LeTRANSPORTEUR69",
+  "motif": "profil probablement professionnel (garage, diagnostic ou detailing) : écarté (critère particuliers)"
+ }
+]
