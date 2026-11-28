@@ -14,4 +14,4 @@ Dossier `docs/` non servi par Netlify (404).
 |---|---|---|---|---|---|
 | 13/11/2026 | HBT | `HBT-QK5A-C4M8-HYQE-WV5X` | `QK5AC4M8` | Floriane Jolliot | actif |
 | 28/11/2026 | RVX (code de réduction Gumroad 100 %, 1 utilisation, jusqu'au 31/12/2026) | `QUENTIN-RVX-DX832` | à expirer sur Gumroad (agent Gumroad) | Quentin Morel (démo PCSI) | actif |
-| 28/11/2026 | RVX (code de réduction Gumroad 100 %, 1 utilisation, jusqu'au 31/12/2026) | `LAURINE-RVX-Q9O9P` | à expirer sur Gumroad (agent Gumroad) | Laurine Mebs, Optimind (démo PASS) | actif |
+| 28/11/2026 | RVX (code de réduction Gumroad 100 %, 1 utilisation, jusqu'au 31/12/2026) | `LAURINE-RVX-Q9O9P` | à expirer sur Gumroad (agent Gumroad) | Laurine Mebs, Optimind (démo PASS) | actif · envoyé le 28/11/2026 |
