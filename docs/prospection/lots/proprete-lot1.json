@@ -1,0 +1,1860 @@
+[
+  {
+    "id": "top-clean-nettoyage-rouen",
+    "nom": "Top Clean Nettoyage",
+    "ville": "Rouen",
+    "cp": "76000",
+    "departement": "76",
+    "email": "contact@nettoyagerouen.fr",
+    "site": "https://www.nettoyagerouen.fr",
+    "source": "https://www.nettoyagerouen.fr/mentions-legales",
+    "fait": "vos agents assurent l'entretien des parties communes pour les syndics et copropriétés comme celui des bureaux, à Rouen et ses alentours",
+    "taille": "plus de 15 ans d'expérience, agents de propreté (effectif non indiqué)",
+    "note": "Société fondée au Havre en 2008 (site nettoyagelehavre.fr), agence de Rouen ; fait aussi des prestations pour particuliers",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"Top Clean Nettoyage\"",
+        "list_qme domain=prospects query=\"nettoyagerouen\""
+      ],
+      "gmail": "in:anywhere nettoyagerouen.fr"
+    }
+  },
+  {
+    "id": "bio-nettoyage-le-havre",
+    "nom": "Bio Nettoyage",
+    "ville": "Le Havre",
+    "cp": "76600",
+    "departement": "76",
+    "email": "lehavre@bio-nettoyage.com",
+    "site": "https://www.bio-nettoyage.com",
+    "source": "https://www.bio-nettoyage.com/contact",
+    "fait": "depuis 2016, vos 35 collaborateurs proposent un nettoyage écologique depuis vos agences du Havre, de Rouen et de Montpellier",
+    "taille": "35 collaborateurs",
+    "note": "Adresse de l'agence du Havre ; existe aussi rouen@bio-nettoyage.com",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"Bio Nettoyage\"",
+        "list_qme domain=prospects query=\"bio-nettoyage\""
+      ],
+      "gmail": "in:anywhere bio-nettoyage.com"
+    }
+  },
+  {
+    "id": "oceane-nettoyage-le-havre",
+    "nom": "Océane Nettoyage",
+    "ville": "Le Havre",
+    "cp": "76600",
+    "departement": "76",
+    "email": "direction@oceanenettoyage.fr",
+    "site": "https://oceanenettoyage.fr",
+    "source": "https://oceanenettoyage.fr/mentions-legales/",
+    "fait": "vous avez fêté vos 25 ans en 2025 et vos agents assurent l'entretien, la remise en état et la vitrerie des bureaux et des copropriétés",
+    "taille": "25 ans d'existence, agents et salariés, recrute (effectif non indiqué)",
+    "note": "Adresse de rôle « direction@ » (pas nominative), seule adresse affichée",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"Océane Nettoyage\"",
+        "list_qme domain=prospects query=\"oceanenettoyage\""
+      ],
+      "gmail": "in:anywhere oceanenettoyage.fr"
+    }
+  },
+  {
+    "id": "caen-cest-propre-caen",
+    "nom": "Caen c'est propre",
+    "ville": "Caen",
+    "cp": "14000",
+    "departement": "14",
+    "email": "contact@caen-cest-propre.com",
+    "site": "https://www.caen-cest-propre.com",
+    "source": "https://www.caen-cest-propre.com/",
+    "fait": "vos agents travaillent en binôme et uniquement en journée, entre 8 h et 19 h, avec un suivi de chaque intervention par application",
+    "taille": "salariés en binôme, plannings par logiciel (effectif non indiqué)",
+    "note": "Fait aussi du ménage à domicile, mais l'offre principale vise entreprises, immeubles et copropriétés",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"Caen c'est propre\"",
+        "list_qme domain=prospects query=\"caen-cest-propre\""
+      ],
+      "gmail": "in:anywhere caen-cest-propre.com"
+    }
+  },
+  {
+    "id": "pps-proprete-demouville",
+    "nom": "PPS Propreté (Pleah Propreté & Services)",
+    "ville": "Démouville",
+    "cp": "14840",
+    "departement": "14",
+    "email": "contact@pps-nettoyage.com",
+    "site": "https://pps-nettoyage.fr",
+    "source": "https://pps-nettoyage.fr/contact/",
+    "fait": "depuis Démouville, vous intervenez avec vos agences de Caen, Saint-Lô et Dives-sur-Mer pour les bureaux, les copropriétés et les chantiers",
+    "taille": "3 agences (effectif non indiqué)",
+    "note": "Domaine de l'adresse en .com, site en .fr ; MX ionos OK",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"PPS Propreté (Pleah Propreté & Services)\"",
+        "list_qme domain=prospects query=\"pps-nettoyage\""
+      ],
+      "gmail": "in:anywhere pps-nettoyage.com"
+    }
+  },
+  {
+    "id": "enis-evreux",
+    "nom": "Société ENIS",
+    "ville": "Évreux",
+    "cp": "27000",
+    "departement": "27",
+    "email": "contact@enisnettoyage.fr",
+    "site": "https://www.enisnettoyage.fr",
+    "source": "https://www.enisnettoyage.fr/contact-et-demande-de-devis",
+    "fait": "vous exercez dans le nettoyage industriel et l'entretien de locaux depuis 1982",
+    "taille": "équipe de professionnels, créée en 1982 (effectif non indiqué)",
+    "verifie": "2026-11-27",
+    "note": "",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"Société ENIS\"",
+        "list_qme domain=prospects query=\"enisnettoyage\""
+      ],
+      "gmail": "in:anywhere enisnettoyage.fr"
+    }
+  },
+  {
+    "id": "team-services-nettoyage-strasbourg",
+    "nom": "Team Services Nettoyage",
+    "ville": "Strasbourg",
+    "cp": "67000",
+    "departement": "67",
+    "email": "accueilteamservicesnettoyage@gmail.com",
+    "site": "https://www.teamservicesnettoyage.com",
+    "source": "https://www.teamservicesnettoyage.com/",
+    "fait": "depuis 1990, vos 15 agents d'entretien, qui ont en moyenne 16 ans d'ancienneté, entretiennent copropriétés et bureaux de l'Eurométropole",
+    "taille": "15 salariés",
+    "note": "Webmail gmail affiché comme adresse de l'entreprise",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"Team Services Nettoyage\"",
+        "list_qme domain=prospects query=\"teamservicesnettoyage\""
+      ],
+      "gmail": "in:anywhere teamservicesnettoyage.com"
+    }
+  },
+  {
+    "id": "villar-nettoyage-strasbourg",
+    "nom": "Villar Nettoyage",
+    "ville": "Strasbourg",
+    "cp": "67000",
+    "departement": "67",
+    "email": "villar.nettoyage@orange.fr",
+    "site": "https://www.villarnettoyage.com",
+    "source": "https://www.villarnettoyage.com/contact",
+    "fait": "votre entreprise familiale entretient les locaux des entreprises et des copropriétés strasbourgeoises depuis 1994, avec une trentaine de salariés",
+    "taille": "une trentaine de salariés",
+    "note": "Webmail orange affiché comme adresse de l'entreprise",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"Villar Nettoyage\"",
+        "list_qme domain=prospects query=\"villarnettoyage\""
+      ],
+      "gmail": "in:anywhere villarnettoyage.com"
+    }
+  },
+  {
+    "id": "regionettoyage-mulhouse",
+    "nom": "RegioNettoyage",
+    "ville": "Mulhouse",
+    "cp": "68100",
+    "departement": "68",
+    "email": "info@regionettoyage.fr",
+    "site": "https://www.regio-nettoyage.fr",
+    "source": "https://www.regio-nettoyage.fr/mentions-legales/",
+    "fait": "fondée à Mulhouse en 1992, votre entreprise est aussi présente à Colmar et forme en continu ses agents d'entretien",
+    "taille": "« une grande et belle équipe d'agents » (effectif non indiqué), recrute",
+    "note": "Domaine de l'adresse (regionettoyage.fr) différent du site (regio-nettoyage.fr) ; MX Google OK. Taille possiblement > 50",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"RegioNettoyage\"",
+        "list_qme domain=prospects query=\"regionettoyage\""
+      ],
+      "gmail": "in:anywhere regionettoyage.fr"
+    }
+  },
+  {
+    "id": "elnet-metz",
+    "nom": "ELnet",
+    "ville": "Metz",
+    "cp": "57000",
+    "departement": "57",
+    "email": "contact@elnet-services.fr",
+    "site": "https://www.elnet-services.fr",
+    "source": "https://www.elnet-services.fr/contact.html",
+    "fait": "depuis 2019, tous vos chantiers en Moselle et en Meurthe-et-Moselle sont réalisés par vos propres salariés, sans sous-traitance ni intérim",
+    "taille": "150 clients, plusieurs véhicules, membre FEP Grand Est (effectif non indiqué)",
+    "verifie": "2026-11-27",
+    "note": "",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"ELnet\"",
+        "list_qme domain=prospects query=\"elnet-services\""
+      ],
+      "gmail": "in:anywhere elnet-services.fr"
+    }
+  },
+  {
+    "id": "proprete-mosellane-maizieres-les-metz",
+    "nom": "Propreté Mosellane",
+    "ville": "Maizières-lès-Metz",
+    "cp": "57280",
+    "departement": "57",
+    "email": "contact@proprete-mosellane.fr",
+    "site": "https://proprete-mosellane.fr",
+    "source": "https://proprete-mosellane.fr/contact/",
+    "fait": "vous affectez un intervenant attitré à chaque site et des renforts déclarés en cas d'absence, pour les bureaux et les copropriétés de Metz à Thionville",
+    "taille": "responsables de compte et intervenants attitrés, recrute (effectif non indiqué)",
+    "note": "Doute taille : aucun chiffre d'effectif sur le site",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"Propreté Mosellane\"",
+        "list_qme domain=prospects query=\"proprete-mosellane\""
+      ],
+      "gmail": "in:anywhere proprete-mosellane.fr"
+    }
+  },
+  {
+    "id": "nettoyage-2000-reims",
+    "nom": "Nettoyage 2000",
+    "ville": "Reims",
+    "cp": "51100",
+    "departement": "51",
+    "email": "contact@nettoyage2000-reims.fr",
+    "site": "https://www.nettoyage2000-reims.fr",
+    "source": "https://www.nettoyage2000-reims.fr/mentions.php",
+    "fait": "implantée à Reims depuis 1973, votre société entretient bureaux et parties communes pour les entreprises et les syndics de copropriété",
+    "taille": "plus de 50 ans d'existence, équipes et agents en tenue (effectif non indiqué)",
+    "verifie": "2026-11-27",
+    "note": "",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"Nettoyage 2000\"",
+        "list_qme domain=prospects query=\"nettoyage2000-reims\""
+      ],
+      "gmail": "in:anywhere nettoyage2000-reims.fr"
+    }
+  },
+  {
+    "id": "dl-nettoyage-51-reims",
+    "nom": "DL Nettoyage 51 (DL Solutions)",
+    "ville": "Reims",
+    "cp": "51100",
+    "departement": "51",
+    "email": "intervention@dl-solutions-nettoyage-51.fr",
+    "site": "https://dl-solutions-nettoyage-51.fr",
+    "source": "https://dl-solutions-nettoyage-51.fr/qui-sommes-nous/",
+    "fait": "votre entreprise familiale s'appuie sur 15 agents d'entretien et intervient à Reims et dans toute la Marne",
+    "taille": "15 agents d'entretien",
+    "note": "Mêle prestations pour particuliers et professionnels ; SIREN récent (993375377) malgré « depuis 2019 »",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"DL Nettoyage 51 (DL Solutions)\"",
+        "list_qme domain=prospects query=\"dl-solutions-nettoyage-51\""
+      ],
+      "gmail": "in:anywhere dl-solutions-nettoyage-51.fr"
+    }
+  },
+  {
+    "id": "netgreen-lille",
+    "nom": "NetGreen",
+    "ville": "Lille",
+    "cp": "59000",
+    "departement": "59",
+    "email": "contact@net-green.fr",
+    "site": "https://net-green.fr",
+    "source": "https://net-green.fr/mentions-legales/",
+    "fait": "depuis 2009, vos 45 collaborateurs assurent la propreté de plus de 300 sites d'entreprises dans les Hauts-de-France",
+    "taille": "45 collaborateurs",
+    "verifie": "2026-11-27",
+    "note": "",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"NetGreen\"",
+        "list_qme domain=prospects query=\"net-green\""
+      ],
+      "gmail": "in:anywhere net-green.fr"
+    }
+  },
+  {
+    "id": "norazur-wambrechies",
+    "nom": "Norazur",
+    "ville": "Wambrechies",
+    "cp": "59118",
+    "departement": "59",
+    "email": "contact@norazur.fr",
+    "site": "https://www.norazur.fr",
+    "source": "https://www.norazur.fr/contact/",
+    "fait": "vos 20 agents formés et encadrés entretiennent depuis plus de 50 ans les bureaux et les copropriétés de la métropole lilloise",
+    "taille": "20 agents",
+    "verifie": "2026-11-27",
+    "note": "",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"Norazur\"",
+        "list_qme domain=prospects query=\"norazur\""
+      ],
+      "gmail": "in:anywhere norazur.fr"
+    }
+  },
+  {
+    "id": "nettoise-allonne",
+    "nom": "Nettoise",
+    "ville": "Allonne (Beauvais)",
+    "cp": "60000",
+    "departement": "60",
+    "email": "contact@nettoise.fr",
+    "site": "https://nettoise.fr",
+    "source": "https://nettoise.fr/contact/",
+    "fait": "installée depuis 20 ans à Beauvais et Compiègne, votre entreprise travaille uniquement avec ses propres équipes salariées",
+    "taille": "équipes salariées dédiées (effectif non indiqué)",
+    "verifie": "2026-11-27",
+    "note": "",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"Nettoise\"",
+        "list_qme domain=prospects query=\"nettoise\""
+      ],
+      "gmail": "in:anywhere nettoise.fr"
+    }
+  },
+  {
+    "id": "ens-nettoyage-saint-quentin",
+    "nom": "E.N.S",
+    "ville": "Saint-Quentin",
+    "cp": "02100",
+    "departement": "02",
+    "email": "contact@ens-nettoyage.com",
+    "site": "https://www.ens-nettoyage.fr",
+    "source": "https://www.ens-nettoyage.fr/contact",
+    "fait": "installée à Saint-Quentin depuis 1985, votre entreprise nettoie bureaux, entrepôts, usines et vitres dans toute l'Aisne",
+    "taille": "non indiqué (40 ans d'existence)",
+    "note": "Domaine de l'adresse en .com, site en .fr ; MX OK. Site possiblement ancien",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"E.N.S\"",
+        "list_qme domain=prospects query=\"ens-nettoyage\""
+      ],
+      "gmail": "in:anywhere ens-nettoyage.com"
+    }
+  },
+  {
+    "id": "vnet-vannes",
+    "nom": "V.net",
+    "ville": "Vannes",
+    "cp": "56000",
+    "departement": "56",
+    "email": "contact@vannes-nettoyage.com",
+    "site": "https://vannes-nettoyage.com",
+    "source": "https://vannes-nettoyage.com/",
+    "fait": "vos plus de 30 agents de propreté, stables et formés, interviennent depuis Vannes, Auray et Sarzeau pour les syndics et les entreprises du Morbihan",
+    "taille": "plus de 30 agents",
+    "verifie": "2026-11-27",
+    "note": "",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"V.net\"",
+        "list_qme domain=prospects query=\"vannes-nettoyage\""
+      ],
+      "gmail": "in:anywhere vannes-nettoyage.com"
+    }
+  },
+  {
+    "id": "atout-proprete-lorient",
+    "nom": "Atout Propreté",
+    "ville": "Lorient",
+    "cp": "56100",
+    "departement": "56",
+    "email": "contact@atoutproprete.bzh",
+    "site": "https://atoutproprete.bzh",
+    "source": "https://atoutproprete.bzh/contact",
+    "fait": "vous entretenez bureaux et copropriétés de Lorient avec des équipes salariées formées en interne, dans le cadre d'un projet d'insertion professionnelle",
+    "taille": "équipes salariées (effectif non indiqué)",
+    "note": "Entreprise à vocation d'insertion ; taille non chiffrée",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"Atout Propreté\"",
+        "list_qme domain=prospects query=\"atoutproprete\""
+      ],
+      "gmail": "in:anywhere atoutproprete.bzh"
+    }
+  },
+  {
+    "id": "rm-services-vannes",
+    "nom": "RM Services",
+    "ville": "Vannes",
+    "cp": "56000",
+    "departement": "56",
+    "email": "rm-services@orange.fr",
+    "site": "https://rm-services56.fr",
+    "source": "https://rm-services56.fr/fr/page/contact",
+    "fait": "depuis 2005, vos agents d'entretien assurent bureaux, vitrerie et remises en état dans tout le Morbihan, et vous recrutez en continu",
+    "taille": "agents d'entretien, recrutement permanent (effectif non indiqué)",
+    "note": "Webmail orange affiché ; travaille aussi pour des particuliers",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"RM Services\"",
+        "list_qme domain=prospects query=\"rm-services56\""
+      ],
+      "gmail": "in:anywhere rm-services56.fr"
+    }
+  },
+  {
+    "id": "toujours-propre-saint-herblain",
+    "nom": "Toujours Propre",
+    "ville": "Saint-Herblain",
+    "cp": "44800",
+    "departement": "44",
+    "email": "contact@toujours-propre.fr",
+    "site": "https://www.toujours-propre.fr",
+    "source": "https://www.toujours-propre.fr/",
+    "fait": "depuis 2012, vos 17 collaborateurs entretiennent bureaux et copropriétés de l'agglomération nantaise, et vous formez aussi des jeunes en apprentissage",
+    "taille": "17 collaborateurs",
+    "verifie": "2026-11-27",
+    "note": "",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"Toujours Propre\"",
+        "list_qme domain=prospects query=\"toujours-propre\""
+      ],
+      "gmail": "in:anywhere toujours-propre.fr"
+    }
+  },
+  {
+    "id": "sos-environnement-nettoyage-sarge-les-le-mans",
+    "nom": "SOS Environnement Nettoyage",
+    "ville": "Sargé-lès-le-Mans",
+    "cp": "72190",
+    "departement": "72",
+    "email": "contact@sos-nettoyage.fr",
+    "site": "https://www.sos-nettoyage.fr",
+    "source": "https://www.sos-nettoyage.fr/contact-societe-nettoyage-entretien.html",
+    "fait": "depuis 50 ans, votre PME sarthoise assure l'entretien et la remise en état des locaux, avec la certification Qualipropre n° 186",
+    "taille": "PME, collaborateurs qualifiés, certifiée Qualipropre (effectif non indiqué)",
+    "verifie": "2026-11-27",
+    "note": "",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"SOS Environnement Nettoyage\"",
+        "list_qme domain=prospects query=\"sos-nettoyage\""
+      ],
+      "gmail": "in:anywhere sos-nettoyage.fr"
+    }
+  },
+  {
+    "id": "ism-proprete-le-mans",
+    "nom": "ISM Propreté",
+    "ville": "Le Mans",
+    "cp": "72100",
+    "departement": "72",
+    "email": "contact@ism-proprete.fr",
+    "site": "https://www.ism-proprete.fr",
+    "source": "https://www.ism-proprete.fr/contact",
+    "fait": "votre équipe d'agents d'entretien assure l'entretien régulier des locaux de clients comme Foncia, Citya ou Groupama, dans un rayon de 50 km autour du Mans",
+    "taille": "entreprise familiale, équipe d'agents (effectif non indiqué)",
+    "note": "Fait aussi du ménage pour particuliers et du débarras",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"ISM Propreté\"",
+        "list_qme domain=prospects query=\"ism-proprete\""
+      ],
+      "gmail": "in:anywhere ism-proprete.fr"
+    }
+  },
+  {
+    "id": "ms-pro-angers",
+    "nom": "MS PRO'",
+    "ville": "Angers",
+    "cp": "49100",
+    "departement": "49",
+    "email": "contact@mspro.fr",
+    "site": "https://www.mspro.fr",
+    "source": "https://www.mspro.fr/mentions-legales",
+    "fait": "en partenariat avec MS DOM', entreprise d'insertion active depuis 1998, vos agents entretiennent bureaux, copropriétés et parkings d'Angers et de sa périphérie",
+    "taille": "équipes d'intervention (effectif non indiqué)",
+    "note": "Liée à une entreprise d'insertion de services à domicile (MS DOM') ; MS PRO' vise les professionnels. Doute taille",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"MS PRO'\"",
+        "list_qme domain=prospects query=\"mspro\""
+      ],
+      "gmail": "in:anywhere mspro.fr"
+    }
+  },
+  {
+    "id": "airnova-proprete-larcay",
+    "nom": "Airnova Propreté",
+    "ville": "Larçay",
+    "cp": "37270",
+    "departement": "37",
+    "email": "contact@airnova.fr",
+    "site": "https://www.airnova.fr",
+    "source": "https://www.airnova.fr/",
+    "fait": "votre entreprise familiale, créée en 2013, entretient locaux professionnels et vitrerie autour de Tours, et vos équipes se déplacent aussi en vélo-cargo électrique",
+    "taille": "équipe d'agents d'entretien, recrute (effectif non indiqué)",
+    "note": "Fait aussi des prestations pour particuliers",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"Airnova Propreté\"",
+        "list_qme domain=prospects query=\"airnova\""
+      ],
+      "gmail": "in:anywhere airnova.fr"
+    }
+  },
+  {
+    "id": "brillault-hygiene-services-parcay-meslay",
+    "nom": "Brillault Hygiène et Services",
+    "ville": "Parçay-Meslay",
+    "cp": "37210",
+    "departement": "37",
+    "email": "brillault@sarlbrillault.fr",
+    "site": "https://www.brillault-services.com",
+    "source": "https://www.brillault-services.com/mentions-legales",
+    "fait": "à votre service depuis 1966, vous assurez l'entretien de locaux, la vitrerie et le nettoyage industriel à Tours et Blois",
+    "taille": "non indiqué (60 ans d'existence, plusieurs métiers : propreté, 3D, espaces verts)",
+    "verifie": "2026-11-27",
+    "note": "",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"Brillault Hygiène et Services\"",
+        "list_qme domain=prospects query=\"sarlbrillault\""
+      ],
+      "gmail": "in:anywhere sarlbrillault.fr"
+    }
+  },
+  {
+    "id": "lorin-nettoyage-chartres",
+    "nom": "Lorin Nettoyage",
+    "ville": "Chartres",
+    "cp": "28000",
+    "departement": "28",
+    "email": "lorin.nettoyage28@gmail.com",
+    "site": "https://www.lorin-nettoyage.fr",
+    "source": "https://www.lorin-nettoyage.fr/legal.php",
+    "fait": "présente à Chartres depuis 1962 et adhérente de la Fédération des entreprises de propreté, votre entreprise entretient bureaux, magasins et copropriétés",
+    "taille": "non indiqué (entreprise depuis 1962, adhérente FEP)",
+    "note": "Webmail gmail affiché dans les mentions légales comme adresse de l'entreprise",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"Lorin Nettoyage\"",
+        "list_qme domain=prospects query=\"lorin-nettoyage\""
+      ],
+      "gmail": "in:anywhere lorin-nettoyage.fr"
+    }
+  },
+  {
+    "id": "puissance-propre-besancon",
+    "nom": "Puissance Propre",
+    "ville": "Besançon",
+    "cp": "25000",
+    "departement": "25",
+    "email": "contact@puissancepropre.fr",
+    "site": "https://www.puissance-propre.fr",
+    "source": "https://www.puissance-propre.fr/",
+    "fait": "depuis 2007, vous assurez le nettoyage industriel et l'entretien des locaux professionnels et des copropriétés du Doubs",
+    "taille": "non indiqué (près de 20 ans d'existence)",
+    "note": "Domaine de l'adresse (puissancepropre.fr) sans tiret, différent du site ; MX OVH OK. Doute taille",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"Puissance Propre\"",
+        "list_qme domain=prospects query=\"puissancepropre\""
+      ],
+      "gmail": "in:anywhere puissancepropre.fr"
+    }
+  },
+  {
+    "id": "clean-action-services-romainville",
+    "nom": "Clean Action Services",
+    "ville": "Romainville",
+    "cp": "93230",
+    "departement": "93",
+    "email": "contact@cas-nettoyage.com",
+    "site": "https://www.clean-action-services.fr",
+    "source": "https://www.clean-action-services.fr/contact",
+    "fait": "depuis plus de 10 ans, vos 10 collaborateurs assurent 50 contrats permanents, surtout en copropriétés et en entreprises d'Île-de-France",
+    "taille": "10 collaborateurs",
+    "note": "Domaine de l'adresse (cas-nettoyage.com) différent du site ; MX Google OK",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"Clean Action Services\"",
+        "list_qme domain=prospects query=\"cas-nettoyage\""
+      ],
+      "gmail": "in:anywhere cas-nettoyage.com"
+    }
+  },
+  {
+    "id": "dvsa-noisy-le-roi",
+    "nom": "DVSA",
+    "ville": "Noisy-le-Roi",
+    "cp": "78590",
+    "departement": "78",
+    "email": "contact@dvsa.fr",
+    "site": "https://dvsa.fr",
+    "source": "https://dvsa.fr/contact/",
+    "fait": "votre entreprise familiale, fondée à Versailles en 2012, compte aujourd'hui 18 salariés au service des bureaux et des copropriétés de l'Ouest parisien",
+    "taille": "18 salariés",
+    "verifie": "2026-11-27",
+    "note": "",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"DVSA\"",
+        "list_qme domain=prospects query=\"dvsa\""
+      ],
+      "gmail": "in:anywhere dvsa.fr"
+    }
+  },
+  {
+    "id": "ag-nettoyage-le-chesnay",
+    "nom": "AG Nettoyage et Services",
+    "ville": "Le Chesnay",
+    "cp": "78150",
+    "departement": "78",
+    "email": "agnettoyage@ag-nettoyage.fr",
+    "site": "https://www.ag-nettoyage-versailles.fr",
+    "source": "https://www.ag-nettoyage-versailles.fr/contact",
+    "fait": "depuis plus de 25 ans, vous entretenez bureaux et copropriétés de Versailles et du Chesnay, et vous vous installez dans de nouveaux locaux rue de Glatigny",
+    "taille": "non indiqué (plus de 25 ans d'existence)",
+    "note": "Existe aussi agnettoyage@orange.fr sur la page contact",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"AG Nettoyage et Services\"",
+        "list_qme domain=prospects query=\"ag-nettoyage\""
+      ],
+      "gmail": "in:anywhere ag-nettoyage.fr"
+    }
+  },
+  {
+    "id": "snecie-savigny-sur-orge",
+    "nom": "SNECIE",
+    "ville": "Savigny-sur-Orge",
+    "cp": "91600",
+    "departement": "91",
+    "email": "info@snecie.fr",
+    "site": "https://snecie.fr",
+    "source": "https://snecie.fr/contact",
+    "fait": "créée en 1991, votre entreprise entretient cabinets médicaux, bureaux et copropriétés de l'Essonne avec ses propres agents, sans sous-traitance",
+    "taille": "agents salariés (effectif non indiqué)",
+    "verifie": "2026-11-27",
+    "note": "",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"SNECIE\"",
+        "list_qme domain=prospects query=\"snecie\""
+      ],
+      "gmail": "in:anywhere snecie.fr"
+    }
+  },
+  {
+    "id": "ima-proprete-lisses",
+    "nom": "IMA Propreté",
+    "ville": "Lisses",
+    "cp": "91090",
+    "departement": "91",
+    "email": "contact@ima-proprete.com",
+    "site": "https://www.imaproprete.com",
+    "source": "https://www.imaproprete.com/contactez-nous.php",
+    "fait": "votre équipe de 25 personnes assure le nettoyage de bureaux et de copropriétés autour d'Évry",
+    "taille": "25 personnes",
+    "note": "Domaine de l'adresse (ima-proprete.com) avec tiret, site sans tiret ; MX OVH OK",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"IMA Propreté\"",
+        "list_qme domain=prospects query=\"ima-proprete\""
+      ],
+      "gmail": "in:anywhere ima-proprete.com"
+    }
+  },
+  {
+    "id": "spn-net-bagneux",
+    "nom": "SPN NET",
+    "ville": "Bagneux",
+    "cp": "92220",
+    "departement": "92",
+    "email": "contact@spn-net.fr",
+    "site": "https://spn-net.fr",
+    "source": "https://spn-net.fr/contact/",
+    "fait": "depuis 30 ans, vous nettoyez bureaux et copropriétés d'Île-de-France, avec un système santé-sécurité certifié ISO 45001 pour vos agents",
+    "taille": "non indiqué (30 ans, ISO 45001, EcoVadis Argent)",
+    "note": "Doute taille : structure certifiée, possiblement > 50 salariés",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"SPN NET\"",
+        "list_qme domain=prospects query=\"spn-net\""
+      ],
+      "gmail": "in:anywhere spn-net.fr"
+    }
+  },
+  {
+    "id": "magnou-nettoyage-bouffemont",
+    "nom": "Magnou Nettoyage",
+    "ville": "Bouffémont",
+    "cp": "95570",
+    "departement": "95",
+    "email": "magnounettoyage@orange.fr",
+    "site": "https://www.nettoyage-95.fr",
+    "source": "https://www.nettoyage-95.fr/contactez-nous.php",
+    "fait": "depuis 2011, vos agents qualifiés entretiennent immeubles, bureaux et vitres dans le Val-d'Oise, notamment pour des syndics de copropriété",
+    "taille": "équipe d'agents (effectif non indiqué)",
+    "note": "Webmail orange affiché ; doute taille",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"Magnou Nettoyage\"",
+        "list_qme domain=prospects query=\"nettoyage-95\""
+      ],
+      "gmail": "in:anywhere nettoyage-95.fr"
+    }
+  },
+  {
+    "id": "hil-proprete-noyal-chatillon-sur-seiche",
+    "nom": "HIL Propreté",
+    "ville": "Noyal-Châtillon-sur-Seiche",
+    "cp": "35230",
+    "departement": "35",
+    "email": "contact@hil-proprete.fr",
+    "site": "https://hil-proprete.fr",
+    "source": "https://hil-proprete.fr/contact-hil-proprete/",
+    "fait": "depuis 2011, vous accompagnez entreprises et organismes publics d'Ille-et-Vilaine en privilégiant le travail en journée pour vos collaborateurs",
+    "taille": "collaborateurs encadrés (effectif non indiqué)",
+    "verifie": "2026-11-27",
+    "note": "",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"HIL Propreté\"",
+        "list_qme domain=prospects query=\"hil-proprete\""
+      ],
+      "gmail": "in:anywhere hil-proprete.fr"
+    }
+  },
+  {
+    "id": "smj-nettoyage-noyal-chatillon-sur-seiche",
+    "nom": "SMJ Nettoyage",
+    "ville": "Noyal-Châtillon-sur-Seiche",
+    "cp": "35230",
+    "departement": "35",
+    "email": "smj@smjnettoyage.fr",
+    "site": "https://smjnettoyage.fr",
+    "source": "https://smjnettoyage.fr/nous-contacter/",
+    "fait": "depuis votre création en 2013, plus de 600 clients vous confient l'entretien de leurs parties communes, bureaux ou locaux professionnels autour de Rennes",
+    "taille": "plus de 600 clients, adhérent FEP, recrute (effectif non indiqué)",
+    "verifie": "2026-11-27",
+    "note": "",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"SMJ Nettoyage\"",
+        "list_qme domain=prospects query=\"smjnettoyage\""
+      ],
+      "gmail": "in:anywhere smjnettoyage.fr"
+    }
+  },
+  {
+    "id": "clean-net-service-quimper",
+    "nom": "Clean Net Service",
+    "ville": "Quimper",
+    "cp": "29000",
+    "departement": "29",
+    "email": "contact@cleannetservice.bzh",
+    "site": "https://cleannetservice.bzh",
+    "source": "https://cleannetservice.bzh/contactez-nous/",
+    "fait": "créée en 2018, votre entreprise entretient les locaux des entreprises, des syndics et des collectivités de Quimper et du Finistère Sud",
+    "taille": "gérant, animatrice d'exploitation et agents (effectif non indiqué)",
+    "note": "Adresse protégée Cloudflare, décodée",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"Clean Net Service\"",
+        "list_qme domain=prospects query=\"cleannetservice\""
+      ],
+      "gmail": "in:anywhere cleannetservice.bzh"
+    }
+  },
+  {
+    "id": "nmo-nettoyages-manutentions-ouest-carquefou",
+    "nom": "Nettoyages Manutentions de l'Ouest (NMO)",
+    "ville": "Carquefou",
+    "cp": "44470",
+    "departement": "44",
+    "email": "sarlnmo@wanadoo.fr",
+    "site": "https://www.nmo-nettoyage.com",
+    "source": "https://www.nmo-nettoyage.com/contact/",
+    "fait": "installée à Carquefou depuis 1995, votre entreprise familiale assure l'entretien de bureaux et la vitrerie, y compris de grande hauteur",
+    "taille": "équipe expérimentée (effectif non indiqué)",
+    "note": "Webmail wanadoo au nom de la société",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"Nettoyages Manutentions de l'Ouest (NMO)\"",
+        "list_qme domain=prospects query=\"nmo-nettoyage\""
+      ],
+      "gmail": "in:anywhere nmo-nettoyage.com"
+    }
+  },
+  {
+    "id": "sv-proprete-coudekerque-branche",
+    "nom": "SV Propreté",
+    "ville": "Coudekerque-Branche",
+    "cp": "59210",
+    "departement": "59",
+    "email": "svproprete@orange.fr",
+    "site": "https://www.svproprete.fr",
+    "source": "https://www.svproprete.fr/mentions-legales",
+    "fait": "vos agents, basés à Dunkerque, assurent aussi bien l'entretien quotidien de bureaux que la remise en état de résidences entières",
+    "taille": "non indiqué (EURL, recrute)",
+    "note": "Siège social à Coquelles (62) ; doute taille (EURL)",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"SV Propreté\"",
+        "list_qme domain=prospects query=\"svproprete\""
+      ],
+      "gmail": "in:anywhere svproprete.fr"
+    }
+  },
+  {
+    "id": "propretix-paris",
+    "nom": "PropreTIX",
+    "ville": "Paris",
+    "cp": "75008",
+    "departement": "75",
+    "email": "contact@propretix.fr",
+    "site": "https://www.propretix.fr",
+    "source": "https://www.propretix.fr/",
+    "fait": "depuis 2021, votre entreprise n'emploie ses agents qu'en CDI et les forme et encadre elle-même pour l'entretien de bureaux dans tout Paris",
+    "taille": "agents 100 % en CDI (effectif non indiqué)",
+    "note": "Doute taille : société créée en 2021",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"PropreTIX\"",
+        "list_qme domain=prospects query=\"propretix\""
+      ],
+      "gmail": "in:anywhere propretix.fr"
+    }
+  },
+  {
+    "id": "green-proprete-services-marne-la-vallee",
+    "nom": "Green Propreté & Services",
+    "ville": "Marne-la-Vallée",
+    "cp": "",
+    "departement": "77",
+    "email": "contact@greenproprete.com",
+    "site": "https://greenpro.fr",
+    "source": "https://greenpro.fr/contact",
+    "fait": "votre entreprise familiale, fondée par deux frères, assure à Marne-la-Vallée un nettoyage écologique des bureaux avec la vitrerie intérieure incluse dans l'entretien",
+    "taille": "agents d'entretien (effectif non indiqué)",
+    "note": "Code postal exact non relevé (secteur Chessy/Montévrain) ; domaine de l'adresse (greenproprete.com) différent du site ; doute taille",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"Green Propreté & Services\"",
+        "list_qme domain=prospects query=\"greenproprete\""
+      ],
+      "gmail": "in:anywhere greenproprete.com"
+    }
+  },
+  {
+    "id": "la-cambresienne-entretien-cambrai",
+    "nom": "La Cambrésienne d'Entretien",
+    "ville": "Cambrai",
+    "cp": "59400",
+    "departement": "59",
+    "email": "lacambresienne@yahoo.fr",
+    "site": "https://www.cambresienne-entretien.fr",
+    "source": "https://www.cambresienne-entretien.fr/contact",
+    "fait": "créée en 1977, votre entreprise familiale s'appuie sur une trentaine de techniciens de surface pour les entreprises, collectivités et copropriétés du Cambrésis",
+    "taille": "une trentaine de techniciens de surface",
+    "note": "Webmail yahoo affiché comme adresse de l'entreprise",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"La Cambrésienne d'Entretien\"",
+        "list_qme domain=prospects query=\"cambresienne-entretien\""
+      ],
+      "gmail": "in:anywhere cambresienne-entretien.fr"
+    }
+  },
+  {
+    "id": "diamnet-proprete-blois",
+    "nom": "Diam'Net Propreté",
+    "ville": "Blois",
+    "cp": "41000",
+    "departement": "41",
+    "email": "contact@diamnet-proprete.fr",
+    "site": "https://www.diamnet-proprete.fr",
+    "source": "https://www.diamnet-proprete.fr/fr/contact",
+    "fait": "créée en 1997, votre société emploie 20 personnes régulièrement formées et intervient pour les entreprises, syndics et collectivités du Loir-et-Cher",
+    "taille": "20 personnes",
+    "verifie": "2026-11-27",
+    "note": "",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"Diam'Net Propreté\"",
+        "list_qme domain=prospects query=\"diamnet-proprete\""
+      ],
+      "gmail": "in:anywhere diamnet-proprete.fr"
+    }
+  },
+  {
+    "id": "lb-proprete-saumur",
+    "nom": "LB Propreté",
+    "ville": "Saumur",
+    "cp": "49400",
+    "departement": "49",
+    "email": "contact@lbproprete.fr",
+    "site": "https://lbproprete.fr",
+    "source": "https://lbproprete.fr/qui-sommes-nous",
+    "fait": "votre entreprise entretient bureaux et copropriétés depuis ses sites de Saumur et d'Angers-Beaucouzé",
+    "taille": "équipes coordonnées par deux cogérants, deux sites (effectif non indiqué)",
+    "note": "Doute taille : société probablement récente",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"LB Propreté\"",
+        "list_qme domain=prospects query=\"lbproprete\""
+      ],
+      "gmail": "in:anywhere lbproprete.fr"
+    }
+  },
+  {
+    "id": "indigo-proprete-louhans",
+    "nom": "Indigo Propreté",
+    "ville": "Louhans",
+    "cp": "71500",
+    "departement": "71",
+    "email": "contact@indigo-proprete.fr",
+    "site": "https://www.indigo-proprete.fr",
+    "source": "https://www.indigo-proprete.fr/contact-societe-nettoyage-service-personne-chalon-louhans-71/",
+    "fait": "depuis plus de 45 ans, vous assurez l'entretien de bureaux et de résidences et le nettoyage industriel entre Louhans, Chalon-sur-Saône, Mâcon et Beaune",
+    "taille": "non indiqué (plus de 45 ans d'existence)",
+    "note": "A aussi une activité de services à la personne ; doute taille",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"Indigo Propreté\"",
+        "list_qme domain=prospects query=\"indigo-proprete\""
+      ],
+      "gmail": "in:anywhere indigo-proprete.fr"
+    }
+  },
+  {
+    "id": "net-et-clean-haguenau",
+    "nom": "Net et Clean",
+    "ville": "Haguenau",
+    "cp": "67500",
+    "departement": "67",
+    "email": "contact@netetclean.com",
+    "site": "https://www.netetclean.com",
+    "source": "https://www.netetclean.com/qui-sommes-nous",
+    "fait": "votre entreprise familiale compte 10 collaborateurs formés aux produits qu'ils utilisent et intervient depuis 16 ans autour de Haguenau",
+    "taille": "10 collaborateurs",
+    "note": "Fait aussi des prestations ouvrant droit au crédit d'impôt (particuliers)",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"Net et Clean\"",
+        "list_qme domain=prospects query=\"netetclean\""
+      ],
+      "gmail": "in:anywhere netetclean.com"
+    }
+  },
+  {
+    "id": "novalis-services-hoenheim",
+    "nom": "Novalis Services",
+    "ville": "Hœnheim",
+    "cp": "67800",
+    "departement": "67",
+    "email": "contact@novalisservices.com",
+    "site": "https://www.novalisservices.com",
+    "source": "https://www.novalisservices.com/contactez-nous/",
+    "fait": "installée à Hœnheim sous le même nom et à la même adresse depuis 2005, votre entreprise suit immeubles et locaux professionnels du Bas-Rhin avec les mêmes agents",
+    "taille": "non indiqué (20 ans d'existence)",
+    "note": "Doute taille",
+    "verifie": "2026-11-27",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"Novalis Services\"",
+        "list_qme domain=prospects query=\"novalisservices\""
+      ],
+      "gmail": "in:anywhere novalisservices.com"
+    }
+  },
+  {
+    "id": "rr-net-chevilly-larue",
+    "nom": "RR NET",
+    "ville": "Chevilly-Larue",
+    "cp": "94550",
+    "departement": "94",
+    "email": "contact@rr-net.fr",
+    "site": "https://rr-net.fr",
+    "source": "http://rr-net.fr/contact/",
+    "fait": "depuis 2009, votre équipe de plus de 40 collaborateurs entretient copropriétés et bureaux à Paris et dans le Val-de-Marne",
+    "taille": "plus de 40 collaborateurs",
+    "verifie": "2026-11-27",
+    "note": "",
+    "aVerifier": {
+      "nexora": [
+        "list_qme domain=prospects query=\"RR NET\"",
+        "list_qme domain=prospects query=\"rr-net\""
+      ],
+      "gmail": "in:anywhere rr-net.fr"
+    }
+  },
+  {
+    "id": "eden-nettoyage-saint-martin-d-heres",
+    "nom": "EDEN Nettoyage",
+    "ville": "Saint-Martin-d'Hères",
+    "cp": "38400",
+    "departement": "38",
+    "email": "contact@eden-groupe.net",
+    "site": "https://www.edennettoyage.com/",
+    "source": "https://www.edennettoyage.com/contact",
+    "fait": "votre entreprise, créée en 1977, entretient bureaux, copropriétés, commerces et sites industriels de l'agglomération grenobloise",
+    "verifie": "2026-11-27",
+    "taille": "non indiqué (créée en 1977, Grenoble et Chambéry)",
+    "note": "domaine « eden-groupe » : pas de groupe national identifié, à garder en tête ; autre adresse affichée eden.sa@wanadoo.fr",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"EDEN Nettoyage\"",
+      "gmail": "in:anywhere eden-groupe.net"
+    }
+  },
+  {
+    "id": "diams-entretien-grenoble",
+    "nom": "Diam's Entretien",
+    "ville": "Grenoble",
+    "cp": "38000",
+    "departement": "38",
+    "email": "contact.diams.entretien@orange.fr",
+    "site": "https://diams-entretien.fr/",
+    "source": "https://diams-entretien.fr/contact/",
+    "fait": "dans votre entreprise familiale créée en 1994, la plupart de vos collaborateurs travaillent avec vous depuis plus de 10 ans",
+    "verifie": "2026-11-27",
+    "taille": "équipe d'agents (non chiffrée), créée en 1994",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"Diam's Entretien\"",
+      "gmail": "in:anywhere diams-entretien.fr"
+    }
+  },
+  {
+    "id": "limpia-nettoyage-grenoble",
+    "nom": "Limpia Nettoyage",
+    "ville": "Grenoble",
+    "cp": "38000",
+    "departement": "38",
+    "email": "contact@limpia-nettoyage.fr",
+    "site": "https://www.limpia-nettoyage.fr/",
+    "source": "https://www.limpia-nettoyage.fr/contact",
+    "fait": "votre société, fondée en 2007, entretient établissements scolaires, copropriétés, bureaux et locaux médicaux à Grenoble",
+    "verifie": "2026-11-27",
+    "taille": "non indiqué (pages Équipe et Recrutement)",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"Limpia Nettoyage\"",
+      "gmail": "in:anywhere limpia-nettoyage.fr"
+    }
+  },
+  {
+    "id": "helmand-nettoyage-toulouse",
+    "nom": "Helmand Nettoyage",
+    "ville": "Toulouse",
+    "cp": "31100",
+    "departement": "31",
+    "email": "contact@helmand.fr",
+    "site": "https://www.helmand-nettoyage-toulouse.fr/",
+    "source": "https://www.helmand-nettoyage-toulouse.fr/contact/",
+    "fait": "vous misez sur une équipe stable et bien rémunérée depuis votre création en 2019",
+    "verifie": "2026-11-27",
+    "taille": "équipe salariée (90 copropriétés et 205 bureaux entretenus selon le site)",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"Helmand Nettoyage\"",
+      "gmail": "in:anywhere helmand.fr"
+    }
+  },
+  {
+    "id": "texier-proprete-toulouse",
+    "nom": "Texier Propreté",
+    "ville": "Toulouse",
+    "cp": "31300",
+    "departement": "31",
+    "email": "texierproprete@gmail.com",
+    "site": "https://texierproprete.fr/",
+    "source": "https://texierproprete.fr/fr/page/contact",
+    "fait": "vos équipes d'agents qualifiés interviennent auprès des professionnels toulousains depuis plus de 12 ans",
+    "verifie": "2026-11-27",
+    "taille": "équipes d'agents (non chiffré)",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"Texier Propreté\"",
+      "gmail": "in:anywhere texierproprete.fr"
+    }
+  },
+  {
+    "id": "solhygie-toulouse",
+    "nom": "Solhygie",
+    "ville": "Toulouse",
+    "cp": "31300",
+    "departement": "31",
+    "email": "contact@solhygie.com",
+    "site": "https://www.solhygie.com/",
+    "source": "https://www.solhygie.com/",
+    "fait": "vous assurez l'entretien des copropriétés et des bureaux, la vitrerie en hauteur et le décapage de l'inox des cabines d'ascenseur",
+    "verifie": "2026-11-27",
+    "taille": "non indiqué",
+    "note": "doute sur la taille (aucun chiffre sur le site)",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"Solhygie\"",
+      "gmail": "in:anywhere solhygie.com"
+    }
+  },
+  {
+    "id": "steni-cenon",
+    "nom": "STENI",
+    "ville": "Cenon",
+    "cp": "33150",
+    "departement": "33",
+    "email": "contact@steni.fr",
+    "site": "https://www.steni.fr/",
+    "source": "https://www.steni.fr/contact-societe-nettoyage-bordeaux/",
+    "fait": "votre entreprise familiale assure le nettoyage professionnel et la rénovation de sols en Gironde depuis 1983",
+    "verifie": "2026-11-27",
+    "taille": "salariés et plan de formation (chiffres non lisibles)",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"STENI\"",
+      "gmail": "in:anywhere steni.fr"
+    }
+  },
+  {
+    "id": "pp-nettoyage-talence",
+    "nom": "PP Nettoyage",
+    "ville": "Talence",
+    "cp": "33400",
+    "departement": "33",
+    "email": "pp@nettoyage33.com",
+    "site": "https://ppnettoyage.fr/",
+    "source": "https://ppnettoyage.fr/contact",
+    "fait": "votre entreprise familiale entretient bureaux et parties communes de copropriétés dans toute la métropole bordelaise, dès 6 h du matin",
+    "verifie": "2026-11-27",
+    "taille": "non indiqué (agents d'entretien)",
+    "note": "adresse « pp@ » = initiales de l'entreprise",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"PP Nettoyage\"",
+      "gmail": "in:anywhere nettoyage33.com"
+    }
+  },
+  {
+    "id": "proprete-solution-merignac",
+    "nom": "Propreté Solution",
+    "ville": "Mérignac",
+    "cp": "33700",
+    "departement": "33",
+    "email": "contact@propretesolution.fr",
+    "site": "https://propretesolution.fr/",
+    "source": "https://propretesolution.fr/contact-entreprise-de-nettoyage-a-bordeaux/",
+    "fait": "vos équipes, basées à Mérignac, entretiennent bureaux, commerces, copropriétés et fins de chantier dans la métropole bordelaise",
+    "verifie": "2026-11-27",
+    "taille": "équipes régulières (non chiffré)",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"Propreté Solution\"",
+      "gmail": "in:anywhere propretesolution.fr"
+    }
+  },
+  {
+    "id": "enet-services-marseille",
+    "nom": "ENET Services",
+    "ville": "Marseille",
+    "cp": "13008",
+    "departement": "13",
+    "email": "contact@enet-nettoyage.com",
+    "site": "https://www.enet-nettoyage.com/",
+    "source": "https://www.enet-nettoyage.com/",
+    "fait": "votre entreprise familiale de moins de 50 salariés intervient dans la propreté à Marseille depuis 1978, avec des équipes stables en CDI",
+    "verifie": "2026-11-27",
+    "taille": "moins de 50 salariés",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"ENET Services\"",
+      "gmail": "in:anywhere enet-nettoyage.com"
+    }
+  },
+  {
+    "id": "phocea-nettoyage-marseille",
+    "nom": "Phocea Nettoyage",
+    "ville": "Marseille",
+    "cp": "13005",
+    "departement": "13",
+    "email": "contact@phoceanettoyage.com",
+    "site": "https://phoceanettoyage.com/",
+    "source": "https://phoceanettoyage.com/contact",
+    "fait": "votre entreprise, née en 1985, met en avant un très faible turn-over et des salariés à forte ancienneté",
+    "verifie": "2026-11-27",
+    "taille": "non chiffré (agents, machinistes)",
+    "note": "la page contact affiche aussi contact.phocea.nettoyage@gmail.com",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"Phocea Nettoyage\"",
+      "gmail": "in:anywhere phoceanettoyage.com"
+    }
+  },
+  {
+    "id": "alpes-maintenance-nettoyage-nice",
+    "nom": "Alpes Maintenance Nettoyage",
+    "ville": "Nice",
+    "cp": "06299",
+    "departement": "06",
+    "email": "contact@am-nettoyage.fr",
+    "site": "https://www.am-nettoyage.net/",
+    "source": "https://www.am-nettoyage.net/contactez-nous.php",
+    "fait": "vous êtes une entreprise d'une quarantaine de salariés qui nettoie les locaux des entreprises niçoises depuis 2012",
+    "verifie": "2026-11-27",
+    "taille": "une quarantaine de salariés",
+    "note": "domaine de l'adresse (.fr) différent du site (.net), MX valide",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"Alpes Maintenance Nettoyage\"",
+      "gmail": "in:anywhere am-nettoyage.fr"
+    }
+  },
+  {
+    "id": "megd-nice",
+    "nom": "MEGD",
+    "ville": "Nice",
+    "cp": "06300",
+    "departement": "06",
+    "email": "contact@megd.fr",
+    "site": "https://megd.fr/",
+    "source": "https://megd.fr/contact-megd/",
+    "fait": "vos équipes, formées en interne et non issues de l'intérim, interviennent 7 j/7 à Nice et dans les Alpes-Maritimes",
+    "verifie": "2026-11-27",
+    "taille": "équipes formées en interne, véhicules (non chiffré)",
+    "note": "locaux et équipes à Saint-Laurent-du-Var",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"MEGD\"",
+      "gmail": "in:anywhere megd.fr"
+    }
+  },
+  {
+    "id": "la-maison-de-la-proprete-castelnau-le-lez",
+    "nom": "La Maison de la Propreté",
+    "ville": "Castelnau-le-Lez",
+    "cp": "34170",
+    "departement": "34",
+    "email": "contact@lamaisondelaproprete.fr",
+    "site": "https://www.lamaisondelaproprete.fr/",
+    "source": "https://www.lamaisondelaproprete.fr/contact/",
+    "fait": "vos agents sont tous salariés en CDI, sans intérim ni sous-traitance, sur plus de 650 000 m² sous contrat dans la métropole de Montpellier",
+    "verifie": "2026-11-27",
+    "taille": "agents 100 % CDI, 657 000 m² sous contrat (sept. 2026)",
+    "note": "créée en 2022",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"La Maison de la Propreté\"",
+      "gmail": "in:anywhere lamaisondelaproprete.fr"
+    }
+  },
+  {
+    "id": "senet-proprete-lattes",
+    "nom": "Senet Propreté",
+    "ville": "Lattes",
+    "cp": "34970",
+    "departement": "34",
+    "email": "contact@senet.fr",
+    "site": "https://www.senet.fr/",
+    "source": "https://www.senet.fr/fr/mentions-legales",
+    "fait": "votre société de propreté, créée en 1990, entretient les locaux des PME, industriels et cabinets de Montpellier et Lattes",
+    "verifie": "2026-11-27",
+    "taille": "non chiffré (recrute des agents de propreté)",
+    "note": "la page contact affiche contactsenet@gmail.com ; contact@senet.fr figure dans les mentions légales",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"Senet Propreté\"",
+      "gmail": "in:anywhere senet.fr"
+    }
+  },
+  {
+    "id": "tfk-services-montpellier",
+    "nom": "TFK Services",
+    "ville": "Montpellier",
+    "cp": "34070",
+    "departement": "34",
+    "email": "contact@tfkservices.fr",
+    "site": "https://www.tfkservices.fr/",
+    "source": "https://www.tfkservices.fr/contact",
+    "fait": "vous intervenez 7 j/7 sur les locaux professionnels de l'Hérault depuis 2013 et avez rejoint la FEP Sud-Est en 2026",
+    "verifie": "2026-11-27",
+    "taille": "non chiffré (agents)",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"TFK Services\"",
+      "gmail": "in:anywhere tfkservices.fr"
+    }
+  },
+  {
+    "id": "homexia-avignon",
+    "nom": "Homexia",
+    "ville": "Avignon",
+    "cp": "84000",
+    "departement": "84",
+    "email": "contact@homexia.fr",
+    "site": "https://www.homexia.fr/",
+    "source": "https://www.homexia.fr/fr/contact-societe-de-nettoyage",
+    "fait": "vous accompagnez les professionnels d'Avignon depuis 2010 et recrutez régulièrement des agents d'entretien",
+    "verifie": "2026-11-27",
+    "taille": "non chiffré (recrutement régulier d'agents, page Équipe)",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"Homexia\"",
+      "gmail": "in:anywhere homexia.fr"
+    }
+  },
+  {
+    "id": "sovarnet-toulon",
+    "nom": "SoVarNet",
+    "ville": "Toulon",
+    "cp": "83000",
+    "departement": "83",
+    "email": "sovarnet.toulon@outlook.fr",
+    "site": "https://www.sovarnet.fr/",
+    "source": "https://www.sovarnet.fr/contact.php",
+    "fait": "vous entretenez les parties communes des copropriétés toulonnaises et remplacez les agents d'entretien d'immeuble pendant leurs congés",
+    "verifie": "2026-11-27",
+    "taille": "non chiffré (agents de propreté)",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"SoVarNet\"",
+      "gmail": "in:anywhere sovarnet.fr"
+    }
+  },
+  {
+    "id": "souaclean-la-valette-du-var",
+    "nom": "SouaClean",
+    "ville": "La Valette-du-Var",
+    "cp": "83160",
+    "departement": "83",
+    "email": "contact@souaclean.fr",
+    "site": "https://souaclean.fr/",
+    "source": "https://souaclean.fr/devis-entreprise-nettoyage-toulon-var-83/",
+    "fait": "vos agents entretiennent copropriétés, bureaux et cabinets de l'agglomération toulonnaise avec des produits écolabellisés",
+    "verifie": "2026-11-27",
+    "taille": "non chiffré (agents)",
+    "note": "doute sur la taille ; fait aussi des maisons",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"SouaClean\"",
+      "gmail": "in:anywhere souaclean.fr"
+    }
+  },
+  {
+    "id": "dumas-proprete-saint-alban-leysse",
+    "nom": "DUMAS Propreté & Services",
+    "ville": "Saint-Alban-Leysse",
+    "cp": "73230",
+    "departement": "73",
+    "email": "contact@dumas-proprete.fr",
+    "site": "https://www.dumas-proprete.fr/",
+    "source": "https://www.dumas-proprete.fr/contact",
+    "fait": "votre entreprise familiale et indépendante, créée en 1991, compte 26 salariés en CDI au service des syndics, bureaux et commerces de Chambéry",
+    "verifie": "2026-11-27",
+    "taille": "26 salariés en CDI",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"DUMAS Propreté & Services\"",
+      "gmail": "in:anywhere dumas-proprete.fr"
+    }
+  },
+  {
+    "id": "allo-services-jacob-bellecombette",
+    "nom": "Allo Services",
+    "ville": "Jacob-Bellecombette",
+    "cp": "73000",
+    "departement": "73",
+    "email": "alloservices73@outlook.fr",
+    "site": "https://www.alloservices73.com/",
+    "source": "https://www.alloservices73.com/contact/",
+    "fait": "vous entretenez bureaux et copropriétés de l'agglomération chambérienne depuis plus de 20 ans, avec des contrats sur mesure pour les syndics",
+    "verifie": "2026-11-27",
+    "taille": "non chiffré (agents)",
+    "note": "doute sur la taille (capital 1 000 €)",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"Allo Services\"",
+      "gmail": "in:anywhere alloservices73.com"
+    }
+  },
+  {
+    "id": "carvalho-nettoyage-annecy",
+    "nom": "Carvalho Nettoyage",
+    "ville": "Annecy",
+    "cp": "74000",
+    "departement": "74",
+    "email": "contact@carvalho-nettoyage.fr",
+    "site": "https://www.carvalho-nettoyage.fr/",
+    "source": "https://www.carvalho-nettoyage.fr/contact/",
+    "fait": "votre entreprise compte 15 collaborateurs qui entretiennent bureaux et parties communes de copropriétés en Haute-Savoie, en lien étroit avec les syndics",
+    "verifie": "2026-11-27",
+    "taille": "15 collaborateurs",
+    "note": "code postal non affiché sur le site (Annecy)",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"Carvalho Nettoyage\"",
+      "gmail": "in:anywhere carvalho-nettoyage.fr"
+    }
+  },
+  {
+    "id": "nb-nettoyage-dingy-saint-clair",
+    "nom": "NB Nettoyage",
+    "ville": "Dingy-Saint-Clair",
+    "cp": "74230",
+    "departement": "74",
+    "email": "contact@nbnettoyage.fr",
+    "site": "https://www.nbnettoyage.fr/",
+    "source": "https://www.nbnettoyage.fr/contact",
+    "fait": "vos agents interviennent chaque jour auprès des professionnels, du tertiaire au médical et aux syndics, depuis 1987",
+    "verifie": "2026-11-27",
+    "taille": "non chiffré (agents, depuis 1987)",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"NB Nettoyage\"",
+      "gmail": "in:anywhere nbnettoyage.fr"
+    }
+  },
+  {
+    "id": "dc-nettoyage-annecy",
+    "nom": "DC Nettoyage",
+    "ville": "Annecy",
+    "cp": "74000",
+    "departement": "74",
+    "email": "contact@dcnettoyage.fr",
+    "site": "https://dcnettoyage.fr/",
+    "source": "https://dcnettoyage.fr/contact/",
+    "fait": "vous intervenez dans le bassin annécien depuis 1991, auprès des entreprises, des syndics, des collectivités et des établissements de santé",
+    "verifie": "2026-11-27",
+    "taille": "non chiffré (page Recrutement)",
+    "note": "code postal non affiché sur le site (bassin annécien)",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"DC Nettoyage\"",
+      "gmail": "in:anywhere dcnettoyage.fr"
+    }
+  },
+  {
+    "id": "ann-net-annecy",
+    "nom": "Ann'Net",
+    "ville": "Annecy",
+    "cp": "74000",
+    "departement": "74",
+    "email": "contact@ann-net.com",
+    "site": "https://ann-net.com/",
+    "source": "https://ann-net.com/mentions-legales/",
+    "fait": "vous entretenez copropriétés, bureaux et locaux commerciaux du Grand Annecy avec 15 ans d'expérience du nettoyage professionnel",
+    "verifie": "2026-11-27",
+    "taille": "non chiffré",
+    "note": "doute sur la taille ; adresse vue dans les mentions légales",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"Ann'Net\"",
+      "gmail": "in:anywhere ann-net.com"
+    }
+  },
+  {
+    "id": "mac-services-la-fouillouse",
+    "nom": "M.A.C Services",
+    "ville": "La Fouillouse",
+    "cp": "42480",
+    "departement": "42",
+    "email": "contact@maintenance-and-clean-services.fr",
+    "site": "https://www.maintenance-and-clean-services.fr/",
+    "source": "https://www.maintenance-and-clean-services.fr/fr/contact-entreprise-de-nettoyage",
+    "fait": "votre flotte vient de s'agrandir de deux véhicules utilitaires et vos agents entretiennent bureaux, collectivités et copropriétés autour de Saint-Étienne",
+    "verifie": "2026-11-27",
+    "taille": "agents, flotte de véhicules (non chiffré)",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"M.A.C Services\"",
+      "gmail": "in:anywhere maintenance-and-clean-services.fr"
+    }
+  },
+  {
+    "id": "drt-proprete-valence",
+    "nom": "DRT Propreté",
+    "ville": "Valence",
+    "cp": "26000",
+    "departement": "26",
+    "email": "contact@drtproprete.fr",
+    "site": "https://www.drtproprete.fr/",
+    "source": "https://www.drtproprete.fr/contact",
+    "fait": "vos agents d'entretien interviennent dans les copropriétés, bureaux et collectivités de Valence et de la Drôme-Ardèche",
+    "verifie": "2026-11-27",
+    "taille": "non chiffré (agents)",
+    "note": "doute sur la taille",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"DRT Propreté\"",
+      "gmail": "in:anywhere drtproprete.fr"
+    }
+  },
+  {
+    "id": "carreau-nettoyage-vonnas",
+    "nom": "Carr'eau Nettoyage",
+    "ville": "Vonnas",
+    "cp": "01540",
+    "departement": "01",
+    "email": "secretariat@carreau-nettoyage.fr",
+    "site": "https://carreau-nettoyage.fr/",
+    "source": "https://carreau-nettoyage.fr/contact/",
+    "fait": "votre équipe de plus de 25 personnes formées assure le nettoyage des locaux professionnels autour de Bourg-en-Bresse depuis plus de 25 ans",
+    "verifie": "2026-11-27",
+    "taille": "plus de 25 personnes",
+    "note": "même adresse que Pronett (Vonnas), écarté comme doublon probable",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"Carr'eau Nettoyage\"",
+      "gmail": "in:anywhere carreau-nettoyage.fr"
+    }
+  },
+  {
+    "id": "aquitaine-nettoyage-lons",
+    "nom": "Aquitaine Nettoyage",
+    "ville": "Lons",
+    "cp": "64140",
+    "departement": "64",
+    "email": "aquitainenettoyage@hotmail.fr",
+    "site": "https://aquitainenettoyage.com/",
+    "source": "https://aquitainenettoyage.com/fr/page/contact",
+    "fait": "vous entretenez bureaux, commerces et copropriétés de l'agglomération paloise, avec 20 ans d'expérience et 500 clients revendiqués",
+    "verifie": "2026-11-27",
+    "taille": "non chiffré (500 clients, 10 villes d'intervention)",
+    "note": "doute sur la taille",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"Aquitaine Nettoyage\"",
+      "gmail": "in:anywhere aquitainenettoyage.com"
+    }
+  },
+  {
+    "id": "e-net-nettoyage-saint-bonnet-du-gard",
+    "nom": "E.NET Nettoyage",
+    "ville": "Saint-Bonnet-du-Gard",
+    "cp": "30210",
+    "departement": "30",
+    "email": "contact@enetnettoyage30.fr",
+    "site": "https://www.enetnettoyage30.fr/",
+    "source": "https://www.enetnettoyage30.fr/contact",
+    "fait": "tous vos collaborateurs, des techniciens de surface aux chefs d'équipe, sont embauchés en CDI et habitent près de leurs sites, depuis la création en 2017",
+    "verifie": "2026-11-27",
+    "taille": "collaborateurs en CDI, chefs d'équipe (non chiffré)",
+    "note": "intervient à Nîmes, Uzès, Beaucaire",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"E.NET Nettoyage\"",
+      "gmail": "in:anywhere enetnettoyage30.fr"
+    }
+  },
+  {
+    "id": "optima-proprete-montpellier",
+    "nom": "Optima Propreté Service",
+    "ville": "Montpellier",
+    "cp": "34070",
+    "departement": "34",
+    "email": "contact@optimaproprete.fr",
+    "site": "https://www.optimaproprete.com/",
+    "source": "https://www.optimaproprete.com/la-societe/",
+    "fait": "votre société, certifiée Certibiocide, met en avant la formation et l'accompagnement de ses agents dans l'Hérault et le Gard",
+    "verifie": "2026-11-27",
+    "taille": "non chiffré (page Nous rejoindre, adresse rh@)",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"Optima Propreté Service\"",
+      "gmail": "in:anywhere optimaproprete.fr"
+    }
+  },
+  {
+    "id": "perez-nettoyage-saint-andre",
+    "nom": "Perez Nettoyage",
+    "ville": "Saint-André",
+    "cp": "66690",
+    "departement": "66",
+    "email": "contact@perez-nettoyage.com",
+    "site": "https://www.perez-nettoyage.com/",
+    "source": "https://www.perez-nettoyage.com/legal/rgpd/",
+    "fait": "vous accompagnez professionnels, copropriétés et collectivités des Pyrénées-Orientales depuis 1981, en gardant un esprit familial proche de vos salariés",
+    "verifie": "2026-11-27",
+    "taille": "PME structurée (direction, contrôle qualité, service commercial, secrétariat)",
+    "note": "adresse vue sur la page RGPD du site",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"Perez Nettoyage\"",
+      "gmail": "in:anywhere perez-nettoyage.com"
+    }
+  },
+  {
+    "id": "eclat-vitres-services-chamboret",
+    "nom": "Éclat Vitres Services",
+    "ville": "Chamboret",
+    "cp": "87140",
+    "departement": "87",
+    "email": "eclat-vitres-services@orange.fr",
+    "site": "https://www.eclat-vitres-services.fr/",
+    "source": "https://www.eclat-vitres-services.fr/contact",
+    "fait": "votre équipe d'agents d'entretien nettoie bureaux, commerces et copropriétés autour de Limoges depuis 2011",
+    "verifie": "2026-11-27",
+    "taille": "équipe d'agents (non chiffré)",
+    "note": "doute sur la taille ; aussi particuliers",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"Éclat Vitres Services\"",
+      "gmail": "in:anywhere eclat-vitres-services.fr"
+    }
+  },
+  {
+    "id": "corsica-nettoyage-borgo",
+    "nom": "Corsica Nettoyage",
+    "ville": "Borgo",
+    "cp": "20290",
+    "departement": "2B",
+    "email": "corsica.nettoyage@orange.fr",
+    "site": "https://www.corsicanettoyage.com/",
+    "source": "https://www.corsicanettoyage.com/fr/contact",
+    "fait": "vous entretenez entreprises, commerces et hôtels de toute la Corse depuis plus de 30 ans, avec une flotte de 5 véhicules",
+    "verifie": "2026-11-27",
+    "taille": "flotte de 5 véhicules, salariés (non chiffré)",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"Corsica Nettoyage\"",
+      "gmail": "in:anywhere corsicanettoyage.com"
+    }
+  },
+  {
+    "id": "astic-nettoyage-albi",
+    "nom": "Astic Nettoyage",
+    "ville": "Albi",
+    "cp": "81000",
+    "departement": "81",
+    "email": "astic-nettoyage@orange.fr",
+    "site": "https://www.astic-nettoyage.com/",
+    "source": "https://www.astic-nettoyage.com/contact/",
+    "fait": "vous êtes une société locale d'une cinquantaine de salariés qui intervient à Albi, Castres, Gaillac et Carmaux",
+    "verifie": "2026-11-27",
+    "taille": "une cinquantaine de salariés",
+    "note": "limite haute de la cible",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"Astic Nettoyage\"",
+      "gmail": "in:anywhere astic-nettoyage.com"
+    }
+  },
+  {
+    "id": "dubosclard-nettoyage-albi",
+    "nom": "Dubosclard Nettoyage",
+    "ville": "Albi",
+    "cp": "81000",
+    "departement": "81",
+    "email": "dubosclard.nettoyage@orange.fr",
+    "site": "https://www.dubosclard-nettoyage-albi.fr/",
+    "source": "https://www.dubosclard-nettoyage-albi.fr/contact/",
+    "fait": "vous avez obtenu le label Qualipropre dès 2004, deuxième entreprise du Tarn à le décrocher, et entretenez bureaux et copropriétés depuis 1981",
+    "verifie": "2026-11-27",
+    "taille": "non chiffré (depuis 1981, Qualipropre)",
+    "note": "la page contact affiche aussi contact@dubosclard.com",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"Dubosclard Nettoyage\"",
+      "gmail": "in:anywhere dubosclard-nettoyage-albi.fr"
+    }
+  },
+  {
+    "id": "clair-et-net-bidart",
+    "nom": "Clair & Net",
+    "ville": "Bidart",
+    "cp": "64210",
+    "departement": "64",
+    "email": "contact@clairetnet64.fr",
+    "site": "https://www.clairetnet64.fr/",
+    "source": "https://www.clairetnet64.fr/contact.html",
+    "fait": "vous formez en permanence vos salariés aux nouvelles techniques et assurez l'entretien de bureaux, de copropriétés et les fins de chantier sur la Côte basque",
+    "verifie": "2026-11-27",
+    "taille": "salariés (non chiffré), capital 8 000 €",
+    "note": "doute sur la taille",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"Clair & Net\"",
+      "gmail": "in:anywhere clairetnet64.fr"
+    }
+  },
+  {
+    "id": "netoa-bouc-bel-air",
+    "nom": "Netoa",
+    "ville": "Bouc-Bel-Air",
+    "cp": "13320",
+    "departement": "13",
+    "email": "secretariat@netoa.fr",
+    "site": "https://www.netoa.fr/",
+    "source": "https://www.netoa.fr/fr/contact",
+    "fait": "vous êtes membre de la Fédération des entreprises de propreté et accompagnez les professionnels du pays d'Aix depuis plus de 15 ans",
+    "verifie": "2026-11-27",
+    "taille": "collaborateurs formés, équipes CACES (non chiffré)",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"Netoa\"",
+      "gmail": "in:anywhere netoa.fr"
+    }
+  },
+  {
+    "id": "pro-service-l-isle-d-espagnac",
+    "nom": "Pro Service",
+    "ville": "L'Isle-d'Espagnac",
+    "cp": "16340",
+    "departement": "16",
+    "email": "proprete@proservice.fr",
+    "site": "https://www.proservice.fr/",
+    "source": "https://www.proservice.fr/mentions-legales",
+    "fait": "depuis 1994, vous entretenez bureaux, locaux et vitrerie depuis vos agences d'Angoulême, de Vivonne et d'Échillais",
+    "verifie": "2026-11-27",
+    "taille": "3 agences (16, 86, 17), non chiffré",
+    "note": "indépendante régionale (pas de réseau national identifié)",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"Pro Service\"",
+      "gmail": "in:anywhere proservice.fr"
+    }
+  },
+  {
+    "id": "toupin-nettoyage-montauban",
+    "nom": "Toupin Nettoyage",
+    "ville": "Montauban",
+    "cp": "82000",
+    "departement": "82",
+    "email": "contact@toupin-nettoyage.fr",
+    "site": "https://www.toupin-nettoyage.fr/",
+    "source": "https://www.toupin-nettoyage.fr/mentions-legales",
+    "fait": "votre entreprise, créée en 1967, compte plus de 35 salariés, dont 28 agents de service encadrés par 3 chefs d'équipe",
+    "verifie": "2026-11-27",
+    "taille": "plus de 35 salariés (28 agents de service, 3 chefs d'équipe)",
+    "note": "adresse vue dans les mentions légales",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"Toupin Nettoyage\"",
+      "gmail": "in:anywhere toupin-nettoyage.fr"
+    }
+  },
+  {
+    "id": "escrieut-proprete-montauban",
+    "nom": "Escrieut Propreté",
+    "ville": "Montauban",
+    "cp": "82000",
+    "departement": "82",
+    "email": "contact@escrieut.fr",
+    "site": "https://escrieut.fr/",
+    "source": "https://escrieut.fr/contact/",
+    "fait": "votre entreprise familiale, créée en 1988 et reprise par les deux fils du fondateur, entretient bureaux et parties communes dans le Tarn-et-Garonne",
+    "verifie": "2026-11-27",
+    "taille": "non chiffré (« entreprise à taille humaine », agents d'entretien)",
+    "note": "code postal non affiché (Montauban)",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"Escrieut Propreté\"",
+      "gmail": "in:anywhere escrieut.fr"
+    }
+  },
+  {
+    "id": "clean-aveyron-rodez",
+    "nom": "Clean Aveyron",
+    "ville": "Rodez",
+    "cp": "12000",
+    "departement": "12",
+    "email": "cleanaveyron@orange.fr",
+    "site": "https://clean-aveyron.fr/",
+    "source": "https://clean-aveyron.fr/mentions-legales/",
+    "fait": "vos équipes, 50 salariés au total, interviennent dans tout l'Aveyron depuis la création de l'entreprise en 2008",
+    "verifie": "2026-11-27",
+    "taille": "50 salariés",
+    "note": "adresse vue dans les mentions légales ; limite haute de la cible",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"Clean Aveyron\"",
+      "gmail": "in:anywhere clean-aveyron.fr"
+    }
+  },
+  {
+    "id": "abc-proprete-carcassonne",
+    "nom": "ABC Propreté",
+    "ville": "Carcassonne",
+    "cp": "11000",
+    "departement": "11",
+    "email": "abcproprete@sfr.fr",
+    "site": "https://www.abcproprete.fr/",
+    "source": "https://www.abcproprete.fr/contact",
+    "fait": "votre équipe, formée et diplômée de l'INHNI, assure l'entretien des bureaux, immeubles et copropriétés et la remise à neuf des sols à Carcassonne",
+    "verifie": "2026-11-27",
+    "taille": "non chiffré (équipe formée INHNI)",
+    "note": "doute sur la taille",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"ABC Propreté\"",
+      "gmail": "in:anywhere abcproprete.fr"
+    }
+  },
+  {
+    "id": "atn-services-venissieux",
+    "nom": "ATN Services",
+    "ville": "Vénissieux",
+    "cp": "69200",
+    "departement": "69",
+    "email": "contact@atn-service.com",
+    "site": "https://www.atn-services.fr/",
+    "source": "https://www.atn-services.fr/",
+    "fait": "vos agents interviennent partout dans le Rhône depuis 2008, y compris pour la vitrerie en hauteur avec des employés formés aux travaux en hauteur",
+    "verifie": "2026-11-27",
+    "taille": "non chiffré (agents, employés formés au travail en hauteur)",
+    "note": "domaine de l'adresse (atn-service.com) différent du site (atn-services.fr), MX valide",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"ATN Services\"",
+      "gmail": "in:anywhere atn-service.com"
+    }
+  },
+  {
+    "id": "ecoclean-07-aubenas",
+    "nom": "ECOCLEAN 07",
+    "ville": "Aubenas",
+    "cp": "07200",
+    "departement": "07",
+    "email": "entreprise@ecoclean07.fr",
+    "site": "https://www.ecoclean07.fr/",
+    "source": "https://www.ecoclean07.fr/mentions.html",
+    "fait": "vous suivez vos prestations par géolocalisation de vos salariés, avec une alerte en cas de prestation non réalisée, pour les bureaux et copropriétés du sud de l'Ardèche",
+    "verifie": "2026-11-27",
+    "taille": "salariés (non chiffré), « petite société familiale »",
+    "note": "doute sur la taille",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"ECOCLEAN 07\"",
+      "gmail": "in:anywhere ecoclean07.fr"
+    }
+  },
+  {
+    "id": "ehrmann-proprete-borderes-sur-l-echez",
+    "nom": "EHRMANN Propreté",
+    "ville": "Bordères-sur-l'Échez",
+    "cp": "65320",
+    "departement": "65",
+    "email": "contact@ehrmann-entreprise.fr",
+    "site": "https://ehrmann-proprete.fr/",
+    "source": "https://ehrmann-proprete.fr/index.php?page=contact",
+    "fait": "votre service qualité contrôle chacun de vos chantiers d'entretien de bureaux, de locaux et de copropriétés dans le secteur de Tarbes",
+    "verifie": "2026-11-27",
+    "taille": "non chiffré (service qualité, capital 300 000 €)",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"EHRMANN Propreté\"",
+      "gmail": "in:anywhere ehrmann-entreprise.fr"
+    }
+  },
+  {
+    "id": "sdi-nettoyage-auterive",
+    "nom": "SDI Nettoyage",
+    "ville": "Auterive",
+    "cp": "32550",
+    "departement": "32",
+    "email": "contact@nettoyage-auch-32.fr",
+    "site": "https://www.nettoyage-auch-32.fr/",
+    "source": "https://www.nettoyage-auch-32.fr/mentions-legales",
+    "fait": "votre équipe de 35 employés et vos 6 véhicules interviennent dans le Grand Auch, avec plus de 25 ans d'expérience",
+    "verifie": "2026-11-27",
+    "taille": "35 employés, 6 véhicules",
+    "note": "intervient aussi chez les particuliers ; adresse vue dans les mentions légales",
+    "aVerifier": {
+      "nexora": "list_qme domain=prospects query=\"SDI Nettoyage\"",
+      "gmail": "in:anywhere nettoyage-auch-32.fr"
+    }
+  }
+]
