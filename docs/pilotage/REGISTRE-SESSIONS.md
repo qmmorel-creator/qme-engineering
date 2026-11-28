@@ -67,6 +67,7 @@ Gumroad vers Sheet, 6:47.
 | Nathalie Delecroix · Compagnie Antarès | `session_0183EW55T5PbMQXnJLAUn5A6` |
 | Sarah Villar · École de musique de Givry | `session_0183EW55JfsQS9L7DdrxK9ba` |
 | Kelly Castiglione-Rouvière · Conciergerie en Provence | `session_0183EW52yPwRk9FGb3W4JjWc` |
+| Guillaume Beck · L'Établi du Pendulier (créée le 28/11) | `session_0183EW55MNLHd33qMu6vio2B` |
 
 Registre détaillé : `docs/prospection/CONVERSATIONS-TUNNEL.md`.
 
@@ -161,7 +162,7 @@ d'usage du compte.
   affiliation en 6 passages de 5 mails (9:07, 10:07, 12:07, 13:07, 15:07, 16:07).
 - 27/11/2026 (soir) : règle absolue d'autorité du GOD. Création du [MASTER] Production (devis signé → réalisation,
   adaptations de templates, sous-master Licences). Ancien logo bleu supprimé du dépôt (5 fichiers).
-- 28/11/2026 : audit complet. Étiquettes posées sur 62 sessions (GOD, 9 masters, 48 sous-sessions,
+- 28/11/2026 : audit complet. Étiquettes posées sur 63 sessions (GOD, 9 masters, 49 sous-sessions,
   4 hors QME) ; 13 sessions sans master rattachées (Production, Licences, Gumroad, Influenceurs, Tunnel, GOD), les
   sessions personnelles marquées `hors-qme`. Rappel DMARC du 07/12 repris par le GOD (l'ancien, lié à une session
   archivée, est désactivé). Ajout des sous-sessions de Production et de la tâche « Bauhaus adouci » (11:17).
