@@ -362,67 +362,64 @@
       e.documents.forEach((d, i) => { d.fait = ![1, 6, 8].includes(i); });
       return e;
     },
-    // `?demo=espagne&prenom=Angélique` : road trip en Espagne en préparation (départ dans 10 jours, 14 jours,
-    // deux chiens). Données inventées. Phase « avant le départ » : l'Aperçu montre ce qui reste à réserver,
-    // la préparation et le budget prévu. Albums photos en liens d'exemple (aucun vrai dossier).
-    espagne(prenom) {
+    // `?demo=catalogne&prenom=Angélique` (lien court /demo/angelique-espagne) : le road trip réel d'Angélique en Catalogne (son itinéraire du 27/11/2026,
+    // 5 jours au départ du Barcarès), en van avec deux chiens. Dates, nuits, montants et dépenses sont des exemples ;
+    // les activités sont des suggestions (règles, horaires et tarifs à vérifier sur place). Départ dans 10 jours :
+    // l'Aperçu montre la préparation. Albums photos en liens d'exemple (aucun vrai dossier).
+    catalogne(prenom) {
       const e = etatVide();
       const t = auj();
       const j = (n) => ajout(t, n);
       const nom = prenom || 'Angélique';
-      e.demoProfil = 'espagne'; e.prenom = nom; e.premiersPas = {}; e.tutorielVu = true;
-      e.voyage = { nom: 'Road trip en Espagne avec les chiens', destination: 'Espagne (exemple fictif)', debut: j(10), fin: j(24), note: 'Deux semaines en van avec Pistache et Moka : Pays basque, désert des Bardenas, Pyrénées aragonaises, delta de l\'Èbre, Valence et Albarracín. Données inventées pour la démonstration.', album: `${LIEN_EXEMPLE}road-trip-espagne`, modifLe: '' };
+      e.demoProfil = 'catalogne'; e.prenom = nom; e.premiersPas = {}; e.tutorielVu = true;
+      e.voyage = { nom: 'Road trip en Catalogne avec les chiens', destination: 'Catalogne, Espagne', debut: j(10), fin: j(14), note: 'Cinq jours en van avec les deux chiens, au départ du Barcarès : Cap de Creus et Cadaqués, Aiguamolls de l\'Empordà, Garrotxa, retour par Figueres ou le Cap de Creus. Itinéraire d\'Angélique ; dates, nuits et montants d\'exemple, activités suggérées à vérifier.', album: `${LIEN_EXEMPLE}road-trip-catalogne`, modifLe: '' };
       const [moi, copilote] = [nom, 'Copilote (fictif)'].map((n) => R.normaliserVoyageur({ id: uid(), nom: n }));
       e.voyageurs = [moi, copilote];
       const et = (lieu, a, d, note = '', photos = '') => R.normaliserEtape({ id: uid(), lieu, arrivee: j(a), depart: j(d), note, photos: photos ? `${LIEN_EXEMPLE}${photos}` : '' });
       e.etapes = [
-        et('Saint-Sébastien', 10, 12, 'Plages et horaires autorisés aux chiens : à vérifier sur place.', 'saint-sebastien'),
-        et('Désert des Bardenas', 12, 14, 'Pistes balisées, bivouac selon les règles du parc : à vérifier.', 'bardenas'),
-        et('Pyrénées aragonaises', 14, 16, 'Accès des chiens dans le parc national : à vérifier avant la randonnée.'),
-        et('Delta de l\'Èbre', 16, 18, 'Moustiques le soir : prévoir la protection des chiens.', 'delta-ebre'),
-        et('Valence', 18, 21), et('Albarracín', 21, 22), et('Gérone', 22, 24, 'Dernière étape avant le retour.'),
+        et('Cap de Creus et Cadaqués', 10, 11, 'Parc naturel : stationnement de nuit et bivouac encadrés, à vérifier avant de choisir où dormir.', 'cap-de-creus'),
+        et('Aiguamolls de l\'Empordà', 11, 12, 'Réserve naturelle : accès des chiens aux sentiers et observatoires à vérifier.', 'emporda'),
+        et('Garrotxa', 12, 14, 'Zone volcanique, hêtraie de la Fageda d\'en Jordà, chemins de campagne.', 'garrotxa'),
       ];
       const h = (lieuNom, adresse, a, d, statut, montant, note = '') => R.normaliserNuit({ id: uid(), nom: lieuNom, adresse, arrivee: j(a), depart: j(d), statut, montant, acompte: statut === 'reserve' ? montant : 0, solde: statut === 'reserve', note });
       e.nuits = [
-        h('Dans le van · camping (fictif)', 'Hauteurs de la ville (fictif)', 10, 12, 'reserve', 7600, 'Chiens acceptés, réservé avec l\'électricité.'),
-        h('Dans le van · spot nature (fictif)', 'Bord des Bardenas (fictif)', 12, 14, 'reserve', 0, 'Bivouac : se renseigner sur les règles locales.'),
-        h('Dans le van · aire de camping-car (fictive)', 'Village de montagne (fictif)', 14, 16, 'reserve', 2000, 'Payée à la borne : 10 € la nuit.'),
-        h('Dans le van · camping (fictif)', 'Entre rizières et plage (fictif)', 16, 18, 'aReserver', 5600),
-        h('Dans le van · camping près de la plage (fictif)', 'Sud de Valence (fictif)', 18, 21, 'aReserver', 9600, 'Navette de bus vers le centre (fictive).'),
-        h('Dans le van · aire de camping-car (fictive)', 'Bas du village (fictif)', 21, 22, 'reserve', 800),
-        h('Dans le van · camping (fictif)', 'Près de Gérone (fictif)', 22, 24, 'aReserver', 6000),
+        h('Dans le van · camping près de Cadaqués (à choisir)', 'Secteur Cadaqués', 10, 11, 'aReserver', 3500, 'Montant d\'exemple. Chiens acceptés : à vérifier en réservant.'),
+        h('Dans le van · aire ou camping (à choisir)', 'Secteur de l\'Empordà', 11, 12, 'aReserver', 2500, 'Montant d\'exemple.'),
+        h('Dans le van · camping en Garrotxa (à choisir)', 'Secteur Olot', 12, 14, 'aReserver', 6000, 'Deux nuits, montant d\'exemple.'),
       ];
       const tr = (n, heure, de, vers, prix, statut = 'reserve', ref = 'Van') => R.normaliserTransport({ id: uid(), date: j(n), heure, mode: 'voiture', de, vers, statut, prix, ref });
       e.transports = [
-        tr(10, '07:30', 'Maison', 'Saint-Sébastien', 9800, 'reserve', 'Van · péages et gazole'), tr(12, '09:00', 'Saint-Sébastien', 'Bardenas', 4200),
-        tr(14, '08:30', 'Bardenas', 'Pyrénées aragonaises', 5600), tr(16, '08:00', 'Pyrénées aragonaises', 'Delta de l\'Èbre', 8200),
-        tr(18, '09:30', 'Delta de l\'Èbre', 'Valence', 4800), tr(21, '09:00', 'Valence', 'Albarracín', 5200), tr(22, '08:00', 'Albarracín', 'Gérone', 9600),
-        tr(24, '08:00', 'Gérone', 'Maison', 11500, 'aReserver', 'Retour en une journée'),
+        tr(10, '08:30', 'Le Barcarès', 'Cap de Creus', 3500, 'reserve', 'Van · gazole et péage (exemple)'),
+        tr(11, '10:00', 'Cap de Creus', 'Aiguamolls de l\'Empordà', 1500),
+        tr(12, '09:30', 'Empordà', 'Garrotxa', 2500),
+        tr(14, '09:00', 'Garrotxa', 'Le Barcarès', 4000, 'reserve', 'Retour par Figueres ou le Cap de Creus'),
       ];
       const ac = (n, heure, titre, lieu, statut, prix, note = '') => R.normaliserActivite({ id: uid(), date: n === null ? '' : j(n), heure, titre, lieu, statut, prix, note });
+      const verif = 'Suggestion : horaires, tarif et accès des chiens à vérifier.';
       e.activites = [
-        ac(10, '18:30', 'Balade au bord de la baie avec les chiens', 'Saint-Sébastien', 'libre', 0, 'Horaires d\'accès des chiens à la plage : à vérifier.'),
-        ac(11, '20:00', 'Soirée tapas dans la vieille ville', 'Saint-Sébastien', 'libre', 0),
-        ac(13, '08:00', 'Tour des pistes du désert en van', 'Bardenas', 'libre', 0, 'Partir tôt : chaleur et pas d\'ombre pour les chiens.'),
-        ac(15, '09:00', 'Randonnée vers les cascades', 'Pyrénées aragonaises', 'libre', 0, 'Chiens en laisse ou non admis selon la zone : à vérifier.'),
-        ac(17, '17:00', 'Observation des oiseaux à vélo', 'Delta de l\'Èbre', 'aReserver', 3000, 'Location de deux vélos (fictive).'),
-        ac(19, '10:00', 'Visite du centre et du marché couvert', 'Valence', 'libre', 0, 'Chiens au van à l\'ombre ou garde à trouver.'),
-        ac(20, '18:00', 'Coucher de soleil sur la lagune en barque', 'Parc naturel près de Valence', 'aReserver', 2400),
-        ac(21, '16:00', 'Remparts et ruelles du village', 'Albarracín', 'libre', 0),
+        ac(10, '11:00', 'Balade jusqu\'au phare du Cap de Creus', 'Cap de Creus', 'libre', 0, 'Suggestion : sentier côtier, emporter de l\'eau pour les chiens.'),
+        ac(10, '17:00', 'Flânerie dans le village et le port de Cadaqués', 'Cadaqués', 'libre', 0, 'Suggestion.'),
+        ac(11, '09:00', 'Maison-musée Dalí de Portlligat', 'Portlligat, près de Cadaqués', 'aReserver', 0, 'Suggestion : visite sur réservation, chiens à faire garder. ' + verif),
+        ac(11, '15:00', 'Observatoires d\'oiseaux des Aiguamolls', 'Parc naturel des Aiguamolls de l\'Empordà', 'libre', 0, verif),
+        ac(11, '18:30', 'Plage de la baie de Roses', 'Sant Pere Pescador', 'libre', 0, 'Suggestion : plages autorisées aux chiens à vérifier.'),
+        ac(12, '10:00', 'Ruines grecques et romaines d\'Empúries', 'L\'Escala', 'libre', 0, verif),
+        ac(12, '16:00', 'Balade dans la Fageda d\'en Jordà', 'Garrotxa', 'libre', 0, 'Suggestion : hêtraie sur une ancienne coulée de lave, sentier facile.'),
+        ac(13, '09:30', 'Montée aux volcans Santa Margarida et Croscat', 'Parc naturel de la zone volcanique de la Garrotxa', 'libre', 0, 'Suggestion : chemins balisés ; chiens en laisse, à vérifier.'),
+        ac(13, '16:00', 'Village de Castellfollit de la Roca', 'Garrotxa', 'libre', 0, 'Suggestion : village perché sur une falaise de basalte.'),
+        ac(14, '10:00', 'Pont médiéval de Besalú', 'Besalú', 'libre', 0, 'Suggestion : sur la route du retour.'),
+        ac(14, '12:00', 'Théâtre-musée Dalí', 'Figueres', 'aReserver', 0, 'Suggestion si le retour passe par Figueres : chiens à faire garder. ' + verif),
         ac(null, '', 'Tournage d\'une vidéo du road trip', '', 'libre', 0, 'À caser sur une étape avec une belle lumière.'),
       ];
-      e.budget = { prevus: { repas: 25000, courses: 40000, surplace: 12000, assurance: 6000, achats: 5000, divers: 15000 }, modifLe: '' };
+      e.budget = { prevus: { repas: 8000, courses: 12000, surplace: 5000, assurance: 2000, achats: 2000, divers: 5000 }, modifLe: '' };
       const tous = e.voyageurs.map((v) => v.id);
       const dep = (n, libelle, montant, posteId, payeur) => R.normaliserDepense({ id: uid(), date: j(n), libelle, montant, poste: posteId, payeur: payeur.id, repartition: { mode: 'egale', participants: tous } }, e.voyageurs, B.postes);
       e.depenses = [
-        dep(-12, 'Assistance du van en Europe (fictive)', 6000, 'assurance', moi),
-        dep(-8, 'Camping de Saint-Sébastien', 7600, 'hebergement', copilote),
-        dep(-5, 'Visite chez le vétérinaire avant le départ', 5500, 'divers', moi),
-        dep(-3, 'Vidange et pneus du van', 18000, 'transport', copilote),
-        dep(-1, 'Croquettes pour deux semaines', 7200, 'courses', moi),
+        dep(-6, 'Assistance du van en Europe (exemple)', 2000, 'assurance', moi),
+        dep(-3, 'Vidange du van (exemple)', 9000, 'transport', copilote),
+        dep(-1, 'Croquettes pour la semaine (exemple)', 2800, 'courses', moi),
       ];
       e.bagages = R.genererBagages(B.bagages, [], ['essentiels', 'camping', 'voiture', 'plage']);
-      for (const texte of ['Croquettes et gamelles des chiens', 'Laisses, harnais et longe', 'Médicaments et anti-moustiques des chiens', 'Eau en réserve et bols pliables', 'Pare-soleil et ventilateur du van']) e.bagages.push(R.normaliserCase({ texte, liste: 'chiens' }));
+      for (const texte of ['Croquettes et gamelles des chiens', 'Laisses, harnais et longe', 'Eau en réserve et bols pliables', 'Médicaments des chiens', 'Jumelles pour les oiseaux']) e.bagages.push(R.normaliserCase({ texte, liste: 'chiens' }));
       e.bagages.forEach((b, i) => { b.fait = i % 3 === 0; });
       e.documents = R.genererDocuments(B.documents);
       e.documents.push(R.normaliserCase({ texte: 'Passeports européens des chiens', detail: 'Vaccins et règles d\'entrée des animaux en Espagne : à vérifier sur les sources officielles avant le départ.' }));
@@ -431,6 +428,9 @@
       return e;
     },
   };
+  // Ancienne adresse de la démo d'Angélique (27/11/2026) : même démo, profil renommé pour ne pas rouvrir
+  // une version gardée sur l'appareil.
+  DEMOS.espagne = DEMOS.catalogne;
 
   // ---------- Rendu : connexion ----------
   const SYMBOLE = '<svg viewBox="0 0 80 80" width="32" height="32" aria-hidden="true"><path d="M40,0 A40,40 0 0 1 80,40 V80 H40 A40,40 0 0 1 0,40 A40,40 0 0 1 40,0 Z" fill="currentColor"/><rect x="40" y="40" width="40" height="40" fill="#D9302A"/><circle cx="40" cy="40" r="15" fill="#F0EDE6"/></svg>';
@@ -768,7 +768,7 @@
     const avant = R.phase(E.voyage, auj()).etat === 'avant';
     return `<section class="demarrage" aria-labelledby="demarrage-titre">
       <div class="demarrage-tete"><h2 id="demarrage-titre">Bonjour ${esc(E.prenom || '')}&nbsp;! Prise en main en 3 gestes</h2><span class="demarrage-compte">${faits}/${GESTES.length}</span></div>
-      <p>Voici un voyage d'exemple déjà rempli : ${E.demoProfil === 'espagne' ? 'ton road trip en Espagne en van avec deux chiens, à préparer' : 'six semaines en van avec deux chiens'}. Tout se modifie ; rien n'est envoyé nulle part.</p>
+      <p>Voici un voyage d'exemple déjà rempli : ${['catalogne', 'espagne'].includes(E.demoProfil) ? 'ton road trip en Catalogne en van avec les deux chiens, avec des idées d\'activités à chaque étape' : 'six semaines en van avec deux chiens'}. Tout se modifie ; rien n'est envoyé nulle part.</p>
       <ol>${GESTES.map(([id, titre, texte, action]) => `<li class="${pp[id] ? 'fait' : ''}"><span class="demarrage-num">${pp[id] ? '✓' : GESTES.findIndex(([g]) => g === id) + 1}</span><div><b>${id === 'jours' && avant ? 'Voir le programme jour par jour' : titre}</b><span>${id === 'jours' && avant ? 'Ouvre <b>Jour par jour</b> : la route, les balades et la nuit de chaque journée, sur une seule carte.' : texte}</span>${pp[id] ? '' : `<div class="actions">${action}</div>`}</div></li>`).join('')}</ol>
       <div class="demarrage-pied"><button class="btn petit" data-action="tutoriel">Le guide complet</button><button class="btn petit" data-action="demarrage-masquer">${faits === GESTES.length ? 'C\'est bon, j\'ai compris' : 'Masquer'}</button></div>
     </section>`;

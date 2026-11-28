@@ -274,12 +274,12 @@ export const PRISE_EN_MAIN = {
     aide: 'Votre carnet constructeur diffère du plan indicatif ?',
   },
   PGS: {
-    commencer: 'ajoutez le livre que vous lisez et la page où vous en êtes : à la prochaine lecture, notez la nouvelle page, et la date de fin estimée apparaît.',
+    commencer: 'ajoutez le livre, la série ou le podcast du moment (cherchez le titre : la fiche se remplit) et où vous en êtes : à la session suivante, notez la nouvelle page ou touchez « 1 épisode », et la date de fin estimée apparaît.',
     astuces: [
-      'les livres déjà lus cette année se marquent « lu » avec leur date de fin, sans détailler les sessions : ils comptent dans votre objectif ;',
-      'les livres audio se suivent en minutes écoutées.',
+      'ce que vous avez déjà terminé cette année se marque « lu » ou « vu » avec sa date de fin, sans détailler les sessions : cela compte dans vos objectifs ;',
+      'une série se suit par saison et par épisode, un livre audio ou un film en minutes, et chaque média a son objectif de l\'année.',
     ],
-    aide: 'Un format ou une habitude de lecture que l\'outil gère mal ?',
+    aide: 'Un média ou une habitude que l\'outil gère mal ?',
   },
   NTS: {
     commencer: 'saisissez la maquette du semestre en cours (matières et coefficients ou crédits ECTS), puis vos notes déjà connues : les moyennes se calculent au centième.',

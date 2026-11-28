@@ -9,7 +9,7 @@ doublons ni de routines inutiles. Instinct ne fait que publier les lignes « Pro
 **« Agent contenu réseaux sociaux QME (quotidien) »**, chaque jour à 10:07 (Paris), dans la session de Claude qui a accès
 à Google Sheets et Google Drive. À chaque passage :
 
-1. corrige tout doublon de demain à J+60 (premier jour libre, dates imposées intactes, Short avec son Reel) ;
+1. corrige tout doublon de demain à J+60 (les lignes « Mini-story » ne sont jamais des doublons : elles viennent en plus, `REGLES-CONTENU.md` § 1) (premier jour libre, dates imposées intactes, Short avec son Reel) ;
 2. comble tout jour vide de demain à J+7 sur Instagram, LinkedIn, YouTube et X (skills `publication-classique`,
    `campagne-x`, `reel-du-soir`, `video-demo`, `formats-test` ; Short YouTube à partir d'une vidéo existante) ;
 3. crée les vidéos TikTok des carrousels des 14 prochains jours (`tiktok/ROUTINE-DIAPORAMAS.md`) ;

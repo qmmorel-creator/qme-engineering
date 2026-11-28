@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Révisions : la nuit blanche · Mini-story QME</title>
+<!-- Projet d'animation de l'épisode. Rendu : node docs/videos/rendu.mjs <ce fichier> 27.4 --muet --taille-max 14
+     Toute l'image est fonction du temps : window.placer(ms) dessine l'image exacte de l'instant ms (rendu déterministe).
+     Données : timeline.js (généré depuis timeline.json, voix réelles mesurées). -->
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../assets/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../assets/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1EFF,U+20A0-20AB,U+20AD-20C4;}
+:root{--creme:#F1EEE6;--noir:#141414;--jaune:#FFBE00;--jaune-pale:#FBEBC2;--bleu:#23528B;--rouge:#DE2D27;--moutarde:#EDB43A;--vert:#2E7D50}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:var(--creme);font-family:'Outfit',sans-serif;color:var(--noir)}
+#scene{position:absolute;inset:0}
+#st{position:absolute;left:60px;right:130px;top:1350px;display:flex;justify-content:center;text-align:center}
+#st span{display:inline;background:var(--jaune-pale);box-decoration-break:clone;-webkit-box-decoration-break:clone;padding:6px 22px;border-radius:18px;font-weight:800;font-size:56px;line-height:1.45;letter-spacing:-.5px}
+#carton{position:absolute;inset:0;background:#141414;display:none}
+#carton img{position:absolute;left:0;width:1080px;top:50%;transform:translateY(-50%)}
+.pre{position:absolute;opacity:0;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="scene"></div>
+<div id="st"></div>
+<div id="carton"><img src="../assets/qme-carton-final-9x16-official.png" alt=""></div>
+<img class="pre" src="../assets/templates-revision-tel.webp" alt=""><img class="pre" src="../assets/templates-revision-planning.webp" alt="">
+<script src="timeline.js"></script>
+<script src="carreau.js"></script>
+<script>
+const C = {creme:'#F1EEE6', noir:'#141414', jaune:'#FFBE00', pale:'#FBEBC2', bleu:'#23528B', rouge:'#DE2D27', moutarde:'#EDB43A', vert:'#2E7D50', blanc:'#FFFFFF'};
+const PAS_POSE = 1000 / 12;              // poses tenues 2 images à 24 i/s : rendu « stop-motion » de la charte MiniStories
+const pose = (ms) => Math.floor(ms / PAS_POSE) * PAS_POSE;
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const sortie = (x) => 1 - Math.pow(1 - x, 3);
+const rebond = (x) => { const c = 1.70158 * 1.4; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const hash = (n) => { const s = Math.sin(n * 127.1) * 43758.5453; return s - Math.floor(s); };
+const euros = (v) => v.toLocaleString('fr-FR').replace(/\u202f|\s/g, '\u2009') + '\u00a0€';
+const T = window.TL;
+// Temps vidéo -> temps du montage de référence (scènes recalées sur la voix réelle), interpolation linéaire par morceaux.
+const recaler = (t) => { const M = T.montage; if (!M) return t; for (let i = 1; i < M.length; i++) if (t <= M[i][0]) return M[i - 1][1] + (t - M[i - 1][0]) * (M[i][1] - M[i - 1][1]) / (M[i][0] - M[i - 1][0]); return M[M.length - 1][1] + t - M[M.length - 1][0]; };
+
+// ---------- Mascotte : post-it jaune « A1 » (référence qme-mascot-original-reference.jpeg) ----------
+// Une seule fonction pour tout l'épisode : mêmes proportions, couleurs et traits d'un plan à l'autre.
+function mascotte({x, y, s = 1, expr = 'neutre', bras = 'bas', rot = 0, ecrase = 1}) {
+  // Module officiel docs/templates/communication/formats-test/mascotte/carreau.js (copié sans « export » dans carreau.js)
+  const expression = {joie: 'soulage', blase: 'neutre', inquiet: 'inquiet', choc: 'inquiet', panique: 'panique', fier: 'fier', neutre: 'neutre'}[expr];
+  const p = {montrer: 'montre', pouce: 'montre', haut: 'court', tete: 'court'}[bras] || 'debout';
+  return `<g transform="translate(${x} ${y}) rotate(${rot}) scale(${s} ${s * ecrase}) translate(-160 -350)">${carreau({expression, pose: p, taille: 320})}</g>`;
+}
+
+// ---------- Décor Bauhaus (formes de la charte) ----------
+function decor(t, variante = 0) {
+  const d = Math.sin(pose(t) / 900) * 6;
+  const v = [
+    `<circle cx="${-40 + d}" cy="220" r="260" fill="${C.rouge}"/><circle cx="930" cy="420" r="90" fill="${C.noir}"/><rect x="820" y="1100" width="200" height="200" fill="${C.noir}"/><rect x="800" y="1080" width="200" height="200" fill="${C.bleu}" stroke="${C.noir}" stroke-width="10"/>`,
+    `<path d="M1080 0 v380 a380 380 0 0 1 -380 -380z" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/><circle cx="120" cy="${1180 + d}" r="70" fill="${C.rouge}"/><path d="M0 1330 h260 l-130 -190z" fill="${C.noir}" opacity=".9"/>`,
+    `<circle cx="1000" cy="250" r="200" fill="${C.bleu}"/><rect x="40" y="200" width="120" height="120" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/>`,
+  ][variante];
+  return `<rect width="1080" height="1920" fill="${C.creme}"/>${v}`;
+}
+const sol = (y = 1300) => `<rect x="0" y="${y}" width="1080" height="12" fill="${C.noir}"/>`;
+
+// ---------- Accessoires (formes et couleurs fixes dans tout l'épisode) ----------
+const etiquette = (x, y, txt, fond = C.noir, coul = '#fff', taille = 40) => { const w = txt.length * taille * .64 + 40; return `<g transform="translate(${x} ${y})"><rect x="${-w / 2}" y="${-taille * .8}" width="${w}" height="${taille * 1.3}" fill="${fond}"/><text y="${taille * .3}" font-size="${taille}" font-weight="800" letter-spacing="2" text-anchor="middle" fill="${coul}">${txt}</text></g>`; };
+const COUL = [C.rouge, C.bleu, C.jaune, C.vert];
+// Fiche de révision : carte blanche, bandeau de couleur de la matière, « CH. n »
+const fiche = (x, y, r, n, s = 1) => `<g transform="translate(${x} ${y}) rotate(${r}) scale(${s})"><rect x="-110" y="-70" width="220" height="140" fill="#fff" stroke="${C.noir}" stroke-width="7"/><rect x="-110" y="-70" width="220" height="34" fill="${COUL[(typeof n === 'number' ? n : 1) % 4]}" stroke="${C.noir}" stroke-width="7"/><text y="38" font-size="46" font-weight="800" text-anchor="middle">CH. ${n}</text></g>`;
+function pile(x, y, n, desordre = 0) { let g = ''; for (let i = 0; i < n; i++) g += fiche(x + (hash(i) - .5) * (20 + desordre * 160), y - i * 26, (hash(i + 7) - .5) * (6 + desordre * 50), n - i, .8); return g; }
+function horloge(x, y, h, m, r = 120) {
+  const ah = ((h % 12) + m / 60) * 30, am = m * 6;
+  return `<g transform="translate(${x} ${y})"><circle r="${r}" fill="#fff" stroke="${C.noir}" stroke-width="10"/>${[0, 90, 180, 270].map((a) => `<rect x="-5" y="${-r + 14}" width="10" height="22" fill="${C.noir}" transform="rotate(${a})"/>`).join('')}<rect x="-7" y="${-r * .5}" width="14" height="${r * .5}" fill="${C.noir}" transform="rotate(${ah})"/><rect x="-4" y="${-r * .78}" width="8" height="${r * .78}" fill="${C.rouge}" transform="rotate(${am})"/><circle r="12" fill="${C.noir}"/></g>`;
+}
+const heure = (x, y, txt, fond = C.noir) => etiquette(x, y, txt, fond, '#fff', 44);
+const tasse = (x, y, the = false) => `<g transform="translate(${x} ${y})"><path d="M-44 -50 h88 v70 q0 30 -30 30 h-28 q-30 0 -30 -30 z" fill="${the ? C.pale : C.noir}" stroke="${C.noir}" stroke-width="7"/><path d="M44 -36 q34 0 34 26 q0 26 -34 26" fill="none" stroke="${C.noir}" stroke-width="7"/>${the ? '' : `<rect x="-30" y="-20" width="60" height="12" fill="${C.moutarde}"/>`}</g>`;
+const lune = (x, y, r = 90) => `<g transform="translate(${x} ${y})"><circle r="${r}" fill="${C.jaune}" stroke="${C.noir}" stroke-width="8"/><circle cx="${r * .45}" cy="${-r * .25}" r="${r * .85}" fill="${C.bleu}"/></g>`;
+const bureau = (y = 1300) => `<rect x="0" y="${y}" width="1080" height="16" fill="${C.noir}"/><rect x="120" y="${y + 16}" width="20" height="200" fill="${C.noir}"/><rect x="940" y="${y + 16}" width="20" height="200" fill="${C.noir}"/>`;
+
+// Téléphone avec une vraie capture du Planning de révision (assets/templates-revision-tel.webp, 780 × 1328)
+function telephone(x, y, s, contenu) {
+  const W = 700, H = 1300;
+  return `<g transform="translate(${x} ${y}) scale(${s}) translate(${-W / 2} ${-H / 2})"><rect x="16" y="16" width="${W}" height="${H}" rx="60" fill="${C.noir}"/><rect width="${W}" height="${H}" rx="60" fill="${C.noir}"/><rect x="24" y="24" width="${W - 48}" height="${H - 48}" rx="40" fill="#FAF7F0"/>${contenu}</g>`;
+}
+
+// ---------- Scènes ----------
+const S = {};
+S.S1 = (t, l) => {                       // Veille d'examen : 14 chapitres, une nuit
+  let g = `<rect width="1080" height="1920" fill="${C.creme}"/><circle cx="1000" cy="300" r="260" fill="${C.bleu}"/><rect x="40" y="560" width="110" height="110" fill="${C.rouge}" stroke="${C.noir}" stroke-width="10"/>`;
+  g += bureau();
+  const n = Math.min(14, Math.floor(pose(l) / 90) + 1);
+  g += pile(720, 1240, n);
+  g += etiquette(720, 1240 - 14 * 26 - 120, `${n} CHAPITRES`, C.rouge, '#fff', 44);
+  g += horloge(250, 520, 20, 0, 110) + heure(250, 700, '20:00');
+  if (t >= 2.85) { const p = rebond(prog(pose(l), 2850, 3150)); g += `<g transform="translate(1000 320) scale(${p})">${lune(0, 0, 110)}</g>` + `<g transform="translate(540 330) scale(${p})">${etiquette(0, 0, '1 NUIT', C.noir, '#fff', 70)}</g>`; }
+  g += mascotte({x: 300, y: 1300, s: 1.0, expr: t < 2.85 ? 'neutre' : 'inquiet'});
+  return g;
+};
+S.S2 = (t, l) => {                       // Chapitre un, deux, trois… café, encore un café
+  let g = `<rect width="1080" height="1920" fill="${C.creme}"/><circle cx="80" cy="300" r="220" fill="${C.bleu}"/>` + lune(140, 300, 80);
+  g += bureau();
+  const ch = t < 4.3 ? 1 : t < 4.75 ? 2 : 3;
+  const sec = (hash(Math.floor(pose(l) / 83)) - .5) * 10;
+  g += fiche(560 + sec, 560, -4 + sec * .4, ch, 2.1);
+  const tasses = t < 5.35 ? 0 : Math.min(6, 1 + Math.floor((t - 5.35) / .35));
+  for (let i = 0; i < tasses; i++) g += tasse(640 + (i % 3) * 120, 1250 - Math.floor(i / 3) * 112);
+  const h = t < 4.8 ? ['22:00', 22] : t < 6.3 ? ['00:30', 0.5] : ['02:00', 2];
+  g += horloge(880, 330, Math.floor(h[1]), (h[1] % 1) * 60, 90) + heure(880, 470, h[0]);
+  g += mascotte({x: 300, y: 1300 - Math.abs(Math.sin(pose(l) / 120)) * 20, s: 1.0, expr: t < 5.3 ? 'inquiet' : 'panique', bras: 'haut'});
+  return g;
+};
+S.S3 = (t, l) => {                       // 4 h du matin : Carreau sombre sous les fiches
+  const chute = t >= 9.3;
+  let g = `<rect width="1080" height="1920" fill="${C.noir}"/><circle cx="540" cy="640" r="380" fill="${C.bleu}"/>`;
+  g += horloge(540, 560, 4, 0, 170) + heure(540, 800, '04:00', C.rouge);
+  g += `<rect x="0" y="1300" width="1080" height="16" fill="${C.creme}"/>`;
+  // Carreau à moitié enseveli, puis les fiches s'envolent
+  g += mascotte({x: 540, y: 1300, s: 1.0, expr: chute ? 'panique' : 'neutre', rot: chute ? 0 : -6});
+  for (let i = 0; i < 14; i++) {
+    const p = chute ? sortie(prog(t, 9.3 + i * .03, 9.9 + i * .03)) : 0;
+    const bx = 400 + hash(i) * 280, by = 1270 - (i % 7) * 18 - Math.floor(i / 7) * 40;
+    const x = bx + (hash(i + 3) - .5) * 900 * p, y = by - p * (500 + hash(i + 5) * 300);
+    g += fiche(x, y, (hash(i + 7) - .5) * 60 + p * 200 * (hash(i) - .5), t >= 10.2 ? '?' : 14 - i, .8);
+  }
+  return g;
+};
+S.S4 = (t, l) => {                       // Version 2 : le Planning de révision (captures réelles)
+  let g = `<rect width="1080" height="1920" fill="${C.creme}"/><path d="M1080 0 v380 a380 380 0 0 1 -380 -380z" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/><circle cx="110" cy="290" r="70" fill="${C.rouge}"/>`;
+  if (t < 15.0) {
+    const p = rebond(prog(pose(l), 0, 420));
+    g += etiquette(540, 290, 'VERSION 2', C.noir, '#fff', 56);
+    g += telephone(600, 820, .62 * p, `<clipPath id="ecr"><rect x="24" y="24" width="652" height="1252" rx="40"/></clipPath><image href="../assets/templates-revision-tel.webp" x="24" y="24" width="652" height="1110" clip-path="url(#ecr)" preserveAspectRatio="xMidYMin slice"/>`);
+  } else {
+    const p = rebond(prog(pose(t * 1000), 15000, 15350));
+    // capture du planning sur 4 semaines (vraie capture), cadrée sur le calendrier
+    g += `<g transform="translate(540 720) scale(${p})"><rect x="-480" y="-200" width="960" height="400" fill="${C.noir}" transform="translate(14 14)"/><rect x="-480" y="-200" width="960" height="400" fill="#fff" stroke="${C.noir}" stroke-width="10"/>
+          <svg x="-470" y="-190" width="940" height="380" viewBox="80 325 1440 580" preserveAspectRatio="xMidYMid slice"><image href="../assets/templates-revision-planning.webp" width="1600" height="1000"/></svg></g>`;
+    // le même chapitre revient : J+1, J+3, J+7
+    const reps = [['J+1', 15.95, 370, 1150, C.rouge], ['J+3', 17.0, 590, 1150, C.bleu], ['J+7', 18.1, 810, 1150, C.vert]];
+    for (const [txt, a, x, y, c] of reps) { if (t < a) continue; const q = rebond(prog(pose(t * 1000), a * 1000, a * 1000 + 300)); g += `<g transform="translate(${x} ${y}) scale(${q})">${fiche(0, 0, 0, 1, .7)}</g>` + `<g transform="translate(${x} ${y - 100}) scale(${q})">${etiquette(0, 0, txt, c, '#fff', 48)}</g>`; }
+  }
+  g += (t < 15.0 ? mascotte({x: 200, y: 1290, s: .6, expr: 'fier', bras: 'montrer'}) : mascotte({x: 140, y: 1290, s: .5, expr: 'fier', bras: 'montrer'}));
+  return g;
+};
+S.S5 = (t, l) => {                       // Une soirée normale (rappel de S1 : même bureau, même horloge)
+  let g = `<rect width="1080" height="1920" fill="${C.creme}"/><circle cx="1000" cy="300" r="260" fill="${C.bleu}"/>` + lune(960, 330, 100);
+  g += bureau();
+  const tard = t >= 21.0;
+  g += horloge(250, 520, tard ? 21 : 20, 0, 110) + heure(250, 700, tard ? '21:00' : '20:00');
+  g += fiche(760, 1220, -3, 1, .8) + etiquette(760, 1080, 'CE SOIR : 1', C.vert, '#fff', 40);
+  g += tasse(560, 1250, true);
+  for (let i = 0; i < 3; i++) { const q = ((pose(l) / 700) + i / 3) % 1; g += `<path d="M${545 + i * 14} ${1180 - q * 90} q10 -15 0 -30" fill="none" stroke="${C.noir}" stroke-width="5" opacity="${1 - q}"/>`; }
+  g += mascotte({x: 300, y: 1300, s: 1.0, expr: tard ? 'fier' : 'joie', bras: tard ? 'pouce' : 'bas'});
+  return g;
+};
+
+const scene = document.getElementById('scene'), st = document.getElementById('st'), carton = document.getElementById('carton');
+// Sous-titres : une réplique = un sous-titre, calé sur la voix réelle (début, fin + 0,12 s), deux lignes au plus.
+const COUPES = { v07: 'Version 2 : le Planning<br>de révision, de QME.', v08: 'Chaque chapitre revient au bon<br>moment : J+1, J+3, J+7.' };
+window.placer = (ms) => {
+  const tv = ms / 1000; const t = recaler(tv); ms = t * 1000; window.__t = ms;
+  const fin = tv >= T.carton.debut;
+  carton.style.display = fin ? 'block' : 'none';
+  if (fin) { scene.innerHTML = ''; st.innerHTML = ''; return; }
+  const sc = T.scenes.find((s) => t >= s.debut && t < s.fin) || T.scenes[0];
+  scene.innerHTML = `<svg width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">${S[sc.id](t, ms - sc.debut * 1000)}</svg>`;
+  const v = T.voix.find((r) => tv >= r.t - .05 && tv < Math.min(r.fin + .12, T.carton.debut));
+  st.innerHTML = v ? `<span>${COUPES[v.id] || v.texte.replace(/'/g, '’')}</span>` : '';
+};
+window.placer(0);
+</script>
+</body>
+</html>

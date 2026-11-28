@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Le carton n° 47 · Mini-story QME</title>
+<!-- Projet d'animation de l'épisode. Rendu : node docs/videos/rendu.mjs <ce fichier> 28 --muet --taille-max 14
+     Toute l'image est fonction du temps : window.placer(ms) dessine l'image exacte de l'instant ms (rendu déterministe).
+     Données : timeline.js (généré depuis timeline.json, voix réelles mesurées). -->
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../assets/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../assets/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1EFF,U+20A0-20AB,U+20AD-20C4;}
+:root{--creme:#F1EEE6;--noir:#141414;--jaune:#FFBE00;--jaune-pale:#FBEBC2;--bleu:#23528B;--rouge:#DE2D27;--moutarde:#EDB43A;--vert:#2E7D50}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:var(--creme);font-family:'Outfit',sans-serif;color:var(--noir)}
+#scene{position:absolute;inset:0}
+#st{position:absolute;left:60px;right:130px;top:1350px;display:flex;justify-content:center;text-align:center}
+#st span{display:inline;background:var(--jaune-pale);box-decoration-break:clone;-webkit-box-decoration-break:clone;padding:6px 22px;border-radius:18px;font-weight:800;font-size:56px;line-height:1.45;letter-spacing:-.5px}
+#carton{position:absolute;inset:0;background:#141414;display:none}
+#carton img{position:absolute;left:0;width:1080px;top:50%;transform:translateY(-50%)}
+.pre{position:absolute;opacity:0;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="scene"></div>
+<div id="st"></div>
+<div id="carton"><img src="../assets/qme-carton-final-9x16-official.png" alt=""></div>
+<img class="pre" src="../assets/templates-demenagement-cartons-tel.webp" alt="">
+<script src="timeline.js"></script>
+<script src="carreau.js"></script>
+<script>
+const C = {creme:'#F1EEE6', noir:'#141414', jaune:'#FFBE00', pale:'#FBEBC2', bleu:'#23528B', rouge:'#DE2D27', moutarde:'#EDB43A', vert:'#2E7D50', blanc:'#FFFFFF'};
+const PAS_POSE = 1000 / 12;              // poses tenues 2 images à 24 i/s : rendu « stop-motion » de la charte MiniStories
+const pose = (ms) => Math.floor(ms / PAS_POSE) * PAS_POSE;
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const sortie = (x) => 1 - Math.pow(1 - x, 3);
+const rebond = (x) => { const c = 1.70158 * 1.4; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const hash = (n) => { const s = Math.sin(n * 127.1) * 43758.5453; return s - Math.floor(s); };
+const euros = (v) => v.toLocaleString('fr-FR').replace(/\u202f|\s/g, '\u2009') + '\u00a0€';
+const T = window.TL;
+// Temps vidéo -> temps du montage de référence (scènes recalées sur la voix réelle), interpolation linéaire par morceaux.
+const recaler = (t) => { const M = T.montage; if (!M) return t; for (let i = 1; i < M.length; i++) if (t <= M[i][0]) return M[i - 1][1] + (t - M[i - 1][0]) * (M[i][1] - M[i - 1][1]) / (M[i][0] - M[i - 1][0]); return M[M.length - 1][1] + t - M[M.length - 1][0]; };
+
+// ---------- Mascotte : post-it jaune « A1 » (référence qme-mascot-original-reference.jpeg) ----------
+// Une seule fonction pour tout l'épisode : mêmes proportions, couleurs et traits d'un plan à l'autre.
+function mascotte({x, y, s = 1, expr = 'neutre', bras = 'bas', rot = 0, ecrase = 1}) {
+  // Module officiel docs/templates/communication/formats-test/mascotte/carreau.js (copié sans « export » dans carreau.js)
+  const expression = {joie: 'soulage', blase: 'neutre', inquiet: 'inquiet', choc: 'inquiet', panique: 'panique', fier: 'fier', neutre: 'neutre'}[expr];
+  const p = {montrer: 'montre', pouce: 'montre', haut: 'court', tete: 'court'}[bras] || 'debout';
+  return `<g transform="translate(${x} ${y}) rotate(${rot}) scale(${s} ${s * ecrase}) translate(-160 -350)">${carreau({expression, pose: p, taille: 320})}</g>`;
+}
+
+// ---------- Décor Bauhaus (formes de la charte) ----------
+function decor(t, variante = 0) {
+  const d = Math.sin(pose(t) / 900) * 6;
+  const v = [
+    `<circle cx="${-40 + d}" cy="220" r="260" fill="${C.rouge}"/><circle cx="930" cy="420" r="90" fill="${C.noir}"/><rect x="820" y="1100" width="200" height="200" fill="${C.noir}"/><rect x="800" y="1080" width="200" height="200" fill="${C.bleu}" stroke="${C.noir}" stroke-width="10"/>`,
+    `<path d="M1080 0 v380 a380 380 0 0 1 -380 -380z" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/><circle cx="120" cy="${1180 + d}" r="70" fill="${C.rouge}"/><path d="M0 1330 h260 l-130 -190z" fill="${C.noir}" opacity=".9"/>`,
+    `<circle cx="1000" cy="250" r="200" fill="${C.bleu}"/><rect x="40" y="200" width="120" height="120" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/>`,
+  ][variante];
+  return `<rect width="1080" height="1920" fill="${C.creme}"/>${v}`;
+}
+const sol = (y = 1300) => `<rect x="0" y="${y}" width="1080" height="12" fill="${C.noir}"/>`;
+
+// ---------- Accessoires (forme et couleur fixes dans tout l'épisode) ----------
+const etiquette = (x, y, txt, fond = C.noir, coul = '#fff', taille = 40) => { const w = txt.length * taille * .64 + 40; return `<g transform="translate(${x} ${y})"><rect x="${-w / 2}" y="${-taille * .8}" width="${w}" height="${taille * 1.3}" fill="${fond}"/><text y="${taille * .3}" font-size="${taille}" font-weight="800" letter-spacing="2" text-anchor="middle" fill="${coul}">${txt}</text></g>`; };
+const KRAFT = '#D9A35B';
+// Carton : boîte kraft, contour noir, étiquette blanche numérotée ; ouvert = rabats levés
+function boite(x, y, s = 1, num = '', ouvert = 0) {
+  const r = ouvert * 55;
+  const rabats = ouvert ? `<path d="M-120 -70 l-40 ${-40 - r * .4} l110 -10 l50 50z" fill="${KRAFT}" stroke="${C.noir}" stroke-width="8" stroke-linejoin="round"/><path d="M120 -70 l40 ${-40 - r * .4} l-110 -10 l-50 50z" fill="${KRAFT}" stroke="${C.noir}" stroke-width="8" stroke-linejoin="round"/>`
+    : `<rect x="-120" y="-78" width="240" height="14" fill="${C.noir}"/>`;
+  const lab = num !== '' ? `<rect x="-55" y="-30" width="110" height="74" fill="#fff" stroke="${C.noir}" stroke-width="6"/><text y="24" font-size="${String(num).length > 1 ? 50 : 56}" font-weight="800" text-anchor="middle">${num}</text>` : '';
+  return `<g transform="translate(${x} ${y}) scale(${s})"><rect x="-120" y="-70" width="240" height="180" fill="${C.noir}" transform="translate(10 10)"/>${rabats}<rect x="-120" y="-70" width="240" height="180" fill="${KRAFT}" stroke="${C.noir}" stroke-width="8"/>${lab}</g>`;
+}
+const chaussette = (x, y, r = 0, s = 1, c = C.rouge) => `<g transform="translate(${x} ${y}) rotate(${r}) scale(${s})"><path d="M-30 -110 h60 v120 q0 50 -50 50 h-60 q-30 0 -30 -30 q0 -30 30 -30 h50z" fill="${c}" stroke="${C.noir}" stroke-width="8" stroke-linejoin="round"/><rect x="-30" y="-110" width="60" height="26" fill="#fff" stroke="${C.noir}" stroke-width="8"/></g>`;
+const cactus = (x, y, s = 1) => `<g transform="translate(${x} ${y}) scale(${s})"><path d="M-22 40 V-90 a22 22 0 0 1 44 0 V40z M-22 -20 h-30 v-40 a15 15 0 0 1 30 0z M22 0 h30 v-50 a15 15 0 0 0 -30 0z" fill="${C.vert}" stroke="${C.noir}" stroke-width="8" stroke-linejoin="round"/><path d="M-50 40 h100 l-14 70 h-72z" fill="${C.rouge}" stroke="${C.noir}" stroke-width="8"/></g>`;
+const bouilloire = (x, y, s = 1) => `<g transform="translate(${x} ${y}) scale(${s})"><path d="M-80 70 L-60 -60 H60 L80 70z" fill="${C.bleu}" stroke="${C.noir}" stroke-width="9" stroke-linejoin="round"/><path d="M-80 0 l-60 -50 l-10 14 l60 60" fill="${C.bleu}" stroke="${C.noir}" stroke-width="9" stroke-linejoin="round"/><path d="M60 -40 q70 0 60 60 q-5 30 -40 30" fill="none" stroke="${C.noir}" stroke-width="16"/><rect x="-40" y="-82" width="80" height="22" fill="${C.noir}"/><circle cx="0" cy="-90" r="12" fill="${C.jaune}" stroke="${C.noir}" stroke-width="6"/></g>`;
+const tasse = (x, y, s = 1, fumee = -1) => { let f = ''; if (fumee >= 0) for (let i = 0; i < 3; i++) { const o = Math.sin(fumee / 140 + i) * 10; f += `<path d="M${-25 + i * 25 + o} -60 q15 -25 0 -50 q-15 -25 0 -50" fill="none" stroke="${C.noir}" stroke-width="6" stroke-linecap="round" opacity=".7"/>`; } return `<g transform="translate(${x} ${y}) scale(${s})">${f}<path d="M-50 -50 h100 v70 q0 40 -40 40 h-20 q-40 0 -40 -40z" fill="#fff" stroke="${C.noir}" stroke-width="8"/><path d="M50 -30 q35 0 35 25 q0 25 -35 25" fill="none" stroke="${C.noir}" stroke-width="8"/><rect x="-50" y="-30" width="100" height="16" fill="${C.rouge}"/></g>`; };
+const horloge = (x, y, s = 1) => `<g transform="translate(${x} ${y}) scale(${s})"><rect x="-150" y="-60" width="300" height="120" fill="${C.noir}" transform="translate(10 10)"/><rect x="-150" y="-60" width="300" height="120" fill="${C.noir}" stroke="${C.noir}" stroke-width="8"/><text y="30" font-size="84" font-weight="800" text-anchor="middle" fill="${C.jaune}" letter-spacing="4">22:00</text></g>`;
+const nuit = () => `<rect width="1080" height="1920" fill="${C.creme}"/><rect x="700" y="260" width="300" height="300" fill="${C.bleu}" stroke="${C.noir}" stroke-width="10"/><path d="M700 410 h300 M850 260 v300" stroke="${C.noir}" stroke-width="10"/><circle cx="930" cy="330" r="38" fill="${C.jaune}"/><circle cx="946" cy="318" r="34" fill="${C.bleu}"/>`;
+
+// Téléphone avec la vraie capture de Déménagement (assets/templates-demenagement-cartons-tel.webp, 780 × 1328)
+function telephone(x, y, s, contenu) {
+  const W = 700, H = 1300;
+  return `<g transform="translate(${x} ${y}) scale(${s}) translate(${-W / 2} ${-H / 2})"><rect x="16" y="16" width="${W}" height="${H}" rx="60" fill="${C.noir}"/><rect width="${W}" height="${H}" rx="60" fill="${C.noir}"/><rect x="24" y="24" width="${W - 48}" height="${H - 48}" rx="40" fill="#FAF7F0"/>${contenu}</g>`;
+}
+
+// ---------- Scènes ----------
+const S = {};
+S.S1 = (t, l) => {                       // Accroche : 22 h, une tasse vide, une montagne de cartons
+  let g = nuit() + sol();
+  const pile = [[150, 1190, '12'], [390, 1190, '30'], [270, 1010, '5'], [150, 830, '41'], [390, 830, '18'], [880, 1190, '7'], [880, 1010, '23']];
+  for (const [x, y, n] of pile) g += boite(x, y, .95, n);
+  g += horloge(300, 380 + (1 - rebond(prog(pose(l), 0, 300))) * -260, 1);
+  const s = 1 + Math.sin(pose(l) / 180) * .03;
+  g += mascotte({x: 640, y: 1300, s: .95, expr: l < 1400 ? 'neutre' : 'inquiet', bras: 'bas'});
+  g += tasse(800, 1010, 1.1 * s);
+  if (l > 1500) g += etiquette(640, 600, 'BOUILLOIRE ?', C.rouge, '#fff', 54);
+  return g;
+};
+S.S2 = (t, l) => {                       // Escalade : carton 1, 12, 30
+  const k = t < 4.6 ? 0 : t < 6.45 ? 1 : 2;
+  const deb = [3.0, 4.6, 6.45][k], ll = (t - deb) * 1000;
+  const num = ['1', '12', '30'][k];
+  let g = `<rect width="1080" height="1920" fill="${[C.creme, C.jaune, C.creme][k]}"/>` + (k === 1 ? `<circle cx="540" cy="760" r="420" fill="${C.creme}" stroke="${C.noir}" stroke-width="10"/>` : `<circle cx="${k ? 120 : 960}" cy="420" r="160" fill="${k ? C.rouge : C.bleu}"/>`) + sol();
+  for (let i = 0; i < k * 3 + 2; i++) g += boite(80 + (i % 2) * 920, 1220 - Math.floor(i / 2) * 170, .6, '', 1);
+  g += etiquette(540, 380, `CARTON N° ${num}`, C.noir, '#fff', 64);
+  const p = rebond(prog(pose(ll), 150, 450));
+  const objy = 1010 - p * 330;
+  if (p > 0) {
+    if (k === 0) g += chaussette(540, objy, -15 + Math.sin(pose(ll) / 120) * 10, 1.1, C.rouge);
+    if (k === 1) { g += chaussette(470, objy, -25, 1.0, C.bleu); g += chaussette(610, objy + 20, 20, 1.0, C.rouge); }
+    if (k === 2) g += cactus(540, objy, 1.25);
+  }
+  g += boite(540, 1110, 1.25, num, 1);
+  const expr = ['inquiet', 'choc', 'panique'][k];
+  g += mascotte({x: 850, y: 1300, s: .7, expr, bras: k ? 'tete' : 'bas', rot: k === 2 ? (hash(pose(ll)) - .5) * 8 : 0});
+  return g;
+};
+S.S3 = (t, l) => {                       // 46 cartons : la montagne, toujours rien
+  const n = Math.min(46, 31 + Math.floor(clamp((t - 8.3) / 2.6) * 15));
+  const panique = t >= 11.4;
+  const tremble = panique ? (hash(pose(l)) - .5) * 26 : 0;
+  let g = `<rect width="1080" height="1920" fill="${panique && Math.floor(l / 330) % 2 ? '#F6D7D0' : C.creme}"/>` + sol();
+  for (let i = 0; i < n; i++) { const c = i % 8, r = Math.floor(i / 8); g += boite(80 + c * 132 + (r % 2) * 30 + tremble * .3, 1250 - r * 105, .5, '', 1); }
+  g += `<g transform="translate(${540 + tremble} 400)"><rect x="-300" y="-110" width="600" height="220" fill="${C.noir}" transform="translate(12 12)"/><rect x="-300" y="-110" width="600" height="220" fill="#fff" stroke="${C.noir}" stroke-width="10"/><text x="-260" y="-55" font-size="30" font-weight="700" letter-spacing="3" fill="#555">CARTONS OUVERTS</text><text x="0" y="80" font-size="130" font-weight="800" text-anchor="middle" fill="${n >= 46 ? C.rouge : C.noir}">${n}</text></g>`;
+  if (t >= 10.2) g += `<g transform="translate(800 640)">${bouilloire(0, 0, .8)}<path d="M-100 -100 L100 100 M100 -100 L-100 100" stroke="${C.rouge}" stroke-width="22" stroke-linecap="round"/></g>`;
+  g += mascotte({x: 540 + tremble, y: 1300, s: .85, expr: panique ? 'panique' : 'choc', bras: 'tete'});
+  return g;
+};
+S.S4 = (t, l) => {                       // Déménagement : la recherche (vraie capture, saisie de l'histoire)
+  let g = `<rect width="1080" height="1920" fill="${C.creme}"/><circle cx="1000" cy="300" r="220" fill="${C.jaune}"/><rect x="0" y="1150" width="220" height="220" fill="${C.bleu}"/>`;
+  const ap = rebond(prog(pose(l), 0, 420));
+  const k = 652 / 780;
+  const mot = 'bouilloire', saisie = mot.slice(0, Math.floor(clamp((t - 17.4) / .9) * mot.length));
+  const trouve = t >= 18.75;
+  // Masques posés sur la capture réelle pour la donnée fictive de l'histoire (recherche « bouilloire », carton 47)
+  let sur = '';
+  if (t >= 17.2) {
+    sur += `<rect x="40" y="236" width="600" height="72" fill="#fff"/><text x="50" y="286" font-size="34" font-weight="500" fill="${C.noir}">${saisie}${Math.floor(l / 250) % 2 && !trouve ? '|' : ''}</text>`;
+  }
+  if (trouve) {
+    sur += `<rect x="20" y="690" width="400" height="44" fill="#FAF7F0"/><text x="25" y="723" font-size="26" font-weight="700" fill="#6b6b6b">« bouilloire »</text>`;
+    sur += `<rect x="60" y="795" width="78" height="78" fill="#fff"/><text x="99" y="853" font-size="44" font-weight="800" text-anchor="middle" fill="${C.noir}">47</text>`;
+    sur += `<rect x="162" y="780" width="436" height="88" fill="#fff"/><rect x="170" y="787" width="148" height="36" fill="#FBEBC2"/><text x="172" y="815" font-size="27" font-weight="800" fill="${C.noir}">Bouilloire<tspan font-weight="700"> : thé,</tspan></text><text x="172" y="853" font-size="27" font-weight="700" fill="${C.noir}">tasses, cuillères</text>`;
+  }
+  const capt = `<clipPath id="ecr"><rect x="24" y="24" width="652" height="1252" rx="40"/></clipPath><g clip-path="url(#ecr)"><g transform="translate(24 24) scale(${k})"><image href="../assets/templates-demenagement-cartons-tel.webp" width="780" height="1328"/>${sur}</g></g>`;
+  g += telephone(560, 760, .84 * ap, capt);
+  if (trouve) { const p = rebond(prog(pose(l), (18.75 - 12.6) * 1000, (18.75 - 12.6) * 1000 + 300)); const ox = 560 - 350 * .84 + 24 * .84, oy = 760 - 650 * .84 + 24 * .84, kk = k * .84;
+    g += `<rect x="${ox + 22 * kk - 8}" y="${oy + 758 * kk - 8}" width="${734 * kk + 16}" height="${236 * kk + 16}" rx="20" fill="none" stroke="${C.rouge}" stroke-width="${10 * p}"/>`; }
+  g += mascotte({x: 130, y: 1300, s: .56, expr: t < 15 ? 'choc' : trouve ? 'fier' : 'joie', bras: trouve ? 'montrer' : 'bas'});
+  return g;
+};
+S.S5 = (t, l) => {                       // Payoff : le carton 47, le dernier ; enfin le thé
+  let g = nuit() + sol();
+  for (let i = 0; i < 12; i++) g += boite(70 + (i % 3) * 120 + (i > 5 ? 700 : 0), 1240 - Math.floor((i % 6) / 3) * 105, .5, '', 1);
+  const ouvre = t >= 23.0;
+  const p = rebond(prog(pose(l), 2550, 2950));
+  g += etiquette(540, 420, 'LE DERNIER', C.noir, '#fff', 56);
+  if (ouvre) g += bouilloire(540, 1050 - p * 300, 1.1);
+  g += boite(540, 1180, 1.2, '47', ouvre ? 1 : 0);
+  const fin = t >= 23.35;
+  g += mascotte({x: 860, y: 1300, s: .62, expr: fin ? 'fier' : ouvre ? 'soulage' : 'neutre', bras: fin ? 'pouce' : 'bas'});
+  if (fin) g += tasse(250, 1050, 1, l);
+  return g;
+};
+
+const scene = document.getElementById('scene'), st = document.getElementById('st'), carton = document.getElementById('carton');
+// Sous-titres : une réplique = un sous-titre, calé sur la voix réelle (début, fin + 0,12 s), deux lignes au plus.
+const COUPES = { v01: 'Vingt-deux heures.<br>Il veut juste un thé.', v03: 'Carton douze :<br>encore des chaussettes.', v05: 'Quarante-six cartons.<br>Toujours pas de bouilloire.', v06: (tv) => tv < 15.1 ? 'Avec Déménagement,<br>de QME,' : 'chaque carton a son numéro<br>et son contenu.', v07: 'Une recherche : bouilloire.<br>Carton quarante-sept.' };
+window.placer = (ms) => {
+  const tv = ms / 1000; const t = recaler(tv); ms = t * 1000; window.__t = ms;
+  const fin = tv >= T.carton.debut;
+  carton.style.display = fin ? 'block' : 'none';
+  if (fin) { scene.innerHTML = ''; st.innerHTML = ''; return; }
+  const sc = T.scenes.find((s) => t >= s.debut && t < s.fin) || T.scenes[0];
+  scene.innerHTML = `<svg width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">${S[sc.id](t, ms - sc.debut * 1000)}</svg>`;
+  const v = T.voix.find((r) => tv >= r.t - .05 && tv < Math.min(r.fin + .12, T.carton.debut));
+  const cp = v && COUPES[v.id]; st.innerHTML = v ? `<span>${typeof cp === 'function' ? cp(tv) : cp || v.texte.replace(/'/g, '’')}</span>` : '';
+};
+window.placer(0);
+</script>
+</body>
+</html>

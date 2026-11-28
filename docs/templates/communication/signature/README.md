@@ -12,6 +12,12 @@ Variante **C · Bandeau** validée par Quentin le 21/11/2026 : nom, « Outils su
   sélectionner la signature, copier, coller dans Gmail → Paramètres → Général → Signature, pour l'adresse
   `quentin.morel@qm-engineering.fr`. Les images ne s'affichent qu'une fois `assets/signature/` publié sur le site.
 - Les messageries qui bloquent les images affichent le texte de remplacement ; le nom et le site restent lisibles.
+- **Fluide sur téléphone** (28/11/2026) : aucune largeur fixe en CSS. Conteneur `width="100%"` et
+  `width:100%;max-width:380px`, filet `width:100%;max-width:380px;height:auto` ; les attributs `width="380"` restent
+  pour Outlook. Une largeur fixe (`width:380px`) faisait défiler les mails horizontalement sur un écran de 390 px ou
+  moins dans les messageries qui ignorent `max-width`. Un test (`outils/templates/essai.test.mjs`) l'interdit.
+- **Après toute modification de `signature.mjs`** : recopier le bloc dans `signature-gmail.html` (le test vérifie
+  qu'ils sont identiques).
 
 ## Brouillons préparés par l'assistant (règle du 22/11/2026)
 

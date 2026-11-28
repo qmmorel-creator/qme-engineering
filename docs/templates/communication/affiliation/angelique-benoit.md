@@ -10,8 +10,12 @@
   projet « Le van à la française-affiliation ».
 - **Commission** : décision de Quentin du 27/11/2026, on n'en dit rien (ni mail ni visio), la plaquette parle
   d'elle-même.
-- **Démo « Espagne » (27/11/2026)** : `qm-engineering.fr/demo/angelique-espagne` → `?demo=espagne&prenom=Angélique`
-  (deux semaines en van avec Pistache et Moka, départ dans 10 jours, albums photos en liens d'exemple).
+- **Démo « Espagne » (27/11/2026)** : `qm-engineering.fr/demo/angelique-espagne` → `?demo=catalogne&prenom=Angélique`.
+  Première version (itinéraire imaginé, deux semaines), puis le même jour son itinéraire réel envoyé à 11 h 15 :
+  5 jours au départ du Barcarès (Cap de Creus et Cadaqués, Aiguamolls de l'Empordà, Garrotxa, retour par Figueres ou
+  le Cap de Creus), activités suggérées à chaque étape (règles, horaires et tarifs notés « à vérifier »), dates et
+  montants d'exemple. Profil renommé `catalogne` pour qu'une version gardée sur l'appareil ne soit pas rouverte.
+- **Visio** : lundi 30/11/2026, 10 h-11 h, Google Meet (invitation acceptée le 27/11).
 - **Sous-conversation de suivi** : `session_0183EW51nnS4WjUqsixs71qM` (« [Affiliation] Angélique Benoit · Le van à
   la française »), créée le 25/11/2026. L'envoi du 25/11 à 17 h 05 reste fait par la session master.
 
