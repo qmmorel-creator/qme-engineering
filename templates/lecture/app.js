@@ -383,7 +383,7 @@
           <p class="surtitre">Accès acheteur</p>
           <h2>Ouvre ton ${NOM.toLowerCase()}</h2>
         </div>
-        <p>Saisis la clé de licence reçue par e-mail après ton achat ${NOM === 'Suivi de lecture' ? '' : ' (une clé du Suivi de lecture fonctionne aussi)'}. Ta bibliothèque est enregistrée en ligne et te suit sur tous tes appareils.</p>
+        <p>Saisis la clé de licence reçue par e-mail après ton achat${NOM === 'Suivi de lecture' ? '' : ' (une clé du Suivi de lecture fonctionne aussi)'}. Ta bibliothèque est enregistrée en ligne et te suit sur tous tes appareils.</p>
         <form id="form-code" class="formulaire-acces-form" novalidate>
           <label class="champ code-saisie">Clé de licence ou code d'accès
             <input id="code" name="code" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX" inputmode="text" required>

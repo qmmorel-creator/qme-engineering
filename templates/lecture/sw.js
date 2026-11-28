@@ -1,8 +1,8 @@
 // Service worker du suivi culturel (anciennement suivi de lecture) : garde l'interface disponible hors ligne.
 // Les appels à l'API ne sont jamais mis en cache (données personnelles, toujours fraîches).
 // Seuls les anciens caches de CE template sont supprimés : d'autres templates partagent le domaine.
-const VERSION = 'lecture-20261128a';
-const COQUILLE = ['./', 'app.css?v=20261128a', 'donnees.js?v=20261128a', 'regles.js?v=20261128a', 'app.js?v=20261128a', 'icone.svg', 'tmdb-logo.svg', 'icone-180.png', 'manifest.webmanifest', '/assets/fonts/outfit.css?v=20261113', '/assets/essai.js?v=20261119a', '/assets/mes-templates.js?v=20261123b'];
+const VERSION = 'lecture-20261128b';
+const COQUILLE = ['./', 'app.css?v=20261128b', 'donnees.js?v=20261128b', 'regles.js?v=20261128b', 'app.js?v=20261128b', 'icone.svg', 'tmdb-logo.svg', 'icone-180.png', 'manifest.webmanifest', '/assets/fonts/outfit.css?v=20261113', '/assets/essai.js?v=20261119a', '/assets/mes-templates.js?v=20261123b'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(COQUILLE)).then(() => self.skipWaiting()));
