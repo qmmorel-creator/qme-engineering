@@ -1,7 +1,7 @@
 # Référentiel de marque QME pour les mini-stories (audit du 27/11/2026)
 
 Sources examinées : site (`index.html`, `catalogue/`, `assets/`), police `assets/fonts/` (Outfit), logo
-`assets/logo-qme.png` et Drive « QME - Assets MiniStories » (logo, carton 9:16, bannière, référence typo, plaquette
+`assets/logo-qme-bauhaus.png` (logo Bauhaus, Q stylisé ; l'ancien logo bleu est supprimé) et Drive « QME - Assets MiniStories » (logo, carton 9:16, bannière, référence typo, plaquette
 partenariat), module et fiche de la mascotte (`docs/templates/communication/formats-test/mascotte/`), plaquette
 partenariat (`docs/templates/communication/affiliation/plaquette/`), règles de contenu
 (`docs/templates/communication/REGLES-CONTENU.md`), skill claude.ai `qme-ministories`, une mini-histoire antérieure
@@ -26,7 +26,7 @@ dans Drive « QME - Vidéos Ministories ».
   validé le 25/11/2026 (skill `qme-ministories`).
 - **Ton** (REGLES-CONTENU, plaquette) : direct, concret, chiffré, humour pince-sans-rire ; on rit de la situation ou du
   tableur, jamais de la personne ; vouvoiement dans les textes publics.
-- **Mascotte** : Carreau, voir `carreau.md`.
+- **Mascotte** : Grillon, voir `carreau.md`.
 
 ## Interprété (choix raisonnables, à confirmer si Quentin le souhaite)
 
@@ -39,7 +39,7 @@ dans Drive « QME - Vidéos Ministories ».
 ## Confirmé par Quentin (27/11/2026)
 
 - Les musiques du dossier Drive « QME - Musiques MiniStories » sont libres de droits.
-- La fiche de Carreau est validée.
+- La fiche de Grillon est validée.
 
 ## Inconnu (ne pas inventer)
 
@@ -49,7 +49,7 @@ dans Drive « QME - Vidéos Ministories ».
 ## Arbitrages
 
 - Couleurs : deux jeux voisins coexistent (skill `qme-ministories` : `#DE2D27`, `#FFBE00`, `#23528B` ; `carreau.js`
-  du 24/11 : `#D9302A`, `#F5B400`, `#1D4E89`). Carreau garde **ses** couleurs (module officiel, le plus récent) ; les
+  du 24/11 : `#D9302A`, `#F5B400`, `#1D4E89`). Grillon garde **ses** couleurs (module officiel, le plus récent) ; les
   décors utilisent celles du carton. L'écart est imperceptible à l'écran.
 - Mascotte : le module `carreau.js` (utilisé par la plaquette du 25/11) prime sur toute redessin, y compris la
   référence JPEG de Drive, qui en est une capture.

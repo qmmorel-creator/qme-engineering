@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Le carnet de la voiture · Mini-story QME</title>
+<!-- Projet d'animation de l'épisode. Rendu : node docs/videos/rendu.mjs <ce fichier> 21 --muet --taille-max 14
+     Toute l'image est fonction du temps : window.placer(ms) dessine l'image exacte de l'instant ms (rendu déterministe).
+     Données : timeline.js (généré depuis timeline.json, voix réelles mesurées). -->
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../assets/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../assets/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1EFF,U+20A0-20AB,U+20AD-20C4;}
+:root{--creme:#F1EEE6;--noir:#141414;--jaune:#FFBE00;--jaune-pale:#FBEBC2;--bleu:#23528B;--rouge:#DE2D27;--moutarde:#EDB43A;--vert:#2E7D50}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:var(--creme);font-family:'Outfit',sans-serif;color:var(--noir)}
+#scene{position:absolute;inset:0}
+#st{position:absolute;left:60px;right:130px;top:1350px;display:flex;justify-content:center;text-align:center}
+#st span{display:inline;background:var(--jaune-pale);box-decoration-break:clone;-webkit-box-decoration-break:clone;padding:6px 22px;border-radius:18px;font-weight:800;font-size:56px;line-height:1.45;letter-spacing:-.5px}
+#carton{position:absolute;inset:0;background:#141414;display:none}
+#carton img{position:absolute;left:0;width:1080px;top:50%;transform:translateY(-50%)}
+.pre{position:absolute;opacity:0;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="scene"></div>
+<div id="st"></div>
+<div id="carton"><img src="../assets/qme-carton-final-9x16-official.png" alt=""></div>
+<img class="pre" src="../assets/templates-voiture-tel.webp" alt="">
+<script src="timeline.js"></script>
+<script src="carreau.js"></script>
+<script>
+const C = {creme:'#F1EEE6', noir:'#141414', jaune:'#FFBE00', pale:'#FBEBC2', bleu:'#23528B', rouge:'#DE2D27', moutarde:'#EDB43A', vert:'#2E7D50', blanc:'#FFFFFF'};
+const PAS_POSE = 1000 / 12;              // poses tenues 2 images à 24 i/s : rendu « stop-motion » de la charte MiniStories
+const pose = (ms) => Math.floor(ms / PAS_POSE) * PAS_POSE;
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const sortie = (x) => 1 - Math.pow(1 - x, 3);
+const rebond = (x) => { const c = 1.70158 * 1.4; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const hash = (n) => { const s = Math.sin(n * 127.1) * 43758.5453; return s - Math.floor(s); };
+const euros = (v) => v.toLocaleString('fr-FR').replace(/\u202f|\s/g, '\u2009') + '\u00a0€';
+const T = window.TL;
+// Temps vidéo -> temps du montage de référence (scènes recalées sur la voix réelle), interpolation linéaire par morceaux.
+const recaler = (t) => { const M = T.montage; if (!M) return t; for (let i = 1; i < M.length; i++) if (t <= M[i][0]) return M[i - 1][1] + (t - M[i - 1][0]) * (M[i][1] - M[i - 1][1]) / (M[i][0] - M[i - 1][0]); return M[M.length - 1][1] + t - M[M.length - 1][0]; };
+
+// ---------- Mascotte : post-it jaune « A1 » (référence qme-mascot-original-reference.jpeg) ----------
+// Une seule fonction pour tout l'épisode : mêmes proportions, couleurs et traits d'un plan à l'autre.
+function mascotte({x, y, s = 1, expr = 'neutre', bras = 'bas', rot = 0, ecrase = 1}) {
+  // Module officiel docs/templates/communication/formats-test/mascotte/carreau.js (copié sans « export » dans carreau.js)
+  const expression = {joie: 'soulage', blase: 'neutre', inquiet: 'inquiet', choc: 'inquiet', panique: 'panique', fier: 'fier', neutre: 'neutre'}[expr];
+  const p = {montrer: 'montre', pouce: 'montre', haut: 'court', tete: 'court'}[bras] || 'debout';
+  return `<g transform="translate(${x} ${y}) rotate(${rot}) scale(${s} ${s * ecrase}) translate(-160 -350)">${carreau({expression, pose: p, taille: 320})}</g>`;
+}
+const sol = (y = 1300) => `<rect x="0" y="${y}" width="1080" height="12" fill="${C.noir}"/>`;
+
+// ---------- Accessoires (forme et couleur fixes dans tout l'épisode) ----------
+const etiquette = (x, y, txt, fond = C.noir, coul = '#fff', taille = 40) => { const w = txt.length * taille * .64 + 40; return `<g transform="translate(${x} ${y})"><rect x="${-w / 2}" y="${-taille * .8}" width="${w}" height="${taille * 1.3}" fill="${fond}"/><text y="${taille * .3}" font-size="${taille}" font-weight="800" letter-spacing="2" text-anchor="middle" fill="${coul}">${txt}</text></g>`; };
+// Route vue du pare-brise : ciel crème, route noire en perspective, tirets qui défilent (vitesse v)
+function route(t, v = 1, nuitTombe = 0) {
+  let g = `<rect width="1080" height="1920" fill="${C.creme}"/><circle cx="880" cy="330" r="110" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/><rect x="0" y="560" width="1080" height="10" fill="${C.noir}"/>`;
+  g += `<path d="M470 565 L610 565 L1080 1000 L0 1000z" fill="#3a3a3a"/>`;
+  const dec = (pose(t * 1000) / 1000 * v * 1.6) % 1;
+  for (let i = 0; i < 6; i++) { const z = (i + dec) / 6; const y = 570 + z * z * 430, w = 6 + z * 30, h = 10 + z * 70; g += `<rect x="${540 - w / 2}" y="${y}" width="${w}" height="${h}" fill="${C.creme}"/>`; }
+  g += `<rect x="0" y="560" width="160" height="440" fill="${C.bleu}" opacity=".0"/>`;
+  return g;
+}
+// Moteur : pictogramme du voyant (forme fixe)
+const moteur = (x, y, s, allume, clign) => {
+  const on = allume && clign;
+  const c = on ? C.jaune : '#5a5a5a';
+  const halo = on ? `<circle r="120" fill="${C.jaune}" opacity=".35"/>` : '';
+  return `<g transform="translate(${x} ${y}) scale(${s})">${halo}<path d="M-70 -22 h22 v-18 h56 v18 h22 l16 -16 v72 l-16 -16 h-12 v26 h-70 l-18 -18 h-12 v-32 h12z" fill="${c}" stroke="${C.noir}" stroke-width="8" stroke-linejoin="round"/><rect x="-30" y="-52" width="36" height="12" fill="${c}" stroke="${C.noir}" stroke-width="6"/></g>`;
+};
+// Tableau de bord : bloc noir arrondi, compteur 130, voyant moteur au centre
+function tableau(t, allume, clign) {
+  let g = `<path d="M-20 1000 Q540 880 1100 1000 V1920 H-20z" fill="${C.noir}"/>`;
+  g += `<g transform="translate(300 1130)"><circle r="150" fill="#222" stroke="${C.creme}" stroke-width="8"/><text y="20" font-size="80" font-weight="800" text-anchor="middle" fill="${C.creme}">130</text><text y="80" font-size="30" font-weight="700" text-anchor="middle" fill="#aaa">km/h</text><path d="M0 0 L${-110 * Math.cos(.5)} ${-110 * Math.sin(.5) - 0}" stroke="${C.rouge}" stroke-width="10" stroke-linecap="round" transform="rotate(${95 + Math.sin(pose(t * 1000) / 200) * 2})"/></g>`;
+  g += `<g transform="translate(760 1130)"><rect x="-150" y="-110" width="300" height="220" rx="30" fill="#222" stroke="${C.creme}" stroke-width="8"/>${moteur(0, 0, 1.3, allume, clign)}</g>`;
+  return g;
+}
+// Boîte à gants ouverte : planche de bord noire, compartiment sombre rempli de papiers, porte grise rabattue
+const gants = (x, y, s = 1) => `<g transform="translate(${x} ${y}) scale(${s})"><path d="M-420 -260 Q0 -330 420 -260 V-120 H-420z" fill="${C.noir}"/><rect x="-260" y="-140" width="520" height="280" fill="${C.noir}"/><rect x="-235" y="-115" width="470" height="230" fill="#2b2b2b"/><rect x="-200" y="20" width="150" height="95" fill="#fff" stroke="${C.noir}" stroke-width="5" transform="rotate(-6)"/><rect x="-40" y="0" width="130" height="115" fill="${C.creme}" stroke="${C.noir}" stroke-width="5" transform="rotate(5)"/><rect x="100" y="30" width="110" height="85" fill="${C.bleu}" stroke="${C.noir}" stroke-width="5"/><path d="M-260 140 L-300 260 H300 L260 140z" fill="#777" stroke="${C.noir}" stroke-width="10"/><rect x="-50" y="185" width="100" height="22" rx="10" fill="${C.noir}"/></g>`;
+const papier = (x, y, r, s = 1) => `<g transform="translate(${x} ${y}) rotate(${r}) scale(${s})"><rect x="-60" y="-80" width="120" height="160" fill="#fff" stroke="${C.noir}" stroke-width="6"/><path d="M-40 -45 h80 M-40 -15 h80 M-40 15 h55" stroke="#999" stroke-width="8"/></g>`;
+const ticket = (x, y, r, s = 1) => `<g transform="translate(${x} ${y}) rotate(${r}) scale(${s})"><rect x="-110" y="-150" width="220" height="300" fill="#fff" stroke="${C.noir}" stroke-width="8"/><rect x="-110" y="-150" width="220" height="70" fill="${C.bleu}"/><text y="-100" font-size="44" font-weight="800" text-anchor="middle" fill="#fff">PÉAGE</text><path d="M-80 -30 h160 M-80 10 h120 M-80 50 h150 M-80 90 h90" stroke="#999" stroke-width="10"/></g>`;
+const bonbon = (x, y, r, s = 1, t = 0) => { let mouches = ''; for (let i = 0; i < 3; i++) { const a = t / 260 + i * 2.1; mouches += `<circle cx="${Math.cos(a) * 150}" cy="${-110 + Math.sin(a * 1.3) * 40}" r="10" fill="${C.noir}"/>`; } return `<g transform="translate(${x} ${y}) rotate(${r}) scale(${s})"><path d="M-80 0 L-150 -50 L-150 50z M80 0 L150 -50 L150 50z" fill="${C.rouge}" stroke="${C.noir}" stroke-width="8" stroke-linejoin="round"/><ellipse rx="90" ry="62" fill="${C.rouge}" stroke="${C.noir}" stroke-width="8"/><path d="M-40 -30 l25 20 l-15 20 M30 -35 l-10 25 l25 15" stroke="${C.noir}" stroke-width="6" fill="none"/>${mouches}</g>`; };
+
+// Téléphone avec la vraie capture du Carnet de voiture (assets/templates-voiture-tel.webp, 780 × 1328)
+function telephone(x, y, s, contenu) {
+  const W = 700, H = 1300;
+  return `<g transform="translate(${x} ${y}) scale(${s}) translate(${-W / 2} ${-H / 2})"><rect x="16" y="16" width="${W}" height="${H}" rx="60" fill="${C.noir}"/><rect width="${W}" height="${H}" rx="60" fill="${C.noir}"/><rect x="24" y="24" width="${W - 48}" height="${H - 48}" rx="40" fill="#FAF7F0"/>${contenu}</g>`;
+}
+
+// ---------- Scènes ----------
+const S = {};
+S.S1 = (t, l) => {                       // Accroche : 130 km/h, le voyant moteur clignote
+  const allume = true;                    // dès la 1re image : le voyant est déjà là (accroche)
+  const clign = Math.floor(l / 250) % 3 !== 2;
+  let g = route(t) + tableau(t, allume, clign);
+  const tremble = allume ? (hash(pose(l)) - .5) * 10 : 0;
+  g += mascotte({x: 880 + tremble, y: 990, s: .6, expr: allume ? (t > 2.2 ? 'panique' : 'choc') : 'neutre', bras: allume && t > 2.2 ? 'tete' : 'bas'});
+  if (t > 2.2) g += etiquette(540, 700, 'SUR L’AUTOROUTE', C.rouge, '#fff', 50);
+  return g;
+};
+S.S2 = (t, l) => {                       // La boîte à gants : « la dernière vidange ? »
+  let g = `<rect width="1080" height="1920" fill="${C.jaune}"/><circle cx="540" cy="820" r="430" fill="${C.creme}" stroke="${C.noir}" stroke-width="10"/>`;
+  g += etiquette(540, 330, 'DERNIÈRE VIDANGE ?', C.noir, '#fff', 58);
+  g += gants(540, 860, 1.1);
+  const fouille = t >= 4.8;
+  if (fouille) for (let i = 0; i < 5; i++) { const ph = ((l - 1500) / 600 + i * .37) % 1; if (ph < 0) continue; const p = sortie(ph); g += papier(540 + (i % 2 ? 1 : -1) * (80 + p * 300), 820 - p * 420 + p * p * 260, (i * 47 + p * 200) % 360, .8); }
+  g += mascotte({x: 540 + (fouille ? Math.sin(pose(l) / 90) * 25 : 0), y: 1300, s: .7, expr: fouille ? 'inquiet' : 'choc', bras: fouille ? 'haut' : 'bas', rot: fouille ? Math.sin(pose(l) / 90) * 6 : 0});
+  return g;
+};
+S.S3 = (t, l) => {                       // Péage, bonbon fossilisé, personne ne sait
+  const k = t < 7.5 ? 0 : t < 9.2 ? 1 : 2;
+  const deb = [6.2, 7.5, 9.2][k], ll = (t - deb) * 1000;
+  const flash = k === 2 && Math.floor(ll / 300) % 2;
+  let g = `<rect width="1080" height="1920" fill="${k === 2 ? (flash ? '#F6D7D0' : C.creme) : [C.creme, C.creme][k]}"/>` + (k === 0 ? `<circle cx="960" cy="420" r="160" fill="${C.bleu}"/>` : k === 1 ? `<circle cx="120" cy="420" r="160" fill="${C.rouge}"/>` : '') + sol();
+  const p = rebond(prog(pose(ll), 100, 450));
+  if (k === 0) g += ticket(540, 1050 - p * 420, -8 + Math.sin(pose(ll) / 150) * 6, 1.1);
+  if (k === 1) { g += bonbon(540, 1000 - p * 380, Math.sin(pose(ll) / 150) * 8, 1.2, ll); g += etiquette(540, 330, 'FOSSILISÉ', C.noir, '#fff', 56); }
+  if (k === 2) { const tr = (hash(pose(ll)) - .5) * 24; g += `<text x="${540 + tr}" y="760" font-size="300" font-weight="800" text-anchor="middle" fill="${C.rouge}" stroke="${C.noir}" stroke-width="10">???</text>`; }
+  if (k === 0) g += etiquette(540, 330, 'UN TICKET DE PÉAGE', C.noir, '#fff', 52);
+  g += mascotte({x: 880, y: 1300, s: .62, expr: ['inquiet', 'choc', 'panique'][k], bras: k ? 'tete' : 'bas', rot: k === 2 ? (hash(pose(ll) + 3) - .5) * 10 : 0});
+  return g;
+};
+S.S4 = (t, l) => {                       // Carnet de voiture : la vraie capture répond « vidange : en retard »
+  let g = `<rect width="1080" height="1920" fill="${C.creme}"/><circle cx="1000" cy="260" r="220" fill="${C.jaune}"/><rect x="0" y="1150" width="220" height="220" fill="${C.bleu}"/>`;
+  const ap = rebond(prog(pose(l), 0, 420));
+  const z = sortie(prog(pose(l), (12.3 - 10.3) * 1000, (12.3 - 10.3) * 1000 + 450));
+  const k = 652 / 780, s = .92 + z * .4, X = 590 - z * 50, Y = 800 + z * 155;
+  const capt = `<clipPath id="ecr"><rect x="24" y="24" width="652" height="1252" rx="40"/></clipPath><g clip-path="url(#ecr)"><g transform="translate(24 24) scale(${k})"><image href="../assets/templates-voiture-tel.webp" width="780" height="1328"/></g></g>`;
+  g += telephone(X, Y, s * ap, capt);
+  const trouve = t >= 12.3;
+  if (trouve) {
+    const p = rebond(prog(pose(l), (12.3 - 10.3) * 1000, (12.3 - 10.3) * 1000 + 300));
+    const ox = X - 350 * s + 24 * s, oy = Y - 650 * s + 24 * s, kk = k * s;
+    g += `<rect x="${ox + 18 * kk}" y="${oy + 322 * kk}" width="${745 * kk}" height="${285 * kk}" rx="24" fill="none" stroke="${C.rouge}" stroke-width="${12 * p}"/>`;
+    g += `<g transform="translate(${ox + 560 * kk} ${oy + 250 * kk}) rotate(-8) scale(${p})">${etiquette(0, 0, 'EN RETARD', C.rouge, '#fff', 54)}</g>`;
+  }
+  g += mascotte({x: 150 - z * 30, y: 1300 + z * 270, s: .55, expr: t < 11.5 ? 'inquiet' : trouve ? 'fier' : 'neutre', bras: trouve ? 'montrer' : 'bas'});
+  return g;
+};
+S.S5 = (t, l) => {                       // Boucle : même tableau de bord, voyant éteint, route tranquille
+  const eteint = t >= 13.9;
+  let g = route(t, .6) + tableau(t, !eteint, Math.floor(l / 250) % 3 !== 2);
+  if (t >= 15.0) g += etiquette(540, 700, 'TRANQUILLE', C.vert, '#fff', 54);
+  g += mascotte({x: 880, y: 990, s: .6, expr: eteint ? (t > 15 ? 'fier' : 'joie') : 'inquiet', bras: t > 15 ? 'pouce' : 'bas'});
+  return g;
+};
+
+const scene = document.getElementById('scene'), st = document.getElementById('st'), carton = document.getElementById('carton');
+// Sous-titres : une réplique = un sous-titre, calé sur la voix réelle (début, fin + 0,12 s), deux lignes au plus.
+const COUPES = { v04: 'Il fouille<br>la boîte à gants.', v08: (tv) => tv < 12.2 ? 'Le carnet, lui, sait :' : 'Le carnet, lui, sait :<br>vidange en retard.', v10: 'L’autoroute,<br>enfin tranquille.' };
+// Accroche v2 : texte à l'écran dès la première image, lisible sans le son
+const ACCROCHE = (tv) => tv < 2.6 ? `<g><rect x="72" y="132" width="936" height="300" fill="${C.noir}" transform="translate(14 14)"/><rect x="72" y="132" width="936" height="300" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/><text x="540" y="262" font-size="76" font-weight="800" text-anchor="middle" fill="${C.noir}">130 km/h. Voyant orange.</text><text x="540" y="372" font-size="60" font-weight="800" text-anchor="middle" fill="${C.rouge}">Dernière vidange : aucune idée.</text></g>` : '';
+window.placer = (ms) => {
+  const tv = ms / 1000; const t = tv; window.__t = ms;
+  const fin = tv >= T.carton.debut;
+  carton.style.display = fin ? 'block' : 'none';
+  if (fin) { scene.innerHTML = ''; st.innerHTML = ''; return; }
+  const sc = T.scenes.find((s) => t >= s.debut && t < s.fin) || T.scenes[0];
+  scene.innerHTML = `<svg width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">${S[sc.id](t, ms - sc.debut * 1000)}${ACCROCHE(tv)}</svg>`;
+  const v = T.voix.find((r) => tv >= r.t - .05 && tv < Math.min(r.fin + .12, T.carton.debut));
+  const cp = v && COUPES[v.id]; st.innerHTML = v ? `<span>${typeof cp === 'function' ? cp(tv) : cp || v.texte.replace(/'/g, '’')}</span>` : '';
+};
+window.placer(0);
+</script>
+</body>
+</html>

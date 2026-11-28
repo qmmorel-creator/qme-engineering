@@ -1,0 +1,187 @@
+{
+  "episode": "06b-saintelyon",
+  "duree": 29.2,
+  "carton": {
+    "debut": 25.2,
+    "fin": 29.2
+  },
+  "scenes": [
+    {
+      "id": "S1",
+      "debut": 0,
+      "fin": 3.5,
+      "nom": "Inscrit… c'est cette nuit"
+    },
+    {
+      "id": "S2",
+      "debut": 3.5,
+      "fin": 7.5,
+      "nom": "Nuit, froid, frontale"
+    },
+    {
+      "id": "S3",
+      "debut": 7.5,
+      "fin": 9.55,
+      "nom": "Ravito raté"
+    },
+    {
+      "id": "S4",
+      "debut": 9.55,
+      "fin": 11.75,
+      "nom": "Rembobinons"
+    },
+    {
+      "id": "S5",
+      "debut": 11.75,
+      "fin": 19.95,
+      "nom": "Plan d'entraînement course à pied"
+    },
+    {
+      "id": "S6",
+      "debut": 19.95,
+      "fin": 25.2,
+      "nom": "Lyon au petit matin"
+    }
+  ],
+  "voix": [
+    {
+      "id": "v01",
+      "t": 0.15,
+      "texte": "Inscrit à la SaintéLyon !",
+      "fin": 1.35
+    },
+    {
+      "id": "v02",
+      "t": 1.86,
+      "texte": "La course ? C'est cette nuit.",
+      "fin": 3.5
+    },
+    {
+      "id": "v03",
+      "t": 3.89,
+      "texte": "La nuit. Le froid.",
+      "fin": 5.43
+    },
+    {
+      "id": "v04",
+      "t": 5.88,
+      "texte": "La frontale qui clignote.",
+      "fin": 7.12
+    },
+    {
+      "id": "v05",
+      "t": 7.54,
+      "texte": "Le ravito ? Il l'a raté.",
+      "fin": 9.26
+    },
+    {
+      "id": "v06",
+      "t": 9.61,
+      "texte": "Rembobinons. Huit semaines avant.",
+      "fin": 11.34
+    },
+    {
+      "id": "v07",
+      "t": 11.79,
+      "texte": "Le Plan d'entraînement course à pied, de QME, calcule ses allures depuis son chrono.",
+      "fin": 16.4,
+      "st": [
+        [
+          0,
+          "Le Plan d’entraînement<br>course à pied, de QME,"
+        ],
+        [
+          2.75,
+          "calcule ses allures<br>depuis son chrono."
+        ]
+      ]
+    },
+    {
+      "id": "v08",
+      "t": 16.93,
+      "texte": "Puis des séances planifiées, cochées une à une.",
+      "fin": 19.56,
+      "st": [
+        [
+          0,
+          "Puis des séances<br>planifiées,"
+        ],
+        [
+          1.4,
+          "cochées<br>une à une."
+        ]
+      ]
+    },
+    {
+      "id": "v09",
+      "t": 20.04,
+      "texte": "Lyon, au petit matin. Il arrive frais.",
+      "fin": 22.54
+    },
+    {
+      "id": "v10",
+      "t": 23.01,
+      "texte": "Et la frontale ? Toujours allumée.",
+      "fin": 24.85
+    }
+  ],
+  "bruitages": [
+    {
+      "son": "pop",
+      "t": 0.03
+    },
+    {
+      "son": "zap",
+      "t": 2.85
+    },
+    {
+      "son": "whoosh",
+      "t": 3.45
+    },
+    {
+      "son": "zap",
+      "t": 6.4
+    },
+    {
+      "son": "chute",
+      "t": 9.3
+    },
+    {
+      "son": "whoosh",
+      "t": 9.5
+    },
+    {
+      "son": "whoosh",
+      "t": 11.7
+    },
+    {
+      "son": "pose",
+      "t": 18.4
+    },
+    {
+      "son": "pose",
+      "t": 18.7
+    },
+    {
+      "son": "pose",
+      "t": 19.0
+    },
+    {
+      "son": "pose",
+      "t": 19.3
+    },
+    {
+      "son": "pop",
+      "t": 21.2
+    },
+    {
+      "son": "ding",
+      "t": 24.95
+    }
+  ],
+  "voix_source": {
+    "fichier": "audio/elevenlabs/voix-elevenlabs.wav",
+    "decalage": 0.15,
+    "origine": "ElevenLabs, voix « Caroline - Warm, Sweet and Soft » (kwhMCf63M8O3rCfnQ3oQ), eleven_v4, une génération le 27/11/2026 (24,8 s), prise non retouchée"
+  }
+}

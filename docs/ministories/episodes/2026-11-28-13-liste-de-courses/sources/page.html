@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Liste de courses : le retour · Mini-story QME</title>
+<!-- Projet d'animation de l'épisode. Rendu : node docs/videos/rendu.mjs <ce fichier> 28 --muet --taille-max 14
+     Toute l'image est fonction du temps : window.placer(ms) dessine l'image exacte de l'instant ms (rendu déterministe).
+     Données : timeline.js (généré depuis timeline.json, voix réelles mesurées). -->
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../assets/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../assets/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1EFF,U+20A0-20AB,U+20AD-20C4;}
+:root{--creme:#F1EEE6;--noir:#141414;--jaune:#FFBE00;--jaune-pale:#FBEBC2;--bleu:#23528B;--rouge:#DE2D27;--moutarde:#EDB43A;--vert:#2E7D50}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:var(--creme);font-family:'Outfit',sans-serif;color:var(--noir)}
+#scene{position:absolute;inset:0}
+#st{position:absolute;left:60px;right:130px;top:1350px;display:flex;justify-content:center;text-align:center}
+#st span{display:inline;background:var(--jaune-pale);box-decoration-break:clone;-webkit-box-decoration-break:clone;padding:6px 22px;border-radius:18px;font-weight:800;font-size:56px;line-height:1.45;letter-spacing:-.5px}
+#carton{position:absolute;inset:0;background:#141414;display:none}
+#carton img{position:absolute;left:0;width:1080px;top:50%;transform:translateY(-50%)}
+.pre{position:absolute;opacity:0;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="scene"></div>
+<div id="st"></div>
+<div id="carton"><img src="../assets/qme-carton-final-9x16-official.png" alt=""></div>
+<img class="pre" src="../assets/templates-repas-tel.webp" alt="">
+<script src="timeline.js"></script>
+<script src="carreau.js"></script>
+<script>
+const C = {creme:'#F1EEE6', noir:'#141414', jaune:'#FFBE00', pale:'#FBEBC2', bleu:'#23528B', rouge:'#DE2D27', moutarde:'#EDB43A', vert:'#2E7D50', blanc:'#FFFFFF'};
+const PAS_POSE = 1000 / 12;              // poses tenues 2 images à 24 i/s : rendu « stop-motion » de la charte MiniStories
+const pose = (ms) => Math.floor(ms / PAS_POSE) * PAS_POSE;
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const sortie = (x) => 1 - Math.pow(1 - x, 3);
+const rebond = (x) => { const c = 1.70158 * 1.4; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const hash = (n) => { const s = Math.sin(n * 127.1) * 43758.5453; return s - Math.floor(s); };
+const euros = (v) => v.toLocaleString('fr-FR').replace(/\u202f|\s/g, '\u2009') + '\u00a0€';
+const T = window.TL;
+// Temps vidéo -> temps du montage de référence (scènes recalées sur la voix réelle), interpolation linéaire par morceaux.
+const recaler = (t) => { const M = T.montage; if (!M) return t; for (let i = 1; i < M.length; i++) if (t <= M[i][0]) return M[i - 1][1] + (t - M[i - 1][0]) * (M[i][1] - M[i - 1][1]) / (M[i][0] - M[i - 1][0]); return M[M.length - 1][1] + t - M[M.length - 1][0]; };
+
+// ---------- Grillon (module officiel carreau.js), mascotte QME : une seule fonction pour tout l'épisode ----------
+function mascotte({x, y, s = 1, expr = 'neutre', bras = 'bas', rot = 0, ecrase = 1}) {
+  // Module officiel docs/templates/communication/formats-test/mascotte/carreau.js (copié sans « export » dans carreau.js)
+  const expression = {joie: 'soulage', blase: 'neutre', inquiet: 'inquiet', choc: 'inquiet', panique: 'panique', fier: 'fier', neutre: 'neutre'}[expr];
+  const p = {montrer: 'montre', pouce: 'montre', haut: 'court', tete: 'court', court: 'court'}[bras] || 'debout';
+  return `<g transform="translate(${x} ${y}) rotate(${rot}) scale(${s} ${s * ecrase}) translate(-160 -350)">${carreau({expression, pose: p, taille: 320})}</g>`;
+}
+
+// ---------- Accessoires (forme et couleur fixes dans tout l'épisode) ----------
+const etiquette = (x, y, txt, fond = C.noir, coul = '#fff', taille = 40) => { const w = txt.length * taille * .62 + 44; return `<g transform="translate(${x} ${y})"><rect x="${-w / 2 + 10}" y="${-taille * .8 + 10}" width="${w}" height="${taille * 1.3}" fill="${C.noir}"/><rect x="${-w / 2}" y="${-taille * .8}" width="${w}" height="${taille * 1.3}" fill="${fond}" stroke="${C.noir}" stroke-width="6"/><text y="${taille * .3}" font-size="${taille}" font-weight="800" letter-spacing="2" text-anchor="middle" fill="${coul}">${txt}</text></g>`; };
+// Brique de lait : blanche, bande bleue, toit triangulaire
+const lait = (x, y, s = 1) => `<g transform="translate(${x} ${y}) scale(${s})"><path d="M-40 -60 L-20 -100 H20 L40 -60z" fill="#fff" stroke="${C.noir}" stroke-width="8" stroke-linejoin="round"/><rect x="-40" y="-60" width="80" height="130" fill="#fff" stroke="${C.noir}" stroke-width="8"/><rect x="-40" y="-20" width="80" height="40" fill="${C.bleu}"/><text y="12" font-size="24" font-weight="800" text-anchor="middle" fill="#fff">LAIT</text><rect x="-40" y="-60" width="80" height="130" fill="none" stroke="${C.noir}" stroke-width="8"/></g>`;
+// Paquet de pâtes : jaune, fenêtre avec pennes
+const pates = (x, y, s = 1) => { let pe = ''; for (let i = 0; i < 4; i++) pe += `<rect x="${-24 + (i % 2) * 22}" y="${-14 + Math.floor(i / 2) * 22}" width="18" height="10" rx="3" fill="${C.moutarde}" stroke="${C.noir}" stroke-width="3" transform="rotate(-25 ${-15 + (i % 2) * 22} ${-9 + Math.floor(i / 2) * 22})"/>`; return `<g transform="translate(${x} ${y}) scale(${s})"><rect x="-50" y="-80" width="100" height="150" fill="${C.jaune}" stroke="${C.noir}" stroke-width="8"/><rect x="-34" y="-30" width="68" height="64" fill="#fff" stroke="${C.noir}" stroke-width="5"/>${pe}<rect x="-50" y="-80" width="100" height="30" fill="${C.rouge}" stroke="${C.noir}" stroke-width="8"/></g>`; };
+// Boîte de six œufs : grise, trois bosses
+const oeufs = (x, y, s = 1) => `<g transform="translate(${x} ${y}) scale(${s})"><circle cx="-45" cy="-30" r="26" fill="#fff" stroke="${C.noir}" stroke-width="7"/><circle cx="0" cy="-34" r="26" fill="#fff" stroke="${C.noir}" stroke-width="7"/><circle cx="45" cy="-30" r="26" fill="#fff" stroke="${C.noir}" stroke-width="7"/><path d="M-85 -20 H85 L72 40 H-72z" fill="#B9B4A8" stroke="${C.noir}" stroke-width="8" stroke-linejoin="round"/></g>`;
+const OBJ = {lait, pates, oeufs};
+// Chariot : panier grillagé noir, poignée rouge, deux roues ; contenu posé dedans
+function chariot(x, y, s = 1, contenu = []) {
+  let grille = ''; for (let i = 1; i < 5; i++) grille += `<path d="M${-130 + i * 52} -150 L${-115 + i * 46} 0" stroke="${C.noir}" stroke-width="5"/>`;
+  let objets = ''; contenu.forEach((o, i) => { objets += OBJ[o](-80 + i * 80, -150 + (o === 'oeufs' ? 10 : 0), .75); });
+  return `<g transform="translate(${x} ${y}) scale(${s})">${objets}<path d="M-140 -150 H140 L115 0 H-115z" fill="${C.creme}" fill-opacity=".55" stroke="${C.noir}" stroke-width="9" stroke-linejoin="round"/>${grille}<path d="M-115 -75 H128" stroke="${C.noir}" stroke-width="5"/><path d="M140 -150 L175 -205 H215" fill="none" stroke="${C.rouge}" stroke-width="14" stroke-linecap="round"/><path d="M-105 0 V45 M105 0 V45" stroke="${C.noir}" stroke-width="9"/><path d="M-120 45 H120" stroke="${C.noir}" stroke-width="9"/><circle cx="-90" cy="62" r="18" fill="${C.noir}"/><circle cx="90" cy="62" r="18" fill="${C.noir}"/></g>`;
+}
+// Bulle de pensée (Grillon ne parle pas : objets seulement, ou un mot)
+function bulle(x, y, w, h, contenu) {
+  return `<g transform="translate(${x} ${y})"><circle cx="${-w / 2 + 40}" cy="${h / 2 + 60}" r="16" fill="#fff" stroke="${C.noir}" stroke-width="6"/><circle cx="${-w / 2 + 10}" cy="${h / 2 + 100}" r="10" fill="#fff" stroke="${C.noir}" stroke-width="6"/><rect x="${-w / 2}" y="${-h / 2}" width="${w}" height="${h}" rx="${h / 2.4}" fill="#fff" stroke="${C.noir}" stroke-width="8"/>${contenu}</g>`;
+}
+// Rayon : étagère de produits colorés (formes de la charte)
+function rayon(x, y, w, h, coul = [C.rouge, C.bleu, C.jaune, C.vert]) {
+  let g = `<rect x="${x + 12}" y="${y + 12}" width="${w}" height="${h}" fill="${C.noir}"/><rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#fff" stroke="${C.noir}" stroke-width="8"/>`;
+  const n = Math.max(1, Math.round(h / 150));
+  for (let r = 0; r < n; r++) { const yy = y + (r + 1) * h / n; g += `<path d="M${x} ${yy} H${x + w}" stroke="${C.noir}" stroke-width="8"/>`;
+    for (let i = 0; i * 62 + 18 < w - 50; i++) { const c = coul[(i + r * 2) % coul.length]; const hh = 60 + ((i * 7 + r * 3) % 4) * 12; g += `<rect x="${x + 16 + i * 62}" y="${yy - hh - 4}" width="48" height="${hh}" fill="${c}" stroke="${C.noir}" stroke-width="4"/>`; } }
+  return g;
+}
+const compteur = (n, x = 250, y = 330) => `<g transform="translate(${x} ${y})"><rect x="-170" y="-70" width="340" height="140" fill="${C.noir}" transform="translate(12 12)"/><rect x="-170" y="-70" width="340" height="140" fill="#fff" stroke="${C.noir}" stroke-width="8"/><text x="0" y="-22" font-size="28" font-weight="700" letter-spacing="3" text-anchor="middle" fill="#555">TRAVERSÉE</text><text x="0" y="52" font-size="80" font-weight="800" text-anchor="middle" fill="${n >= 5 ? C.rouge : C.noir}">${n}</text></g>`;
+const sol = (y = 1300) => `<rect x="0" y="${y}" width="1080" height="12" fill="${C.noir}"/>`;
+const allee = () => `<rect width="1080" height="1920" fill="${C.creme}"/><circle cx="960" cy="470" r="150" fill="${C.jaune}"/>` + rayon(40, 560, 330, 740, [C.rouge, C.jaune, C.bleu]) + rayon(720, 760, 330, 540, [C.bleu, C.vert, C.rouge]) + sol();
+const coche = (x, y, s = 1) => `<g transform="translate(${x} ${y}) scale(${s})"><circle r="26" fill="${C.vert}" stroke="${C.noir}" stroke-width="5"/><path d="M-12 0 L-3 10 L13 -10" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></g>`;
+
+// Téléphone avec la vraie capture de Repas de la semaine et liste de courses (assets/templates-repas-tel.webp, 780 × 1328)
+function telephone(x, y, s, contenu) {
+  const W = 700, H = 1300;
+  return `<g transform="translate(${x} ${y}) scale(${s}) translate(${-W / 2} ${-H / 2})"><rect x="16" y="16" width="${W}" height="${H}" rx="60" fill="${C.noir}"/><rect width="${W}" height="${H}" rx="60" fill="${C.noir}"/><rect x="24" y="24" width="${W - 48}" height="${H - 48}" rx="40" fill="#FAF7F0"/>${contenu}</g>`;
+}
+
+// ---------- Scènes ----------
+const S = {};
+S.S1 = (t, l) => {                       // Accroche : trois articles en tête, et déjà demi-tour
+  let g = allee();
+  const part = t >= 1.9, dx = part ? -sortie(prog(pose(l), 1900, 3200)) * 420 : 0;
+  g += chariot(640, 1220, 1.0, []);
+  g += bulle(600, 760, 380, 170, lait(-110, 25, .6) + pates(0, 25, .6) + oeufs(110, 40, .6));
+  g += mascotte({x: 350 + dx, y: 1300, s: .9, expr: part ? 'choc' : 'neutre', bras: part ? 'court' : 'bas', rot: part ? -6 : 0});
+  return g;
+};
+S.S2 = (t, l) => {                       // Le lait, rayon frais
+  let g = `<rect width="1080" height="1920" fill="${C.creme}"/><circle cx="120" cy="620" r="140" fill="${C.rouge}"/>`;
+  g += `<rect x="452" y="612" width="560" height="690" fill="${C.noir}"/><rect x="440" y="600" width="560" height="690" fill="#D9E6F2" stroke="${C.noir}" stroke-width="9"/>`;
+  for (let r = 0; r < 3; r++) { const yy = 820 + r * 220; g += `<path d="M440 ${yy} H1000" stroke="${C.noir}" stroke-width="8"/>`; for (let i = 0; i < 5; i++) g += lait(500 + i * 105, yy - 75, .62); }
+  g += etiquette(720, 520, 'RAYON FRAIS', C.bleu, '#fff', 52) + sol() + compteur(2);
+  const p = rebond(prog(pose(l), 80, 380));
+  g += bulle(280, 820, 230, 200, lait(0, 30, .8 * p));
+  g += mascotte({x: 260 - (1 - sortie(prog(pose(l), 0, 300))) * 300, y: 1300, s: .75, expr: 'inquiet', bras: 'court', rot: -6});
+  return g;
+};
+S.S3 = (t, l) => {                       // Les pâtes, tout au fond : allée en perspective
+  let g = `<rect width="1080" height="1920" fill="${C.creme}"/>`;
+  g += `<path d="M0 560 L470 820 V1010 L0 1300z" fill="#fff" stroke="${C.noir}" stroke-width="8" stroke-linejoin="round"/><path d="M1080 560 L610 820 V1010 L1080 1300z" fill="#fff" stroke="${C.noir}" stroke-width="8" stroke-linejoin="round"/>`;
+  for (let i = 0; i < 4; i++) { const k = i / 4; g += `<path d="M${k * 470} ${560 + k * 260} V${1300 - k * 290}" stroke="${C.noir}" stroke-width="5"/><path d="M${1080 - k * 470} ${560 + k * 260} V${1300 - k * 290}" stroke="${C.noir}" stroke-width="5"/>`; }
+  g += `<rect x="470" y="820" width="140" height="190" fill="${C.jaune}" stroke="${C.noir}" stroke-width="6"/>` + sol();
+  g += etiquette(540, 470, 'TOUT AU FOND →', C.noir, '#fff', 56) + compteur(3, 250, 330);
+  const k = sortie(prog(pose(l), 0, 1500));
+  g += mascotte({x: 540 + Math.sin(pose(l) / 90) * 8, y: 1300 - k * 300, s: .8 - k * .55, expr: 'inquiet', bras: 'court'});
+  if (t >= 5.6) { const p = rebond(prog(pose(l), 850, 1150)); g += bulle(820, 760, 200, 200, pates(0, 10, .75 * p)); }
+  if (t >= 6.85) g += `<text x="540" y="790" font-size="120" font-weight="800" text-anchor="middle" fill="${C.rouge}">!</text>`;
+  return g;
+};
+S.S4 = (t, l) => {                       // Les œufs… juste devant l'entrée
+  let g = `<rect width="1080" height="1920" fill="${C.creme}"/><path d="M1080 0 v380 a380 380 0 0 1 -380 -380z" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/>`;
+  g += etiquette(800, 560, 'ENTRÉE', C.vert, '#fff', 52) + sol();
+  g += `<rect x="232" y="1052" width="300" height="250" fill="${C.noir}"/><rect x="220" y="1040" width="300" height="260" fill="${C.rouge}" stroke="${C.noir}" stroke-width="8"/><text x="370" y="1200" font-size="44" font-weight="800" text-anchor="middle" fill="#fff">PROMO</text>`;
+  g += oeufs(300, 1000, 1) + oeufs(440, 1000, 1) + oeufs(370, 935, 1);
+  const p = rebond(prog(pose(l), 900, 1200));
+  if (t >= 7.9) g += `<g transform="translate(370 760) scale(${p})"><path d="M-30 -120 H30 V0 H75 L0 80 L-75 0 H-30z" fill="${C.rouge}" stroke="${C.noir}" stroke-width="8" stroke-linejoin="round"/></g>` + etiquette(370, 600, 'JUSTE DEVANT', C.noir, '#fff', 48);
+  g += compteur(4, 250, 330);
+  const tremble = t >= 7.9 ? (hash(pose(l)) - .5) * 14 : 0;
+  g += mascotte({x: 780 + tremble, y: 1300, s: .8, expr: t >= 7.9 ? 'choc' : 'inquiet', bras: t >= 7.9 ? 'tete' : 'court'});
+  return g;
+};
+S.S5 = (t, l) => {                       // Plan vu de dessus : cinq traversées, chariot vide
+  let g = `<rect width="1080" height="1920" fill="${t >= 10.4 && Math.floor(l / 330) % 2 ? '#F6D7D0' : C.creme}"/>`;
+  g += `<rect x="102" y="482" width="876" height="700" fill="${C.noir}"/><rect x="90" y="470" width="876" height="700" fill="#fff" stroke="${C.noir}" stroke-width="9"/>`;
+  const rangs = [[C.rouge, 560], [C.jaune, 720], [C.bleu, 880], [C.vert, 1040]];
+  for (const [c, y] of rangs) g += `<rect x="230" y="${y}" width="600" height="56" fill="${c}" stroke="${C.noir}" stroke-width="6"/>`;
+  g += `<rect x="110" y="1110" width="150" height="46" fill="${C.noir}"/><text x="185" y="1143" font-size="26" font-weight="800" text-anchor="middle" fill="#fff">ENTRÉE</text>`;
+  const pts = [[185, 1090], [900, 1090], [900, 990], [160, 990], [160, 830], [900, 830], [900, 670], [160, 670], [160, 520], [900, 520]];
+  let len = 0; const seg = []; for (let i = 1; i < pts.length; i++) { const d = Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]); seg.push(d); len += d; }
+  const dessine = len * sortie(prog(pose(l), 0, 1500));
+  let rest = dessine, d = `M${pts[0][0]} ${pts[0][1]}`, bout = pts[0];
+  for (let i = 1; i < pts.length && rest > 0; i++) { const f = Math.min(1, rest / seg[i - 1]); bout = [pts[i - 1][0] + (pts[i][0] - pts[i - 1][0]) * f, pts[i - 1][1] + (pts[i][1] - pts[i - 1][1]) * f]; d += ` L${bout[0]} ${bout[1]}`; rest -= seg[i - 1]; }
+  g += `<path d="${d}" fill="none" stroke="${C.rouge}" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 26"/><circle cx="${bout[0]}" cy="${bout[1]}" r="20" fill="${C.jaune}" stroke="${C.noir}" stroke-width="6"/>`;
+  g += compteur(5, 250, 330);
+  if (t >= 10.35) { const p = rebond(prog(pose(l), 900, 1200)); g += `<g transform="translate(790 330) scale(${p})">${chariot(0, 40, .62, [])}</g>` + (p > .5 ? etiquette(790, 220 + 20, 'VIDE', C.rouge, '#fff', 40) : ''); }
+  const tremble = t >= 10.4 ? (hash(pose(l)) - .5) * 22 : 0;
+  g += mascotte({x: 540 + tremble, y: 1340, s: .52, expr: t >= 10.4 ? 'panique' : 'inquiet', bras: 'tete'});
+  return g;
+};
+S.S6 = (t, l) => {                       // La liste, rangée par rayon (vraie capture) : un seul passage
+  let g = `<rect width="1080" height="1920" fill="${C.creme}"/><circle cx="1000" cy="300" r="220" fill="${C.jaune}"/><rect x="0" y="1150" width="220" height="220" fill="${C.bleu}"/>`;
+  const ap = rebond(prog(pose(l), 0, 420));
+  const k = 652 / 780;
+  let sur = '';
+  const r1 = prog(pose(l), 700, 1000);
+  if (r1 > 0) sur += `<rect x="40" y="478" width="320" height="56" rx="10" fill="none" stroke="${C.rouge}" stroke-width="${8 * r1}"/>`;
+  if (t >= 13.0) sur += `<rect x="62" y="580" width="48" height="48" rx="6" fill="${C.noir}"/><path d="M73 604 L83 615 L100 592" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><path d="M146 567 H186" stroke="#6b6b6b" stroke-width="3"/>`;
+  const capt = `<clipPath id="ecr"><rect x="24" y="24" width="652" height="1252" rx="40"/></clipPath><g clip-path="url(#ecr)"><g transform="translate(24 24) scale(${k})"><image href="../assets/templates-repas-tel.webp" width="780" height="1328"/>${sur}</g></g>`;
+  g += telephone(590, 700, .92 * ap, capt);
+  if (t >= 12.0) { const p = rebond(prog(pose(l), 550, 850)); g += `<g transform="translate(590 1236) scale(${p})">${etiquette(0, 0, 'RANGÉE PAR RAYON', C.noir, '#fff', 44)}</g>`; }
+  g += mascotte({x: 120, y: 1320, s: .5, expr: t < 12.6 ? 'joie' : 'fier', bras: 'montrer'});
+  return g;
+};
+S.S7 = (t, l) => {                       // Boucle : même allée, trois articles, chariot plein, direct en caisse
+  let g = allee();
+  g += etiquette(760, 600, 'CAISSE →', C.vert, '#fff', 56);
+  const roule = sortie(prog(pose(l), 2100, 3200)) * 240;
+  g += chariot(640 + roule, 1220, 1.0, ['lait', 'pates', 'oeufs']);
+  g += bulle(560, 760, 380, 170, lait(-110, 25, .6) + coche(-80, 55, .9) + pates(0, 25, .6) + coche(30, 55, .9) + oeufs(110, 40, .6) + coche(140, 55, .9));
+  g += mascotte({x: 330 + roule, y: 1300, s: .9, expr: 'fier', bras: t >= 15.4 ? 'pouce' : 'bas'});
+  return g;
+};
+
+const scene = document.getElementById('scene'), st = document.getElementById('st'), carton = document.getElementById('carton');
+// Sous-titres : une réplique = un sous-titre, calé sur la voix réelle (début, fin + 0,12 s), deux lignes au plus.
+const COUPES = { v01: 'Juste trois articles.<br>Et déjà, il fait demi-tour.', v03: 'Retour : les pâtes,<br>tout au fond.', v04: 'Les œufs…<br>il était juste devant !', v05: 'Cinquième traversée.<br>Chariot vide.', v06: 'La liste, rangée par rayon.<br>Un seul passage.', v07: 'Juste trois articles.<br>Et déjà, il passe en caisse.' };
+// Accroche v2 : texte à l'écran dès la première image, lisible sans le son
+const ACCROCHE = (tv) => tv < 2.6 ? `<g><rect x="72" y="132" width="936" height="300" fill="${C.noir}" transform="translate(14 14)"/><rect x="72" y="132" width="936" height="300" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/><text x="540" y="262" font-size="66" font-weight="800" text-anchor="middle" fill="${C.noir}">POV : 3 articles à acheter.</text><text x="540" y="372" font-size="70" font-weight="800" text-anchor="middle" fill="${C.rouge}">5 traversées du magasin.</text></g>` : '';
+window.placer = (ms) => {
+  const tv = ms / 1000; const t = recaler(tv); ms = t * 1000; window.__t = ms;
+  const fin = tv >= T.carton.debut;
+  carton.style.display = fin ? 'block' : 'none';
+  if (fin) { scene.innerHTML = ''; st.innerHTML = ''; return; }
+  const sc = T.scenes.find((s) => t >= s.debut && t < s.fin) || T.scenes[0];
+  scene.innerHTML = `<svg width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">${S[sc.id](t, ms - sc.debut * 1000)}${ACCROCHE(tv)}</svg>`;
+  const v = T.voix.find((r) => tv >= r.t - .05 && tv < Math.min(r.fin + .12, T.carton.debut));
+  const cp = v && COUPES[v.id]; st.innerHTML = v ? `<span>${typeof cp === 'function' ? cp(tv) : cp || v.texte.replace(/'/g, '’')}</span>` : '';
+};
+window.placer(0);
+</script>
+</body>
+</html>

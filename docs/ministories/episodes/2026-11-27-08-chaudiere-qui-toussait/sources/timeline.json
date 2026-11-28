@@ -1,0 +1,189 @@
+{
+  "episode": "08-chaudiere-qui-toussait",
+  "duree": 30.0,
+  "carton": {
+    "debut": 26.0,
+    "fin": 30.0
+  },
+  "scenes": [
+    {
+      "id": "S1",
+      "debut": 0,
+      "fin": 2.5,
+      "nom": "Janvier, moins deux"
+    },
+    {
+      "id": "S2",
+      "debut": 2.5,
+      "fin": 6.6,
+      "nom": "La chaudière tousse, crache, s'éteint"
+    },
+    {
+      "id": "S3",
+      "debut": 6.6,
+      "fin": 11.6,
+      "nom": "Carreau grelotte"
+    },
+    {
+      "id": "S4",
+      "debut": 11.6,
+      "fin": 18.4,
+      "nom": "Entretien de la maison : équipements cochés"
+    },
+    {
+      "id": "S5",
+      "debut": 18.4,
+      "fin": 21.35,
+      "nom": "La révision tombait en octobre"
+    },
+    {
+      "id": "S6",
+      "debut": 21.35,
+      "fin": 26.0,
+      "nom": "Octobre noté ; Carreau tousse"
+    },
+    {
+      "id": "S7",
+      "debut": 26.0,
+      "fin": 30.0,
+      "nom": "Carton final officiel"
+    }
+  ],
+  "voix": [
+    {
+      "id": "v01",
+      "t": 0.2,
+      "fin": 0.75,
+      "texte": "Janvier."
+    },
+    {
+      "id": "v02",
+      "t": 1.27,
+      "fin": 2.16,
+      "texte": "Moins deux dehors."
+    },
+    {
+      "id": "v03",
+      "t": 2.72,
+      "fin": 3.73,
+      "texte": "La chaudière tousse."
+    },
+    {
+      "id": "v04",
+      "t": 4.14,
+      "fin": 4.84,
+      "texte": "Elle crache."
+    },
+    {
+      "id": "v05",
+      "t": 5.3,
+      "fin": 5.83,
+      "texte": "Elle s'éteint."
+    },
+    {
+      "id": "v06",
+      "t": 7.43,
+      "fin": 9.24,
+      "texte": "Carreau grelotte sous trois couvertures."
+    },
+    {
+      "id": "v07",
+      "t": 11.92,
+      "fin": 15.61,
+      "texte": "Avec Entretien de la maison, de QME, vous cochez vos équipements."
+    },
+    {
+      "id": "v08",
+      "t": 16.03,
+      "fin": 18.07,
+      "texte": "Le calendrier d'entretien se calcule seul."
+    },
+    {
+      "id": "v09",
+      "t": 18.6,
+      "fin": 19.61,
+      "texte": "La révision de la chaudière ?"
+    },
+    {
+      "id": "v10",
+      "t": 20.11,
+      "fin": 21.05,
+      "texte": "Elle tombait en octobre."
+    },
+    {
+      "id": "v11",
+      "t": 21.51,
+      "fin": 23.17,
+      "texte": "Octobre prochain, c'est noté."
+    },
+    {
+      "id": "v12",
+      "t": 23.67,
+      "fin": 25.48,
+      "texte": "Cette fois, c'est Carreau qui tousse."
+    }
+  ],
+  "bruitages": [
+    {
+      "son": "whoosh",
+      "t": 0.05
+    },
+    {
+      "son": "chomp",
+      "t": 3.78
+    },
+    {
+      "son": "pop",
+      "t": 4.88
+    },
+    {
+      "son": "chute",
+      "t": 5.86
+    },
+    {
+      "son": "tick",
+      "t": 9.4
+    },
+    {
+      "son": "tick",
+      "t": 10.5
+    },
+    {
+      "son": "whoosh",
+      "t": 11.45
+    },
+    {
+      "son": "pose",
+      "t": 13.0
+    },
+    {
+      "son": "pose",
+      "t": 13.45
+    },
+    {
+      "son": "pose",
+      "t": 13.9
+    },
+    {
+      "son": "ding",
+      "t": 19.75
+    },
+    {
+      "son": "kaching",
+      "t": 21.1
+    },
+    {
+      "son": "chomp",
+      "t": 25.55
+    },
+    {
+      "son": "ding",
+      "t": 25.8
+    }
+  ],
+  "voix_source": {
+    "fichier": "audio/elevenlabs/voix-montee.wav",
+    "decalage": 0.2,
+    "note": "prise ElevenLabs unique (Caroline, eleven_v4) ; silences insérés : +1,0 s après « s'éteint » (5,85 s source), +2,0 s après « couvertures » (8,40 s source). Répliques relevées par silencedetect + Vosk."
+  }
+}

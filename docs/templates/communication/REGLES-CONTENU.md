@@ -5,6 +5,11 @@ TikTok, YouTube Shorts et X, par toutes les tâches planifiées et tous les skil
 
 ## 1. Cadence
 
+- **Exception mini-stories** (décision de Quentin du 27/11/2026) : les lignes de thème « Mini-story » (Instagram, TikTok
+  suit) viennent **en plus** et ne comptent pas dans la règle d'une publication par jour : 5 par semaine, à 20:15 (heure d'un passage d'Instinct), à côté
+  de la publication du jour. Elles ne sont jamais traitées comme un doublon, ni déplacées, ni remplacées par l'agent de
+  contenu. Programmation : agent master des mini-stories (`CLAUDE.md`, section Mini-stories).
+
 - **Une seule publication par plateforme et par jour, jamais plus** (décision de Quentin du 24/11/2026, règle très
   importante) : Instagram, TikTok, YouTube, LinkedIn et X ont chacun au plus une ligne par date (statut ≠ « Annulé »),
   tous formats confondus (post, carrousel, Reel, vidéo, Short). Toujours au moins 7 jours d'avance programmés.

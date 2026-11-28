@@ -105,7 +105,7 @@ function article(html, canonique) {
     datePublished: iso,
     dateModified: iso,
     author: { '@type': 'Organization', '@id': ORG, name: 'Quentin Morel Engineering', url: `${SITE}/` },
-    publisher: { '@type': 'Organization', '@id': ORG, name: 'Quentin Morel Engineering', logo: { '@type': 'ImageObject', url: `${SITE}/assets/logo-qme.png` } },
+    publisher: { '@type': 'Organization', '@id': ORG, name: 'Quentin Morel Engineering', logo: { '@type': 'ImageObject', url: `${SITE}/assets/logo-qme-bauhaus.png` } },
   };
 }
 
@@ -117,7 +117,7 @@ function accueil() {
       name: 'Quentin Morel Engineering',
       alternateName: 'QME',
       url: `${SITE}/`,
-      logo: { '@type': 'ImageObject', url: `${SITE}/assets/logo-qme.png`, width: 281, height: 245 },
+      logo: { '@type': 'ImageObject', url: `${SITE}/assets/logo-qme-bauhaus.png`, width: 800, height: 800 },
       email: 'quentin.morel@qm-engineering.fr',
       founder: { '@type': 'Person', name: 'Quentin Morel' },
       areaServed: { '@type': 'Country', name: 'France' },
