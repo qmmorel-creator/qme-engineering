@@ -33,8 +33,8 @@ export const VERSION_CACHE = 3; // 3 : films et séries par Wikidata (28/11/2026
 export const MAX_INDEX = 5000; // fiches gardées par média dans l'index partagé
 export const LIMITE_DEMO = 60; // appels par jour et par IP sans jeton
 // User-Agent de toutes les sources, conforme à la politique User-Agent de Wikimedia (nom/version, contact, « bot ») :
-// un e-mail de contact s'ajoute ici, en une ligne, si Quentin le souhaite.
-export const UA = 'QME-SuiviCulturel/1.0 (https://qm-engineering.fr/contact/; bot)';
+// contact choisi par Quentin le 28/11/2026 (site et adresse professionnelle).
+export const UA = 'QME-SuiviCulturel/1.0 (https://qm-engineering.fr; quentin.morel@qm-engineering.fr)';
 const DELAI = 5000;
 
 const json = (statut, corps) => new Response(JSON.stringify(corps), { status: statut, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' } });

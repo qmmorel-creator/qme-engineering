@@ -9,7 +9,7 @@ import { genererCode } from '../../netlify/lib/templates-acces.mjs';
 const SECRET = 'secret-de-test-oeuvres-0123456789abcdef';
 const CODE = genererCode(SECRET, 'PGS');
 const AUTRE = genererCode(SECRET, 'REV');
-const UA = 'QME-SuiviCulturel/1.0 (https://qm-engineering.fr/contact/; bot)';
+const UA = 'QME-SuiviCulturel/1.0 (https://qm-engineering.fr; quentin.morel@qm-engineering.fr)';
 
 function memoire() {
   const m = new Map();

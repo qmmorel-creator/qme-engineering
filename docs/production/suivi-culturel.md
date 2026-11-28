@@ -62,9 +62,9 @@ Aucune clé, aucune variable Netlify (`TMDB_JETON` et `TMDB_API_KEY` ne sont plu
   sont renseignées ; sinon la fiche garde « N épisodes au total », modifiable (le champ « Épisodes par saison » accepte
   un nombre total ou la liste par saison).
 - **Faute de frappe** : même repli que les livres (`intouchabls` → `intouch*`), puis tri par ressemblance.
-- **User-Agent** : `QME-SuiviCulturel/1.0 (https://qm-engineering.fr/contact/; bot)` (politique Wikimedia : nom,
-  version, page de contact, « bot » ; aucune adresse personnelle). Constante unique `UA` de `netlify/lib/oeuvres.mjs` :
-  un e-mail s'y ajoute en une ligne si Quentin le souhaite.
+- **User-Agent** : `QME-SuiviCulturel/1.0 (https://qm-engineering.fr; quentin.morel@qm-engineering.fr)` (politique
+  Wikimedia : nom, version, contact ; adresse professionnelle choisie par Quentin le 28/11/2026). Constante unique `UA`
+  de `netlify/lib/oeuvres.mjs`.
 - **Limites de débit** (mediawiki.org « Wikimedia APIs/Rate limits », 2026) : client non identifié 10 requêtes/min,
   client identifié 200/min ; SPARQL : 60 s de calcul par minute et 5 requêtes parallèles par IP. Les IP partagées
   (conteneur de test, Netlify) peuvent recevoir des 429 : le proxy répond alors « indisponible » (saisie à la main), ne
