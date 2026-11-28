@@ -112,7 +112,7 @@ Quentin) `session_0183EW51foEvDdu3DjCYUAin`.
 | Campagne | Identifiant | Tâche planifiée |
 |---|---|---|
 | Fleuristes, micro-brasseries, ateliers-boutiques | `session_0183EW55oePc5BWAjxgsH9nS` | lun–sam 19:17 (`trig_01WVqfQjFLKcC2UfcsUpFuoX`) |
-| Architectes d'intérieur | `session_0183EW54jpfkaxRdihnwFzqe` | lun–sam 19:13 |
+| Architectes d'intérieur | `session_0183EW54jpfkaxRdihnwFzqe` | lun–sam 19:13 (`trig_01YTXmDytnG2d2ySSjqBSPZm`) |
 | Campings indépendants | `session_0183EW51XCKV6j6CT8kv4Pr3` | lun–sam 19:07 (`trig_01KXodzVf1sDcmMqbYSbVmrj`) |
 | Entreprises de propreté | `session_0183EW55x69Db3eNqY4ycbjE` | lun–sam 19:03 (`trig_015yctTuQsfk49XbFbyCto39`) |
 | Écoles hors contrat et soutien scolaire | `session_0183EW52SiU89mtftYSJnhFS` | lun–sam 18:57 (`trig_016NWzdHjzHdLM393bxtDXyh`) |
