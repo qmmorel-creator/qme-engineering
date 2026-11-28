@@ -1,0 +1,135 @@
+# Désamiantage · lot 1 · écartés et réserves (28/11/2026)
+
+Sourcing par agent (65 retenues sur la base de la liste Qualibat « Traitement de l'amiante » et de recherches web), revérifié par la session : adresse et fait cités retrouvés sur la page exacte du site. 48 retenues après filtres ; contrôles `doublons` (0), Nexora (0, noms et radicaux de domaine sur 3 400 fiches), Gmail (0, une requête par domaine, témoins OK), opposition (0).
+
+## Écartées par la session
+
+- Adresse protégée contre les robots (non relevée) : Sud Est Minage, Substance RSP, Bati 82, SE Gunay.
+- Taille probablement > 50 salariés : BS2D, Benezech TP, Holin, EGITEC.
+- Page ambiguë : Voillaume (deux dates), S3DE (page inachevée), Asteck (compteurs contradictoires).
+- Fait non retrouvé à la revérification : JRC (Désamiantage 84).
+- Amiante marginal : CATS (réseaux), Grosjean (TP, carburants), Ferrand TP (terrassement, pré-certification), Gallerand (démolition, sciage), Entreprise Caux (couvreur, probatoire).
+
+## Écartées par l'agent
+
+- i3D (Graveson, 13) : SS4 en propre ; les travaux SS3 passent par des partenaires spécialisés
+- Provence VRD : entreprise de VRD dont la dépollution est assurée par une société de son groupe
+- Pamther (Fréjus) : couvreur / traitement des bois ; désamiantage secondaire sans certification SS3 explicite
+- Réseau MER (Yvrac) : se présente comme un réseau ; société très récente, certification SS3 non affichée
+- Snadec : groupe multi-entités (Groupe Snadec), hors cible PME indépendante
+- Redebat : filiale française du groupe belge Redeco
+- TBC Désamiantage : fait partie du Groupe BRAJA depuis avril 2023
+- Watt Désamiantage (Bressuire) : adresse sur le domaine grouped3x.fr : rattachée au groupe D3X
+- SET Environnement, Sobaten, Decamiante, Neom, Cardem, Valgo, WIG France, Berengier, BDS Environnement, Soveamiant, DI Environnement, Acorus, EPC Demosten : filiales de groupes ou acteurs nationaux
+- desamiantage-devis.fr, desamianter.fr, retrait-amiante.fr, proxibtp.fr, desamiantage-toiture.fr : sites de mise en relation, pas des entreprises
+- SPEBI (Ivry-sur-Seine) : plus de 100 salariés, hors cible 3-50
+- TED (Sochaux) : filiale du Groupe V (130 collaborateurs)
+- DFD Désamiantage France Démolition : entreprise du Groupe MP
+- ARLA (Idaux-Mendy, 64) : groupe généraliste de la construction (charpente, menuiserie, patrimoine), désamiantage marginal et taille probablement au-delà de 50 salariés
+- Dommery (Nord) : aucune adresse e-mail en clair sur le site (formulaire seul)
+- ABO Environnement (Hauts-de-France) : aucune adresse e-mail en clair sur le site
+- AB Désamiantage (Lessay, 50) : aucune adresse e-mail en clair sur le site
+- 3D Nord : aucune adresse e-mail en clair sur le site
+- Lorraine Désamiantage : aucune adresse e-mail en clair sur le site
+- 3D Est : aucune adresse e-mail en clair ; le site évoque un espace client
+- Groupe IBC : aucune adresse e-mail en clair ; se présente comme groupe
+- Sotrav : aucune adresse e-mail en clair sur le site
+- TNS Dépollution (Rennes) : aucune adresse e-mail en clair sur le site
+- Helfaut Travaux : seule adresse affichée nominative (prenom.nom@)
+- ADTECH (Chambéry) : seule adresse affichée nominative (initiales a.h@)
+- Desamiantage Pyrénées, Amajys, GPS Environnement, Profession Amiante, SDD22, ADM Environnement, desamiantage-toulouse.com : site inaccessible (erreur 502/503) : adresse impossible à vérifier
+- Demolition Service (IDF), MANY Développement : démolition / rénovation générale, certification SS3 de l'entreprise non démontrée sur le site
+- EGD Désamiantage : marque du Groupe PGMS, une douzaine d'agences en France
+- AD Arnaud Démolition (Saint-Étienne) : seule adresse réelle nominative (initiale + nom)
+- Action Dépollution, Andaine Désamiantage (61) : aucune adresse e-mail en clair de l'entreprise sur le site
+- SS3.fr : site générique dont l'adresse est sur un autre domaine (soussection4.com), entreprise non identifiable
+- Provence Dépollution (Domazan) : PME appartenant au groupe PRV
+- Désamiantage Moselle (Hagondange) : site sans raison sociale ni SIRET, profil de site de génération de devis
+- ONAL (Villemandeur) : seule adresse affichée nominative (initiale + nom du dirigeant)
+- Baudelet Environnement : groupe (Baudelet / Recygroup), filiale Sotramiante
+- AGIA, ADS Groupe, Sotrimo, DBA Construction, Groupe Ad'Quat : site inaccessible ou sans adresse e-mail en clair ; ADS et Ad'Quat se présentent comme groupes
+- Groupe Charpentier (Desamiantek) : filiale d'un groupe de TP
+- ADEKAS (Joué-lès-Tours) : spécialiste du confinement avant désamiantage (SS4), ne retire pas l'amiante
+- Liziard Environnement (Plouédern) : entité du Groupe Liziard (gros œuvre, démolition), taille au-delà de la cible
+- Aquiloé (Mérignac) : filiale du Groupe Cassous
+- Sodepam (Bétheny) : société du groupe HCS
+- Exadem (Isère) : le site ne présente que des travaux en sous-section 4
+- Etera (Saint-Chamond) : activité principale photovoltaïque
+- Amiante Pro (Brecey) : site réduit à une page de contact, aucun fait vérifiable
+- Desamiantek : société du groupe Charpentier (Vendée)
+- Décontamiante / Demolaf : société du Groupe LAF
+- EDD Alsace (EDDA) : société du groupe HERAL
+- Resilians (Auvergne Rhône-Alpes Désamiantage, TTB Gilli) : réseau/groupe Resilians
+- Etat 9 (Gonesse) : Groupe G9
+- EZO France : se présente comme groupe de trois entités
+- DB Centre (Châteauneuf-sur-Cher) : détenue par le Groupe GPF
+- Giesper (Anglet) : rattachée à un groupe (siège à Balma)
+- Michel SAS (Auxerre), Mado Bati (Lieusaint), Mazet (Clermont-Ferrand) : effectif supérieur à 50 salariés (70, 90, plus de 250)
+- Alisa D (Lallaing) : le site présente une activité en sous-section 4
+- Suchet (Cusset) : couvreur-zingueur avec filiales, désamiantage secondaire
+- Roumeas TP : Groupe Roumeas, près de 160 salariés
+- Rosala, Batinor, Soteba : entreprises générales du bâtiment, désamiantage marginal (Batinor et Rosala se présentent avec filiales/groupe)
+- Optimumbat : adresse Gmail et activité principale hors désamiantage (sols techniques)
+- JP2R, MN Environnement, EFB, SFTP (desamiante.com), LBS Démolition : aucune adresse e-mail générique en clair relevée sur le site
+- Garelli (Nice) : groupe de TP de 250 collaborateurs
+- Couserans Construction (SCOP) : 62 salariés, entreprise générale
+- TPSM (Béziers) : groupe Travaux Publics Sicilia Manuel, TP généraliste
+- Accès Direct Amiante (Cissé) : aucune adresse e-mail en clair sur le site
+- Dufour (Le Havre), Gallego (Séméac), FPI 34 : plombier-couvreur ou TP généraliste, désamiantage marginal ; non retenus faute de place
+- Isamiante (Saint-Maclou-de-Folleville) : adresse présente seulement dans les données structurées (site Linkeo), pas affichée en clair
+- LRD Leff Recyclage Dépollution (Ploumagoar) : adresse présente seulement dans les données structurées (site Linkeo), pas affichée en clair
+- CP Désamiantage (Plédran) : adresse seulement dans le code du formulaire, pas affichée en clair
+- Amiless (Isère) : société du Groupe Maulin
+- Leova (Cormontreuil) : aucun fait sur l'amiante vérifiable sur le site
+- Sodeka (Amiens) : aucune adresse e-mail en clair sur le site
+
+## Réserves des retenues
+
+- Entreprise Soudé : adresse webmail Orange (au nom de l'entreprise, non nominative)
+- S.N.D.R.A. : mentions légales incomplètes (SIRET non renseigné à l'affichage)
+- Devarennes Remédiation : adresse webmail Orange (au nom de l'entreprise)
+- Pro Amiante : adresse Gmail (au nom de l'entreprise)
+- SIM Amiante : adresse Gmail ; société très récente (SIREN 930 114 541, « en cours de publication au RCS ») : certification annoncée à vérifier
+- D2M : la certification « par AFAQ-AFNOR » figure en titre séparé sur la page
+- 2MEH : RCS Nanterre affiché alors que le siège est à Bordeaux (gabarit d'agence web) ; même département que D2M
+- Camar : démolition et désamiantage ; la page cite « normes AFNOR et qualification QUALIBAT » sans numéro SS3
+- ARIT : orientée toitures industrielles (désamiantage + couverture), certifiée MASE
+- Angelot Berche : couvreur dont le désamiantage est une activité secondaire (enveloppe extérieure seulement) ; même département que SNDRA
+- Entreprise JSH : le site mêle les noms « Entreprise JS » et « Entreprise JSH » ; organisme certificateur non nommé ; même département qu'ARIT
+- Atmopur : capital de 350 000 € : taille à vérifier
+- Axe Amiante Démolition : adresse générique de service « etudes@ » (pas de contact@ affiché)
+- BPS38 : domaine e-mail .com différent du site .fr (affiché sur le site)
+- AMSITT : page mentions légales vide (SIRET non vérifié) ; activité mixte désamiantage + couverture
+- RG Désamiantage : adresse du groupe (contact@grouprg.fr) ; filiale d'un groupe local
+- Amiante Dépollution Services : adresse visible seulement dans les mentions légales ; domaine e-mail différent du site
+- MF Désamiantage : adresse Gmail ; site très court, pas de mentions légales détaillées
+- Leclerc Démolition : certification 1552 indiquée sur sa page « Nos certifications » selon un résultat de recherche, non relue mot pour mot
+- Desamiantec : domaine e-mail .com différent du site .fr ; mentions légales vides au téléchargement
+- DECONTair : organisme certificateur non affiché en texte sur l'accueil
+- ACD Environnement : très jeune entreprise en pré-certification (probatoire) ; même département que DECONTair
+- Isolea : domaine e-mail .biz différent du site ; se présente comme « groupe » (familial, régional)
+- Heitmann TP & Fils : entreprise de TP avec activité désamiantage ; 3e entreprise du Doubs
+- Saint Romain Entreprise (SRE) : domaine e-mail sredemolition.fr (sans tiret) différent du site
+- Juillard Environnement : deux adresses de siège sur le site (Jasseron dans les mentions légales, Ceyzériat dans l'historique) ; une seconde adresse contact@juillard.fr apparaît aussi
+- Clean Amiante : 3 salariés : à la limite basse de la cible
+- Gréco Blondy : adresse webmail Orange ; site vitrine Solocal ; même département que Clean Amiante
+- PJ Dana : entreprise de TP / VRD ; son site met surtout en avant le désamiantage en sous-section 4 sur réseaux (figure toutefois sur la liste Qualibat 1552 du 03/11/2026)
+- Teramiante : site Wix succinct, sans mentions légales détaillées
+- BPH (Bureau Professionnel d'Hygiène) : adresse commerciale@ (secretariat@ visible aussi dans les mentions légales)
+- Stop Amiante : aucune
+- France Désamiantage : aucune
+- Novamiante Environnement : 3e entreprise de Dordogne
+- Cyclone : page mentions légales vide ; même département que SIM Amiante
+- FEDD : aucune
+- LC2 (Lamour Coordination Chantier) : démolition d'abord ; certification non citée en texte (liste Qualibat 1552 du 03/11/2026) ; même département que FEDD
+- ARS Environnement : ville non affichée sur le site (Carpentras d'après la liste Qualibat) ; même département que JRC
+- SDMI : 3e entreprise du Bas-Rhin ; adresse Qualibat à Vagney (88) différente du siège affiché
+- Barlier : certification en phase probatoire (liste Qualibat du 03/11/2026)
+- Techlys : 3e entreprise de Loire-Atlantique
+- GEBAQ : société très récente (2024), certification probatoire selon la liste Qualibat ; 3e entreprise de Gironde
+- ADS (Auvergne Désamiantage Services) : adresse webmail Orange (au nom de l'entreprise)
+- ARI Bâtiment : entreprise générale du bâtiment avec expertise amiante (et plomb)
+- Masson & Fils : même département qu'EGITEC
+- Hanau Déconstruction Désamiantage : 4e entreprise du Bas-Rhin ; certification citée seulement via la liste Qualibat 1552
+- T2C Technique et Concept de la Construction : entreprise de gros œuvre / réhabilitation avec désamiantage ; 3e entreprise de Seine-Maritime
+- Démolition Bretagne Services : adresse webmail Orange (sigle de l'entreprise, non nominative), visible dans les mentions légales

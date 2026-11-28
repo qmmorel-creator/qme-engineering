@@ -28,6 +28,7 @@ Détail des cibles « registres » : `cibles-registres-controle.md`.
   vue téléphone ; fiches d'exposition ; dossier de restitution, outils reliés, « à partir de 1 500 € HT »), page
   `/concepts/desamiantage/`, modèle de mail `outils/prospection/campagnes/desamiantage.mjs`. Données fictives.
 - Articles du code du travail cités vérifiés sur code.travail.gouv.fr le 28/11.
+- Lot 1 : 48 entreprises dans une quarantaine de départements (`docs/prospection/lots/desamiantage-lot1.json`, écartés et réserves dans `desamiantage-lot1-ecartes.md`). Contrôles : `doublons` 0, Nexora 0, Gmail 0 (témoins OK), opposition 0.
 - Statut : en attente de validation de Quentin (via le GOD). Rien n'est mis en file avant.
 
 ## 27/11/2026 · Le Carnet de hotte (dégraissage des cuisines professionnelles)
