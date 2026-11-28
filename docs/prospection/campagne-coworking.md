@@ -55,3 +55,13 @@ Sous-campagne lancée le 27/11/2026 depuis la session « Audit campagnes ciblée
   Maison Calvé), adresse lue au premier passage.
 
 **Total prêt après feu vert : 85 adresses** (opposition à vérifier par l'API juste avant `file`, puis `doublons` relancé).
+
+## Feu vert et lancement (28/11/2026)
+
+- Feu vert de Quentin transmis par le GOD (`session_0183EW54bFyxAQcskkhnKJvb`, message du 27/11 à 17 h 52 relayé par la
+  session « Audit campagnes ciblées », origine vérifiée dans son historique) : page, mail type et brouillon validés,
+  cas limites tranchés selon les propositions, webmails au nom de l'établissement acceptés, fusion squash autorisée.
+- 3 sites anti-robot (Le Phare, Ocube, Maison Calvé) **écartés faute de nouvelle vérification**. **82 adresses**.
+- Avant mise en file : `doublons --campagne coworking` (outil de main) 0 écarté ; opposition par l'API 0 ; prix relu
+  sur la page (223 € au lieu de 298 €). Modèle : pas d'élision devant h ou y (« de Happy Hours »), 3 faits sans ville
+  répétée.

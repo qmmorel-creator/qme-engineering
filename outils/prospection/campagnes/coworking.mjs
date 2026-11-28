@@ -33,12 +33,13 @@ const page = (p) => `${campagne.concept}?${utm(p)}`;
 const pack = (p) => `${SITE}/packs/moyens-generaux/?${utm(p)}`;
 const fait = (p) => String(p.fait || '').trim().replace(/[.;\s]+$/, '');
 
-// « de » élidé devant une voyelle ou un h ; contractions « du » (Le), « des » (Les).
+// « de » élidé devant une voyelle (pas devant h ni y : noms de marque, « de Happy Hours », « de Yelloworking ») ;
+// contractions « du » (Le), « des » (Les).
 const de = (nom) => {
   const n = String(nom).trim();
   if (/^Le\s/.test(n)) return `du ${n.slice(3)}`;
   if (/^Les\s/.test(n)) return `des ${n.slice(4)}`;
-  return /^[aeiouyhàâäéèêëîïôöùûü]/i.test(n) ? `d'${n}` : `de ${n}`;
+  return /^[aeiouàâäéèêëîïôöùûü]/i.test(n) ? `d'${n}` : `de ${n}`;
 };
 const a = (ville) => {
   const v = String(ville).trim();
