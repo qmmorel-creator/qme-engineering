@@ -1,0 +1,278 @@
+window.TL = {
+  "episode": "qui-a-paye-les-croissants",
+  "duree": 28.3,
+  "carton": {
+    "debut": 24.3,
+    "fin": 28.3
+  },
+  "scenes": [
+    {
+      "id": "S1",
+      "debut": 0,
+      "fin": 3.4,
+      "nom": "Les croissants ont disparu"
+    },
+    {
+      "id": "S2",
+      "debut": 3.4,
+      "fin": 9.75,
+      "nom": "Tout le monde a tout payé"
+    },
+    {
+      "id": "S3",
+      "debut": 9.75,
+      "fin": 12.6,
+      "nom": "Le tribunal des colocs"
+    },
+    {
+      "id": "S4",
+      "debut": 12.6,
+      "fin": 20.35,
+      "nom": "Gestion Dépenses Communes rend le verdict"
+    },
+    {
+      "id": "S5",
+      "debut": 20.35,
+      "fin": 25.4,
+      "nom": "Affaire classée"
+    },
+    {
+      "id": "S6",
+      "debut": 25.4,
+      "fin": 29.4,
+      "nom": "Carton final officiel"
+    }
+  ],
+  "voix": [
+    {
+      "id": "v01",
+      "t": 0.2,
+      "texte": "Qui a payé les croissants ?",
+      "fin": 1.34
+    },
+    {
+      "id": "v02",
+      "t": 1.85,
+      "texte": "Dans cette coloc, tout le monde a tout payé.",
+      "fin": 3.88
+    },
+    {
+      "id": "v03",
+      "t": 4.32,
+      "texte": "Le loyer ? Payé.",
+      "fin": 5.45
+    },
+    {
+      "id": "v04",
+      "t": 5.82,
+      "texte": "Le papier toilette ? Payé.",
+      "fin": 7.37
+    },
+    {
+      "id": "v05",
+      "t": 7.63,
+      "texte": "Les courses ? Payées deux fois !",
+      "fin": 9.45
+    },
+    {
+      "id": "v06",
+      "t": 9.89,
+      "texte": "Le tribunal des colocs est ouvert.",
+      "fin": 11.78
+    },
+    {
+      "id": "v07",
+      "t": 12.23,
+      "texte": "Avec Gestion Dépenses Communes, chacun note ce qu'il paie.",
+      "fin": 15.09
+    },
+    {
+      "id": "v08",
+      "t": 15.57,
+      "texte": "Verdict : qui doit combien à qui, au centime près.",
+      "fin": 18.65
+    },
+    {
+      "id": "v09",
+      "t": 19.08,
+      "texte": "Avec le moins de virements possible.",
+      "fin": 20.61
+    },
+    {
+      "id": "v10",
+      "t": 20.99,
+      "texte": "Affaire classée. Les croissants ? Chacun son tour.",
+      "fin": 24.04
+    }
+  ],
+  "bruitages": [
+    {
+      "son": "pop",
+      "t": 0.05
+    },
+    {
+      "son": "whoosh",
+      "t": 3.9
+    },
+    {
+      "son": "pose",
+      "t": 4.9
+    },
+    {
+      "son": "pose",
+      "t": 6.68
+    },
+    {
+      "son": "pose",
+      "t": 8.25
+    },
+    {
+      "son": "pose",
+      "t": 8.32
+    },
+    {
+      "son": "marteau",
+      "t": 11.8
+    },
+    {
+      "son": "whoosh",
+      "t": 11.82
+    },
+    {
+      "son": "kaching",
+      "t": 18.66
+    },
+    {
+      "son": "ding",
+      "t": 20.62
+    },
+    {
+      "son": "marteau",
+      "t": 21.75
+    },
+    {
+      "son": "pop",
+      "t": 22.7
+    }
+  ],
+  "voix_source": {
+    "fichier": "audio/elevenlabs/voix-elevenlabs.wav",
+    "decalage": 0.2,
+    "origine": "ElevenLabs, voix « Caroline - Warm, Sweet and Soft » (kwhMCf63M8O3rCfnQ3oQ), eleven_v4, générée le 27/11/2026"
+  },
+  "montage": [
+    [
+      0,
+      0
+    ],
+    [
+      0.2,
+      0.25
+    ],
+    [
+      1.34,
+      1.167
+    ],
+    [
+      1.85,
+      1.45
+    ],
+    [
+      3.88,
+      3.312
+    ],
+    [
+      4.32,
+      3.55
+    ],
+    [
+      4.9,
+      4.85
+    ],
+    [
+      5.45,
+      5.179
+    ],
+    [
+      5.82,
+      5.4
+    ],
+    [
+      6.68,
+      6.95
+    ],
+    [
+      7.37,
+      7.355
+    ],
+    [
+      7.63,
+      7.55
+    ],
+    [
+      8.25,
+      8.75
+    ],
+    [
+      9.45,
+      9.511
+    ],
+    [
+      9.89,
+      9.95
+    ],
+    [
+      11.78,
+      11.63
+    ],
+    [
+      12.23,
+      12.8
+    ],
+    [
+      15.09,
+      15.549
+    ],
+    [
+      15.57,
+      15.85
+    ],
+    [
+      18.65,
+      18.45
+    ],
+    [
+      19.08,
+      18.75
+    ],
+    [
+      20.61,
+      20.212
+    ],
+    [
+      20.99,
+      20.5
+    ],
+    [
+      21.75,
+      21.3
+    ],
+    [
+      22.7,
+      23.05
+    ],
+    [
+      24.04,
+      24.878
+    ],
+    [
+      24.3,
+      25.4
+    ],
+    [
+      28.3,
+      29.4
+    ]
+  ],
+  "note_scenes": "scenes : repère du premier montage (temps recalé par montage), comme le lit page.html"
+};

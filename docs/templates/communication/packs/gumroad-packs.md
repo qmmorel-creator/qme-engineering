@@ -10,7 +10,7 @@ Réglages à faire à la main dans l’éditeur Gumroad, pour chaque pack : bloc
 | Pack Budget perso et famille | pack-budget-perso-famille | 47 € | 5/5 | — |
 | Pack Chef de projet BTP | pack-chef-de-projet-btp | 192 € | 8/8 | — |
 | Pack Commerçant et artisan | pack-commercant-artisan | 95 € | 5/5 | — |
-| Pack Écoles et formateurs | pack-enseignant | 111 € | 5/5 | — |
+| Pack Écoles et formateurs | pack-enseignant | 83 € | 4/4 | — |
 | Pack Étudiant | pack-etudiant | 69 € | 7/7 | — |
 | Pack Exploitation et maintenance | pack-exploitation | 95 € | 4/4 | — |
 | Pack Forme | pack-forme | 58 € | 5/5 | — |

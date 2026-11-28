@@ -4,7 +4,7 @@
 |---|---|---|---|---|---|---|
 
 ## Continuité
-- Carreau (expression et pose par plan) :
+- Grillon (expression et pose par plan) :
 - Accessoires (forme, couleur, taille) :
 - Décors :
 

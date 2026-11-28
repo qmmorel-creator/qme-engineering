@@ -1,0 +1,202 @@
+{
+  "episode": "07-nuit-blanche",
+  "duree": 20.6,
+  "carton": {
+    "debut": 16.6,
+    "fin": 20.6
+  },
+  "scenes": [
+    {
+      "id": "S1",
+      "debut": 0.0,
+      "fin": 3.6,
+      "nom": "Veille d'examen, 14 chapitres"
+    },
+    {
+      "id": "S2",
+      "debut": 3.6,
+      "fin": 7.6,
+      "nom": "Bachotage et cafés"
+    },
+    {
+      "id": "S3",
+      "debut": 7.6,
+      "fin": 11.8,
+      "nom": "4 h du matin, sous les fiches"
+    },
+    {
+      "id": "S4",
+      "debut": 11.8,
+      "fin": 19.6,
+      "nom": "Version 2 : Planning de révision"
+    },
+    {
+      "id": "S5",
+      "debut": 19.6,
+      "fin": 23.4,
+      "nom": "Une soirée normale"
+    },
+    {
+      "id": "S6",
+      "debut": 23.4,
+      "fin": 27.4,
+      "nom": "Carton final officiel"
+    }
+  ],
+  "voix": [
+    {
+      "id": "v01",
+      "t": 0.3,
+      "texte": "Quatorze chapitres. Une seule nuit.",
+      "fin": 2.57
+    },
+    {
+      "id": "v02",
+      "t": 3.15,
+      "texte": "Chapitre un… deux… café.",
+      "fin": 5.72
+    },
+    {
+      "id": "v03",
+      "t": 6.23,
+      "texte": "Quatre heures du matin.",
+      "fin": 7.02
+    },
+    {
+      "id": "v04",
+      "t": 7.5,
+      "texte": "Chapitre un, c’était quoi ?!",
+      "fin": 9.15
+    },
+    {
+      "id": "v05",
+      "t": 9.63,
+      "texte": "Il revient à J+1, J+3, J+7.",
+      "fin": 13.46
+    },
+    {
+      "id": "v06",
+      "t": 13.9,
+      "texte": "Veille d’examen : un seul chapitre.",
+      "fin": 16.03
+    }
+  ],
+  "bruitages": [
+    {
+      "son": "pop",
+      "t": 2.6
+    },
+    {
+      "son": "whoosh",
+      "t": 5.76
+    },
+    {
+      "son": "chute",
+      "t": 9.17
+    },
+    {
+      "son": "pose",
+      "t": 13.5
+    },
+    {
+      "son": "ding",
+      "t": 16.08
+    }
+  ],
+  "voix_source": {
+    "fichier": "audio/elevenlabs/voix-elevenlabs.wav",
+    "decalage": 0.3,
+    "origine": "ElevenLabs, voix « Caroline - Warm, Sweet and Soft » (kwhMCf63M8O3rCfnQ3oQ), eleven_v4, générée le 27/11/2026, format v2 (flow OPkVDVverVsiJ8z9Anhi)"
+  },
+  "montage": [
+    [
+      0,
+      1.3
+    ],
+    [
+      1.9,
+      2.75
+    ],
+    [
+      2.1,
+      2.85
+    ],
+    [
+      2.9,
+      3.55
+    ],
+    [
+      3.15,
+      3.7
+    ],
+    [
+      3.8,
+      4.2
+    ],
+    [
+      4.3,
+      4.4
+    ],
+    [
+      5.0,
+      5.3
+    ],
+    [
+      5.3,
+      5.4
+    ],
+    [
+      6.1,
+      7.0
+    ],
+    [
+      6.15,
+      7.65
+    ],
+    [
+      7.4,
+      8.6
+    ],
+    [
+      9.15,
+      9.3
+    ],
+    [
+      9.5,
+      10.3
+    ],
+    [
+      9.6,
+      15.0
+    ],
+    [
+      10.85,
+      15.9
+    ],
+    [
+      11.85,
+      16.95
+    ],
+    [
+      12.75,
+      18.05
+    ],
+    [
+      13.6,
+      19.0
+    ],
+    [
+      13.7,
+      19.7
+    ],
+    [
+      16.6,
+      20.95
+    ],
+    [
+      20.6,
+      24.95
+    ]
+  ],
+  "accroche": "Veille d'examen. 14 chapitres. Rien d'ouvert."
+}

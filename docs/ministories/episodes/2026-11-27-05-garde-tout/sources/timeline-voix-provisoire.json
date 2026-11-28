@@ -1,0 +1,168 @@
+{
+  "episode": "garde-tout",
+  "duree": 30.0,
+  "carton": {
+    "debut": 26.0,
+    "fin": 30.0
+  },
+  "scenes": [
+    {
+      "id": "S1",
+      "debut": 0,
+      "fin": 2.0,
+      "nom": "La tour de papiers"
+    },
+    {
+      "id": "S2",
+      "debut": 2.0,
+      "fin": 6.3,
+      "nom": "On empile"
+    },
+    {
+      "id": "S3",
+      "debut": 6.3,
+      "fin": 8.6,
+      "nom": "On cherche l'avis d'imposition"
+    },
+    {
+      "id": "S4",
+      "debut": 8.6,
+      "fin": 10.3,
+      "nom": "Avalanche"
+    },
+    {
+      "id": "S5",
+      "debut": 10.3,
+      "fin": 13.0,
+      "nom": "Tout en bas"
+    },
+    {
+      "id": "S6",
+      "debut": 13.0,
+      "fin": 19.9,
+      "nom": "Papiers du foyer"
+    },
+    {
+      "id": "S7",
+      "debut": 19.9,
+      "fin": 26.0,
+      "nom": "Le tri"
+    },
+    {
+      "id": "S8",
+      "debut": 26.0,
+      "fin": 30.0,
+      "nom": "Carton final officiel"
+    }
+  ],
+  "voix": [
+    {
+      "id": "v01",
+      "t": 0.25,
+      "texte": "Garde tout, on sait jamais.",
+      "fin": 1.521
+    },
+    {
+      "id": "v02",
+      "t": 2.1,
+      "texte": "Les factures.",
+      "fin": 2.725
+    },
+    {
+      "id": "v03",
+      "t": 2.95,
+      "texte": "Les relevés.",
+      "fin": 3.401
+    },
+    {
+      "id": "v04",
+      "t": 3.75,
+      "texte": "La garantie du grille-pain… de 2009.",
+      "fin": 5.813
+    },
+    {
+      "id": "v05",
+      "t": 6.4,
+      "texte": "Et un jour, on cherche l'avis d'imposition.",
+      "fin": 8.455
+    },
+    {
+      "id": "v06",
+      "t": 10.4,
+      "texte": "Il est tout en bas.",
+      "fin": 11.195
+    },
+    {
+      "id": "v07",
+      "t": 13.2,
+      "texte": "Avec Papiers du foyer, de QME, vous savez combien de temps garder chaque papier.",
+      "fin": 17.173
+    },
+    {
+      "id": "v08",
+      "t": 17.45,
+      "texte": "Et la liste de ce qui peut être jeté se remplit seule.",
+      "fin": 19.874
+    },
+    {
+      "id": "v09",
+      "t": 20.1,
+      "texte": "La moitié part au recyclage.",
+      "fin": 21.452
+    },
+    {
+      "id": "v10",
+      "t": 21.7,
+      "texte": "L'avis d'imposition, lui, reste à sa place.",
+      "fin": 24.48
+    },
+    {
+      "id": "v11",
+      "t": 24.75,
+      "texte": "Maintenant, on sait.",
+      "fin": 25.878
+    }
+  ],
+  "bruitages": [
+    {
+      "son": "pose",
+      "t": 1.95
+    },
+    {
+      "son": "pose",
+      "t": 2.8
+    },
+    {
+      "son": "pose",
+      "t": 3.6
+    },
+    {
+      "son": "chute",
+      "t": 8.5
+    },
+    {
+      "son": "whoosh",
+      "t": 8.65
+    },
+    {
+      "son": "tick",
+      "t": 11.3
+    },
+    {
+      "son": "whoosh",
+      "t": 12.75
+    },
+    {
+      "son": "pop",
+      "t": 19.95
+    },
+    {
+      "son": "pose",
+      "t": 21.5
+    },
+    {
+      "son": "ding",
+      "t": 25.92
+    }
+  ]
+}

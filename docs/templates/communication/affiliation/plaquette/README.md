@@ -1,7 +1,7 @@
 # QME - Plaquette partenariat réseaux sociaux
 
 Document de référence (validé par Quentin le 25/11/2026) pour présenter le partenariat aux influenceurs, créateurs
-et agences : A4 ludique à la charte réseaux sociaux QME, avec la mascotte Carreau.
+et agences : A4 ludique à la charte réseaux sociaux QME, avec la mascotte Grillon.
 
 - **PDF de référence** : `QME - Plaquette partenariat réseaux sociaux.pdf` (ce dossier), liens cliquables.
 - **Google Drive** : `13 - Entreprise QME / 03 - Marque QME & site / QME - Plaquette partenariat réseaux sociaux.pdf`

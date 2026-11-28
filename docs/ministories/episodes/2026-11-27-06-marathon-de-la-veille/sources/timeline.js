@@ -1,0 +1,265 @@
+window.TL = {
+  "episode": "06-marathon-de-la-veille",
+  "duree": 32.0,
+  "carton": {
+    "debut": 28.0,
+    "fin": 32.0
+  },
+  "scenes": [
+    {
+      "id": "S1",
+      "debut": 0.0,
+      "fin": 3.9,
+      "nom": "Inscrit… dans trois jours"
+    },
+    {
+      "id": "S2",
+      "debut": 3.9,
+      "fin": 8.8,
+      "nom": "Lundi, mardi, mercredi"
+    },
+    {
+      "id": "S3",
+      "debut": 8.8,
+      "fin": 12.0,
+      "nom": "Jour J : premier kilomètre"
+    },
+    {
+      "id": "S4",
+      "debut": 12.0,
+      "fin": 14.55,
+      "nom": "Rembobinons"
+    },
+    {
+      "id": "S5",
+      "debut": 14.55,
+      "fin": 21.0,
+      "nom": "Plan d'entraînement course à pied"
+    },
+    {
+      "id": "S6",
+      "debut": 21.0,
+      "fin": 26.0,
+      "nom": "Arrivée, frais"
+    }
+  ],
+  "voix": [
+    {
+      "id": "v01",
+      "t": 0.15,
+      "texte": "Inscrit au dix kilomètres !",
+      "fin": 1.5
+    },
+    {
+      "id": "v02",
+      "t": 1.8,
+      "texte": "La course ? Dans trois jours.",
+      "fin": 3.36
+    },
+    {
+      "id": "v03",
+      "t": 3.66,
+      "texte": "Lundi : footing à minuit.",
+      "fin": 5.43
+    },
+    {
+      "id": "v04",
+      "t": 5.73,
+      "texte": "Mardi : fractionné dans l'escalier.",
+      "fin": 7.73
+    },
+    {
+      "id": "v05",
+      "t": 8.03,
+      "texte": "Mercredi : trois assiettes de pâtes.",
+      "fin": 9.99
+    },
+    {
+      "id": "v06",
+      "t": 10.29,
+      "texte": "Jour J. Premier kilomètre…",
+      "fin": 12.84
+    },
+    {
+      "id": "v07",
+      "t": 13.31,
+      "texte": "Rembobinons. Huit semaines avant.",
+      "fin": 15.21
+    },
+    {
+      "id": "v08",
+      "t": 15.51,
+      "texte": "Le Plan d'entraînement course à pied, de QME, calcule ses allures depuis son chrono.",
+      "st": [
+        [
+          0,
+          "Le Plan d’entraînement<br>course à pied, de QME,"
+        ],
+        [
+          3.25,
+          "calcule ses allures<br>depuis son chrono."
+        ]
+      ],
+      "fin": 20.47
+    },
+    {
+      "id": "v09",
+      "t": 20.77,
+      "texte": "Puis huit semaines de séances, cochées une à une.",
+      "st": [
+        [
+          0,
+          "Puis huit semaines<br>de séances,"
+        ],
+        [
+          1.6,
+          "cochées<br>une à une."
+        ]
+      ],
+      "fin": 23.51
+    },
+    {
+      "id": "v10",
+      "t": 23.81,
+      "texte": "Jour J. Cette fois, il arrive frais.",
+      "st": [
+        [
+          0,
+          "Jour J."
+        ],
+        [
+          0.85,
+          "Cette fois,<br>il arrive frais."
+        ]
+      ],
+      "fin": 26.29
+    },
+    {
+      "id": "v11",
+      "t": 26.59,
+      "texte": "Et il n'a pas couru la veille.",
+      "fin": 27.9
+    }
+  ],
+  "bruitages": [
+    {
+      "son": "pop",
+      "t": 0.03
+    },
+    {
+      "son": "zap",
+      "t": 3.36
+    },
+    {
+      "son": "whoosh",
+      "t": 3.4
+    },
+    {
+      "son": "pop",
+      "t": 10.15
+    },
+    {
+      "son": "chute",
+      "t": 12.86
+    },
+    {
+      "son": "whoosh",
+      "t": 13.0
+    },
+    {
+      "son": "whoosh",
+      "t": 15.1
+    },
+    {
+      "son": "pose",
+      "t": 21.88
+    },
+    {
+      "son": "pose",
+      "t": 22.27
+    },
+    {
+      "son": "pose",
+      "t": 22.66
+    },
+    {
+      "son": "pose",
+      "t": 23.05
+    },
+    {
+      "son": "pop",
+      "t": 26.36
+    },
+    {
+      "son": "ding",
+      "t": 27.95
+    }
+  ],
+  "voix_source": {
+    "fichier": "audio/elevenlabs/voix-elevenlabs-resserree.wav",
+    "decalage": 0.15,
+    "origine": "ElevenLabs, voix « Caroline - Warm, Sweet and Soft » (kwhMCf63M8O3rCfnQ3oQ), eleven_v4, générée le 27/11/2026 (29,47 s) ; 9 pauses entre répliques ramenées à 0,30 s (−1,66 s), aucun mot coupé"
+  },
+  "montage": [
+    [
+      0,
+      0
+    ],
+    [
+      1.75,
+      1.4
+    ],
+    [
+      3.61,
+      3.9
+    ],
+    [
+      5.68,
+      5.3
+    ],
+    [
+      7.98,
+      7.0
+    ],
+    [
+      10.24,
+      8.8
+    ],
+    [
+      12.84,
+      11.0
+    ],
+    [
+      13.26,
+      12.0
+    ],
+    [
+      15.46,
+      14.55
+    ],
+    [
+      20.72,
+      18.65
+    ],
+    [
+      23.76,
+      21.0
+    ],
+    [
+      26.54,
+      24.1
+    ],
+    [
+      27.9,
+      25.32
+    ],
+    [
+      28.0,
+      26.0
+    ],
+    [
+      32.0,
+      30.0
+    ]
+  ]
+};

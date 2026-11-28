@@ -1,6 +1,6 @@
 // Plaquette A4 « Partenariat Réseaux Sociaux » (25/11/2026) : HTML autonome, PDF A4 et aperçu PNG.
 // Usage : node docs/templates/communication/affiliation/plaquette/generer.mjs
-// Charte : kit réseaux sociaux QME (papier, encre, rouge, jaune, bleu, Outfit) et mascotte Carreau.
+// Charte : kit réseaux sociaux QME (papier, encre, rouge, jaune, bleu, Outfit) et mascotte Grillon.
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -62,7 +62,7 @@ b{font-weight:700}
 .tete .heros{position:relative}
 .tete .heros svg{width:29mm;height:auto;display:block}
 
-/* Bulle de Carreau */
+/* Bulle de Grillon */
 .bulle{position:absolute;background:var(--blanc);border:2px solid var(--encre);padding:1.2mm 2.4mm;font-size:8.6pt;font-weight:700;white-space:nowrap}
 .bulle::after{content:"";position:absolute;width:3mm;height:3mm;background:var(--blanc);border-right:2px solid var(--encre);border-bottom:2px solid var(--encre)}
 .bulle.bas::after{bottom:-1.8mm;left:5mm;transform:rotate(45deg)}
