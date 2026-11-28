@@ -153,3 +153,9 @@ une demi-journée à une journée, tests compris) :
 
 Tant que l'outil n'existe pas, Licences recompte à chaque mise en production signalée par le master et consigne le
 résultat au § 7.
+
+**28/11/2026, 13 h 11 · consigne de Quentin via le GOD** (« envoie les mails d'info template aux acheteurs et testeurs de
+habitudes ») : version #326 vérifiée en production (`app.css` et `app.js` servis identiques à `main`). Nouveau
+comptage : acheteurs Habitudes (Gumroad, packs inclus, achats du site) 0 ; testeurs Habitudes 0 (tous statuts ;
+essais ouverts depuis le 18/11, couverts par la fenêtre de 90 jours) ; registre : aucune ligne HBT. **0 envoi, 0
+échec.** À refaire à la prochaine vente ou au prochain essai Habitudes.
