@@ -66,3 +66,4 @@ structure du mail : `docs/prospection/mail-type-packs-niches.md`.
 | Date | Partis | Réponses | Oppositions | Notes |
 |---|---|---|---|---|
 | 2026-11-27 | 0 | 0 | 0 | Page, captures, modèle de mail, journal ; concept Nexora (brouillon) ; brouillon Gmail de validation ; lot 1 : 78 adresses contrôlées ; en attente du feu vert de Quentin |
+| 2026-11-28 | 0 | 0 | 0 | Feu vert de Quentin (« go 8 campagnes », session Audit, vérifié à la source) : PR #331 fusionnée (dced831), page en production (200, noindex), concept `en-ligne` ; campagne `campings` créée puis active (sans parJour) ; `doublons` relancé avant la file (0 écarté sur 78, référence 1 764 adresses) ; opposition 0 ; **78 mails en file** ; 78 fiches Nexora `a-contacter` (ids `cmp-<id>`) ; tâche planifiée de pilotage lun–sam 19 h 07 |
