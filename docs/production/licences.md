@@ -102,3 +102,42 @@ achats du site) ; testeurs du template lecture inscrits aux nouveautés 0 (un se
 registre des préférences : 1 ligne PGS « abonné », celle de Floriane Jolliot (adresse personnelle, exclue par
 CLAUDE.md ; personne interne). Opposition : sans objet (aucune adresse à vérifier). À recompter à la prochaine vente
 PGS ou PET, ou à la prochaine inscription d'un testeur aux nouveautés.
+
+**Habitudes (HBT)**, thème « Bauhaus adouci » (#326, en ligne le 27/11, changement visuel seul : formes, couleurs,
+onglets ; fonctions et données inchangées ; `app.css` et `app.js` servis identiques à `main`, vérifié le 28/11).
+Ordre de Quentin du 28/11 (via le GOD) : informer les acheteurs et les testeurs, **Floriane comprise** (le comptage de
+13 h 11 l'avait exclue à tort comme interne). Comptage complet :
+
+| Source | Résultat |
+|---|---|
+| Gumroad HBT et packs qui le contiennent (PPR, PET, PFM ; PBD retiré) | 0 vente (2 ventes au total depuis l'ouverture : TCH, CRA) |
+| Achats du site | 0 HBT (1 achat : TCH) |
+| Essais Habitudes, tous statuts (essais ouverts depuis le 18/11) | 0 |
+| Registre des préférences, ligne HBT | 0 |
+| Codes gratuits HBT actifs (`codes-gratuits.md`) | 1 : Floriane Jolliot (`QK5AC4M8`, 13/11/2026) |
+| Utilisateurs du serveur de données ayant des données Habitudes | non vérifiable ici : la liste exige le code administrateur |
+| **Destinataires après dédoublonnage et opposition** | **1 : Floriane, à son adresse professionnelle (CLAUDE.md)** |
+
+Envoi : 1 message mis en file OVH le 28/11 à 15 h 11 (campagne `info-maj-habitudes-2026-11`), modèle « acheteurs » de `annonce-mises-a-jour.md`. **Envoyé le 28/11/2026 à 15 h 12 (Paris), 1 envoi, 0 échec**, copie cachée vers Quentin ; campagne remise en pause.
+
+## 8. Information des utilisateurs après une mise à jour (règle de Quentin du 28/11/2026)
+
+**Aucune annonce automatique.** C'est Quentin qui décide, au cas par cas, qu'une mise à jour justifie d'informer les
+acheteurs ou les testeurs ; sa consigne arrive par le GOD. Pas d'annonce pour la vague « Bauhaus adouci », pas
+d'envoi hebdomadaire automatique, pas de développement de `/api/compte/annonce` pour cela.
+
+**Sur ordre de Quentin**, pour un template donné, Licences :
+1. vérifie que la version annoncée est réellement en production (fichiers servis identiques à `main`) ;
+2. compte toutes les sources : ventes Gumroad du produit et des packs qui le contiennent, achats du site, essais (tous
+   statuts), registre des préférences, codes gratuits actifs (`codes-gratuits.md`), et, si l'accès administrateur est
+   disponible, les utilisateurs du serveur de données ; une personne interne qui utilise le template est une
+   destinataire ;
+3. dédoublonne (acheteur et testeur : la version acheteur), relit l'opposition (adresse et domaine) et prend l'adresse
+   professionnelle des personnes de QME (CLAUDE.md) ;
+4. envoie par OVH via le site : file `/api/prospection` (campagne dédiée `info-maj-<produit>-<date>`, un message par
+   personne) ; le serveur ajoute la signature « Bandeau », la mention « Ne plus recevoir les informations » et la
+   copie cachée vers Quentin, et relit l'opposition avant chaque envoi ;
+5. consigne au § 7 : sources, destinataires (prénom et source, sans adresse), envois, échecs, texte.
+
+**Textes** : modèles de `docs/production/annonce-mises-a-jour.md`, toujours utilisables ; le résumé de la mise à jour
+est adapté à chaque ordre.
