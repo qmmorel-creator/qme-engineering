@@ -10,6 +10,8 @@
 //        → relances J+7 (type relance, relanceDe = id du premier mail, pasAvant = date)
 //   node outils/prospection/campagne.mjs file <campagne> <messages.json>
 //        → mise en file sur le site (jeton X-Prospection-Token injecté par le proxy)
+//   node outils/prospection/campagne.mjs doublons <prospects.json> [sortie.json] [--campagne <id>]
+//        → écarte les adresses et domaines déjà vus dans toute campagne de la file ou dans le dépôt, et les doublons du lot
 //   node outils/prospection/campagne.mjs etat <campagne> [details]
 //
 // prospects.json : [{ id, nom, ville, email, fait, ... }] ; id = slug stable (minuscules, chiffres, tirets).
@@ -30,6 +32,10 @@ const lireJson = async (f) => JSON.parse(await readFile(f, 'utf8'));
 const modele = (c) => import(new URL(`./campagnes/${c}.mjs`, import.meta.url));
 
 export const slug = (s) => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60);
+
+// Domaine d'entreprise d'une adresse ; null pour une messagerie grand public (comparée alors à l'adresse entière).
+const WEBMAILS = /^(gmail|googlemail|hotmail|outlook|live|msn|yahoo|ymail|orange|wanadoo|free|sfr|neuf|laposte|bbox|aol|icloud|me|gmx|numericable|club-internet|proton|protonmail)\.[a-z.]+$/;
+export const domaineDe = (email) => { const d = String(email || '').split('@')[1]?.toLowerCase(); return d && !WEBMAILS.test(d) ? d : null; };
 
 async function appeler(chemin, corps, entetes = {}) {
   const r = await fetch(`${API}${chemin}`, { method: corps ? 'POST' : 'GET', headers: { 'content-type': 'application/json', ...entetes }, body: corps ? JSON.stringify(corps) : undefined });
@@ -71,6 +77,56 @@ if (commande === 'messages') {
   const [c, f] = args;
   const liste = await lireJson(f);
   for (let i = 0; i < liste.length; i += 25) console.log(JSON.stringify(await appeler("/prospection/file", { campagne: c, messages: liste.slice(i, i + 25) })));
+} else if (commande === 'doublons') {
+  // Aucun doublon entre campagnes (décision de Quentin du 27/11/2026) : la file du site ne bloque une adresse que dans
+  // sa propre campagne. Ce contrôle écarte toute adresse, et tout domaine d'entreprise, déjà vu dans une campagne de la
+  // file (en attente ou traité) ou cité dans le dépôt (anciennes vagues, archives, journaux, concepts), et les
+  // doublons internes au lot. Limite : les adresses des anciennes vagues ne sont que dans Nexora, pas dans le dépôt ;
+  // restent donc obligatoires Nexora (list_qme query = nom, puis radical du domaine) et Gmail (in:anywhere "<domaine>").
+  // --campagne <id> : les fichiers du dépôt propres à cette campagne (modèle, journal, lots : chemin contenant <id>)
+  // ne servent pas de référence, sinon un lot déjà commité s'écarterait lui-même ; le fichier du lot non plus.
+  const iCamp = args.indexOf('--campagne');
+  const propre = iCamp >= 0 ? args.splice(iCamp, 2)[1] : null;
+  const [f, sortie] = args;
+  const lot = await lireJson(f);
+  const { resolve, relative } = await import('node:path');
+  const vus = { email: new Map(), domaine: new Map() };
+  const noter = (email, origine) => {
+    const e = String(email || '').trim().toLowerCase();
+    if (!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/.test(e)) return;
+    if (!vus.email.has(e)) vus.email.set(e, origine);
+    const d = domaineDe(e);
+    if (d && !vus.domaine.has(d)) vus.domaine.set(d, origine);
+  };
+  const etat = await appeler('/prospection');
+  for (const c of etat.campagnes || []) {
+    const d = await appeler(`/prospection/campagne?c=${encodeURIComponent(c.id)}&details=1`);
+    for (const m of [...(d.file || []), ...(d.faits || [])]) noter(m.email, `campagne ${c.id} (${m.statut || 'en file'})`);
+  }
+  const { execFileSync } = await import('node:child_process');
+  const racine = new URL('../../', import.meta.url).pathname;
+  const fichierLot = relative(racine, resolve(f));
+  const ignore = (chemin) => chemin === fichierLot || (propre && chemin.includes(propre));
+  const greper = (motif, chemins) => execFileSync('git', ['-C', racine, 'grep', '-oIE', motif, '--', ...chemins], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 })
+    .split('\n').map((l) => { const i = l.indexOf(':'); return [l.slice(0, i), l.slice(i + 1)]; }).filter(([c, v]) => v && !ignore(c));
+  for (const [c, e] of greper('[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}', ['docs', 'outils', 'concepts'])) if (!/qm-engineering\.fr$/i.test(e)) noter(e, `dépôt (${c})`);
+  for (const [c, u] of greper('https?://(www\\.)?[A-Za-z0-9.-]+\\.[A-Za-z]{2,}', ['docs/prospection', 'outils/prospection', 'concepts'])) { const d = u.replace(/^https?:\/\/(www\.)?/i, '').toLowerCase(); if (d && !/qm-engineering\.fr$/.test(d) && !vus.domaine.has(d)) vus.domaine.set(d, `dépôt (site cité, ${c})`); }
+  const retenus = [], ecartes = [], dansLot = new Map();
+  for (const p of lot) {
+    const e = String(p.email || '').trim().toLowerCase();
+    const d = domaineDe(e);
+    const ds = String(p.site || '').replace(/^https?:\/\/(www\.)?/i, '').split('/')[0].toLowerCase();
+    const raison = vus.email.get(e) ? `adresse déjà vue : ${vus.email.get(e)}`
+      : d && vus.domaine.get(d) ? `domaine ${d} déjà vu : ${vus.domaine.get(d)}`
+        : ds && vus.domaine.get(ds) ? `site ${ds} déjà vu : ${vus.domaine.get(ds)}`
+          : dansLot.get(e) || (d && dansLot.get(d)) || (ds && dansLot.get(ds)) ? `doublon dans le lot (${dansLot.get(e) || dansLot.get(d) || dansLot.get(ds)})` : null;
+    if (raison) { ecartes.push({ id: p.id, nom: p.nom, email: e, raison }); continue; }
+    dansLot.set(e, p.id); if (d) dansLot.set(d, p.id); if (ds) dansLot.set(ds, p.id);
+    retenus.push({ ...p, aVerifier: { nexora: [`list_qme domain=prospects query="${p.nom}"`, `list_qme domain=prospects query="${(d || ds || '').split('.').slice(0, -1).join('.') || e}"`], gmail: `in:anywhere ${d || ds || e}` } });
+  }
+  if (sortie) await writeFile(sortie, JSON.stringify(retenus, null, 2));
+  console.log(JSON.stringify({ retenus: retenus.length, ecartes }, null, 2));
+  console.error(`${retenus.length} retenus, ${ecartes.length} écartés (référence : ${vus.email.size} adresses, ${vus.domaine.size} domaines). Les anciennes vagues ne sont que dans Nexora : reste à vérifier pour chaque retenu Nexora (nom et radical du domaine) et Gmail (domaine).`);
 } else if (commande === 'etat') {
   const [c, details] = args;
   console.log(JSON.stringify(await appeler(c ? `/prospection/campagne?c=${c}${details ? '&details=1' : ''}` : '/prospection'), null, 2));

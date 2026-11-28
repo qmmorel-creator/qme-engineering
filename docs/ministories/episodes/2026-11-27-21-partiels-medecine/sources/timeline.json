@@ -1,0 +1,157 @@
+{
+  "episode": "21-partiels-medecine",
+  "duree": 29.6,
+  "carton": {
+    "debut": 25.6,
+    "fin": 29.6
+  },
+  "scenes": [
+    {
+      "id": "S1",
+      "debut": 0.0,
+      "fin": 4.9,
+      "nom": "Partiels de médecine : la montagne de polycopiés"
+    },
+    {
+      "id": "S2",
+      "debut": 4.9,
+      "fin": 8.0,
+      "nom": "Les coefficients s'envolent"
+    },
+    {
+      "id": "S3",
+      "debut": 8.0,
+      "fin": 11.0,
+      "nom": "3 h du matin, avalanche"
+    },
+    {
+      "id": "S4",
+      "debut": 11.0,
+      "fin": 20.2,
+      "nom": "Version 2 : Pack Étudiant, répétition espacée"
+    },
+    {
+      "id": "S5",
+      "debut": 20.2,
+      "fin": 23.2,
+      "nom": "La note à viser est calculée"
+    },
+    {
+      "id": "S6",
+      "debut": 23.2,
+      "fin": 25.6,
+      "nom": "Pile rangée, il dort"
+    },
+    {
+      "id": "S7",
+      "debut": 25.6,
+      "fin": 29.6,
+      "nom": "Carton final officiel"
+    }
+  ],
+  "voix": [
+    {
+      "id": "v01",
+      "t": 0.2,
+      "texte": "Partiels de médecine.",
+      "fin": 1.35
+    },
+    {
+      "id": "v02",
+      "t": 1.72,
+      "texte": "Anatomie. Biochimie. Physiologie.",
+      "fin": 4.59
+    },
+    {
+      "id": "v03",
+      "t": 5.12,
+      "texte": "Coefficient trois. Coefficient quatre…",
+      "fin": 7.54
+    },
+    {
+      "id": "v04",
+      "t": 8.16,
+      "texte": "Trois heures du matin.",
+      "fin": 9.11
+    },
+    {
+      "id": "v05",
+      "t": 9.52,
+      "texte": "On relit quoi, déjà ?!",
+      "fin": 10.66
+    },
+    {
+      "id": "v06",
+      "t": 11.2,
+      "texte": "Version deux : le Pack Étudiant, de QME.",
+      "fin": 14.27
+    },
+    {
+      "id": "v07",
+      "t": 14.78,
+      "texte": "Chaque chapitre revient au bon moment : J+1, J+3, J+7.",
+      "fin": 19.98
+    },
+    {
+      "id": "v08",
+      "t": 20.38,
+      "texte": "Et la note à viser au prochain partiel est calculée.",
+      "fin": 22.88
+    },
+    {
+      "id": "v09",
+      "t": 23.37,
+      "texte": "La veille du partiel…",
+      "fin": 24.52
+    },
+    {
+      "id": "v10",
+      "t": 24.96,
+      "texte": "on dort.",
+      "fin": 25.45
+    }
+  ],
+  "bruitages": [
+    {
+      "son": "pose",
+      "t": 0.05
+    },
+    {
+      "son": "pop",
+      "t": 1.4
+    },
+    {
+      "son": "whoosh",
+      "t": 4.62
+    },
+    {
+      "son": "pose",
+      "t": 7.6
+    },
+    {
+      "son": "chute",
+      "t": 10.7
+    },
+    {
+      "son": "whoosh",
+      "t": 14.3
+    },
+    {
+      "son": "pose",
+      "t": 20.0
+    },
+    {
+      "son": "ding",
+      "t": 22.92
+    },
+    {
+      "son": "pose",
+      "t": 25.52
+    }
+  ],
+  "voix_source": {
+    "fichier": "audio/elevenlabs/voix-elevenlabs.wav",
+    "decalage": 0.2,
+    "origine": "ElevenLabs, voix « Caroline - Warm, Sweet and Soft » (kwhMCf63M8O3rCfnQ3oQ), eleven_v4, générée le 27/11/2026 (flow JPmATgZ1AnosIhUkGZ32, 343 crédits)"
+  }
+}

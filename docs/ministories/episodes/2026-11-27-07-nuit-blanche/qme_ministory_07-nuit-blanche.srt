@@ -1,0 +1,40 @@
+1
+00:00:00,200 --> 00:00:02,630
+Veille d’examen. Quatorze chapitres.
+
+2
+00:00:03,010 --> 00:00:03,830
+Une seule nuit.
+
+3
+00:00:04,235 --> 00:00:07,060
+Chapitre un… deux… trois…
+
+4
+00:00:07,450 --> 00:00:09,640
+Café. Encore un café.
+
+5
+00:00:09,970 --> 00:00:10,850
+Quatre heures du matin.
+
+6
+00:00:11,110 --> 00:00:12,410
+Chapitre quoi, déjà ?!
+
+7
+00:00:12,800 --> 00:00:16,400
+Version deux : le Planning de révision, de QME.
+
+8
+00:00:16,760 --> 00:00:22,000
+Chaque chapitre revient au bon moment : J+1, J+3, J+7.
+
+9
+00:00:22,320 --> 00:00:23,550
+Et la veille d’examen…
+
+10
+00:00:23,790 --> 00:00:25,170
+devient une soirée normale.
+

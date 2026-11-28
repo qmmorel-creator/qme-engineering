@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Le Carnet de hotte · dégraissage des cuisines professionnelles · démonstration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1b1f23; --ink2:#252a30; --ink3:#323942; --inox:#c9cfd5; --inox2:#e4e8ec; --bg:#eef1f3; --panel:#fff;
+  --muted:#66707a; --line:#dde2e7; --line2:#edf0f3;
+  --flam:#e3601b; --flam2:#ff8a3d; --flam-soft:#fdeadd; --ambre:#d9921c; --ambre-soft:#fbf0db;
+  --ok:#23784a; --ok-bg:#e2f2e8; --ko:#b8322a; --ko-bg:#f9e3e1; --idle:#5d6670; --idle-bg:#e9edf0; --bleu:#2f6690; --bleu-soft:#e2edf5;
+  --graisse:#8a5a1f; --r:12px; --sh:0 1px 2px rgba(20,30,40,.05),0 8px 22px rgba(20,30,40,.07);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font:14px/1.5 "Barlow",system-ui,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+h1,h2,h3,.bc{font-family:"Barlow Condensed","Barlow",sans-serif;letter-spacing:.005em}
+button,input,select{font:inherit}
+.tnum{font-variant-numeric:tabular-nums}
+svg{display:block}
+.fict{position:fixed;right:22px;top:20px;z-index:50;background:var(--flam);color:#fff;font:700 11px/1 "Barlow Condensed",sans-serif;letter-spacing:.14em;text-transform:uppercase;padding:9px 13px;border-radius:4px;box-shadow:0 4px 14px rgba(227,96,27,.35)}
+
+/* structure */
+.app{display:grid;grid-template-columns:250px minmax(0,1fr);min-height:100vh}
+.side{background:var(--ink);color:#c4cbd2;padding:20px 14px;display:flex;flex-direction:column;gap:2px;position:sticky;top:0;height:100vh;background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.018) 0 1px,transparent 1px 5px)}
+.wm{display:flex;align-items:center;gap:11px;padding:4px 8px 22px}
+.wm .logo{width:46px;height:46px;flex:none}
+.wm b{display:block;font:800 23px/0.95 "Barlow Condensed";color:#fff;text-transform:uppercase;letter-spacing:.02em}
+.wm b span{color:var(--flam2)}
+.wm small{display:block;font-size:11px;color:#8e98a2;letter-spacing:.06em;text-transform:uppercase;margin-top:4px}
+.nav a{display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:6px;color:#c4cbd2;text-decoration:none;font-weight:500}
+.nav a svg{width:18px;height:18px;flex:none;opacity:.85}
+.nav a:hover{background:var(--ink2)}
+.nav a.on{background:var(--ink3);color:#fff;box-shadow:inset 3px 0 0 var(--flam)}
+.nav .n{margin-left:auto;background:var(--flam);color:#fff;border-radius:3px;font:700 12px "Barlow Condensed";padding:1px 7px}
+.nav .sec{font:700 11px "Barlow Condensed";letter-spacing:.16em;color:#77818b;text-transform:uppercase;padding:16px 12px 6px}
+.side .foot{margin-top:auto;display:flex;gap:10px;align-items:center;padding:14px 8px 0;border-top:1px solid var(--ink3);font-size:12px;color:#8e98a2;line-height:1.35}
+.side .foot b{color:#fff;font-weight:600}
+.av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font:700 13px "Barlow Condensed";color:#fff;flex:none}
+.main{min-width:0}
+.top{display:flex;align-items:center;gap:16px;padding:16px 30px;background:rgba(238,241,243,.95);backdrop-filter:blur(6px);position:sticky;top:0;z-index:20;border-bottom:1px solid var(--line)}
+.top h1{font-size:27px;margin:0;font-weight:700;text-transform:uppercase;letter-spacing:.01em;line-height:1.05}
+.top .sub{color:var(--muted);font-size:13px;margin-top:2px}
+.content{padding:24px 30px 60px;display:grid;gap:18px;min-width:0}
+section[data-view]{display:none}
+section[data-view].on{display:contents}
+
+/* cartes */
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);min-width:0;overflow:hidden}
+.card>header{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line2)}
+.card>header h2{font-size:19px;margin:0;font-weight:700;text-transform:uppercase;letter-spacing:.02em}
+.card .body{padding:16px 18px}
+.sp{flex:1}
+.muted{color:var(--muted)}
+.sm{font-size:12.5px}
+.b{display:inline-flex;align-items:center;gap:5px;font:700 12px/1 "Barlow Condensed";letter-spacing:.05em;text-transform:uppercase;padding:5px 8px;border-radius:3px;white-space:nowrap}
+.b.ok{background:var(--ok-bg);color:var(--ok)}.b.ko{background:var(--ko-bg);color:var(--ko)}.b.wa{background:var(--ambre-soft);color:#97620b}.b.id{background:var(--idle-bg);color:var(--idle)}.b.fl{background:var(--flam-soft);color:#b5470f}.b.bl{background:var(--bleu-soft);color:var(--bleu)}
+.btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;border-radius:6px;padding:8px 13px;font-weight:600;cursor:pointer;color:var(--ink)}
+.btn.pri{background:var(--flam);border-color:var(--flam);color:#fff}
+.btn:focus-visible,.nav a:focus-visible,.seg button:focus-visible{outline:3px solid var(--flam2);outline-offset:2px}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font-weight:600;cursor:pointer;color:var(--ink3)}
+.seg button.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.li{display:flex;align-items:center;gap:12px;padding:11px 18px;border-top:1px solid var(--line2);min-width:0}
+.li:first-child{border-top:0}
+.li>div{min-width:0}
+.trunc{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* accueil */
+.hero{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:18px}
+.big{background:var(--ink);color:#fff;border-radius:var(--r);padding:26px 28px;position:relative;overflow:hidden;min-width:0}
+.big .k{font:700 13px "Barlow Condensed";letter-spacing:.16em;text-transform:uppercase;color:var(--flam2)}
+.big .n{font:800 clamp(64px,8vw,104px)/0.9 "Barlow Condensed";margin:10px 0 4px}
+.big .t{font:700 clamp(22px,2.4vw,30px)/1.05 "Barlow Condensed";text-transform:uppercase;max-width:20ch}
+.big p{color:#b9c2ca;margin:12px 0 0;max-width:50ch}
+.big .hood{position:absolute;right:-10px;bottom:-6px;width:260px;opacity:.95}
+.ringc{display:flex;align-items:center;gap:20px;padding:22px}
+.ring{position:relative;width:148px;height:148px;flex:none}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font:800 34px "Barlow Condensed";text-align:center;line-height:.9}
+.ring b small{display:block;font:600 12px "Barlow";color:var(--muted);letter-spacing:0}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.tile{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;box-shadow:var(--sh);border-top:4px solid var(--ink);min-width:0}
+.tile b{display:block;font:800 36px/1 "Barlow Condensed"}
+.tile span{font-size:13px;color:var(--muted)}
+.tile.f{border-top-color:var(--flam)}.tile.f b{color:var(--flam)}
+.tile.k{border-top-color:var(--ko)}.tile.k b{color:var(--ko)}
+.tile.a{border-top-color:var(--ambre)}.tile.a b{color:#a86f10}
+.funnel{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;padding:18px}
+.fs{position:relative;padding:12px 12px 12px 14px;min-width:0}
+.fs+.fs{border-left:1px dashed var(--line)}
+.fs .v{font:800 34px/1 "Barlow Condensed"}
+.fs .l{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.3}
+.fs .bar{height:8px;border-radius:2px;background:var(--inox2);margin-top:10px;overflow:hidden}
+.fs .bar i{display:block;height:100%;background:var(--ink)}
+.fs:last-child .bar i{background:var(--flam)}
+.two{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:18px}
+.h{font:800 20px "Barlow Condensed";width:56px;flex:none}
+
+/* carte */
+.mapw{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:18px}
+.map{position:relative;background:#dfe5ea}
+.map svg{width:100%;height:auto}
+.pin{cursor:pointer}
+.pin:focus{outline:none}
+.pin:focus circle,.pin.on circle{stroke:var(--flam);stroke-width:4}
+.stop{display:flex;gap:12px;padding:12px 18px;border-top:1px solid var(--line2);cursor:pointer;min-width:0}
+.stop.on{background:var(--flam-soft);box-shadow:inset 3px 0 0 var(--flam)}
+.stop .o{width:28px;height:28px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font:700 15px "Barlow Condensed";flex:none}
+.stop>div{min-width:0}
+
+/* fiche installation */
+.inst{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:18px}
+.schema svg{width:100%;height:auto}
+.el{cursor:pointer}
+.el .z{fill:transparent;stroke:transparent;stroke-width:3}
+.el:hover .z,.el.on .z{stroke:var(--flam);fill:rgba(227,96,27,.08)}
+.el:focus{outline:none}.el:focus .z{stroke:var(--flam2)}
+.ph{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ph figure{margin:0}
+.ph figcaption{font:700 12px "Barlow Condensed";letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.ph svg{width:100%;height:auto;border-radius:6px}
+.kv{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 14px;font-size:13.5px}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0;font-weight:600}
+.hist .li b{font-weight:600}
+
+/* certificats */
+.tbl{width:100%;border-collapse:collapse;font-size:13.5px;table-layout:fixed}
+.tbl th{text-align:left;font:700 12px "Barlow Condensed";letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:9px 12px;border-bottom:2px solid var(--ink)}
+.tbl td{padding:10px 12px;border-bottom:1px solid var(--line2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tbl tr{cursor:pointer}.tbl tr.on td{background:var(--flam-soft)}
+.cert{background:#fff;margin:18px;border:1px solid var(--line);box-shadow:0 10px 26px rgba(20,30,40,.12);padding:22px 24px;font-size:12.5px;position:relative}
+.cert::before{content:"";position:absolute;left:0;top:0;right:0;height:6px;background:repeating-linear-gradient(90deg,var(--ink) 0 26px,var(--flam) 26px 34px)}
+.cert h3{font:800 22px "Barlow Condensed";text-transform:uppercase;margin:8px 0 2px}
+.cert .grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 18px;margin:12px 0}
+.cert ul{list-style:none;margin:10px 0;padding:0;display:grid;gap:5px}
+.cert li{display:flex;gap:8px;align-items:flex-start}
+.cert li::before{content:"✓";color:var(--ok);font-weight:700}
+.cert .sig{display:flex;justify-content:space-between;gap:14px;margin-top:14px;border-top:1px dashed var(--line);padding-top:10px}
+.stamp{border:2px solid var(--ok);color:var(--ok);font:800 13px "Barlow Condensed";letter-spacing:.1em;text-transform:uppercase;padding:6px 10px;transform:rotate(-4deg);display:inline-block}
+
+/* téléphones */
+.phgrid{display:flex;gap:40px;justify-content:center;flex-wrap:wrap;padding:30px 10px;background:linear-gradient(180deg,var(--ink),#121518);border-radius:var(--r)}
+.phgrid .cap{color:#aab3bc;text-align:center;font-size:13px;margin-top:12px;max-width:330px}
+.pf{width:340px;max-width:100%;background:#0b0d0f;border-radius:42px;padding:11px;box-shadow:0 30px 60px rgba(0,0,0,.45)}
+.screen{background:var(--bg);border-radius:32px;overflow:hidden;height:690px;overflow-y:auto;position:relative}
+.screen::-webkit-scrollbar{display:none}
+.notch{height:26px;display:flex;justify-content:space-between;align-items:center;padding:0 22px;font:600 12px "Barlow";color:var(--ink)}
+.mh{background:var(--ink);color:#fff;padding:14px 18px 18px}
+.mh small{color:var(--flam2);font:700 12px "Barlow Condensed";letter-spacing:.14em;text-transform:uppercase}
+.mh h3{font:800 26px/1 "Barlow Condensed";margin:4px 0 2px;text-transform:uppercase}
+.mh p{margin:0;color:#b9c2ca;font-size:13px}
+.prog{height:8px;background:var(--ink3);border-radius:2px;margin-top:12px;overflow:hidden}.prog i{display:block;height:100%;background:var(--flam);transition:width .25s}
+.mcard{background:#fff;margin:12px;border-radius:10px;border:1px solid var(--line);overflow:hidden}
+.mcard h4{margin:0;padding:11px 14px;font:700 15px "Barlow Condensed";text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--line2);display:flex;align-items:center;gap:8px}
+.chk{display:flex;align-items:flex-start;gap:11px;padding:10px 14px;border-top:1px solid var(--line2);cursor:pointer;user-select:none}
+.chk:first-of-type{border-top:0}
+.chk .bx{width:22px;height:22px;border:2px solid var(--inox);border-radius:4px;flex:none;display:grid;place-items:center;margin-top:1px}
+.chk.on .bx{background:var(--ok);border-color:var(--ok)}
+.chk.on .bx::after{content:"";width:6px;height:11px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.chk.on .tx{color:var(--muted);text-decoration:line-through}
+.chk .tx b{display:block;font-weight:600}
+.chk .tx span{font-size:12px;color:var(--muted)}
+.mbtn{display:block;margin:12px;text-align:center;background:var(--flam);color:#fff;font:700 17px "Barlow Condensed";text-transform:uppercase;letter-spacing:.06em;padding:13px;border-radius:8px;border:0;width:calc(100% - 24px);cursor:pointer}
+.mbtn.dk{background:var(--ink)}
+
+/* mobile direct */
+.mob{display:none}
+@media (max-width:1180px){.hero,.two,.mapw,.inst{grid-template-columns:minmax(0,1fr)}.funnel{grid-template-columns:repeat(3,minmax(0,1fr))}.fs:nth-child(4){border-left:0}}
+@media (max-width:860px){
+  .app{grid-template-columns:minmax(0,1fr)}
+  .side{display:none}
+  .mob{display:flex;gap:6px;overflow-x:auto;padding:10px 14px;background:var(--ink);position:sticky;top:0;z-index:30;scrollbar-width:none}
+  .mob::-webkit-scrollbar{display:none}
+  .mob a{color:#c4cbd2;text-decoration:none;font-weight:600;white-space:nowrap;padding:7px 12px;border-radius:999px;border:1px solid var(--ink3);font-size:13px}
+  .mob a.on{background:var(--flam);border-color:var(--flam);color:#fff}
+  .top{position:static;padding:14px 16px}
+  .top h1{font-size:23px}
+  .content{padding:14px 12px 50px;gap:14px}
+  .fict{top:auto;bottom:14px;right:14px}
+  .tiles{grid-template-columns:minmax(0,1fr)}
+  .funnel{grid-template-columns:repeat(2,minmax(0,1fr));padding:10px}
+  .fs:nth-child(odd){border-left:0}.fs:nth-child(4){border-left:1px dashed var(--line)}
+  .ringc{flex-direction:column;align-items:flex-start}
+  .big .hood{width:150px;opacity:.35}
+  .tbl .hm{display:none}
+  .cert{margin:12px;padding:18px 14px}.cert .grid{grid-template-columns:1fr}
+  .phgrid{padding:18px 6px;gap:26px;border-radius:0;margin:0 -12px}
+  .pf{width:100%;max-width:360px;padding:8px;border-radius:34px}
+  .screen{height:640px;border-radius:27px}
+}
+</style>
+</head>
+<body>
+<div class="fict">Exemple de données fictives</div>
+
+<div class="app">
+  <aside class="side">
+    <div class="wm">
+      <svg class="logo" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="6" fill="#323942"/><path d="M20 6h8v12h-8z" fill="#c9cfd5"/><path d="M8 30 18 18h12l10 12z" fill="#e4e8ec"/><rect x="6" y="30" width="36" height="5" rx="1" fill="#c9cfd5"/><path d="M17 41c0-3 3-3.5 3-6 2 1.5 3 3 3 6m2 0c0-2.5 2.5-3 2.5-5.5 2 1.5 3 3 3 5.5" fill="none" stroke="#ff8a3d" stroke-width="2.2" stroke-linecap="round"/></svg>
+      <div><b>Carnet <span>de hotte</span></b><small>Dégraissage · cuisines pro</small></div>
+    </div>
+    <nav class="nav" id="nav">
+      <div class="sec">Atelier</div>
+      <a href="#semaine" data-v="semaine"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>Cette semaine<span class="n">11</span></a>
+      <a href="#tournee" data-v="tournee"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Tournée de nuit<span class="n">4</span></a>
+      <a href="#installation" data-v="installation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3h4v6h-4zM4 15l5-6h6l5 6zM3 15h18v3H3z"/></svg>Fiche installation</a>
+      <a href="#certificats" data-v="certificats"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13l2 2 4-4"/></svg>Certificats</a>
+      <div class="sec">Sur le téléphone</div>
+      <a href="#nuit" data-v="nuit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg>Technicien</a>
+      <a href="#client" data-v="client"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 21V9l8-6 8 6v12z"/><path d="M9 21v-6h6v6"/></svg>Espace restaurateur</a>
+    </nav>
+    <div class="foot"><span class="av" style="background:#e3601b">CL</span><div><b>Claire L.</b><br>planning et devis</div></div>
+  </aside>
+
+  <div class="main">
+    <nav class="mob" id="mob">
+      <a href="#semaine" data-v="semaine">Semaine</a><a href="#tournee" data-v="tournee">Tournée</a><a href="#installation" data-v="installation">Installation</a><a href="#certificats" data-v="certificats">Certificats</a><a href="#nuit" data-v="nuit">Technicien</a><a href="#client" data-v="client">Restaurateur</a>
+    </nav>
+    <div class="top"><div><h1 id="title">Cette semaine</h1><div class="sub" id="subtitle"></div></div></div>
+    <div class="content">
+
+      <section data-view="semaine" data-title="Cette semaine" data-sub="Semaine 48 · du lundi 23 au samedi 28 novembre · situation à 7 h 10, retour de tournée">
+        <div class="hero">
+          <div class="big">
+            <div class="k">À dégraisser cette semaine</div>
+            <div class="n">11</div>
+            <div class="t">cuisines, dont 4 cette nuit</div>
+            <p>Entre 23 h et 5 h, après le service. Deux équipes, un camion chacune. Un clapet coupe-feu à signaler chez Le Comptoir des Halles.</p>
+            <svg class="hood" viewBox="0 0 260 170" aria-hidden="true"><rect x="108" y="0" width="44" height="60" fill="#323942"/><rect x="114" y="10" width="32" height="8" fill="#252a30"/><path d="M30 120 92 60h76l62 60z" fill="#3a434d"/><path d="M92 60h76l10 10H82z" fill="#4a5560"/><rect x="20" y="120" width="220" height="14" fill="#c9cfd5"/><g fill="#7e8892"><rect x="40" y="134" width="30" height="5"/><rect x="80" y="134" width="30" height="5"/><rect x="120" y="134" width="30" height="5"/><rect x="160" y="134" width="30" height="5"/><rect x="200" y="134" width="30" height="5"/></g><path d="M70 168c0-12 10-14 10-24 7 6 10 12 10 24M108 168c0-10 9-12 9-21 6 5 9 10 9 21M146 168c0-12 10-14 10-24 7 6 10 12 10 24" fill="none" stroke="#ff8a3d" stroke-width="5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="card">
+            <div class="ringc">
+              <div class="ring"><svg viewBox="0 0 148 148"><circle cx="74" cy="74" r="62" fill="none" stroke="#e4e8ec" stroke-width="16"/><circle cx="74" cy="74" r="62" fill="none" stroke="#1b1f23" stroke-width="16" stroke-dasharray="389.6" stroke-dashoffset="32" transform="rotate(-90 74 74)"/><circle cx="74" cy="74" r="62" fill="none" stroke="#e3601b" stroke-width="16" stroke-dasharray="20 369.6" stroke-dashoffset="-357.6" transform="rotate(-90 74 74)"/></svg><b>286<small>sur 312</small></b></div>
+              <div><h2 class="bc" style="margin:0;font-size:22px;text-transform:uppercase">Cuisines à jour</h2><p class="muted" style="margin:6px 0 10px">Dernier dégraissage dans la fréquence prévue au contrat. Les 26 autres sont planifiées ou à planifier.</p><span class="b ko">6 hors délai</span> <span class="b wa">20 à planifier</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <header><h2>De la cuisine sous contrat au certificat remis</h2><span class="sp"></span><span class="muted sm">30 prochains jours</span></header>
+          <div class="funnel" id="funnel"></div>
+        </div>
+        <div class="tiles">
+          <div class="tile k"><b>6</b><span>cuisines hors délai : échéance du contrat dépassée</span></div>
+          <div class="tile f"><b>3</b><span>clapets coupe-feu signalés, à transmettre au client</span></div>
+          <div class="tile a"><b>5</b><span>conduits sans trappe de visite suffisante : devis à proposer</span></div>
+        </div>
+        <div class="two">
+          <div class="card"><header><h2>Cette nuit</h2><span class="sp"></span><span class="b fl">2 équipes</span></header><div id="nuitListe"></div></div>
+          <div class="card"><header><h2>À traiter ce matin</h2></header><div id="todo"></div></div>
+        </div>
+      </section>
+
+      <section data-view="tournee" data-title="Tournée de nuit" data-sub="Nuit du mardi 24 au mercredi 25 novembre · équipe 1 : Karim B. et Théo M. · camion 2">
+        <div class="mapw">
+          <div class="card map"><svg viewBox="0 0 800 560" id="mapsvg" role="img" aria-label="Carte fictive de la tournée de nuit"></svg></div>
+          <div class="card"><header><h2>Ordre de passage</h2><span class="sp"></span><span class="b id">4 cuisines · 5 h 40</span></header><div id="stops"></div></div>
+        </div>
+        <div class="card"><header><h2>Avant de partir</h2></header><div class="body" id="depart"></div></div>
+      </section>
+
+      <section data-view="installation" data-title="Brasserie du Quai · installation d'extraction" data-sub="Contrat : 2 dégraissages par an · dernier passage le 12 mai 2026 · prochain : cette nuit, 23 h 15">
+        <div class="inst">
+          <div class="card schema"><header><h2>Le circuit, élément par élément</h2><span class="sp"></span><span class="muted sm">Cliquez sur un élément</span></header><div class="body"><svg viewBox="0 0 760 430" id="schema" role="img" aria-label="Schéma du circuit d'extraction"></svg></div></div>
+          <div class="card"><header><h2 id="elT">Hotte</h2><span class="sp"></span><span id="elB"></span></header><div class="body"><dl class="kv" id="elKV"></dl><div class="ph" id="elPh" style="margin-top:14px"></div><p class="sm muted" id="elRq" style="margin:12px 0 0"></p></div></div>
+        </div>
+        <div class="two">
+          <div class="card hist"><header><h2>Historique des passages</h2></header><div id="hist"></div></div>
+          <div class="card"><header><h2>Accès et consignes</h2></header><div class="body"><dl class="kv">
+            <dt>Créneau</dt><dd>après 23 h, fin du service</dd><dt>Clés</dt><dd>boîte à code, porte de service (code dans le téléphone)</dd><dt>Toiture</dt><dd>accès par trappe, ligne de vie, travail à deux</dd><dt>Consignation</dt><dd>armoire électrique au fond de la plonge</dd><dt>Contact</dt><dd>chef de cuisine, prévenu la veille par SMS</dd><dt>Attention</dt><dd>sol de la plonge glissant, piano à garder bâché</dd></dl></div></div>
+        </div>
+      </section>
+
+      <section data-view="certificats" data-title="Certificats de dégraissage" data-sub="Chaque passage produit son certificat et son rapport photo, envoyés au client et rangés dans son registre">
+        <div class="two">
+          <div class="card"><header><h2>Novembre</h2><span class="sp"></span><div class="seg" id="certSeg"><button class="on" data-f="tous">Tous</button><button data-f="ok">Remis</button><button data-f="att">À signer</button></div></header><table class="tbl"><thead><tr><th style="width:20%">Date</th><th>Cuisine</th><th class="hm" style="width:22%">Équipe</th><th style="width:24%">Statut</th></tr></thead><tbody id="certs"></tbody></table></div>
+          <div class="card" style="background:var(--inox2)"><div class="cert" id="cert"></div></div>
+        </div>
+      </section>
+
+      <section data-view="nuit" data-title="Sur le téléphone du technicien" data-sub="La check-list d'intervention, les photos avant / après et la signature du responsable de cuisine">
+        <div class="phgrid"><div><div class="pf"><div class="screen" id="scrNuit"></div></div><p class="cap">Une étape cochée = une ligne du certificat. Les photos se prennent dans l'application, rangées par élément du circuit.</p></div></div>
+      </section>
+
+      <section data-view="client" data-title="L'espace du restaurateur" data-sub="Ses certificats, ses photos et son prochain passage, prêts pour la commission de sécurité ou l'assureur">
+        <div class="phgrid"><div><div class="pf"><div class="screen" id="scrClient"></div></div><p class="cap">Le restaurateur retrouve ses certificats en un geste, et demande un passage avec une photo.</p></div></div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<script>
+const $ = (s) => document.querySelector(s);
+// ===== Données fictives =====
+const FUNNEL = [['Sous contrat', 312, 'cuisines suivies'], ['Échéance à 30 jours', 41, 'à dégraisser bientôt'], ['Créneau confirmé', 27, 'date validée par le client'], ['Dégraissées', 18, 'passage fait'], ['Photos avant / après', 18, 'rapport complet'], ['Certificat remis', 15, 'envoyé et rangé']];
+const NUIT = [
+  ['23 h 15', 'Brasserie du Quai', 'hotte 3,2 m · conduit 14 m · tourelle', 'Équipe 1', 'b fl', 'en cours'],
+  ['00 h 50', 'Le Comptoir des Halles', 'hotte murale · clapet coupe-feu à revoir', 'Équipe 1', 'b ko', 'clapet'],
+  ['23 h 30', 'Cuisine centrale des Tilleuls', 'hotte îlot 5 m · 2 extracteurs', 'Équipe 2', 'b bl', 'confirmé'],
+  ['02 h 40', 'Pizzeria Il Forno', 'hotte four à bois · conduit vertical', 'Équipe 1', 'b bl', 'confirmé'],
+];
+const TODO = [
+  ['Relancer', 'Hôtel des Remparts · échéance dépassée de 18 jours', 'b ko', 'hors délai'],
+  ['Envoyer', '3 certificats à signer par le chef de cuisine', 'b wa', 'à signer'],
+  ['Devis', 'Trappe de visite à poser · Crêperie Ty Gwenn', 'b id', 'devis'],
+  ['Prévenir', 'Le Comptoir des Halles · clapet coupe-feu bloqué', 'b ko', 'sécurité'],
+];
+const STOPS = [
+  { o: 1, h: '23 h 15', n: 'Brasserie du Quai', d: 'Hotte 3,2 m, 6 filtres à chocs, conduit 14 m, tourelle en toiture', a: 'Boîte à code · toiture à deux', t: '1 h 25', x: 210, y: 330 },
+  { o: 2, h: '00 h 50', n: 'Le Comptoir des Halles', d: 'Hotte murale 2 m, conduit 6 m, clapet coupe-feu', a: 'Veilleur de nuit · parking rue arrière', t: '1 h 10', x: 380, y: 250 },
+  { o: 3, h: '02 h 40', n: 'Pizzeria Il Forno', d: 'Hotte du four à bois, conduit vertical 9 m', a: 'Clé chez le gérant, récupérée la veille', t: '1 h 30', x: 560, y: 180 },
+  { o: 4, h: '04 h 20', n: 'Snack du Stade', d: 'Hotte 1,6 m, extracteur mural', a: 'Code portail · camion devant', t: '0 h 50', x: 640, y: 380 },
+];
+const EL = {
+  hotte: { t: 'Hotte', b: ['b ko', 'encrassement fort'], kv: [['Type', 'hotte murale inox, 3,2 m'], ['Filtres', '6 filtres à chocs, déposés et trempés'], ['Éclairage', '2 hublots, nettoyés hors tension']], g: [0.85, 0.08], rq: 'Graisse figée sur les arêtes intérieures : dégraissant alcalin chaud et grattage avant rinçage.' },
+  plenum: { t: 'Plénum', b: ['b wa', 'encrassement moyen'], kv: [['Accès', 'par la dépose des filtres'], ['Surface', 'environ 2,4 m²'], ['Gouttière', 'vidangée, bac de récupération nettoyé']], g: [0.55, 0.05], rq: 'Zone la plus chaude du circuit : point de contrôle à photographier à chaque passage.' },
+  conduit: { t: 'Conduit', b: ['b wa', 'encrassement moyen'], kv: [['Longueur', '14 m, dont 2 coudes'], ['Trappes de visite', '3 (une manque après le 2ᵉ coude)'], ['Méthode', 'brossage rotatif et pulvérisation par les trappes']], g: [0.6, 0.1], rq: 'Section après le 2ᵉ coude non accessible : devis de trappe proposé au client le 12 mai, sans réponse.' },
+  clapet: { t: 'Clapet coupe-feu', b: ['b ok', 'manœuvre OK'], kv: [['Position', 'traversée du plancher technique'], ['Fusible', 'présent, propre'], ['Essai', 'fermeture et réarmement constatés']], g: [0.3, 0.03], rq: 'Signalé conforme à l\'œil : la vérification réglementaire reste à faire par l\'organisme du client.' },
+  tourelle: { t: 'Tourelle d\'extraction', b: ['b ko', 'encrassement fort'], kv: [['Emplacement', 'toiture terrasse, 6 m'], ['Moteur', 'consigné à l\'armoire avant intervention'], ['Turbine', 'aubes dégraissées, courroie contrôlée']], g: [0.9, 0.12], rq: 'Écoulement de graisse sur l\'étanchéité de la toiture : bac de rétention conseillé au client.' },
+};
+const HIST = [['12 mai 2026', 'Karim B. · Théo M.', 'b ok', 'certificat remis'], ['18 nov. 2025', 'Karim B. · Yanis R.', 'b ok', 'certificat remis'], ['20 mai 2025', 'Équipe 2', 'b ok', 'certificat remis'], ['26 nov. 2024', 'Équipe 1', 'b wa', 'tourelle non faite (pluie)']];
+const CERTS = [
+  ['24 nov.', 'Brasserie du Quai', 'Équipe 1', 'att'], ['23 nov.', 'Cuisine centrale des Tilleuls', 'Équipe 2', 'ok'], ['21 nov.', 'Hôtel des Remparts', 'Équipe 1', 'att'],
+  ['20 nov.', 'Crêperie Ty Gwenn', 'Équipe 2', 'ok'], ['19 nov.', 'Restaurant scolaire Jean-Jaurès', 'Équipe 1', 'ok'], ['18 nov.', 'Le Comptoir des Halles', 'Équipe 2', 'att'],
+  ['17 nov.', 'Pizzeria Il Forno', 'Équipe 1', 'ok'], ['14 nov.', 'EHPAD Les Glycines', 'Équipe 2', 'ok'], ['13 nov.', 'Snack du Stade', 'Équipe 1', 'ok'],
+];
+const STEPS = [
+  ['Arrivée et repérage', 'photo de la hotte en service coupé', 1],
+  ['Bâchage', 'piano, plans de travail et sol protégés', 1],
+  ['Consignation', 'extracteur coupé à l\'armoire, étiquette posée', 1],
+  ['Filtres', '6 filtres à chocs déposés, mis à tremper', 1],
+  ['Hotte et plénum', 'dégraissant, grattage, rinçage', 0],
+  ['Conduit', 'par les 3 trappes, brossage rotatif', 0],
+  ['Tourelle', 'turbine et caisson, toiture à deux', 0],
+  ['Remise en route', 'filtres reposés, essai d\'aspiration', 0],
+  ['Photos après', 'un cliché par élément du circuit', 0],
+  ['Pastille', 'date du passage collée sur la hotte', 0],
+];
+
+// ===== Rendus =====
+function grease(level, after) {
+  // vignette de conduit : couche de graisse avant / après
+  const g = after ? 0.07 : level, h = Math.round(8 + g * 46), id = 'gm' + (++grease.n);
+  return `<svg viewBox="0 0 200 120" aria-hidden="true"><rect width="200" height="120" fill="#9aa4ad"/><rect y="0" width="200" height="120" fill="url(#${id})"/><defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b8c0c7"/><stop offset=".5" stop-color="#dfe4e8"/><stop offset="1" stop-color="#aab3bb"/></linearGradient></defs>${after ? '' : `<path d="M0 ${120 - h} C40 ${110 - h} 70 ${126 - h} 110 ${114 - h} S170 ${104 - h} 200 ${116 - h} V120H0Z" fill="#7a4d17" opacity="${0.55 + level * 0.4}"/><path d="M0 ${124 - h} C50 ${118 - h} 90 ${128 - h} 200 ${120 - h}" stroke="#5c380d" stroke-width="3" fill="none" opacity=".6"/>`}<path d="M0 8h200M0 112h200" stroke="#7e8892" stroke-width="2"/></svg>`;
+}
+grease.n = 0;
+function renderSemaine() {
+  const max = FUNNEL[0][1];
+  $('#funnel').innerHTML = FUNNEL.map(([l, v, s], i) => `<div class="fs"><div class="v tnum">${v}</div><div class="l"><b style="color:var(--ink)">${l}</b><br>${s}</div><div class="bar"><i style="width:${i ? Math.max(8, v / 41 * 100) : 100}%"></i></div></div>`).join('');
+  $('#nuitListe').innerHTML = NUIT.map(([h, n, d, e, c, s]) => `<a class="li" href="#installation" style="color:inherit;text-decoration:none"><span class="h tnum">${h}</span><div style="flex:1"><b class="trunc" style="display:block;font-weight:600">${n}</b><div class="muted sm trunc">${d} · ${e}</div></div><span class="${c}">${s}</span></a>`).join('');
+  $('#todo').innerHTML = TODO.map(([v, t, c, s]) => `<div class="li"><b class="bc" style="width:64px;flex:none;font-size:16px;text-transform:uppercase">${v}</b><div style="flex:1" class="sm">${t}</div><span class="${c}">${s}</span></div>`).join('');
+}
+function renderTournee(sel = 0) {
+  const pts = STOPS.map((s) => `${s.x},${s.y}`).join(' ');
+  $('#mapsvg').innerHTML = `<rect width="800" height="560" fill="#dfe5ea"/>
+    <path d="M0 470 C120 430 220 480 330 450 S560 470 800 420 V560 H0Z" fill="#b9cfdf"/><path d="M0 490 C140 460 240 500 360 476 S580 492 800 448" stroke="#a4bfd3" stroke-width="3" fill="none"/>
+    <g stroke="#fff" stroke-width="14" fill="none" stroke-linecap="round"><path d="M40 300 H760"/><path d="M380 40 V440"/><path d="M120 80 L640 420"/></g>
+    <g stroke="#f4f6f8" stroke-width="7" fill="none"><path d="M60 160 H700"/><path d="M200 60 V440"/><path d="M560 60 V440"/><path d="M60 380 H520"/><path d="M640 120 L760 260"/></g>
+    <g fill="#c9d2da"><rect x="230" y="100" width="120" height="50" rx="4"/><rect x="420" y="320" width="110" height="46" rx="4"/><rect x="600" y="300" width="70" height="40" rx="4"/><rect x="80" y="200" width="90" height="70" rx="4"/></g>
+    <text x="300" y="526" font-family="Barlow Condensed" font-weight="700" font-size="18" fill="#5c7a92" letter-spacing="3">LE PORT</text>
+    <text x="640" y="230" font-family="Barlow Condensed" font-weight="700" font-size="15" fill="#7e8892" letter-spacing="2">STADE</text>
+    <text x="262" y="131" font-family="Barlow Condensed" font-weight="700" font-size="15" fill="#7e8892" letter-spacing="2">HALLES</text>
+    <polyline points="90,110 ${pts}" fill="none" stroke="#e3601b" stroke-width="5" stroke-dasharray="2 10" stroke-linecap="round"/>
+    <circle cx="90" cy="110" r="24" fill="#1b1f23"/><text x="90" y="114" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="12" fill="#fff">DÉPÔT</text>
+    ${STOPS.map((s, i) => `<g class="pin${i === sel ? ' on' : ''}" tabindex="0" data-i="${i}" role="button" aria-label="${s.o}. ${s.n}"><circle cx="${s.x}" cy="${s.y}" r="20" fill="${i === 0 ? '#e3601b' : '#1b1f23'}" stroke="#fff" stroke-width="3"/><text x="${s.x}" y="${s.y + 6}" text-anchor="middle" font-family="Barlow Condensed" font-weight="800" font-size="18" fill="#fff">${s.o}</text><text x="${s.x + 26}" y="${s.y - 12}" font-family="Barlow Condensed" font-weight="700" font-size="16" fill="#1b1f23">${s.h}</text></g>`).join('')}`;
+  $('#stops').innerHTML = STOPS.map((s, i) => `<div class="stop${i === sel ? ' on' : ''}" data-i="${i}" tabindex="0"><span class="o" style="${i === 0 ? 'background:var(--flam)' : ''}">${s.o}</span><div style="flex:1"><b style="font-weight:600">${s.h} · ${s.n}</b><div class="sm muted">${s.d}</div><div class="sm" style="margin-top:3px">${s.a} · <b>${s.t}</b></div></div></div>`).join('');
+  document.querySelectorAll('#mapsvg .pin, #stops .stop').forEach((e) => { const go = () => renderTournee(+e.dataset.i); e.addEventListener('click', go); e.addEventListener('keydown', (k) => { if (k.key === 'Enter' || k.key === ' ') { k.preventDefault(); go(); } }); });
+  $('#depart').innerHTML = `<div class="seg" style="gap:8px">${['Dégraissant alcalin · 2 bidons', 'Bâches et adhésif', 'Brosse rotative + flexibles', 'Harnais et longe (Brasserie du Quai)', 'Bacs de trempage filtres', 'Pastilles de passage', 'Batterie du téléphone chargée'].map((t, i) => `<button class="${i < 5 ? 'on' : ''}" onclick="this.classList.toggle('on')">${t}</button>`).join('')}</div>`;
+}
+function renderSchema(k = 'hotte') {
+  const z = (id, d) => `<g class="el${id === k ? ' on' : ''}" data-k="${id}" tabindex="0" role="button" aria-label="${EL[id].t}"><path class="z" d="${d}"/></g>`;
+  $('#schema').innerHTML = `<defs><linearGradient id="inox" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e4e8ec"/><stop offset="1" stop-color="#b6bec6"/></linearGradient></defs>
+    <rect x="0" y="0" width="760" height="430" fill="#f6f8f9"/>
+    <rect x="0" y="70" width="760" height="8" fill="#9aa4ad"/><text x="10" y="64" font-family="Barlow Condensed" font-weight="700" font-size="14" fill="#7e8892" letter-spacing="2">TOITURE TERRASSE</text>
+    <rect x="0" y="210" width="430" height="8" fill="#c9cfd5"/><text x="10" y="236" font-family="Barlow Condensed" font-weight="700" font-size="14" fill="#7e8892" letter-spacing="2">PLANCHER TECHNIQUE</text>
+    <rect x="0" y="400" width="760" height="30" fill="#d7dde2"/><text x="10" y="420" font-family="Barlow Condensed" font-weight="700" font-size="14" fill="#7e8892" letter-spacing="2">CUISINE</text>
+    <path d="M60 330 120 270h170l60 60z" fill="url(#inox)" stroke="#7e8892" stroke-width="2"/>
+    <g fill="#8a939c">${[0, 1, 2, 3, 4, 5].map((i) => `<rect x="${98 + i * 34}" y="296" width="26" height="22" rx="2"/>`).join('')}</g>
+    <rect x="70" y="330" width="270" height="12" fill="#c9cfd5"/>
+    <rect x="90" y="358" width="230" height="40" fill="#5d6670"/><g fill="#ff8a3d">${[0, 1, 2, 3].map((i) => `<circle cx="${120 + i * 56}" cy="352" r="6"/>`).join('')}</g>
+    <rect x="175" y="150" width="60" height="120" fill="url(#inox)" stroke="#7e8892" stroke-width="2"/>
+    <path d="M175 150 V110 Q175 96 189 96 H560 V150 H235 Z" fill="url(#inox)" stroke="#7e8892" stroke-width="2"/>
+    <rect x="500" y="20" width="60" height="130" fill="url(#inox)" stroke="#7e8892" stroke-width="2"/>
+    <rect x="186" y="204" width="38" height="22" fill="#1b1f23"/><path d="M190 215h30" stroke="#e3601b" stroke-width="4"/>
+    <g fill="#fff" stroke="#1b1f23" stroke-width="2">${[[192, 170], [330, 108], [520, 104]].map(([x, y]) => `<rect x="${x}" y="${y}" width="26" height="18" rx="2"/>`).join('')}</g>
+    <path d="M440 108 l12 -8 v26 z" fill="#b8322a"/><text x="430" y="146" font-family="Barlow Condensed" font-weight="700" font-size="13" fill="#b8322a">TRAPPE MANQUANTE</text>
+    <rect x="470" y="0" width="120" height="30" rx="4" fill="#5d6670"/><g fill="#c9cfd5">${[0, 1, 2, 3, 4].map((i) => `<rect x="${480 + i * 22}" y="6" width="14" height="18" rx="2"/>`).join('')}</g>
+    <g font-family="Barlow Condensed" font-weight="700" font-size="15" fill="#1b1f23"><text x="372" y="300">HOTTE · 6 FILTRES</text><text x="245" y="200">PLÉNUM</text><text x="300" y="90">CONDUIT · 14 M · 3 TRAPPES</text><text x="246" y="222">CLAPET</text><text x="604" y="22">TOURELLE</text></g>
+    ${z('hotte', 'M52 262h306v92H52z')}${z('plenum', 'M168 236h76v40h-76z')}${z('conduit', 'M168 92h400v64H244v44h-76z')}${z('clapet', 'M178 196h56v36h-56z')}${z('tourelle', 'M462 -4h140v40H462z M494 36h72v62h-72z')}`;
+  const e = EL[k];
+  $('#elT').textContent = e.t; $('#elB').innerHTML = `<span class="${e.b[0]}">${e.b[1]}</span>`;
+  $('#elKV').innerHTML = e.kv.map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join('');
+  $('#elPh').innerHTML = `<figure>${grease(e.g[0], false)}<figcaption>Avant · 23 h 40</figcaption></figure><figure>${grease(e.g[0], true)}<figcaption>Après · 00 h 35</figcaption></figure>`;
+  $('#elRq').textContent = e.rq;
+  document.querySelectorAll('#schema .el').forEach((g) => { const go = () => renderSchema(g.dataset.k); g.addEventListener('click', go); g.addEventListener('keydown', (ev) => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); go(); } }); });
+  $('#hist').innerHTML = HIST.map(([d, q, c, s]) => `<div class="li"><b style="width:104px;flex:none">${d}</b><div style="flex:1" class="sm muted trunc">${q}</div><span class="${c}">${s}</span></div>`).join('');
+}
+let certF = 'tous', certSel = 1;
+function renderCerts() {
+  const rows = CERTS.map((c, i) => [c, i]).filter(([c]) => certF === 'tous' || c[3] === certF);
+  $('#certs').innerHTML = rows.map(([[d, n, e, s], i]) => `<tr data-i="${i}" class="${i === certSel ? 'on' : ''}"><td>${d}</td><td title="${n}">${n}</td><td class="hm">${e}</td><td>${s === 'ok' ? '<span class="b ok">remis</span>' : '<span class="b wa">à signer</span>'}</td></tr>`).join('');
+  document.querySelectorAll('#certs tr').forEach((r) => r.addEventListener('click', () => { certSel = +r.dataset.i; renderCerts(); }));
+  const [d, n, e, s] = CERTS[certSel];
+  $('#cert').innerHTML = `<div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start"><div><div class="muted sm">Certificat n° 2026-${String(1180 + certSel).padStart(4, '0')}</div><h3>Certificat de dégraissage</h3><div class="sm muted">Installation d'extraction de cuisine professionnelle</div></div>${s === 'ok' ? '<span class="stamp">Remis</span>' : '<span class="b wa">à signer</span>'}</div>
+    <div class="grid"><div><span class="muted">Établissement</span><br><b>${n}</b></div><div><span class="muted">Passage</span><br><b>${d} 2026 · ${e}</b></div><div><span class="muted">Fréquence au contrat</span><br><b>2 fois par an</b></div><div><span class="muted">Prochain passage prévu</span><br><b>mai 2027</b></div></div>
+    <b class="bc" style="font-size:15px;text-transform:uppercase;letter-spacing:.06em">Éléments traités</b>
+    <ul><li>Hotte et filtres à graisse (déposés, trempés, reposés)</li><li>Plénum et gouttière de récupération</li><li>Conduit par les trappes de visite (2 sur 3 accessibles)</li><li>Tourelle d'extraction : caisson et turbine</li><li>Clapet coupe-feu : manœuvre constatée</li></ul>
+    <div class="sm"><b>Réserves :</b> section après le 2ᵉ coude non accessible sans trappe supplémentaire.</div>
+    <div class="ph" style="margin-top:12px">${grease(0.8, false)}${grease(0.8, true)}</div>
+    <div class="sig"><div class="sm"><span class="muted">Technicien</span><br><b>Karim B.</b></div><div class="sm" style="text-align:right"><span class="muted">Responsable de cuisine</span><br><b>${s === 'ok' ? 'signé sur téléphone' : 'en attente'}</b></div></div>
+    <p class="sm muted" style="margin:10px 0 0">À présenter lors de la visite de la commission de sécurité ou à la demande de l'assureur.</p>`;
+}
+function renderNuit() {
+  const done = STEPS.filter((s) => s[2]).length;
+  $('#scrNuit').innerHTML = `<div class="notch"><span>00 h 12</span><span>● ● ●</span></div>
+    <div class="mh"><small>Brasserie du Quai · 1 / 4</small><h3>Bonne nuit, Karim</h3><p>Hotte 3,2 m · conduit 14 m · tourelle en toiture</p><div class="prog"><i style="width:${done / STEPS.length * 100}%"></i></div><p style="margin-top:6px" class="tnum">${done} étapes sur ${STEPS.length}</p></div>
+    <div class="mcard"><h4>Intervention <span class="sp"></span><span class="b fl">en cours</span></h4>${STEPS.map(([t, s, on], i) => `<div class="chk${on ? ' on' : ''}" data-i="${i}" role="checkbox" aria-checked="${!!on}" tabindex="0"><span class="bx"></span><span class="tx"><b>${t}</b><span>${s}</span></span></div>`).join('')}</div>
+    <div class="mcard"><h4>Photos avant / après</h4><div class="ph" style="padding:12px">${grease(0.85, false)}${grease(0.85, true)}</div></div>
+    <button class="mbtn" onclick="this.textContent='Signature demandée au chef'">Faire signer le chef de cuisine</button>
+    <button class="mbtn dk">Signaler une anomalie (photo)</button><div style="height:14px"></div>`;
+  document.querySelectorAll('#scrNuit .chk').forEach((c) => { const go = () => { STEPS[+c.dataset.i][2] = STEPS[+c.dataset.i][2] ? 0 : 1; const st = $('#scrNuit').scrollTop; renderNuit(); $('#scrNuit').scrollTop = st; }; c.addEventListener('click', go); c.addEventListener('keydown', (k) => { if (k.key === ' ' || k.key === 'Enter') { k.preventDefault(); go(); } }); });
+}
+function renderClient() {
+  $('#scrClient').innerHTML = `<div class="notch"><span>9 h 05</span><span>● ● ●</span></div>
+    <div class="mh"><small>Votre cuisine</small><h3>Brasserie du Quai</h3><p>Installation à jour · dégraissée cette nuit</p></div>
+    <div class="mcard"><h4>Dernier passage <span class="sp"></span><span class="b ok">à jour</span></h4><div style="padding:12px 14px" class="sm">Nuit du 24 au 25 novembre, 23 h 15 → 0 h 35<br><span class="muted">Hotte, plénum, conduit, tourelle · 14 photos</span></div><div class="ph" style="padding:0 12px 12px">${grease(0.85, false)}${grease(0.85, true)}</div></div>
+    <div class="mcard"><h4>Vos certificats</h4>${[['25 nov. 2026', 'à signer'], ['12 mai 2026', 'PDF'], ['18 nov. 2025', 'PDF'], ['20 mai 2025', 'PDF']].map(([d, s], i) => `<div class="chk" style="cursor:default"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e3601b" stroke-width="2" style="flex:none;margin-top:1px"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13l2 2 4-4"/></svg><span class="tx" style="flex:1"><b>Certificat du ${d}</b><span>dégraissage complet</span></span><span class="${i ? 'b id' : 'b wa'}">${s}</span></div>`).join('')}</div>
+    <div class="mcard"><h4>Prochain passage</h4><div style="padding:12px 14px" class="sm"><b>Mai 2027</b> · créneau proposé deux semaines avant, à valider ici.</div></div>
+    <div class="mcard"><h4>À signaler</h4><div style="padding:12px 14px" class="sm">Section du conduit après le 2ᵉ coude non accessible : une trappe de visite supplémentaire permettrait de la dégraisser. <b>Voir le devis.</b></div></div>
+    <button class="mbtn">Demander un passage (photo)</button><div style="height:14px"></div>`;
+}
+
+// ===== Navigation =====
+function show() {
+  const mob = matchMedia('(max-width:600px)').matches;
+  const v = location.hash.slice(1) || (mob ? 'nuit' : 'semaine');
+  document.querySelectorAll('section[data-view]').forEach((s) => s.classList.toggle('on', s.dataset.view === v));
+  document.querySelectorAll('[data-v]').forEach((a) => a.classList.toggle('on', a.dataset.v === v));
+  const s = document.querySelector(`section[data-view="${v}"]`);
+  if (s) { $('#title').textContent = s.dataset.title; $('#subtitle').textContent = s.dataset.sub; }
+  scrollTo(0, 0);
+}
+document.querySelectorAll('#certSeg button').forEach((b) => b.addEventListener('click', () => { document.querySelectorAll('#certSeg button').forEach((x) => x.classList.toggle('on', x === b)); certF = b.dataset.f; renderCerts(); }));
+renderSemaine(); renderTournee(); renderSchema(); renderCerts(); renderNuit(); renderClient();
+addEventListener('hashchange', show); show();
+</script>
+</body>
+</html>
