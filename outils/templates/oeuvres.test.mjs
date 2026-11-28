@@ -82,6 +82,17 @@ test('films : « Intouchables » trouvé sur Wikidata (titre français, année, 
   assert.match(appels[0].requete, /hint:optimizer "None"/, 'recherche avant filtre (sinon plus de 10 s)');
 });
 
+test('films et séries : une seule page de recherche Wikidata (sinon « Inception » prend 9 s et dépasse le délai)', () => {
+  // Anomalie du 28/11/2026 : srlimit ne fixe que la taille d'une page ; sans wikibase:limit "once", le service mwapi
+  // enchaîne toutes les pages (1 509 résultats pour « Inception »), la requête dépasse 5 s et la recherche répond
+  // « indisponible » pour tout titre courant.
+  for (const media of ['film', 'serie']) {
+    const service = /SERVICE wikibase:mwapi \{([^}]*)\}/.exec(requeteWikidata(media, 'Inception'))?.[1] || '';
+    assert.match(service, /wikibase:limit "once"/, `${media} : une seule page de résultats`);
+    assert.match(service, /mwapi:srlimit "50"/, `${media} : 50 résultats au plus`);
+  }
+});
+
 test('séries : « Le Bureau des légendes » trouvé (création, année, 5 saisons, 50 épisodes) ; saisons détaillées si complètes', async () => {
   const st = memoire();
   const { f } = sources();

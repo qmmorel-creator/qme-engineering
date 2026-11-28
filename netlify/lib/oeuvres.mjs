@@ -110,11 +110,12 @@ export const termeWikidata = (q) => String(q).replace(/[^\p{L}\p{N}'’* -]+/gu,
 export function requeteWikidata(media, q) {
   const classe = CLASSES[media];
   const createur = media === 'film' ? 'wdt:P57' : 'wdt:P170';
-  // hint:optimizer "None" : la recherche (20 items au plus) passe avant le filtre de classe ; sans lui, la requête
-  // prenait plus de 10 s.
+  // hint:optimizer "None" : la recherche passe avant le filtre de classe ; sans lui, la requête prenait plus de 10 s.
+  // wikibase:limit "once" : une seule page de résultats (50). Sans lui, le service enchaîne toutes les pages
+  // (« Inception » : 1 509 résultats, 9 s), dépasse le délai de 5 s et rend la recherche indisponible (28/11/2026).
   return `SELECT ?o (SAMPLE(?tf) AS ?titreFr) (SAMPLE(?te) AS ?titreEn) (MIN(?a) AS ?annee) (GROUP_CONCAT(DISTINCT ?nc; separator=", ") AS ?createurs) (MAX(?sec) AS ?secondes) (MAX(?s) AS ?saisons) (MAX(?e) AS ?episodes) (MIN(?rang) AS ?ordre) WHERE {
   hint:Query hint:optimizer "None" .
-  SERVICE wikibase:mwapi { bd:serviceParam wikibase:api "Search"; wikibase:endpoint "www.wikidata.org"; mwapi:srsearch "${termeWikidata(q)}"; mwapi:srlimit "20". ?titre wikibase:apiOutput mwapi:title. ?rang wikibase:apiOrdinal true. }
+  SERVICE wikibase:mwapi { bd:serviceParam wikibase:api "Search"; wikibase:endpoint "www.wikidata.org"; mwapi:srsearch "${termeWikidata(q)}"; mwapi:srlimit "50"; wikibase:limit "once". ?titre wikibase:apiOutput mwapi:title. ?rang wikibase:apiOrdinal true. }
   BIND(IRI(CONCAT(STR(wd:), ?titre)) AS ?o)
   ?o wdt:P31/wdt:P279* wd:${classe} .
   OPTIONAL { ?o rdfs:label ?tf FILTER(LANG(?tf) = "fr") }
