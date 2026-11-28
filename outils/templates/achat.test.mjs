@@ -36,13 +36,13 @@ test('achat direct d\'un template : remerciement, connexion, premier pas, une se
   assert.equal(r.mail, 'achat-direct');
   const [m] = pourAcheteur(w);
   assert.equal(m.a, 'lea@b.fr', 'adresse renvoyée par Gumroad, pas celle du ping');
-  assert.equal(m.objet, 'Merci pour votre achat : Suivi de lecture');
+  assert.equal(m.objet, 'Merci pour votre achat : Suivi culturel');
   assert.ok(m.texte.startsWith('Bonjour Léa,'));
   assert.ok(m.texte.includes('https://qm-engineering.fr/connexion/') && m.texte.includes(PRISE_EN_MAIN.PGS.commencer));
   assert.ok(m.html.includes('assets/signature/qme-logo.png') && !m.html.includes('Ne plus recevoir de rappel'));
   for (const [, href] of m.html.matchAll(/href="([^"]+)"/g)) assert.ok(!/[.,;:!?)]$/.test(href), href);
   const notif = w.mails.find((x) => x.a === 'quentin@qme.fr');
-  assert.equal(notif.objet, 'Nouvelle vente : Suivi de lecture · directe');
+  assert.equal(notif.objet, 'Nouvelle vente : Suivi culturel · directe');
   w.mails.length = 0;
   assert.equal((await (await ping(w, 'PGS', licenceDe('PGS', 'lea@b.fr'))).json()).deja, true);
   assert.deepEqual(w.mails, [], 'ping renvoyé par Gumroad : rien de plus');
@@ -58,10 +58,10 @@ test('achat après essai : remerciement dédié, séquence d\'essai arrêtée, d
   const r = await (await ping(w, 'PGS', licenceDe('PGS', 'flow@b.fr'))).json();
   assert.equal(r.mail, 'achat-essai');
   const [m] = pourAcheteur(w);
-  assert.equal(m.objet, 'Merci : « Suivi de lecture » est à vous');
+  assert.equal(m.objet, 'Merci : « Suivi culturel » est à vous');
   assert.ok(m.texte.startsWith('Bonjour Flow,') && m.texte.includes('J\'ai acheté') && m.texte.includes(`?essai=${code}`));
   assert.ok(!m.texte.includes('gardées jusqu'), 'essai encore en cours : pas de date limite');
-  assert.equal(w.mails.find((x) => x.a === 'quentin@qme.fr').objet, 'Nouvelle vente : Suivi de lecture · après essai');
+  assert.equal(w.mails.find((x) => x.a === 'quentin@qme.fr').objet, 'Nouvelle vente : Suivi culturel · après essai');
   // Séquence d'essai arrêtée : plus de rappel J-3 ni de fin.
   for (const j of [11, 15, 37]) {
     w.mails.length = 0; w.horloge.t = T0 + j * JOUR;
@@ -100,7 +100,7 @@ test('pack : liste de ses templates en achat direct ; après l\'essai d\'un de s
   await ping(w2, 'PET', licenceDe('PET', 'e@b.fr'));
   const [m2] = pourAcheteur(w2);
   assert.equal(m2.objet, `Merci : ${PACKS.PET.nom} est à vous`);
-  assert.ok(m2.texte.includes('votre essai de « Suivi de lecture »'));
+  assert.ok(m2.texte.includes('votre essai de « Suivi culturel »'));
 });
 
 test('rien pour une licence inconnue, remboursée ou un produit étranger ; échec d\'envoi : 500 et vente non marquée', async () => {

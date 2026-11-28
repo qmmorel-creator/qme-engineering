@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Le road trip · Mini-story QME</title>
+<!-- Projet d'animation de l'épisode. Rendu : node docs/videos/rendu.mjs <ce fichier> 30 --muet --taille-max 14
+     Toute l'image est fonction du temps : window.placer(ms) dessine l'image exacte de l'instant ms (rendu déterministe).
+     Données : timeline.js (généré depuis timeline.json, voix réelles mesurées). -->
+<style>
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../assets/outfit-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212;}
+@font-face{font-family:'Outfit';font-weight:400 800;src:url('../assets/outfit-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+1E00-1EFF,U+20A0-20AB,U+20AD-20C4;}
+:root{--creme:#F1EEE6;--noir:#141414;--jaune:#FFBE00;--jaune-pale:#FBEBC2;--bleu:#23528B;--rouge:#DE2D27;--moutarde:#EDB43A;--vert:#2E7D50}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:var(--creme);font-family:'Outfit',sans-serif;color:var(--noir)}
+#scene{position:absolute;inset:0}
+#st{position:absolute;left:60px;right:130px;top:1350px;display:flex;justify-content:center;text-align:center}
+#st span{display:inline;background:var(--jaune-pale);box-decoration-break:clone;-webkit-box-decoration-break:clone;padding:6px 22px;border-radius:18px;font-weight:800;font-size:56px;line-height:1.45;letter-spacing:-.5px}
+#carton{position:absolute;inset:0;background:#141414;display:none}
+#carton img{position:absolute;left:0;width:1080px;top:50%;transform:translateY(-50%)}
+.pre{position:absolute;opacity:0;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="scene"></div>
+<div id="st"></div>
+<div id="carton"><img src="../assets/qme-carton-final-9x16-official.png" alt=""></div>
+<img class="pre" src="../assets/templates-voyage-jours-tel.webp" alt=""><img class="pre" src="../assets/templates-voyage-itineraire.webp" alt=""><img class="pre" src="../assets/templates-voyage-budget.webp" alt="">
+<script src="timeline.js"></script>
+<script src="carreau.js"></script>
+<script>
+const C = {creme:'#F1EEE6', noir:'#141414', jaune:'#FFBE00', pale:'#FBEBC2', bleu:'#23528B', rouge:'#DE2D27', moutarde:'#EDB43A', vert:'#2E7D50', blanc:'#FFFFFF'};
+const PAS_POSE = 1000 / 12;              // poses tenues 2 images à 24 i/s : rendu « stop-motion » de la charte MiniStories
+const pose = (ms) => Math.floor(ms / PAS_POSE) * PAS_POSE;
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const sortie = (x) => 1 - Math.pow(1 - x, 3);
+const rebond = (x) => { const c = 1.70158 * 1.4; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const hash = (n) => { const s = Math.sin(n * 127.1) * 43758.5453; return s - Math.floor(s); };
+const euros = (v) => v.toLocaleString('fr-FR').replace(/\u202f|\s/g, '\u2009') + '\u00a0€';
+const T = window.TL;
+// Temps vidéo -> temps du montage de référence (scènes recalées sur la voix réelle), interpolation linéaire par morceaux.
+const recaler = (t) => { const M = T.montage; if (!M) return t; for (let i = 1; i < M.length; i++) if (t <= M[i][0]) return M[i - 1][1] + (t - M[i - 1][0]) * (M[i][1] - M[i - 1][1]) / (M[i][0] - M[i - 1][0]); return M[M.length - 1][1] + t - M[M.length - 1][0]; };
+
+
+// ---------- Mascotte (module officiel carreau.js, sans accessoire) ----------
+function mascotte({x, y, s = 1, expr = 'neutre', bras = 'bas', rot = 0}) {
+  const expression = {joie: 'soulage', blase: 'neutre', inquiet: 'inquiet', choc: 'inquiet', panique: 'panique', fier: 'fier', neutre: 'neutre'}[expr];
+  const p = {montrer: 'montre', haut: 'court'}[bras] || 'debout';
+  return `<g transform="translate(${x} ${y}) rotate(${rot}) scale(${s}) translate(-160 -350)">${carreau({expression, pose: p, taille: 320})}</g>`;
+}
+const etiquette = (x, y, txt, fond = C.noir, coul = '#fff', taille = 40) => { const w = txt.length * taille * .64 + 40; return `<g transform="translate(${x} ${y})"><rect x="${-w / 2}" y="${-taille * .8}" width="${w}" height="${taille * 1.3}" fill="${fond}"/><text y="${taille * .3}" font-size="${taille}" font-weight="800" letter-spacing="2" text-anchor="middle" fill="${coul}">${txt}</text></g>`; };
+const fond = (ciel = C.creme) => `<rect width="1080" height="1920" fill="${ciel}"/>`;
+// Route : bande noire, tirets crème qui défilent (vitesse v en px/s)
+function route(t, v = 600, y = 1180) { let g = `<rect x="0" y="${y}" width="1080" height="130" fill="${C.noir}"/>`; const o = (pose(t * 1000) / 1000 * v) % 220; for (let x = -220; x < 1300; x += 220) g += `<rect x="${x - o}" y="${y + 58}" width="120" height="14" fill="${C.creme}"/>`; return g; }
+// Van aménagé Bauhaus : grande caisse haute, avant court, fenêtres, roues noires. Aucune marque.
+// inter(x0,y0) : contenu dessiné derrière la grande fenêtre (repère du van).
+function van(x, y, s = 1, saut = 0, inter = '') {
+  const r = (cx) => `<circle cx="${cx}" cy="0" r="58" fill="${C.noir}"/><circle cx="${cx}" cy="0" r="20" fill="${C.creme}"/>`;
+  return `<g transform="translate(${x} ${y - saut}) scale(${s})">
+    <rect x="-300" y="-390" width="600" height="340" fill="${C.noir}" transform="translate(12 12)"/>
+    <path d="M-300 -390 H170 L300 -230 V-50 H-300 Z" fill="${C.bleu}" stroke="${C.noir}" stroke-width="10"/>
+    <rect x="-300" y="-170" width="600" height="40" fill="${C.creme}" stroke="${C.noir}" stroke-width="8"/>
+    <clipPath id="fen"><rect x="-250" y="-340" width="260" height="140"/></clipPath>
+    <rect x="-250" y="-340" width="260" height="140" fill="${C.pale}" stroke="${C.noir}" stroke-width="8"/>
+    <g clip-path="url(#fen)">${inter}</g>
+    <rect x="-250" y="-340" width="260" height="140" fill="none" stroke="${C.noir}" stroke-width="8"/>
+    <path d="M60 -340 H160 L250 -230 H60 Z" fill="${C.pale}" stroke="${C.noir}" stroke-width="8"/>
+    <rect x="270" y="-110" width="30" height="30" fill="${C.jaune}" stroke="${C.noir}" stroke-width="6"/>
+    ${r(-180)}${r(170)}</g>`;
+}
+const panneau = (x, y, txt, fondc = '#fff', s = 1) => { const w = Math.max(260, txt.length * 34 + 60); return `<g transform="translate(${x} ${y}) scale(${s})"><rect x="-8" y="0" width="16" height="260" fill="${C.noir}"/><rect x="${-w / 2}" y="-110" width="${w}" height="110" fill="${fondc}" stroke="${C.noir}" stroke-width="9"/><text y="-38" font-size="50" font-weight="800" text-anchor="middle">${txt}</text></g>`; };
+// Carte routière : papier plié en 3 volets, routes rouges
+const carte = (x, y, r, s = 1) => `<g transform="translate(${x} ${y}) rotate(${r}) scale(${s})"><rect x="-150" y="-100" width="300" height="200" fill="${C.pale}" stroke="${C.noir}" stroke-width="8"/><path d="M-50 -100 V100 M50 -100 V100" stroke="${C.noir}" stroke-width="5"/><path d="M-130 60 Q-60 -60 10 20 T130 -60" fill="none" stroke="${C.rouge}" stroke-width="10"/><circle cx="-130" cy="60" r="12" fill="${C.bleu}"/></g>`;
+// Capture réelle recadrée dans un cadre à ombre pleine (vb = zone de l'image 1600 × 1000)
+function cadre(x, y, w, h, img, vb, s = 1, bord = C.noir) {
+  return `<g transform="translate(${x} ${y}) scale(${s})"><rect x="${-w / 2}" y="${-h / 2}" width="${w}" height="${h}" fill="${C.noir}" transform="translate(14 14)"/><rect x="${-w / 2}" y="${-h / 2}" width="${w}" height="${h}" fill="#fff" stroke="${bord}" stroke-width="10"/>
+    <svg x="${-w / 2 + 10}" y="${-h / 2 + 10}" width="${w - 20}" height="${h - 20}" viewBox="${vb}" preserveAspectRatio="xMidYMid slice"><image href="../assets/${img}" width="1600" height="1000"/></svg></g>`;
+}
+const pop = (t, a, d = 300) => rebond(prog(pose(t * 1000), a * 1000, a * 1000 + d));
+const lune = (x, y, r = 90) => `<g transform="translate(${x} ${y})"><circle r="${r}" fill="${C.jaune}" stroke="${C.noir}" stroke-width="8"/><circle cx="${r * .45}" cy="${-r * .25}" r="${r * .85}" fill="${C.bleu}"/></g>`;
+const lit = (x, y, s = 1) => `<g transform="translate(${x} ${y}) scale(${s})"><rect x="-120" y="-40" width="240" height="60" fill="#fff" stroke="${C.noir}" stroke-width="8"/><rect x="-110" y="-80" width="80" height="44" fill="${C.pale}" stroke="${C.noir}" stroke-width="7"/><rect x="-130" y="-100" width="20" height="150" fill="${C.noir}"/><rect x="110" y="-60" width="20" height="110" fill="${C.noir}"/></g>`;
+
+const S = {};
+S.S1 = (t, l) => {                       // Road trip improvisé : étapes en rafale, la carte s'envole
+  let g = fond() + `<circle cx="960" cy="330" r="150" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/><rect x="40" y="260" width="110" height="110" fill="${C.rouge}" stroke="${C.noir}" stroke-width="10"/>` + route(t, 900);
+  const etapes = [[1.84, 'ÉTAPE 1'], [2.76, 'ÉTAPE 2'], [3.78, 'ÉTAPE ?']];
+  for (const [a, txt] of etapes) if (t >= a) { const p = prog(t, a, a + 1.0); g += panneau(1250 - p * 1500, 920, txt, txt.includes('?') ? C.jaune : '#fff'); }
+  if (t < 1.84) g += etiquette(540, 520, 'AUCUN PLAN', C.rouge, '#fff', 80);
+  const s = Math.abs(Math.sin(pose(l) / 90)) * 10;
+  // la carte posée sur le toit s'envole à 4,6 s
+  const pc = sortie(prog(t, 4.6, 4.9));
+  g += van(520, 1250, 1, s, mascotte({x: -120, y: -150, s: .5, expr: t < 3.78 ? 'joie' : 'inquiet'}));
+  g += carte(450 + pc * 700, 870 - s - pc * 700, pc * 300, .7);
+  return g;
+};
+S.S2 = (t, l) => {                       // Détour de 200 km pour un « plus beau village »
+  let g = fond() + `<path d="M1080 0 v380 a380 380 0 0 1 -380 -380z" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/>` + route(t, 1200);
+  g += panneau(560, 640, 'PLUS BEAU VILLAGE', '#fff', pop(t, 5.9) * 1);
+  g += `<path d="M770 470 l60 0 l0 -30 l50 50 l-50 50 l0 -30 l-60 0z" fill="${C.rouge}" stroke="${C.noir}" stroke-width="6" transform="translate(0 ${-0})" opacity="${t >= 5.9 ? 1 : 0}"/>`;
+  const km = Math.round(clamp(prog(t, 5.16, 7.4)) * 200);
+  g += `<g transform="translate(540 380) scale(${pop(t, 5.16)})">${etiquette(0, 0, '+' + km + ' KM', C.rouge, '#fff', 90)}</g>`;
+  const s = Math.abs(Math.sin(pose(l) / 80)) * 12;
+  g += van(540, 1250, 1, s, mascotte({x: -120, y: -150, s: .5, expr: t < 7.0 ? 'inquiet' : 'panique'}));
+  return g;
+};
+S.S3 = (t, l) => {                       // La jauge d'essence fond
+  let g = fond() + `<circle cx="540" cy="760" r="380" fill="${C.bleu}"/>`;
+  const p = sortie(prog(t, 8.7, 9.6)), a = -60 + 120 * (1 - p) - 120 * 0;
+  g += `<g transform="translate(540 820)"><path d="M-300 0 A300 300 0 0 1 300 0 Z" fill="#fff" stroke="${C.noir}" stroke-width="12"/><text x="-250" y="-30" font-size="70" font-weight="800">R</text><text x="210" y="-30" font-size="70" font-weight="800">P</text>
+    <rect x="-280" y="-10" width="120" height="14" fill="${C.rouge}"/><g transform="rotate(${-60 - 60 + 120 * (1 - p) + 60})"><rect x="-10" y="-260" width="20" height="260" fill="${C.rouge}" stroke="${C.noir}" stroke-width="5"/></g><circle r="34" fill="${C.noir}"/></g>`;
+  for (let i = 0; i < 5; i++) { const q = prog(t, 8.8 + i * .2, 9.6 + i * .2); if (q > 0) g += `<text x="${300 + i * 120}" y="${1000 + q * 260}" font-size="80" font-weight="800" fill="${C.rouge}" opacity="${1 - q}">€</text>`; }
+  g += mascotte({x: 540, y: 1300, s: .9, expr: t < 9.5 ? 'inquiet' : 'panique', bras: t < 9.5 ? 'bas' : 'haut'});
+  return g;
+};
+S.S4 = (t, l) => {                       // 23 h, complet : Carreau dort dans le van
+  let g = fond(C.noir) + `<rect width="1080" height="1180" fill="#1B2A4A"/>` + lune(880, 330, 100) + route(0, 0);
+  g += etiquette(260, 420, '23:00', C.rouge, '#fff', 70);
+  g += `<g transform="translate(250 760) scale(${pop(t, 10.6)})"><rect x="-180" y="-90" width="360" height="150" fill="#fff" stroke="${C.creme}" stroke-width="8"/><text y="12" font-size="66" font-weight="800" text-anchor="middle" fill="${C.rouge}">COMPLET</text></g>`;
+  const dort = t >= 11.2;
+  g += van(620, 1250, 1, 0, mascotte({x: -120, y: -130, s: .5, expr: dort ? 'blase' : 'choc', rot: dort ? -12 : 0}));
+  if (dort) for (let i = 0; i < 3; i++) { const q = ((pose(l) / 900) + i / 3) % 1; g += `<text x="${560 + i * 40 + q * 30}" y="${780 - i * 60 - q * 60}" font-size="${50 + i * 14}" font-weight="800" fill="${C.creme}" opacity="${1 - q * .6}">Z</text>`; }
+  return g;
+};
+function telephone(x, y, s, contenu) { const W = 700, H = 1300; return `<g transform="translate(${x} ${y}) scale(${s}) translate(${-W / 2} ${-H / 2})"><rect x="16" y="16" width="${W}" height="${H}" rx="60" fill="${C.noir}"/><rect width="${W}" height="${H}" rx="60" fill="${C.noir}"/><rect x="24" y="24" width="${W - 48}" height="${H - 48}" rx="40" fill="#FAF7F0"/>${contenu}</g>`; }
+S.S5 = (t, l) => {                       // Version 2 : téléphone, programme jour par jour (capture réelle)
+  let g = fond() + `<path d="M1080 0 v380 a380 380 0 0 1 -380 -380z" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/><circle cx="110" cy="300" r="70" fill="${C.rouge}"/>`;
+  const p = rebond(prog(pose(l), 0, 420));
+  g += etiquette(540, 300, 'PLANIFICATEUR DE VOYAGE', C.noir, '#fff', 46);
+  g += telephone(600, 820, .74 * p, `<clipPath id="ecr"><rect x="24" y="24" width="652" height="1252" rx="40"/></clipPath><image href="../assets/templates-voyage-jours-tel.webp" x="24" y="24" width="652" height="1110" clip-path="url(#ecr)" preserveAspectRatio="xMidYMin slice"/>`);
+  g += mascotte({x: 150, y: 1290, s: .55, expr: 'fier', bras: 'montrer'});
+  return g;
+};
+S.S6 = (t, l) => {                       // Étapes et nuits (itinéraire, capture réelle recadrée)
+  let g = fond() + `<circle cx="1000" cy="270" r="200" fill="${C.bleu}"/>`;
+  g += etiquette(470, 300, 'ÉTAPES ET NUITS', C.noir, '#fff', 54);
+  g += cadre(540, 700, 1000, 700, 'templates-voyage-itineraire.webp', '220 410 640 445', pop(t, 16.62, 350));
+  g += mascotte({x: 140, y: 1300, s: .5, expr: 'fier', bras: 'montrer'});
+  return g;
+};
+S.S7 = (t, l) => {                       // Nuit sans toit signalée
+  let g = fond() + `<path d="M1080 0 v380 a380 380 0 0 1 -380 -380z" fill="${C.jaune}" stroke="${C.noir}" stroke-width="10"/>`;
+  g += cadre(540, 660, 1000, 640, 'templates-voyage-itineraire.webp', '870 470 520 333', pop(t, 19.12, 350));
+  g += `<g transform="translate(540 1110) scale(${pop(t, 19.6)})">${''}<rect x="-490" y="-75" width="980" height="150" fill="${C.noir}" transform="translate(12 12)"/><rect x="-490" y="-75" width="980" height="150" fill="#fff" stroke="${C.rouge}" stroke-width="10"/><svg x="-480" y="-65" width="960" height="130" viewBox="225 296 420 72" preserveAspectRatio="xMidYMid meet"><image href="../assets/templates-voyage-itineraire.webp" width="1600" height="1000"/></svg></g>`;
+  g += mascotte({x: 150, y: 1345, s: .42, expr: 'choc'});
+  return g;
+};
+S.S8 = (t, l) => {                       // Budget prévu et réel (capture réelle)
+  let g = fond() + `<circle cx="1000" cy="270" r="200" fill="${C.bleu}"/>`;
+  g += etiquette(440, 300, 'PRÉVU ET RÉEL', C.noir, '#fff', 60);
+  g += cadre(540, 620, 1000, 400, 'templates-voyage-budget.webp', '215 248 640 248', pop(t, 21.12, 350));
+  g += cadre(540, 1000, 1000, 360, 'templates-voyage-budget.webp', '225 450 900 330', pop(t, 21.9, 350));
+  g += mascotte({x: 140, y: 1345, s: .4, expr: 'fier', bras: 'montrer'});
+  return g;
+};
+S.S9 = (t, l) => {                       // Payoff : même route, même van, une étape prévue et un lit
+  let g = fond('#1B2A4A') + lune(880, 330, 100) + route(t, t < 24.2 ? 700 * (1 - prog(t, 23.6, 24.2)) : 0);
+  g += `<g transform="translate(260 760)"><rect x="-170" y="-120" width="340" height="240" fill="${C.creme}" stroke="${C.noir}" stroke-width="10"/><path d="M-200 -120 L0 -270 L200 -120 Z" fill="${C.rouge}" stroke="${C.noir}" stroke-width="10"/><rect x="-120" y="-70" width="240" height="150" fill="${C.jaune}" stroke="${C.noir}" stroke-width="8"/>${lit(0, 40, .8)}</g>`;
+  g += `<g transform="translate(260 540) scale(${pop(t, 23.4)})">${etiquette(0, 0, 'RÉSERVÉ', C.vert, '#fff', 50)}</g>`;
+  g += van(700, 1250, .85, 0, mascotte({x: -120, y: -150, s: .5, expr: t < 24.2 ? 'neutre' : 'joie'}));
+  return g;
+};
+const scene = document.getElementById('scene'), st = document.getElementById('st'), carton = document.getElementById('carton');
+const COUPES = { v02: 'Une étape. Puis une autre.<br>Puis une autre.', v03: 'Détour de 200 km pour<br>un « plus beau village ».', v06: 'Version 2 : le Planificateur<br>de voyage, de QME.', v07: 'Étapes et nuits,<br>jour par jour.', v08: 'Une nuit sans toit<br>est signalée.', v10: 'Même route.<br>Ce soir : un lit.' };
+window.placer = (ms) => {
+  const t = ms / 1000; window.__t = ms;
+  const fin = t >= T.carton.debut;
+  carton.style.display = fin ? 'block' : 'none';
+  if (fin) { scene.innerHTML = ''; st.innerHTML = ''; return; }
+  const sc = T.scenes.find((s) => t >= s.debut && t < s.fin) || T.scenes[0];
+  scene.innerHTML = `<svg width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">${S[sc.id](t, ms - sc.debut * 1000)}</svg>`;
+  const v = T.voix.find((r) => t >= r.t - .05 && t < Math.min(r.fin + .12, T.carton.debut));
+  st.innerHTML = v ? `<span>${COUPES[v.id] || v.texte.replace(/'/g, '’')}</span>` : '';
+};
+window.placer(0);
+</script>
+</body>
+</html>

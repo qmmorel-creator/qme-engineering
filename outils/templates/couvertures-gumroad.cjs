@@ -65,7 +65,7 @@ const T = {
   doe: ['Registre du DOE', 'Chaque pièce remise, vérifiée, transmise.', 'Pièces par lot · relances datées · complétude · bordereau'],
   'sous-traitants': ["Conformité des sous-traitants", "Aucune attestation périmée sur ton chantier.", "Lots et rangs · acceptation · vigilance · alertes J-30"],
   emprunt: ["Capacité d'emprunt · prêts", 'Combien emprunter, et à quel coût.', 'Capacité · budget du projet · offres comparées · amortissement'],
-  'lecture': ["Suivi de lecture", "Lis, on compte.", "Rythme · date de fin · objectif au jour près"],
+  'lecture': ["Suivi culturel", "Lis, regarde, écoute : on compte.", "Livres · films · séries · podcasts"],
   tva: ['Suivi de TVA', 'Ta TVA, période par période.', 'Collectée · déductible · échéances · contrôles'],
   'animal': ["Suivi d'un animal de compagnie", "Ses soins, à temps.", "Soins · poids · visites · frais"],
   'garde-manger': ['Garde-manger et dates de péremption', 'Rien ne se perd au fond du frigo.', 'DLC et DDM · priorités du jour · gaspillage suivi'],

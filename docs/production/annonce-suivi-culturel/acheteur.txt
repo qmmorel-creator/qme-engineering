@@ -1,0 +1,23 @@
+Objet : Votre Suivi de lecture devient le Suivi culturel, gratuitement
+
+Bonjour{{prenom_virgule}}
+
+Le Suivi de lecture que vous avez acheté s’enrichit, gratuitement et sans rien à faire de votre côté :
+
+- Films et séries : saisons et épisodes compris, avec votre note et votre avis.
+- Podcasts et livres audio : suivis en minutes ou en épisodes, comme vos livres en pages.
+- Recherche intégrée : tapez quelques lettres, l’œuvre est retrouvée, même avec une faute de frappe. La saisie à la main reste possible.
+- Objectifs et statistiques par média : livres, films, séries et podcasts, votre année en un coup d’œil.
+
+Vos livres, vos notes et vos objectifs sont repris à l’identique. Ouvrez simplement votre outil, comme d’habitude.
+
+Ouvrir mon Suivi culturel : https://qm-engineering.fr/templates/lecture/?utm_source=email&utm_medium=annonce&utm_campaign=suivi-culturel-2026-12
+
+Une idée, un réglage qui vous manque ? Répondez simplement à cet e-mail : c'est moi qui le lis.
+
+Quentin Morel
+QM Engineering · qm-engineering.fr
+
+—
+Vous recevez cet e-mail parce que vous avez acheté le Suivi de lecture QME, seul ou dans le Pack Étudiant.
+Ne plus recevoir les informations : https://qm-engineering.fr/ne-plus-recevoir/?email={{email}}
