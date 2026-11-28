@@ -126,3 +126,22 @@ test('routes : code administrateur exigé, retrait de la file', async () => {
   assert.deepEqual((await appel(store, '/retirer', { campagne: 'z', ids: ['z1'], raison: 'réponse reçue' })).retires, ['z1']);
   assert.equal((await appel(store, '/campagne?c=z')).enFile, 0);
 });
+
+test('reprise : une adresse dont le seul mail a fini en erreur peut repartir sous un nouvel id', async () => {
+  const store = memoire();
+  await appel(store, '/campagne', { id: 'gites', nom: 'Gîtes', pause: false });
+  assert.deepEqual((await appel(store, '/file', { campagne: 'gites', messages: [{ id: 'g1', email: 'contact@g.fr', objet: 'Objet', texte: TEXTE }] })).ajoutes, ['g1']);
+  // Encore en file : refusé.
+  assert.deepEqual((await appel(store, '/file', { campagne: 'gites', messages: [{ id: 'g1-r2', email: 'contact@g.fr', objet: 'Objet', texte: TEXTE }] })).ajoutes, []);
+  const echoue = async () => { throw new Error('550 quota'); };
+  for (let i = 0; i < 3; i++) assert.equal((await envoyerSuivant({ store, secret: SECRET, envoyer: echoue, maintenant: () => MARDI_10H })).statut, 'erreur');
+  assert.equal((await store.get('prospection/fait/gites/g1')).statut, 'erreur');
+  // Même id : refusé ; nouvel id : accepté, puis envoyé.
+  assert.deepEqual((await appel(store, '/file', { campagne: 'gites', messages: [{ id: 'g1', email: 'contact@g.fr', objet: 'Objet', texte: TEXTE }] })).ajoutes, []);
+  assert.deepEqual((await appel(store, '/file', { campagne: 'gites', messages: [{ id: 'g1-r2', email: 'contact@g.fr', objet: 'Objet', texte: TEXTE }] })).ajoutes, ['g1-r2']);
+  const envois = [];
+  assert.equal((await envoyerSuivant({ store, secret: SECRET, envoyer: async (m) => { envois.push(m); }, maintenant: () => MARDI_10H })).statut, 'envoye');
+  assert.equal(envois.length, 1);
+  // Une fois envoyé, l'adresse est de nouveau bloquée.
+  assert.deepEqual((await appel(store, '/file', { campagne: 'gites', messages: [{ id: 'g1-r3', email: 'contact@g.fr', objet: 'Objet', texte: TEXTE }] })).ajoutes, []);
+});

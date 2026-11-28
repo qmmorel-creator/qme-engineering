@@ -9,6 +9,38 @@
 // citer de libellé de bouton non vérifié dans l'application.
 // Un template ouvert à l'essai sans fiche ici fait échouer `npm test` (outils/templates/essai.test.mjs).
 export const PRISE_EN_MAIN = {
+  CSE: {
+    commencer: 'choisissez trimestres ou semestres, créez une classe, collez la liste des élèves (prénom et initiale) et saisissez une première évaluation : les moyennes se calculent.',
+    astuces: [
+      'les absents, non notés et dispensés ne comptent jamais dans la moyenne, et une évaluation bonus n\'est retenue que si elle la fait monter ;',
+      'les appréciations se composent à partir d\'une banque de phrases par axe et par niveau, puis se réécrivent à votre façon.',
+    ],
+    aide: 'Un barème ou une façon de calculer les moyennes propre à votre établissement ?',
+  },
+  BBE: {
+    commencer: 'donnez votre accord, indiquez le prénom et la date de naissance de votre enfant, et notez la prochaine tétée ou le prochain biberon.',
+    astuces: [
+      'le minuteur de tétée ou de sommeil continue de compter même application fermée ;',
+      'la même clé ouverte sur le téléphone de l\'autre parent permet de noter à deux.',
+    ],
+    aide: 'Quelque chose que vous aimeriez noter et que le suivi ne prévoit pas ?',
+  },
+  RBS: {
+    commencer: 'donnez votre accord, ajoutez les membres de votre foyer et notez votre dernier soin payé, avec le remboursement attendu de la Sécurité sociale et de la mutuelle.',
+    astuces: [
+      'un remboursement non reçu après le délai choisi (30 jours par défaut) passe « à relancer », avec un message prêt à copier ;',
+      'le bilan de l\'année compare ce que la mutuelle vous a remboursé à ce que vous avez cotisé.',
+    ],
+    aide: 'Un cas de remboursement que le suivi représente mal ?',
+  },
+  ANM: {
+    commencer: 'ajoutez votre animal, cochez les soins à suivre et saisissez pour chacun l\'intervalle indiqué par votre vétérinaire : les prochaines échéances se calculent.',
+    astuces: [
+      'quand le vétérinaire inscrit lui-même la prochaine date d\'un soin, c\'est elle qui compte ;',
+      'les frais se totalisent par catégorie, par mois et par an, avec le coût annuel de l\'animal.',
+    ],
+    aide: 'Un animal ou un soin que le suivi gère mal ?',
+  },
   REV: {
     commencer: 'collez votre programme en une fois (ou partez d\'une des 12 formations préremplies) et indiquez la date de l\'examen : la liste du jour se remplit, retards compris.',
     astuces: [
@@ -242,12 +274,12 @@ export const PRISE_EN_MAIN = {
     aide: 'Votre carnet constructeur diffère du plan indicatif ?',
   },
   PGS: {
-    commencer: 'ajoutez le livre que vous lisez et la page où vous en êtes : à la prochaine lecture, notez la nouvelle page, et la date de fin estimée apparaît.',
+    commencer: 'ajoutez le livre, la série ou le podcast du moment (cherchez le titre : la fiche se remplit) et où vous en êtes : à la session suivante, notez la nouvelle page ou touchez « 1 épisode », et la date de fin estimée apparaît.',
     astuces: [
-      'les livres déjà lus cette année se marquent « lu » avec leur date de fin, sans détailler les sessions : ils comptent dans votre objectif ;',
-      'les livres audio se suivent en minutes écoutées.',
+      'ce que vous avez déjà terminé cette année se marque « lu » ou « vu » avec sa date de fin, sans détailler les sessions : cela compte dans vos objectifs ;',
+      'une série se suit par saison et par épisode, un livre audio ou un film en minutes, et chaque média a son objectif de l\'année.',
     ],
-    aide: 'Un format ou une habitude de lecture que l\'outil gère mal ?',
+    aide: 'Un média ou une habitude que l\'outil gère mal ?',
   },
   NTS: {
     commencer: 'saisissez la maquette du semestre en cours (matières et coefficients ou crédits ECTS), puis vos notes déjà connues : les moyennes se calculent au centième.',

@@ -6,6 +6,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { etatVente, prixEn } from './etat-vente.mjs';
+
 const racine = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const donnees = JSON.parse(fs.readFileSync(path.join(racine, 'outils/x/templates-en.json'), 'utf8'));
 const THEMES = donnees._themes;
@@ -28,7 +30,9 @@ for (const slug of Object.keys(donnees).filter((k) => !k.startsWith('_'))) {
   const fichier = path.join(racine, img[1].split('?')[0]);
   if (!fs.existsSync(fichier)) throw new Error(`Capture absente : ${img[1]}`);
   const demo = html.includes(`/templates/${slug}/?demo`);
-  cartes.push({ slug, theme, nom, accroche, reglesFr, src: img[1], larg, haut, demo });
+  // État de vente depuis PRODUITS (etat-vente.mjs) : bouton d'achat de la version française si en vente,
+  // « Coming soon » sinon.
+  cartes.push({ slug, theme, nom, accroche, reglesFr, src: img[1], larg, haut, demo, vente: etatVente(slug) });
 }
 cartes.sort((a, b) => Object.keys(THEMES).indexOf(a.theme) - Object.keys(THEMES).indexOf(b.theme) || a.nom.localeCompare(b.nom, 'en'));
 
@@ -40,8 +44,9 @@ const carte = (c) => `    <article class="mini-produit" data-theme="${c.theme}" 
         <p>${esc(c.accroche)}</p>${c.reglesFr ? '\n        <p class="regles-fr">Built on French rules: an English version would be adapted to your country.</p>' : ''}
         <div class="actions">
           <button class="btn interet" type="button" data-en="${c.slug}" data-nom="${esc(c.nom)}">I'd like it in English</button>${c.demo ? `
-          <a class="btn" href="/templates/${c.slug}/?demo" data-goatcounter-click="x-demo-${c.slug}" data-goatcounter-title="X campaign: demo ${esc(c.nom)}">Demo (in French)</a>` : ''}
-        </div>
+          <a class="btn" href="/templates/${c.slug}/?demo" data-goatcounter-click="x-demo-${c.slug}" data-goatcounter-title="X campaign: demo ${esc(c.nom)}">Demo (in French)</a>` : ''}${c.vente.vente ? `
+          <a class="btn" href="${esc(c.vente.lien)}" data-goatcounter-click="x-achat-${c.slug}" data-goatcounter-title="X campaign: buy ${esc(c.nom)}">${c.vente.prix === 0 ? 'Get it free' : `Buy · ${prixEn(c.vente.prix)}`}${c.vente.anglais ? '' : ' (French)'}</a>` : ''}
+        </div>${c.vente.vente ? '' : '\n        <p class="regles-fr"><b>Coming soon</b></p>'}
         <p class="interet-note" data-en-note="${c.slug}" hidden></p>
       </div>
     </article>`;

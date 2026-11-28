@@ -1,0 +1,44 @@
+1
+00:00:00,200 --> 00:00:01,470
+Partiels de médecine.
+
+2
+00:00:01,720 --> 00:00:04,710
+Anatomie. Biochimie.
+Physiologie.
+
+3
+00:00:05,120 --> 00:00:07,660
+Coefficient trois.
+Coefficient quatre…
+
+4
+00:00:08,160 --> 00:00:09,230
+Trois heures du matin.
+
+5
+00:00:09,520 --> 00:00:10,780
+On relit quoi, déjà ?!
+
+6
+00:00:11,200 --> 00:00:14,390
+Version 2 : le Pack
+Étudiant, de QME.
+
+7
+00:00:14,780 --> 00:00:20,100
+Chaque chapitre revient au bon
+moment : J+1, J+3, J+7.
+
+8
+00:00:20,380 --> 00:00:23,000
+Et la note à viser au prochain
+partiel est calculée.
+
+9
+00:00:23,370 --> 00:00:24,640
+La veille du partiel…
+
+10
+00:00:24,960 --> 00:00:25,570
+on dort.

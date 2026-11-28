@@ -1,4 +1,4 @@
-// Carreau, mascotte QME (format F11 du test des formats, fiche du 24/11/2026, à valider par Quentin).
+// Grillon, mascotte QME (format F11 du test des formats, fiche du 24/11/2026, validée par Quentin le 27/11/2026).
 // Une cellule de tableur qui s'est échappée de son tableur. Uniquement des formes Bauhaus (carré, cercles, triangle,
 // traits) et la palette du kit. Usage : carreau({ expression, pose, couleur }) renvoie un <svg> en texte.
 // expressions : neutre, inquiet, panique, soulage, fier ; poses : debout, court, montre.
@@ -20,7 +20,7 @@ export function carreau({ expression = 'neutre', pose = 'debout', couleur, taill
       ${bouche(expression, P)}
       ${extras(expression, P)}
     </g>`;
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 380" width="${taille}" height="${taille * 380 / 320}" role="img" aria-label="Carreau, mascotte QME : ${expression}, ${pose}">${membres(pose, P, trait)}${corps}</svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 380" width="${taille}" height="${taille * 380 / 320}" role="img" aria-label="Grillon, mascotte QME : ${expression}, ${pose}">${membres(pose, P, trait)}${corps}</svg>`;
 }
 
 function yeux(e, P) {

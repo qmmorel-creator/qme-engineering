@@ -30,8 +30,8 @@ const creer = async (w, corps, ip = '1.2.3.4') => {
 test('templates ouverts à l\'essai : tous les templates vie personnelle et pro en vente, payants', () => {
   const attendus = Object.keys(PRODUITS).filter((p) => publics(TEMPLATES[p]).some((x) => ['perso', 'pro'].includes(x)) && PRODUITS[p].gumroad && TEMPLATES[p].prix > 0);
   assert.deepEqual([...PRODUITS_ESSAI].sort(), attendus.sort(), 'un template en vente sans lien d\'achat (permalien) manque à l\'essai');
-  assert.equal(PRODUITS_ESSAI.filter((p) => publics(TEMPLATES[p]).includes('perso')).length, 39);
-  assert.equal(PRODUITS_ESSAI.filter((p) => publics(TEMPLATES[p]).includes('pro')).length, 50); // PRS fusionné dans CRM, CND dans CAN (présent dans les deux parties), PRK dans GMA le 22/11/2026 ; MRG et SMN dans EVT (en vente, deux parties) le 22/11/2026
+  assert.equal(PRODUITS_ESSAI.filter((p) => publics(TEMPLATES[p]).includes('perso')).length, 42);
+  assert.equal(PRODUITS_ESSAI.filter((p) => publics(TEMPLATES[p]).includes('pro')).length, 51); // PRS fusionné dans CRM, CND dans CAN (présent dans les deux parties), PRK dans GMA le 22/11/2026 ; MRG et SMN dans EVT (en vente, deux parties) le 22/11/2026
   assert.deepEqual(publics(TEMPLATES.CAN), ['pro', 'perso'], 'Suivi de candidatures dans les deux parties');
   assert.deepEqual(publics(TEMPLATES.EVT), ['pro', 'perso'], 'Organisateur d\'événement dans les deux parties');
   assert.ok(PRODUITS_ESSAI.includes('EVT') && !PRODUITS_ESSAI.includes('MRG'), 'Organisateur d\'événement à l\'essai');
@@ -106,7 +106,7 @@ test('création : code, e-mail de remerciement, un essai par adresse et par temp
 
 test('création refusée : template non ouvert, e-mail invalide, sans accord, robot, trop d\'essais par IP', async () => {
   const w = monde();
-  assert.equal((await creer(w, { produit: 'bebe', email: 'a@b.fr' })).statut, 400); // template bloqué, pas ouvert à l'essai
+  assert.equal((await creer(w, { produit: 'secret-santa', email: 'a@b.fr' })).statut, 400); // gratuit, pas ouvert à l'essai
   assert.equal((await creer(w, { produit: 'budget', email: 'pas-une-adresse' })).statut, 400);
   assert.equal((await creer(w, { produit: 'budget', email: 'a@b.fr', consentement: false })).statut, 400);
   assert.equal((await creer(w, { produit: 'budget', email: 'a@b.fr', site_web: 'http://spam' })).statut, 400);
@@ -285,7 +285,7 @@ test('prise en main : rattrapage jusqu\'à J+5, jamais après un achat', async (
   await creer(w, { produit: 'lecture', email: 'a@b.fr' });
   w.horloge.t = T0 + 5 * JOUR; w.mails.length = 0;
   await tourner();
-  assert.deepEqual(w.mails.map((m) => m.objet), ['Suivi de lecture : par où commencer']);
+  assert.deepEqual(w.mails.map((m) => m.objet), ['Suivi culturel : par où commencer']);
   const w2 = monde();
   await creer(w2, { produit: 'lecture', email: 'a@b.fr' });
   w2.horloge.t = T0 + 6 * JOUR; w2.mails.length = 0;
@@ -428,4 +428,14 @@ test('/admin/essais : réservé à l\'administrateur, statuts et CSV', async () 
   const csv = new TextDecoder().decode(octets);
   assert.ok(csv.startsWith('email;prenom;template;statut;debut;fin;jours_restants;achete_le;donnees_reprises;nouveautes;emails_envoyes'));
   assert.ok(csv.includes('achete@b.fr;Ana;Mon Budget;acheté;'));
+});
+
+test('signature « Bandeau » fluide : aucune largeur fixe en CSS, référence Gmail identique à la source', async () => {
+  const { readFileSync } = await import('node:fs');
+  const { SIGNATURE_HTML } = await import('../../netlify/lib/signature.mjs');
+  assert.doesNotMatch(SIGNATURE_HTML, /(^|[^-])width:\s*[0-9]+px/, 'pas de width:NNNpx (seulement max-width), sinon défilement horizontal sur téléphone');
+  assert.match(SIGNATURE_HTML, /^<table[^>]*width="100%"[^>]*style="[^"]*width:100%;max-width:380px/, 'conteneur width 100 %, max 380 px');
+  assert.match(SIGNATURE_HTML, /filet\.png" width="380"[^>]*style="display:block;width:100%;max-width:380px;height:auto/, 'filet fluide, width="380" gardé pour Outlook');
+  const ref = readFileSync(new URL('../../docs/templates/communication/signature/signature-gmail.html', import.meta.url), 'utf8');
+  assert.ok(ref.replace(/\n/g, '').includes(SIGNATURE_HTML.replace(/\n/g, '')), 'signature-gmail.html à régénérer depuis signature.mjs');
 });
