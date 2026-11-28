@@ -1,0 +1,237 @@
+[
+ {
+  "nom": "Duo (Romaric et Valentine)",
+  "url": "https://www.youtube.com/@duo8124",
+  "motif": "doublon : adresse Vastyle@bind-agency.com (domaine bind-agency.com déjà contacté, a-91)"
+ },
+ {
+  "nom": "Mora Rachel",
+  "url": "https://www.youtube.com/channel/UCQzoKdeEUWNmbITGdy6IZPw",
+  "motif": "doublon : domaine bind-agency.com déjà contacté (a-91)"
+ },
+ {
+  "nom": "sandra, maman et tellement plus !",
+  "url": "https://www.youtube.com/channel/UC15phdG_ON2OvIyVUESujTQ",
+  "motif": "doublon Nexora (adresse)"
+ },
+ {
+  "nom": "Maëlle",
+  "url": "https://www.youtube.com/channel/UCEpykVijO_UYXKNIfGFJNgg",
+  "motif": "doublon Nexora"
+ },
+ {
+  "nom": "Chloé BRN",
+  "url": "https://www.youtube.com/channel/UCShVCBRJjgizMe1MtSSR-sw",
+  "motif": "doublon Nexora"
+ },
+ {
+  "nom": "My sweet little baby (Clémence)",
+  "url": "https://www.youtube.com/channel/UCrQcNVV_GP4KXbr3R-LrSXA",
+  "motif": "doublon Nexora"
+ },
+ {
+  "nom": "Mel_en_med",
+  "url": "https://www.youtube.com/channel/UC2qfVJkB06Z75VQFIDe6jlg",
+  "motif": "doublon Nexora (a-91)"
+ },
+ {
+  "nom": "FamilyCoste",
+  "url": "https://www.youtube.com/channel/UCQu8Pu8ApqTooz6-WZOKSfA",
+  "motif": "doublon Nexora"
+ },
+ {
+  "nom": "Ticia & Jérémy Family",
+  "url": "https://www.youtube.com/channel/UChuePeZcaQbanthEH_z7DIw",
+  "motif": "doublon Nexora"
+ },
+ {
+  "nom": "La Famille PB",
+  "url": "https://www.youtube.com/channel/UCW7i9bFYWO8R9bXQN96h49w",
+  "motif": "doublon Nexora"
+ },
+ {
+  "nom": "Anibellie",
+  "url": "https://www.youtube.com/channel/UCdt-Ac9GFQN5xeqaCFzaJZQ",
+  "motif": "doublon Nexora (nom)"
+ },
+ {
+  "nom": "Lovely Lou",
+  "url": "https://www.youtube.com/channel/UCHcOGNf39wgW6IdrLU34OJA",
+  "motif": "doublon Nexora"
+ },
+ {
+  "nom": "FAMILY FOREVER (Organise avec moi)",
+  "url": "https://www.youtube.com/channel/UCqF2Ybjv79d5rjUVlOEhuYQ",
+  "motif": "doublon Nexora"
+ },
+ {
+  "nom": "Le Comptoir Durable",
+  "url": "https://www.youtube.com/channel/UC2L5GgVBNCfWq3zuGMsyksA",
+  "motif": "doublon autre lot vague 3"
+ },
+ {
+  "nom": "Coralie Makoona",
+  "url": "https://www.youtube.com/channel/UCLK6QKOfSsejUA1YcJQ0PvA",
+  "motif": "doublon autre lot vague 3"
+ },
+ {
+  "nom": "Leïla (Nasalya_love)",
+  "url": "https://www.youtube.com/channel/UCytGMCzwc7P26kipsbDHrkg",
+  "motif": "doublon autre lot vague 3 (maison.json)"
+ },
+ {
+  "nom": "Mama Jumeauxx",
+  "url": "https://www.youtube.com/channel/UCo5nDuXmgkK9ljaUgWo3UOA",
+  "motif": "doublon autre lot vague 3"
+ },
+ {
+  "nom": "Béa Maman Nature",
+  "url": "https://www.youtube.com/channel/UCdyw4UmpnXL7-CJ3b9N2fRw",
+  "motif": "doublon autre lot vague 3"
+ },
+ {
+  "nom": "Elo famille",
+  "url": "https://www.youtube.com/channel/UCfz7_w8B-FE9rpVVpSp804g",
+  "motif": "doublon autre lot vague 3"
+ },
+ {
+  "nom": "So It's Me",
+  "url": "https://www.youtube.com/channel/UCR2OMsIotppiCozMQBXlTVw",
+  "motif": "doublon autre lot vague 3"
+ },
+ {
+  "nom": "Arianelifematters",
+  "url": "https://www.youtube.com/channel/UCqs-7YlKiCYvKyq9u-Li8qQ",
+  "motif": "doublon autre lot vague 3"
+ },
+ {
+  "nom": "MiniMouns",
+  "url": "https://www.youtube.com/@MiniMouns",
+  "motif": "concurrent : vend un kit d'organisation sur Etsy (déjà écarté dans maison-ecartes.json)"
+ },
+ {
+  "nom": "Cuisinez pour bébé",
+  "url": "https://cuisinez-pour-bebe.fr/",
+  "motif": "concurrent : abonnement avec menus hebdo et suivi de diversification"
+ },
+ {
+  "nom": "Famille Épanouie",
+  "url": "https://famille-epanouie.fr/",
+  "motif": "vend des formations parentalité ; pas de mail public trouvé"
+ },
+ {
+  "nom": "Imene Ims",
+  "url": "https://www.youtube.com/@imeneims1",
+  "motif": "vend sa propre application (Nodi)"
+ },
+ {
+  "nom": "Fée Dodo",
+  "url": "https://www.youtube.com/channel/UCUMA9h6t6cLY0Lfog41ZpsA",
+  "motif": "consultante sommeil/allaitement (exclue par la mission) ; pas de mail public"
+ },
+ {
+  "nom": "Amour Maternel",
+  "url": "https://www.youtube.com/channel/UC0o_lY2wwHZpWmJryR4b9QA",
+  "motif": "vend des ressources allaitement (exclue) ; pas de mail public"
+ },
+ {
+  "nom": "Ema Krusi",
+  "url": "https://www.youtube.com/channel/UCCrpTwQeRWV_bpMk1bPdcWA",
+  "motif": "vend des programmes de préparation à l'accouchement (exclue)"
+ },
+ {
+  "nom": "Charline sage-femme",
+  "url": "https://www.youtube.com/channel/UC0RBqZrCnNFR6abYBeRQX1Q",
+  "motif": "sage-femme (exclue par la mission) ; pas de mail public"
+ },
+ {
+  "nom": "Lisa Onuoha",
+  "url": "https://www.youtube.com/@LisaOnuoha",
+  "motif": "contenu désormais en anglais"
+ },
+ {
+  "nom": "Poupette",
+  "url": "https://www.youtube.com/@poupeettte",
+  "motif": "une seule vidéo maternité ; contenu principal « Facetime » à sensation"
+ },
+ {
+  "nom": "Nathy NADEEJ",
+  "url": "https://www.youtube.com/@nathynadeej",
+  "motif": "vidéo récente sur la polygamie (sujet polémique)"
+ },
+ {
+  "nom": "Le Monde Des Ados Off",
+  "url": "https://www.youtube.com/channel/UCPW3yLI8ZAbKw5MG2c40XGQ",
+  "motif": "dernière vidéo sur une fausse couche : accroche inappropriée ; activité faible"
+ },
+ {
+  "nom": "Justine Family",
+  "url": "https://www.youtube.com/@Justinefamily",
+  "motif": "quasi inactive (2 vidéos en 6 mois)"
+ },
+ {
+  "nom": "Hello Mariane",
+  "url": "https://hellomariane.fr/",
+  "motif": "pas de mail public (formulaire seulement) ; dernière vidéo 16/08/2026"
+ },
+ {
+  "nom": "La Maki Family",
+  "url": "https://www.youtube.com/@LaMakiFamily",
+  "motif": "pas de mail public"
+ },
+ {
+  "nom": "Journal d'une maman",
+  "url": "https://www.youtube.com/@Journaldunemaman",
+  "motif": "pas de mail public"
+ },
+ {
+  "nom": "aurélie.familledunand",
+  "url": "https://www.youtube.com/@aurelie.familledunand",
+  "motif": "pas de mail public"
+ },
+ {
+  "nom": "Elisa Dcte",
+  "url": "https://www.youtube.com/@ElisaDcte",
+  "motif": "pas de mail public"
+ },
+ {
+  "nom": "Mom'slife, conseils et astuces",
+  "url": "https://www.youtube.com/@adelle2892",
+  "motif": "pas de mail public"
+ },
+ {
+  "nom": "Allo Maman",
+  "url": "https://www.youtube.com/@AlloMaman",
+  "motif": "activité faible (dernière vidéo 14/06/2026), enfants grands"
+ },
+ {
+  "nom": "Famille des Montagnes",
+  "url": "https://www.youtube.com/@Familledesmontagnes74",
+  "motif": "contenu centré sur le handicap et la santé d'un enfant : sujet sensible"
+ },
+ {
+  "nom": "wmoquettedad",
+  "url": "https://www.youtube.com/@wmoquettedad",
+  "motif": "humour père-fils, hors bébé ; adresse d'agence"
+ },
+ {
+  "nom": "MiseesG Fit",
+  "url": "https://www.youtube.com/channel/UCh8llYXeJq1s44nMZbW3UBQ",
+  "motif": "niche fitness post-partum, entrepreneuse minceur (hors cible)"
+ },
+ {
+  "nom": "LINDA Reza",
+  "url": "https://www.youtube.com/@LindaAccroaumakeup",
+  "motif": "contenu relations/coaching, une seule vidéo grossesse"
+ },
+ {
+  "nom": "Dr Sarah Pariest",
+  "url": "https://www.youtube.com/@drsarahpariest",
+  "motif": "site maternest.fr non vérifiable (outil de suivi concurrent possible) : écarté par prudence"
+ },
+ {
+  "nom": "Yousousaa",
+  "url": "https://www.youtube.com/@yousousaa",
+  "motif": "contenu récent sur un sujet sensible (dépression post-partum) : écarté"
+ }
+]
