@@ -29,6 +29,9 @@ const de = (nom) => {
   if (/^Le\s/.test(n)) return `du ${n.slice(3)}`;
   if (/^Les\s/.test(n)) return `des ${n.slice(4)}`;
   if (/^L'|^L’/.test(n)) return `de ${n}`;
+  // Nom commun en tête sans article : « du Château du Colombier », « de la Villa Tri Men ».
+  if (/^(Château|Domaine|Grand|Manoir|Mas|Relais|Moulin|Clos|Logis)\s/.test(n)) return `du ${n}`;
+  if (/^(Villa|Maison|Bastide|Ferme|Demeure|Chaumière)\s/.test(n)) return `de la ${n}`;
   return /^[aeiouyhàâäéèêëîïôöùûü]/i.test(n) ? `de l'${n}` : `de ${n}`;
 };
 const deNom = (nom) => (/^h[ôo]tel\b/i.test(String(nom).trim()) ? `de l'${String(nom).trim()}` : de(nom));
