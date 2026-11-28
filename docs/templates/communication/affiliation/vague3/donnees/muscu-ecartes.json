@@ -1,0 +1,97 @@
+[
+ {
+  "nom": "Samuel Meyzindi",
+  "url": "https://www.youtube.com/@samuel_meyz",
+  "motif": "doublon : déjà dans Nexora (a-256, envoyé le 27/11)"
+ },
+ {
+  "nom": "Maxime Principe",
+  "url": "https://www.youtube.com/@MaximePrincipe",
+  "motif": "doublon : adresse déjà dans un autre lot"
+ },
+ {
+  "nom": "Fitness-Muscu",
+  "url": "https://www.youtube.com/@fitness-muscu",
+  "motif": "doublon : déjà dans Nexora"
+ },
+ {
+  "nom": "Aurore Dazy",
+  "url": "https://www.youtube.com/@auroredazy",
+  "motif": "doublon : déjà dans Nexora"
+ },
+ {
+  "nom": "Calisthenics Bonhomme, Brieuc Le Dantec, Dream in reality, Bazinga, Laëtitia Fitness, Stephane Matala, Naj B Fit, MYF, Eva Antoine, janelle dltr",
+  "url": "",
+  "motif": "doublon : déjà dans Nexora"
+ },
+ {
+  "nom": "Klaim, Aline Dessine, Gautier Cuculiere, Aladdin Jammal",
+  "url": "",
+  "motif": "doublon domaine agence (beyondmedia.fr, expandia.io, lumera.social)"
+ },
+ {
+  "nom": "Margaux Lifestyle",
+  "url": "",
+  "motif": "doublon : adresse déjà dans un autre lot"
+ },
+ {
+  "nom": "Lucas Gouiffes",
+  "url": "https://www.youtube.com/@LucasGouiffes",
+  "motif": "concurrent : lance l'appli Système Fluide (calories, séries)"
+ },
+ {
+  "nom": "Kardyo",
+  "url": "https://www.youtube.com/@Kardyo-0",
+  "motif": "concurrent : application Kardyo"
+ },
+ {
+  "nom": "Serhat More, Karoline.Ro, Imene Ims, Alohalaia, Sissy MUA, Tara's body",
+  "url": "",
+  "motif": "concurrent : application propre"
+ },
+ {
+  "nom": "Alicuizz, Zoé Amalys (Halo Yourself), Musclay, Claire Sauzel, Forceux (Hugo Owona), Nathan Pichon, Bodyssime, Jack Vanbergen, Antho Weiss, Margot Fit, Musculation à la Maison by Jo, Remi Ragnar, Lucile Woodward, wod-science",
+  "url": "",
+  "motif": "concurrent : vend programmes, guides ou coaching"
+ },
+ {
+  "nom": "Florian Ptr, RICO, Benjamin Sant, Théo Leguerrier, NXC Workout, Coach Jerem', LE CONNETABLE, Kilian Hagen",
+  "url": "",
+  "motif": "coachs qui vendent du coaching ou des programmes"
+ },
+ {
+  "nom": "Tibo InShape, Biceps & Brocolis",
+  "url": "",
+  "motif": "marque de compléments"
+ },
+ {
+  "nom": "CoronaGymOff",
+  "url": "",
+  "motif": "salle de sport (entreprise)"
+ },
+ {
+  "nom": "MUSCLE EMOTION",
+  "url": "",
+  "motif": "non francophone (contenu en anglais)"
+ },
+ {
+  "nom": "ImTarzan, Fares LPF, Sirin GF, Maxime Lim, Alisson Lapp, José Alemany, FitBoss",
+  "url": "",
+  "motif": "hors niche ou contenu récent sans rapport (catch, développement perso, études, gymnastique, boxe) / inactif"
+ },
+ {
+  "nom": "Manga Workout, Nassim Sahili, Damssjordan, Green Guy, Spleen Workout, Valentina, CHESTNICO, Lucas WorkoutBrothers, Loïc Power, Fleckinho",
+  "url": "",
+  "motif": "pas d'adresse e-mail publique trouvée"
+ },
+ {
+  "nom": "Nicolas (NicolasRxl)",
+  "url": "https://www.youtube.com/@NicolasRxl",
+  "motif": "promotion de l'appli Micron (calories), concurrente du module nutrition : écarté au contrôle"
+ },
+ {
+  "nom": "David (Le Chef Fit)",
+  "url": "https://www.youtube.com/@lechef_fit",
+  "motif": "vend un e-book de recettes fitness : concurrence possible, écarté par prudence"
+ }
+]

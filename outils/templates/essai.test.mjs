@@ -285,7 +285,7 @@ test('prise en main : rattrapage jusqu\'à J+5, jamais après un achat', async (
   await creer(w, { produit: 'lecture', email: 'a@b.fr' });
   w.horloge.t = T0 + 5 * JOUR; w.mails.length = 0;
   await tourner();
-  assert.deepEqual(w.mails.map((m) => m.objet), ['Suivi de lecture : par où commencer']);
+  assert.deepEqual(w.mails.map((m) => m.objet), ['Suivi culturel : par où commencer']);
   const w2 = monde();
   await creer(w2, { produit: 'lecture', email: 'a@b.fr' });
   w2.horloge.t = T0 + 6 * JOUR; w2.mails.length = 0;
@@ -428,4 +428,14 @@ test('/admin/essais : réservé à l\'administrateur, statuts et CSV', async () 
   const csv = new TextDecoder().decode(octets);
   assert.ok(csv.startsWith('email;prenom;template;statut;debut;fin;jours_restants;achete_le;donnees_reprises;nouveautes;emails_envoyes'));
   assert.ok(csv.includes('achete@b.fr;Ana;Mon Budget;acheté;'));
+});
+
+test('signature « Bandeau » fluide : aucune largeur fixe en CSS, référence Gmail identique à la source', async () => {
+  const { readFileSync } = await import('node:fs');
+  const { SIGNATURE_HTML } = await import('../../netlify/lib/signature.mjs');
+  assert.doesNotMatch(SIGNATURE_HTML, /(^|[^-])width:\s*[0-9]+px/, 'pas de width:NNNpx (seulement max-width), sinon défilement horizontal sur téléphone');
+  assert.match(SIGNATURE_HTML, /^<table[^>]*width="100%"[^>]*style="[^"]*width:100%;max-width:380px/, 'conteneur width 100 %, max 380 px');
+  assert.match(SIGNATURE_HTML, /filet\.png" width="380"[^>]*style="display:block;width:100%;max-width:380px;height:auto/, 'filet fluide, width="380" gardé pour Outlook');
+  const ref = readFileSync(new URL('../../docs/templates/communication/signature/signature-gmail.html', import.meta.url), 'utf8');
+  assert.ok(ref.replace(/\n/g, '').includes(SIGNATURE_HTML.replace(/\n/g, '')), 'signature-gmail.html à régénérer depuis signature.mjs');
 });
