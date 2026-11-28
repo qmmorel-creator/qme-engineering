@@ -429,6 +429,16 @@ I built a snag-list tool that computes delays by contractor. Sample data: 27 sna
 Want one for your sites? qm-engineering.fr/x
 ```
 
+### X-18 · 05/12 · Vidéo · avant / après · terrain et téléphone
+
+```
+Before: a service sheet on each machine. You walk the floor to find what's late.
+
+After: your phone. Sample data in my maintenance tool (French interface): 4 jobs overdue, 2 due soon, one lathe down for 2 days.
+
+Want one for your workshop? qm-engineering.fr/x
+```
+
 ### Vidéos : scénarios
 
 Chaque vidéo : accroche lisible dès la première seconde, 2 ou 3 plans de démo réels, sous-titres anglais, carton final
@@ -445,4 +455,6 @@ Chaque vidéo : accroche lisible dès la première seconde, 2 ou 3 plans de dém
 - **X-10** · Stocks (25 s) : avant (tableur figé, dessiné en HTML, sans marque) / après (tableau de bord, alertes, liste à
   commander de la démo).
 - **X-12** · Levée de réserves (25 s) : réserves par entreprise, retards calculés, PV prêt à imprimer.
+- **X-18** · Maintenance (27 s) : « Before: a clipboard. After: your phone. » → feuille d'entretien dessinée → téléphone
+  Tableau de bord et Échéancier → Tableau de bord ordinateur (tour à l'arrêt, coût sur 12 mois) → carton.
 - **X-14** · Méthode (20 s, motion design sans capture) : les 4 étapes de la page Method, durées 2-3 / 5-10 jours.
